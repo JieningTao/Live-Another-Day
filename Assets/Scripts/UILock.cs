@@ -1,0 +1,157 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class UILock : MonoBehaviour
+{
+    [SerializeField]
+    public EnergySignal TrackedSignal;
+    [SerializeField]
+    UnityEngine.UI.Image RadarEnemyBlip;
+    [SerializeField]
+    Color RadarBlipLostColor;
+    [SerializeField]
+    GameObject HUDTracker;
+    [SerializeField]
+    private UnityEngine.UI.Image HudImage;
+    [SerializeField]
+    UnityEngine.UI.Text HUDName;
+    [SerializeField]
+    UnityEngine.UI.Text HUDDistance;
+    [SerializeField]
+    Sprite TargetLostHUDSprite;
+    [SerializeField]
+    Sprite OutOfRangeSprite;
+    [SerializeField]
+    Sprite InRangeSprite;
+    [SerializeField]
+    private UILockManager MyManager;
+
+    private Vector3 TargetPosition;
+    private float DistanceToTarget = 0;
+
+    private float LockRange;
+    private float RadarBlipRangeDelta;
+    private bool HUDWasOn;
+
+    private void Update()
+    {
+        if (TrackedSignal)
+            TargetPosition = TrackedSignal.transform.position;
+
+        DistanceToTarget = Vector3.Distance(MyManager.PlayerTransform.position, TargetPosition);
+
+        if (Vector3.Dot(Camera.main.gameObject.transform.forward, (TargetPosition - MyManager.PlayerTransform.position).normalized) >= 0)
+        {
+            HUDTracker.transform.position = Camera.main.WorldToScreenPoint(TargetPosition);
+            HUDDistance.text = (int)DistanceToTarget + "";
+
+            RangeCheck();
+
+            if (!HUDWasOn)
+            {
+                HUDTracker.SetActive(true);
+                HUDWasOn = HUDTracker.active;
+            }
+        }
+        else
+        {
+            if (HUDWasOn)
+            {
+                HUDTracker.SetActive(false);
+                HUDWasOn = HUDTracker.active;
+            }
+        }
+
+        MoveRadarBlip();
+    }
+
+    public Transform GetHUDTracker()
+    {
+        return HUDTracker.transform;
+    }
+
+    private void MoveRadarBlip()
+    {
+
+        Vector3 TempPos = TargetPosition - MyManager.PlayerTransform.position;
+
+        TempPos.y = 0;
+
+        float Temp = TempPos.z;
+        TempPos.z = 0;
+        TempPos.y = Temp;
+
+        RadarEnemyBlip.transform.localPosition = TempPos * RadarBlipRangeDelta;
+    }
+
+    public void StartUp(UILockManager _MyManager, float _LockRange, RadarUI RadarParent,EnergySignal Signal)
+    {
+        TrackedSignal = Signal;
+        MyManager = _MyManager;
+        RadarEnemyBlip.gameObject.SetActive(true);
+        HUDTracker.gameObject.SetActive(true);
+        RadarBlipRangeDelta = RadarParent.GetRangeDelta();
+        RadarEnemyBlip.transform.parent = RadarParent.RadarBG.transform;
+        HUDName.text = TrackedSignal.SignalName;
+        LockRange = _LockRange;
+
+        HUDTracker.SetActive(false);
+        HUDWasOn = HUDTracker.active;
+    }
+
+    private void RangeCheck()
+    {
+        //only functions when target hasn't been destroied
+        if (TrackedSignal)
+        {
+            if (DistanceToTarget > LockRange && HudImage.sprite == InRangeSprite)
+            {
+                HUDName.gameObject.SetActive(false);
+                HUDDistance.gameObject.SetActive(false);
+
+                HudImage.sprite = OutOfRangeSprite;
+            }
+            else if (DistanceToTarget < LockRange && HudImage.sprite == OutOfRangeSprite)
+            {
+                HUDName.gameObject.SetActive(true);
+                HUDDistance.gameObject.SetActive(true);
+
+                HudImage.sprite = InRangeSprite;
+            }
+        }
+    }
+
+    public void TargetLost()
+    {
+        //MyManager.m.Remove(this);
+
+        TrackedSignal = null;
+        HudImage.sprite = TargetLostHUDSprite;
+        HUDName.text = "Lost";
+        HUDDistance.enabled = false;
+        RadarEnemyBlip.color = RadarBlipLostColor;
+
+        Destroy(RadarEnemyBlip.gameObject, 1);
+        Destroy(this.gameObject, 1);
+    }
+
+    private void CheckTargetLost(string Order, EnergySignal ES)
+    {
+        if (Order == "Remove")
+        {
+            if (ES == TrackedSignal)
+                TargetLost();
+        }
+    }
+
+    private void OnEnable()
+    {
+        BaseMechFCS.LockChanges += CheckTargetLost;
+    }
+
+    private void OnDisable()
+    {
+        BaseMechFCS.LockChanges -= CheckTargetLost;
+    }
+}
