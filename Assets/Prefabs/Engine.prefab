@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8529977715950747402}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 380582473350289188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.492, y: 1.108, z: 9.607}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4426319184115403984}
   - {fileID: 3336613493631851289}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4426319184115403984}
   - component: {fileID: 8898223915750473077}
   - component: {fileID: 8648172262520204678}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Impulse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3530133791298510198}
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.19}
+  m_LocalPosition: {x: 0, y: -0, z: -0.004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8529977715950747402}
@@ -4864,7 +4864,7 @@ GameObject:
   - component: {fileID: 246069710542984361}
   - component: {fileID: 5814927158226716582}
   - component: {fileID: 6836512462109994037}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4879,7 +4879,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5728915205228789255}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.606}
+  m_LocalPosition: {x: -0, y: 0, z: -0.418}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3336613493631851289}
@@ -4968,7 +4968,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.08
+      scalar: 0.06
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5137,7 +5137,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.15
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9618,7 +9618,7 @@ GameObject:
   - component: {fileID: 3336613493631851289}
   - component: {fileID: 6616746835416327855}
   - component: {fileID: 5475365600737052980}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Boost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9633,7 +9633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5925113287540178563}
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.077}
+  m_LocalPosition: {x: 0, y: -0, z: 0.453}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 246069710542984361}
@@ -9723,7 +9723,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.08
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9892,7 +9892,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2

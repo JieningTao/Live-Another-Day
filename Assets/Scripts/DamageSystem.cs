@@ -47,34 +47,51 @@ public static class DamageSystem
     public enum DefensiveCoating
     {
         NoCoating,
-        ABCoating,//(Energy Resistance+)
-        ThermalCoating, // (HeatR+ ColdR+)
+        ABCoating,//(Absorbs 80% energy damage)
+        ThermalCoating, // (absorbs 50% heat and cold damage)
     }
 
 
+    public static float GetCoatingAbsorbRate(DefensiveCoating HitCoating, DamageType HitType, List<DamageTag> DamageTags)
+    {
+        switch (HitCoating)
+        {
+            default:
+            case DefensiveCoating.NoCoating:
+                return 0;
+                break;
+            case DefensiveCoating.ABCoating:
+                if (HitType == DamageType.Energy)
+                    return 0.8f;
+                else
+                    return 0;
+                break;
+            case DefensiveCoating.ThermalCoating:
+                if(DamageTags.Contains(DamageTag.Cold)||DamageTags.Contains(DamageTag.Heat))
+                    return 0.5f;
+                else return 0;
+                break;
+        }
+    }
 
-
-    public static float GetDamageMultiplier(ArmorType HitSide, DefensiveCoating HitSideCoating, DamageType HitType, List<DamageTag> DamageTags)
+    public static float GetDamageMultiplier(ArmorType HitSide, DamageType HitType, List<DamageTag> DamageTags)
     {
         if (HitType == DamageType.DebugTest)
             return 1;
 
-        float TypeMultiplier = GetTypeMultiplier(HitSide, HitSideCoating, HitType);
-        float TagMultiplier = GetTagMultiplier(HitSide, HitSideCoating, DamageTags);
+        float TypeMultiplier = GetTypeMultiplier(HitSide,  HitType);
+        float TagMultiplier = GetTagMultiplier(HitSide,  DamageTags);
 
 
         return TypeMultiplier * TagMultiplier;
     }
 
-    private static float GetTypeMultiplier(ArmorType HitSide, DefensiveCoating HitSideCoating, DamageType HitType)
+    private static float GetTypeMultiplier(ArmorType HitSide,  DamageType HitType)
     {
         float TypeMultiplier = 1;
 
         if (HitType == DamageType.Energy)
         {
-            if (HitSideCoating == DefensiveCoating.ABCoating)
-                TypeMultiplier -= 0.2f;
-
             if (HitSide == ArmorType.A_Alloy)
                 TypeMultiplier -= 0.3f;
             else if (HitSide == ArmorType.B_Alloy)
@@ -89,16 +106,10 @@ public static class DamageSystem
                 TypeMultiplier -= 0.3f;
         }
 
-
-
-
-
-
-
         return TypeMultiplier;
     }
 
-    private static float GetTagMultiplier(ArmorType HitSide, DefensiveCoating HitSideCoating, List<DamageTag> DamageTags)
+    private static float GetTagMultiplier(ArmorType HitSide,  List<DamageTag> DamageTags)
     {
         float TagMultiplier = 1;
 
@@ -125,17 +136,6 @@ public static class DamageSystem
                 break;
 
         }
-
-        if (HitSideCoating == DefensiveCoating.ThermalCoating)
-        {
-            if (DamageTags.Contains(DamageTag.Chemical))
-                TagMultiplier += 0.25f;
-            else if (DamageTags.Contains(DamageTag.Heat) || DamageTags.Contains(DamageTag.Cold))
-                TagMultiplier -= 0.3f;
-        }
-
-
-
 
         return TagMultiplier;
     }

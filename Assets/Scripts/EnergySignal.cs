@@ -6,13 +6,16 @@ public class EnergySignal : MonoBehaviour
 {
 
     public string SignalName;
-
+    public EnergySignalType MyType;
 
 
     public enum EnergySignalType
     {
-        Drone,
+        LowEnergy,
         Mech,
+        Missile,
+        HES,//high energy signiture
+
         Other,
 
 

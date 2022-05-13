@@ -5,8 +5,11 @@ using UnityEngine;
 public class IDamageable : MonoBehaviour
 {
 
+
     [SerializeField]
-    protected float Health;
+    protected float MaxHealth = 100;
+    [SerializeField]
+    protected DamageSystem.ArmorType MyArmorType;
     [SerializeField]
     protected List<MonoBehaviour> StuffToDisableAfterDestroy;
     [SerializeField]
@@ -16,16 +19,27 @@ public class IDamageable : MonoBehaviour
     protected float DestroyDelay=0;
 
 
+    protected float CurrentHealth;
     protected bool IsDestroied = false;
 
 
-    public virtual void Hit(float Damage)
+    protected virtual void Start()
     {
-        Health -= Damage;
-        if (Health <= 0 && !IsDestroied)
+        CurrentHealth = MaxHealth;
+    }
+
+    public virtual void Hit(float Damage ,DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags)
+    {
+        if (!IsDestroied)
         {
-            IsDestroied = true;
-            Destroied();
+            CurrentHealth -= Damage * DamageSystem.GetDamageMultiplier(MyArmorType,Type,Tags);
+
+            if (CurrentHealth <= 0 )
+            {
+                CurrentHealth = 0;
+                IsDestroied = true;
+                Destroied();
+            }
         }
     }
 
@@ -45,5 +59,15 @@ public class IDamageable : MonoBehaviour
         }
 
         
+    }
+
+    public string GetHealthText()
+    {
+        return (int)CurrentHealth + "";
+    }
+
+    public float GetHealthPercent()
+    {
+        return CurrentHealth / MaxHealth;
     }
 }

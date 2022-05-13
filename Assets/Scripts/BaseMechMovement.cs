@@ -294,4 +294,26 @@ public class BaseMechMovement : MonoBehaviour
     }
 
     #endregion
+
+    #region Display related
+    public string GetBoostText()
+    {
+        return CurrentBoostjuice.ToString("F2");
+    }
+
+    public float GetBoostPercent()
+    {
+        return (float)CurrentBoostjuice / (float)BoostJuiceCapacity;
+    }
+
+    public string GetSpeedText()
+    {
+        return MyRB.velocity.magnitude.ToString("F2");
+    }
+
+    public float GetSpeedPercent()
+    {
+        return (float)MyRB.velocity.magnitude / ((float)BoostSpeedLimit*1.2f);
+    }
+    #endregion
 }

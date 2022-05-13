@@ -105,7 +105,17 @@ public class BaseTurretAI : MonoBehaviour
 
     private void CheckForNullTarget()
     {
-        if (MyTurret.IsResting() || MyTurret.Target == null)
+        for (int i = 0; i < TargetsWithinRange.Count; i++)
+        {
+            if (TargetsWithinRange[i] == null)
+            {
+                TargetsWithinRange.RemoveAt(i);
+                i--;
+            }
+        }
+
+
+        if (MyTurret.IsResting() || MyTurret.Target == null||MyTurret.TargetSignal == null || !MyTurret.TargetSignal.enabled)
         {
             if (TargetsWithinRange.Count > 0)
                 MyTurret.Target = TargetsWithinRange[Random.Range(0, TargetsWithinRange.Count)].gameObject;
@@ -116,6 +126,17 @@ public class BaseTurretAI : MonoBehaviour
             return;
     }
 
+    private void AssignNewTarget(EnergySignal a)
+    {
+        MyTurret.TargetSignal = a;
+        MyTurret.Target = a.gameObject;
+        SetTurretState(TurretState.Tracking);
+    }
+
+    private void AssignRandomTarget()
+    {
+        AssignNewTarget(TargetsWithinRange[Random.Range(0, TargetsWithinRange.Count)]);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -140,14 +161,10 @@ public class BaseTurretAI : MonoBehaviour
 
                 TargetsWithinRange.Add(Temp);
 
-                if (MyTurret.IsResting()||MyTurret.Target == null)
-                {
-                    MyTurret.Target = Temp.gameObject;
-                }
-                else if(Random.Range(0, 100)<10)
-                {
-                    MyTurret.Target = TargetsWithinRange[Random.Range(0, TargetsWithinRange.Count)].gameObject;
-                }
+                if (MyTurret.IsResting() || MyTurret.Target == null)
+                    AssignNewTarget(Temp);
+                else if (Random.Range(0, 100) < 10)
+                    AssignRandomTarget();
 
                 //Debug.Log(Temp.gameObject.name);
             }

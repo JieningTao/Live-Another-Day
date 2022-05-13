@@ -8,7 +8,9 @@ public class Shoot2MainWeapon : BaseMainWeapon
     [SerializeField]
     protected BaseShoot SecondaryWeapon;
     [SerializeField]
-    protected string SecondaryWeaponName;
+    protected string SecondaryWeaponSN = "N-000";
+    [SerializeField]
+    protected string SecondaryWeaponName = "Null";
     [SerializeField]
     protected Color SecondaryWeaponGaugeColor;
 

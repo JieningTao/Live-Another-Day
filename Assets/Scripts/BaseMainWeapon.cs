@@ -7,7 +7,9 @@ public class BaseMainWeapon : BaseMainSlotEquipment
     [SerializeField]
     protected BaseShoot MainWeapon;
     [SerializeField]
-    protected string MainWeaponName;
+    protected string MainWeaponSN = "N-000";
+    [SerializeField]
+    protected string MainWeaponName= "Null";
     [SerializeField]
     protected Color MainWeaponGaugeColor;
 
@@ -19,7 +21,7 @@ public class BaseMainWeapon : BaseMainSlotEquipment
 
     public override void GetInitializeDate(out string MainFunction, out Color MainColor, out string SecondaryFunction, out Color SecondaryColor)
     {
-        MainFunction = MainWeaponName;
+        MainFunction = MainWeaponSN+"\n"+ MainWeaponName;
         MainColor = MainWeaponGaugeColor;
         SecondaryFunction = "";
         SecondaryColor = Color.black;

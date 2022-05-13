@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class BaseEnergyShoot : BaseShoot
 {
+    [Tooltip("remember, percentage, 0.01 = 1%")]
     [SerializeField]
     protected float PercentageConsumedPerShot;
+    [Tooltip("same thing, percentage")]
     [SerializeField]
     protected float ChargePerSecond;
     [SerializeField]
     protected float ChargeDelay;
+    [SerializeField]
+    private float ChargePowerDraw;
 
     private float CurrentCapacitorPercentage;
     private float ChargeDelayRemaining;
-
+    protected BaseMechMain EnergySource;
+    bool WasCharging = false;
 
     protected override void Start()
     {
         CurrentCapacitorPercentage = 1;
+        EnergySource = GetComponentInParent<BaseMechMain>();
         base.Start();
     }
 
@@ -26,24 +32,33 @@ public class BaseEnergyShoot : BaseShoot
         if (ChargeDelayRemaining > 0)
             ChargeDelayRemaining -= Time.deltaTime;
         else
-        {
-            if (CurrentCapacitorPercentage < 1)
-            {
-                CurrentCapacitorPercentage += ChargePerSecond * Time.deltaTime;
-                CurrentCapacitorPercentage = Mathf.Clamp(CurrentCapacitorPercentage, 0, 1);
-            }
-        }
+            Recharge();
 
         base.Update();
     }
 
-    public virtual void Trigger(bool Fire)
+    protected virtual void Recharge()
     {
-
-        if (Fire && MyFireMode == FireMode.SemiAuto && FireCooldown <= 0)
-            Fire1();
+        if (CurrentCapacitorPercentage < 1)
+        {
+            CurrentCapacitorPercentage += ChargePerSecond * Time.deltaTime*EnergySource.CurrentOutputEffiency;
+            CurrentCapacitorPercentage = Mathf.Clamp(CurrentCapacitorPercentage, 0, 1);
+            if (!WasCharging)
+                EnergySource.CurrentPowerDraw += ChargePowerDraw;
+            WasCharging = true;
+        }
         else
-            Firing = Fire;
+        {
+            if (WasCharging)
+                EnergySource.CurrentPowerDraw -= ChargePowerDraw;
+            WasCharging = false;
+        }
+
+    }
+
+    public override void Trigger(bool Fire)
+    {
+        base.Trigger(Fire);
     }
 
     protected override void Fire1()

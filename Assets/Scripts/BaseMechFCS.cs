@@ -31,13 +31,25 @@ public class BaseMechFCS : MonoBehaviour
     public static event Action<bool, BaseMainSlotEquipment> WeaponChanges;
 
     [SerializeField]
+    private SphereCollider RadarCollider;
+    [SerializeField]
     public float RadarRange  = 200;
     [SerializeField]
     public float LockRange  = 150;
 
+    [SerializeField]
+    private float LockTime;
+
     [SerializeField] // SFT
     public EnergySignal MainTarget; //public for testing
     private Vector3 TargetPosition;
+    private List<EnergySignal> CurrentListOfLocked = new List<EnergySignal>();
+    private float LockCooldown;
+    private bool CurrentlyLocking;
+    private int LockRequested;
+
+    private bool FocusMode;
+    private EnergySignal FocusTarget;
 
     private void Start()
     {
@@ -46,18 +58,28 @@ public class BaseMechFCS : MonoBehaviour
             WeaponChanges.Invoke(true, CurrentPrimary);
             WeaponChanges.Invoke(false, CurrentSecondary);
         }
+
+        RadarCollider.radius = RadarRange;
+        RadarCollider.isTrigger = true;
     }
 
     private void Update()
     {
-        CheckLockValidity();
-        FindMainLock();
-
+        //try to target weapon first to avoid not aiming correctly at targets
         Targetweapons(Lefthand);
         Targetweapons(RightHand);
+
+        CheckTargetValidity();
+        FindMainLock();
+
+        UpdateLockedList();
+
     }
 
-    private void CheckLockValidity()
+
+
+
+    private void CheckTargetValidity()
     {
         for (int i = 0; i < TargetsWithinRange.Count; i++)
         {
@@ -127,13 +149,133 @@ public class BaseMechFCS : MonoBehaviour
 
     }
 
+    private void UpdateLockedList()
+    {
+        if (CurrentlyLocking&&CurrentListOfLocked.Count<LockRequested)
+        {
+            LockCooldown -= Time.deltaTime;
+            if (LockCooldown <= 0)
+            {
+                LockClosestUnlocked(1);
+            }
+        }
+    }
+
+    public void RequestLocks(int Amount)
+    {
+        CurrentlyLocking = true;
+        LockRequested = Amount;
+        LockCooldown = LockTime;
+    }
+
+    private void LockClosestUnlocked(int Amount)
+    {
+        for (int i = 0; i < CurrentListOfLocked.Count; i++)
+        {
+            if (CurrentListOfLocked[i] == null || !TargetsWithinRange.Contains(CurrentListOfLocked[i]))
+            {
+                CurrentListOfLocked.RemoveAt(i);
+                i--;
+            }
+        }
+
+        if (MainTarget != null && !CurrentListOfLocked.Contains(MainTarget))
+        {
+            LockChanges.Invoke("Lock", MainTarget);
+            CurrentListOfLocked.Add(MainTarget);
+            LockCooldown = LockTime;
+        }
+        else
+        {
+
+            List<EnergySignal> Temp = AngleSortedTargetList();
+
+            for (int i = 0; i < Temp.Count; i++)
+            {
+                if (!CurrentListOfLocked.Contains(Temp[i]))
+                {
+                    CurrentListOfLocked.Add(Temp[i]);
+                    LockChanges.Invoke("Lock", Temp[i]);
+
+                    Amount--;
+                    if (Amount <= 0)
+                    {
+                        LockCooldown = LockTime;
+                        break;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    private List<EnergySignal> AngleSortedTargetList()
+    {
+        List<EnergySignal> Temp = new List<EnergySignal>();
+
+        for (int i = 0; i < TargetsWithinRange.Count; i++)
+        {
+            if (i == 0)
+                Temp.Add(TargetsWithinRange[i]);
+            else
+            {
+                float NewAngle = Vector3.Angle(CameraAnchor.forward, TargetsWithinRange[i].transform.position - transform.position);
+
+                for (int j = 0; j < Temp.Count; j++)
+                {
+
+                    if (NewAngle < Vector3.Angle(CameraAnchor.forward, Temp[j].transform.position - transform.position))
+                    {
+                        Temp.Insert(j, TargetsWithinRange[i]);
+                        break;
+                    }
+                    else if (j == Temp.Count - 1)
+                    {
+                        Temp.Insert(j, TargetsWithinRange[i]);
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        return Temp;
+    }
+
+    public List<EnergySignal> GetLockedList()
+    {
+        List<EnergySignal> Temp = new List<EnergySignal>();
+        Temp.AddRange(CurrentListOfLocked);
+
+        CurrentListOfLocked.Clear();
+
+        CurrentlyLocking = false;
+        LockCooldown = LockTime;
+        LockChanges.Invoke("UnlockAll", null);
+        return Temp;
+    }
 
     private void FindMainLock()
     {
         EnergySignal OldTarget = MainTarget;
 
+        if (FocusMode)
+        {
+            if (Vector3.Angle(CameraAnchor.forward, FocusTarget.transform.position - transform.position) < MaxAimingAngle && Vector3.Distance(MainTarget.transform.position, transform.position) < LockRange)
+            {
+                //in focus mode, always target focus target if possible
+                MainTarget = FocusTarget;
 
+                if (OldTarget != MainTarget)
+                {
+                    if (PlayerFCS && LockChanges != null)
+                        LockChanges.Invoke("Target", MainTarget);
+                }
 
+                return;
+            }
+        }
 
         float MTAngle;
 
@@ -186,6 +328,16 @@ public class BaseMechFCS : MonoBehaviour
             MainTarget = null;
         if (PlayerFCS && LockChanges != null)
             LockChanges.Invoke("Remove", a);
+    }
+
+    public void ToggleFocusMode()
+    {
+        ToggleFocusMode(!FocusMode);
+    }
+
+    public void ToggleFocusMode(bool a)
+    {
+        FocusMode = a;
     }
 
     private void OnTriggerEnter(Collider other)

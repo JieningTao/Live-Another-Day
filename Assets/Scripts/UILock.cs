@@ -9,6 +9,8 @@ public class UILock : MonoBehaviour
     [SerializeField]
     UnityEngine.UI.Image RadarEnemyBlip;
     [SerializeField]
+    UnityEngine.UI.Image RadarEnemyBlipLock;
+    [SerializeField]
     Color RadarBlipLostColor;
     [SerializeField]
     GameObject HUDTracker;
@@ -18,6 +20,8 @@ public class UILock : MonoBehaviour
     UnityEngine.UI.Text HUDName;
     [SerializeField]
     UnityEngine.UI.Text HUDDistance;
+    [SerializeField]
+    private UnityEngine.UI.Image HudLock;
     [SerializeField]
     Sprite TargetLostHUDSprite;
     [SerializeField]
@@ -83,6 +87,8 @@ public class UILock : MonoBehaviour
         TempPos.y = Temp;
 
         RadarEnemyBlip.transform.localPosition = TempPos * RadarBlipRangeDelta;
+
+        RadarEnemyBlip.transform.rotation = Quaternion.Euler(0,0,0);
     }
 
     public void StartUp(UILockManager _MyManager, float _LockRange, RadarUI RadarParent,EnergySignal Signal)
@@ -95,6 +101,9 @@ public class UILock : MonoBehaviour
         RadarEnemyBlip.transform.parent = RadarParent.RadarBG.transform;
         HUDName.text = TrackedSignal.SignalName;
         LockRange = _LockRange;
+
+        HUDName.gameObject.SetActive(false);
+        HUDDistance.gameObject.SetActive(false);
 
         HUDTracker.SetActive(false);
         HUDWasOn = HUDTracker.active;
@@ -114,8 +123,8 @@ public class UILock : MonoBehaviour
             }
             else if (DistanceToTarget < LockRange && HudImage.sprite == OutOfRangeSprite)
             {
-                HUDName.gameObject.SetActive(true);
-                HUDDistance.gameObject.SetActive(true);
+                //HUDName.gameObject.SetActive(true);
+                //HUDDistance.gameObject.SetActive(true);
 
                 HudImage.sprite = InRangeSprite;
             }
@@ -128,9 +137,13 @@ public class UILock : MonoBehaviour
 
         TrackedSignal = null;
         HudImage.sprite = TargetLostHUDSprite;
+        HUDName.gameObject.SetActive(true);
         HUDName.text = "Lost";
         HUDDistance.enabled = false;
         RadarEnemyBlip.color = RadarBlipLostColor;
+
+        RadarEnemyBlipLock.gameObject.SetActive(false);
+        HudLock.gameObject.SetActive(false);
 
         Destroy(RadarEnemyBlip.gameObject, 1);
         Destroy(this.gameObject, 1);
@@ -142,6 +155,34 @@ public class UILock : MonoBehaviour
         {
             if (ES == TrackedSignal)
                 TargetLost();
+        }
+        else if (Order == "Lock")
+        {
+            if (ES == TrackedSignal)
+            {
+                HudLock.gameObject.SetActive(true);
+                RadarEnemyBlipLock.gameObject.SetActive(true);
+            }
+        }
+        else if (Order == "UnlockAll")
+        {
+            HudLock.gameObject.SetActive(false);
+            RadarEnemyBlipLock.gameObject.SetActive(false);
+        }
+        else if (Order == "Target")
+        {
+            //Debug.Log("Targting " + Signal.name);
+
+            if (ES == TrackedSignal)
+            {
+                HUDName.gameObject.SetActive(true);
+                HUDDistance.gameObject.SetActive(true);
+            }
+            else
+            {
+                HUDName.gameObject.SetActive(false);
+                HUDDistance.gameObject.SetActive(false);
+            }
         }
     }
 

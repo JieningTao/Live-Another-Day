@@ -1,0 +1,38 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ExplosiveRocket : BaseRocket
+{
+    [SerializeField]
+    BaseExplosion MyExplosion;
+
+
+    public override void SetLayerAndMask(int Layer)
+    {
+        gameObject.layer = Layer;
+        SetMask();
+        MyExplosion.SetLayerAndMask(Layer);
+    }
+
+    protected override void DealDamageTo(GameObject Target)
+    {
+        //Debug.Log("boom");
+
+        IDamageable Temp = Target.GetComponent<IDamageable>();
+
+        if (Temp != null)
+        {
+            Temp.Hit(Damage, MyDamageType, MyDamageTags);
+            //Debug.Log(Target.name + " Was hit by " + gameObject.name);
+        }
+
+        if (MyExplosion)
+        {
+            MyExplosion.transform.parent = null;
+            MyExplosion.gameObject.SetActive(true);
+        }
+
+        Destroy(this.gameObject);
+    }
+}

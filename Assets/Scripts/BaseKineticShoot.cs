@@ -57,6 +57,12 @@ public class BaseKineticShoot : BaseShoot
 
     }
 
+    public void ReArm(float Percent)
+    {
+        Percent = Mathf.Clamp(Percent, 0, 1);
+        ReserveRemaining += (int)(Percent * MaxReserveAmmo);
+        ReserveRemaining = Mathf.Clamp(ReserveRemaining, 0, MaxReserveAmmo);
+    }
 
     protected override void Fire1()
     {

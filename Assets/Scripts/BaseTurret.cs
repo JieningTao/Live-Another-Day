@@ -16,7 +16,7 @@ public class BaseTurret : MonoBehaviour
 
     [SerializeField]
     public GameObject Target;
-
+    public EnergySignal TargetSignal;
 
 
     protected Quaternion TurretBaseRotation;

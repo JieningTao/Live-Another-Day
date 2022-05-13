@@ -38,6 +38,18 @@ public class BaseExplosion : MonoBehaviour
         HitMask = _HitMask;
     }
 
+    public virtual void SetLayerAndMask(int Layer)
+    {
+        gameObject.layer = Layer;
+        SetMask();
+    }
+
+    protected void SetMask()
+    {
+        HitMask = 1 << (gameObject.layer - 1);
+        HitMask = ~HitMask;
+    }
+
     private void Update()
     {
         Delay -= Time.deltaTime;
@@ -61,8 +73,8 @@ public class BaseExplosion : MonoBehaviour
         {
             IDamageable D = h.GetComponentInParent<IDamageable>();
             if (D != null)
-                D.Hit(ExplosiveDamage);
-            
+                D.Hit(ExplosiveDamage, MyDamageType, MyDamageTags);
+
             Rigidbody r = h.GetComponent<Rigidbody>();
             if (r != null)
                 r.AddExplosionForce(ExplosiveForce, transform.position, ScaledExplosionRadius);

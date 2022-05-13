@@ -33,15 +33,15 @@ public class BaseBullet : MonoBehaviour
         FlightCheck();
     }
 
-    public virtual void InitializeProjectile(float _Damage,int Layer, DamageSystem.DamageType DamageType, List<DamageSystem.DamageTag> DamageTags)
-    {
-        MyDamageType = DamageType;
-        MyDamageTags = DamageTags;
-        gameObject.layer = Layer;
-        Damage = _Damage;
+    //public virtual void InitializeProjectile(float _Damage,int Layer, DamageSystem.DamageType DamageType, List<DamageSystem.DamageTag> DamageTags)
+    //{
+    //    MyDamageType = DamageType;
+    //    MyDamageTags = DamageTags;
+    //    gameObject.layer = Layer;
+    //    Damage = _Damage;
 
-        SetMask();
-    }
+    //    SetMask();
+    //}
 
     protected virtual void FlightCheck()
     {
@@ -63,6 +63,12 @@ public class BaseBullet : MonoBehaviour
         DealDamageTo(collision.gameObject);
     }
 
+    public virtual void SetLayerAndMask(int Layer)
+    {
+        gameObject.layer = Layer;
+        SetMask();
+    }
+
     protected void SetMask()
     {
 
@@ -79,7 +85,7 @@ public class BaseBullet : MonoBehaviour
 
         if (Temp != null)
         {
-            Temp.Hit(Damage);
+            Temp.Hit(Damage, MyDamageType, MyDamageTags);
             //Debug.Log(Target.name + " Was hit by " + gameObject.name);
         }
 

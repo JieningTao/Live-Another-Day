@@ -9,15 +9,21 @@ public class ExplosiveBullet : BaseBullet
 
     
 
-    public virtual void InitializeProjectile(float _Damage, int Layer, DamageSystem.DamageType DamageType, List<DamageSystem.DamageTag> DamageTags, float ExplosiveDamage, float ExplosiveForce,BaseExplosion _MyExplosion)
-    {
-        base.InitializeProjectile(_Damage, Layer, DamageType, DamageTags);
+    //public virtual void InitializeProjectile(float _Damage, int Layer, DamageSystem.DamageType DamageType, List<DamageSystem.DamageTag> DamageTags, float ExplosiveDamage, float ExplosiveForce,BaseExplosion _MyExplosion)
+    //{
+    //    base.InitializeProjectile(_Damage, Layer, DamageType, DamageTags);
 
-        if (_MyExplosion)
-        {
-            MyExplosion = _MyExplosion;
-            MyExplosion.InitializeExplosion(ExplosiveDamage, DamageType, DamageTags, ExplosiveForce, HitMask);
-        }
+    //    if (_MyExplosion)
+    //    {
+    //        MyExplosion = _MyExplosion;
+    //        MyExplosion.InitializeExplosion(ExplosiveDamage, DamageType, DamageTags, ExplosiveForce, HitMask);
+    //    }
+    //}
+
+    public override void SetLayerAndMask(int Layer)
+    {
+        base.SetLayerAndMask(Layer);
+        MyExplosion.SetLayerAndMask(Layer);
     }
 
     protected override void DealDamageTo(GameObject Target)
@@ -28,7 +34,7 @@ public class ExplosiveBullet : BaseBullet
 
         if (Temp != null)
         {
-            Temp.Hit(Damage);
+            Temp.Hit(Damage, MyDamageType, MyDamageTags);
             //Debug.Log(Target.name + " Was hit by " + gameObject.name);
         }
 

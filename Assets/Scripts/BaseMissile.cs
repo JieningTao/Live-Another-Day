@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseMissile : ExplosiveBullet
+public class BaseMissile : BaseBullet
 {
     [SerializeField]
     public EnergySignal Target;
@@ -27,27 +27,21 @@ public class BaseMissile : ExplosiveBullet
         FlightCheck();
     }
 
-    public virtual void InitializeProjectile(float _Damage, int Layer, DamageSystem.DamageType DamageType, List<DamageSystem.DamageTag> DamageTags,float _TrackingSpeed,float _ActivationDelay, float ExplosiveDamage, float ExplosiveForce, BaseExplosion _MyExplosion)
-    {
-        base.InitializeProjectile(_Damage, Layer, DamageType, DamageTags);
+    //public virtual void InitializeProjectile(float _Damage, int Layer, DamageSystem.DamageType DamageType, List<DamageSystem.DamageTag> DamageTags, float _TrackingSpeed, float _ActivationDelay)
+    //{
+    //    base.InitializeProjectile(_Damage, Layer, DamageType, DamageTags);
 
-        TrackingSpeed = _TrackingSpeed;
-        ActivationDelay = _ActivationDelay;
+    //    TrackingSpeed = _TrackingSpeed;
+    //    ActivationDelay = _ActivationDelay;
 
-        if (_MyExplosion)
-        {
-            MyExplosion = _MyExplosion;
-            MyExplosion.InitializeExplosion(ExplosiveDamage, DamageType, DamageTags, ExplosiveForce, HitMask);
-        }
-
-    }
+    //}
 
     public void RecieveTarget(EnergySignal NewTarget)
     {
         Target = NewTarget;
     }
 
-    private void TrackTarget()
+    protected void TrackTarget()
     {
         if (Target != null)
         {

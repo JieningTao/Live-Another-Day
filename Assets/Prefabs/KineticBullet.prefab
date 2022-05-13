@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5121680720090386444}
   - component: {fileID: 5121680720090386675}
   - component: {fileID: 5121680720090386674}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: KineticBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   Damage: 10
   MyDamageType: 1
   MyDamageTags: 
-  HitMask: 0
+  HitMask: -513
 --- !u!136 &5121680720090386675
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.04
+  m_Time: 0.06
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1

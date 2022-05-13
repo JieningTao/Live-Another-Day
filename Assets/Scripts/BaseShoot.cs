@@ -9,6 +9,7 @@ public class BaseShoot : MonoBehaviour
 
     [SerializeField]
     protected GameObject ProjectilePrefab;
+    protected BaseBullet ProjectileScript;
 
     [SerializeField]
     protected float AccuracyDeviation;
@@ -17,19 +18,19 @@ public class BaseShoot : MonoBehaviour
     [SerializeField]
     protected float TBS = 0.1f;
 
-    [SerializeField]
-    protected float PerShotDamage = 10;
+    //[SerializeField]
+    //protected float PerShotDamage = 10;
 
-    [SerializeField]
-    public DamageSystem.DamageType MyDamageType;
-    [SerializeField]
-    public List<DamageSystem.DamageTag> MyDamageTags;
+    //[SerializeField]
+    //public DamageSystem.DamageType MyDamageType;
+    //[SerializeField]
+    //public List<DamageSystem.DamageTag> MyDamageTags;
 
     [SerializeField]
     protected FireMode MyFireMode;
     [SerializeField]
+    protected GameObject MuzzleFlarePrefab;
     protected List<ParticleSystem> MuzzleFlares;
-
 
     public enum FireMode
     {
@@ -41,7 +42,7 @@ public class BaseShoot : MonoBehaviour
     protected bool Firing = false;
     protected float FireCooldown = 0;
     protected LayerMask BulletHitMask;
-    private int ShotsFired=0;
+    private int ShotsFired = 0;
     //remnant system
     public WeaponStatus MyStatus { get; protected set; }
 
@@ -59,7 +60,8 @@ public class BaseShoot : MonoBehaviour
         foreach(Transform a in BulletSpawns)
             a.gameObject.SetActive(false);
         InitializeBullet();
-        MyStatus = WeaponStatus.Normal;
+        InitializeMuzzleFlare();
+        //MyStatus = WeaponStatus.Normal;
     }
 
     protected virtual int GetNextBulletSpawn()
@@ -72,19 +74,30 @@ public class BaseShoot : MonoBehaviour
 
     protected virtual int GetNextBulletSpawn(bool count)
     {
+        int a = ShotsFired % BulletSpawns.Count;
+
         if (count)
             ShotsFired++;
 
-        return ShotsFired % BulletSpawns.Count;
+        return a;
 
+    }
+
+    protected virtual void InitializeMuzzleFlare()
+    {
+        MuzzleFlares = new List<ParticleSystem>();
+
+        foreach (Transform a in BulletSpawns)
+        {
+            GameObject NewMuzzleFlare = Instantiate(MuzzleFlarePrefab, a.position,a.rotation, transform);
+            MuzzleFlares.Add(NewMuzzleFlare.GetComponent<ParticleSystem>());
+        }
     }
 
     protected virtual void InitializeBullet()
     {
-        //readies an instance of bullet at start that can be modified indipendantly from the prefab 
-        ProjectilePrefab = Instantiate(ProjectilePrefab,transform);
-        ProjectilePrefab.SetActive(false);
-        BaseBullet Temp = ProjectilePrefab.GetComponent<BaseBullet>();
+
+        ProjectileScript = ProjectilePrefab.GetComponent<BaseBullet>();
 
         int SetLayer = 0;
 
@@ -93,8 +106,7 @@ public class BaseShoot : MonoBehaviour
         else if (gameObject.layer == 11)
             SetLayer = 12;
 
-        Temp.InitializeProjectile(PerShotDamage, SetLayer, MyDamageType, MyDamageTags);
-
+        ProjectileScript.SetLayerAndMask(SetLayer);
     }
 
     public virtual void Trigger(bool Fire)
@@ -133,7 +145,7 @@ public class BaseShoot : MonoBehaviour
         NewBullet.SetActive(true);
         NewBullet.transform.Rotate(new Vector3(0, Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), 0), Space.World);
 
-        if (MuzzleFlares!=null&&MuzzleFlares.Count>SlotNum)
+        if (MuzzleFlarePrefab!=null)
             MuzzleFlares[SlotNum].Play();
     }
 

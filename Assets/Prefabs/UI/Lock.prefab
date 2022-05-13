@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.31372547, a: 0.8}
+  m_Color: {r: 1, g: 0.24049592, b: 0, a: 0.8}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -66,6 +66,80 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 4c60e9723c618a9459b1ad30121a4dfc, type: 3}
   m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &722676053260165393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456369892960619742}
+  - component: {fileID: 3359116316906849244}
+  - component: {fileID: 8022295349627909969}
+  m_Layer: 5
+  m_Name: Lock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &456369892960619742
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722676053260165393}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3155220115004406417}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 12, y: 12}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3359116316906849244
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722676053260165393}
+  m_CullTransparentMesh: 0
+--- !u!114 &8022295349627909969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722676053260165393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.20123056, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ccf94a84722955b4d844b96c98b80f3b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -126,14 +200,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrackedSignal: {fileID: 0}
   RadarEnemyBlip: {fileID: 5370631504163277098}
+  RadarEnemyBlipLock: {fileID: 8022295349627909969}
   RadarBlipLostColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
   HUDTracker: {fileID: 2049790762473903867}
   HudImage: {fileID: 2049790762473903865}
   HUDName: {fileID: 2049790763304862960}
   HUDDistance: {fileID: 2049790762772019122}
+  HudLock: {fileID: 1711130467464597652}
   TargetLostHUDSprite: {fileID: 21300000, guid: 9003bf7fe49c3fd4185cd61eb4907a23,
     type: 3}
-  OutOfRangeSprite: {fileID: 21300000, guid: 3c324d95a1c76b24e93d78e6d42074c0, type: 3}
+  OutOfRangeSprite: {fileID: 21300000, guid: ccf94a84722955b4d844b96c98b80f3b, type: 3}
   InRangeSprite: {fileID: 21300000, guid: 176829525d1521a40aef6f10c0abe1f4, type: 3}
   MyManager: {fileID: 0}
 --- !u!1 &2049790762473903867
@@ -386,7 +462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3155220115004406417
 RectTransform:
   m_ObjectHideFlags: 0
@@ -397,7 +473,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 456369892960619742}
   m_Father: {fileID: 2049790762255629730}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
