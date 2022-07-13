@@ -27,6 +27,17 @@ public class Shoot2MainWeapon : BaseMainWeapon
         SecondaryWeapon.Trigger(Fire);
     }
 
+    public override void Equip(bool _Equip, BaseMechMain Operator)
+    {
+        base.Equip(_Equip, Operator);
+
+        SecondaryWeapon.EquipWeapon();
+        if (SecondaryWeapon is BaseEnergyShoot)
+        {
+            (SecondaryWeapon as BaseEnergyShoot).GetPowerSource(Operator);
+        }
+    }
+
     public override void GetInitializeDate(out string MainFunction, out Color MainColor, out string SecondaryFunction, out Color SecondaryColor)
     {
         MainFunction = MainWeaponName;

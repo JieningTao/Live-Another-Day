@@ -53,8 +53,6 @@ public class BaseKineticShoot : BaseShoot
             ReloadTimeRemaining = ReloadTime;
             FireCooldown = 0;
         }
-
-
     }
 
     public void ReArm(float Percent)
@@ -94,5 +92,10 @@ public class BaseKineticShoot : BaseShoot
             return "Reloading";
         else
             return MagazineRemaining+ "/"+ ReserveRemaining;
+    }
+
+    public override bool GetFirable()
+    {
+        return ReloadTimeRemaining<=0;
     }
 }

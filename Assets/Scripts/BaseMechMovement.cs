@@ -6,32 +6,30 @@ public class BaseMechMovement : MonoBehaviour
 {
 
     [SerializeField]
-    Transform CameraAnchor;
-    [SerializeField]
-    Transform RightArm;
-    [SerializeField]
-    Transform LeftArm;
-
-
-    [SerializeField]
-    float TurnSpeed;
-    [SerializeField]
     float MoveForce;
+
     [SerializeField]
     float SpeedLimit;
     [SerializeField]
     float BoostSpeedLimit;
+
     [SerializeField]
-    float BoostMultiplier;
+    float BoostForce;
     [SerializeField]
     float BoostCost;
+
     [SerializeField]
     float ImpulseBoostForce;
     [SerializeField]
     float ImpulseCost;
+
+    [SerializeField]
+    private float FloatForce;
+    [SerializeField]
+    float FloatCost;
+
     [SerializeField] //SFT (Serialized for testing)
     public bool Boosting;
-    bool WasBoosting;
     [SerializeField]
     protected float BoostJuiceCapacity;
     protected float CurrentBoostjuice;
@@ -57,42 +55,112 @@ public class BaseMechMovement : MonoBehaviour
 
     [SerializeField]
     private float JumpForce;
-    [SerializeField]
-    private float FloatForce;
+
 
     [SerializeField]
     private LayerMask GroundDetection;
     [SerializeField]
-    private Transform GroundDetectionsite;
+    private Transform GroundDetectionSite;
     [SerializeField]
     private float GroundDetectionRadius;
 
-    [SerializeField]
     private List<ParticleSystem> BoostExhausts;
-    [SerializeField]
     private List<ParticleSystem> BoostImpulses;
+    private List<ParticleSystem> FloatThrusters;
     [SerializeField]
     private ParticleSystem JumpEffect;
-    [SerializeField]
-    private List<ParticleSystem> FloatThrusters;
 
+    [SerializeField]
+    private GameObject BoostEffectPrefab;
+    [SerializeField]
+    private GameObject ImpulseBoostPrefab;
+    [SerializeField]
+    private GameObject FloatThrustPrefab;
 
 
     float JumpCooldown = 0.2f;
     float JCRemaining;
     public Vector3 MovementInput;
+
+    [SerializeField] //SFT
     private Rigidbody MyRB;
+    private BaseMechMain MyBMM;
 
+    
+    //private void Start()
+    //{
+    //    MyRB = GetComponent<Rigidbody>();
 
-    private void Start()
+    //    Cursor.lockState = CursorLockMode.Locked;
+    //    JCRemaining = 0;
+    //    CurrentBoostjuice = BoostJuiceCapacity;
+    //}
+
+    public void InitializeMechMovement(BaseMechMain BMM,bool Player)
     {
+        MyBMM = BMM;
         MyRB = GetComponent<Rigidbody>();
-
+        Debug.Log(MyRB, this);
         Cursor.lockState = CursorLockMode.Locked;
         JCRemaining = 0;
         CurrentBoostjuice = BoostJuiceCapacity;
     }
 
+    public void SetBoostEffects(GameObject Boost, GameObject Impulse,GameObject Float)
+    {
+        BoostEffectPrefab = Boost;
+        ImpulseBoostPrefab = Impulse;
+        FloatThrustPrefab = Float; //currently boost system will use the same effect as boost for float
+    }
+
+    public void CreateBoostAndJumpEffects(List<Transform> BoostPoints,List<Transform> FloatThrustPoints)
+    {
+        BoostExhausts = new List<ParticleSystem>();
+        BoostImpulses = new List<ParticleSystem>();
+
+        FloatThrusters = new List<ParticleSystem>();
+
+        for (int i = 0; i < BoostPoints.Count; i++)
+        {
+            BoostExhausts.Add(Instantiate(BoostEffectPrefab, BoostPoints[i]).GetComponentInChildren<ParticleSystem>());
+            BoostImpulses.Add(Instantiate(ImpulseBoostPrefab, BoostPoints[i]).GetComponentInChildren<ParticleSystem>());
+        }
+        for (int i = 0; i < FloatThrustPoints.Count; i++)
+        {
+            FloatThrusters.Add(Instantiate(FloatThrustPrefab, FloatThrustPoints[i]).GetComponentInChildren<ParticleSystem>());
+        }
+    }
+
+    public void SetStats(float MF,float SL, float BF,float IBF, float FF,float BC,float IC,float FC,float BJC, float BJR,float BJRC ,Vector3 Drag, float JF)
+    {
+        MoveForce = MF;
+        SpeedLimit = SL;
+
+
+        BoostForce = BF;
+        ImpulseBoostForce = IBF;
+        FloatForce = FF;
+
+        BoostCost = BC;
+        ImpulseCost = IC;
+        FloatCost = FC;
+
+        BoostJuiceCapacity = BJC;
+        BoostJuiceRecovery = BJR;
+        BoostJuiceRecoveryCooldown = BJRC;
+
+        MovingDrag = Drag.x;
+        StoppingDrag = Drag.y;
+        OverSpeedDrag = Drag.z;
+
+        JumpForce = JF;
+    }
+
+    public void SetGroundDetection(Transform Site)
+    {
+        GroundDetectionSite = Site;
+        JumpEffect.transform.position = Site.position;
+    }
 
     private void Update()
     {
@@ -107,6 +175,7 @@ public class BaseMechMovement : MonoBehaviour
 
         if (JCRemaining > 0)
             JCRemaining -= Time.deltaTime;
+
     }
 
     private void PlanarMovement()
@@ -118,43 +187,83 @@ public class BaseMechMovement : MonoBehaviour
         if (PlanarInput == Vector3.zero)
         {
             if (Boosting)
-                BoostEffect(false);
+                BoostControl(false);
             return;
         }
 
-        bool ShouldBeBoosting = false;
-
         float AirMultiplier = 1; //mid-air manuvering is less effective unless boosting, under test
         if (!grounded())
-            AirMultiplier = 0.1f;
+            AirMultiplier = 0.2f;
         else if (!grounded() && Boosting)
             AirMultiplier = 0.7f;
 
 
         if (Boosting && AttemptUseBoostJuice(BoostCost * Time.deltaTime))
         {
-            MyRB.AddForce(transform.TransformDirection(PlanarInput).normalized * MoveForce * BoostMultiplier * AirMultiplier, ForceMode.Force);
-            ShouldBeBoosting = true;
+            MyRB.AddForce(transform.TransformDirection(PlanarInput).normalized * (MoveForce * AirMultiplier + BoostForce), ForceMode.Force);
         }
         else
-            MyRB.AddForce(transform.TransformDirection(PlanarInput).normalized * MoveForce * AirMultiplier, ForceMode.Force);
-
-
-
-        if (!WasBoosting && ShouldBeBoosting)
         {
-            BoostEffect(true);
+            if (Boosting)
+                BoostControl(false);
+            
+
+
+            MyRB.AddForce(transform.TransformDirection(PlanarInput).normalized * MoveForce * AirMultiplier, ForceMode.Force);
+        }
+
+
+
+        //if (!WasBoosting && ShouldBeBoosting)
+        //{
+        //    BoostEffect(true);
+
+        //    if (AttemptUseBoostJuice(ImpulseCost))
+        //    {
+        //        ImpulseBoostEffect();
+        //        MyRB.AddForce(transform.TransformDirection(PlanarInput).normalized * ImpulseBoostForce, ForceMode.Impulse);
+        //    }
+        //}
+        //else if (!ShouldBeBoosting && WasBoosting)
+        //    BoostEffect(false);
+
+        //WasBoosting = ShouldBeBoosting;
+    }
+
+    public void BoostControl(bool Start)
+    {
+        if (Start)
+        {
+            Vector3 PlanarInput = MovementInput;
+
+            PlanarInput.y = 0;
+
+            if (PlanarInput == Vector3.zero)
+                return;
+            
 
             if (AttemptUseBoostJuice(ImpulseCost))
             {
                 ImpulseBoostEffect();
                 MyRB.AddForce(transform.TransformDirection(PlanarInput).normalized * ImpulseBoostForce, ForceMode.Impulse);
             }
-        }
-        else if (!ShouldBeBoosting && WasBoosting)
-            BoostEffect(false);
 
-        WasBoosting = ShouldBeBoosting;
+            if (CurrentBoostjuice >= BoostCost * Time.deltaTime)
+            {
+                BoostEffect(true);
+                Boosting = true;
+            }
+        }
+        else
+        {
+            if (Boosting)
+            {
+                Boosting = false;
+                BoostEffect(false);
+            }
+        }
+
+
     }
 
     #region Boost juice related stuff
@@ -216,7 +325,7 @@ public class BaseMechMovement : MonoBehaviour
 
     public bool grounded()
     {
-        if (Physics.OverlapSphere(GroundDetectionsite.position, GroundDetectionRadius, GroundDetection).Length > 0)
+        if (Physics.OverlapSphere(GroundDetectionSite.position, GroundDetectionRadius, GroundDetection).Length > 0)
             return true;
         else
             return false;
@@ -235,7 +344,8 @@ public class BaseMechMovement : MonoBehaviour
     {
         if (Floating)
         {
-            MyRB.AddForce(transform.up * FloatForce, ForceMode.Force);
+            if (AttemptUseBoostJuice(BoostCost * Time.deltaTime))
+                MyRB.AddForce(transform.up * FloatForce, ForceMode.Force);
         }
 
         if (Floating && !WasFloating)
@@ -251,14 +361,12 @@ public class BaseMechMovement : MonoBehaviour
         WasFloating = Floating;
     }
 
-    public void Rotate(Vector3 Rot)
-    {
-        transform.Rotate((new Vector3(0, Rot.y, 0)) * TurnSpeed);
 
-        Vector3 VerticalRotation = (new Vector3(Rot.x, 0, 0)) * TurnSpeed;
-        CameraAnchor.transform.Rotate(VerticalRotation);
-        RightArm.transform.Rotate(VerticalRotation);
-        LeftArm.transform.Rotate(VerticalRotation);
+
+    private void OnDisable()
+    {
+        BoostEffect(false);
+        FloatEffect(false);
     }
 
     #region Effects

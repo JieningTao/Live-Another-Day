@@ -22,7 +22,7 @@ public class BaseRocket : BaseBullet
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, CurrentSpeed * Time.deltaTime, HitMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, CurrentSpeed * Time.deltaTime, ~HitMask))
         {
             transform.Translate(Vector3.forward * hit.distance);
             DealDamageTo(hit.collider.gameObject);

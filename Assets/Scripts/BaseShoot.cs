@@ -36,24 +36,14 @@ public class BaseShoot : MonoBehaviour
     {
         SemiAuto,
         FullAuto,
+        Charge,
     }
 
 
     protected bool Firing = false;
     protected float FireCooldown = 0;
     protected LayerMask BulletHitMask;
-    private int ShotsFired = 0;
-    //remnant system
-    public WeaponStatus MyStatus { get; protected set; }
-
-    public enum WeaponStatus
-    {
-        Normal,
-        Loading,
-        Empty,
-        Cooldown,
-        Error
-    }
+    protected int ShotsFired = 0;
 
     protected virtual void Start()
     {
@@ -63,6 +53,12 @@ public class BaseShoot : MonoBehaviour
         InitializeMuzzleFlare();
         //MyStatus = WeaponStatus.Normal;
     }
+
+    public virtual void EquipWeapon()
+    {
+        SetLayerAndBullet(gameObject.layer);
+    }
+
 
     protected virtual int GetNextBulletSpawn()
     {
@@ -89,7 +85,7 @@ public class BaseShoot : MonoBehaviour
 
         foreach (Transform a in BulletSpawns)
         {
-            GameObject NewMuzzleFlare = Instantiate(MuzzleFlarePrefab, a.position,a.rotation, transform);
+            GameObject NewMuzzleFlare = Instantiate(MuzzleFlarePrefab, a.position,MuzzleFlarePrefab.transform.rotation, a.transform.parent);
             MuzzleFlares.Add(NewMuzzleFlare.GetComponent<ParticleSystem>());
         }
     }
@@ -107,6 +103,24 @@ public class BaseShoot : MonoBehaviour
             SetLayer = 12;
 
         ProjectileScript.SetLayerAndMask(SetLayer);
+    }
+
+    protected virtual void SetLayerAndBullet(int Layer)
+    {
+        gameObject.layer = Layer;
+
+        if(ProjectileScript == null)
+            ProjectileScript = ProjectilePrefab.GetComponent<BaseBullet>();
+
+        int SetLayer = 0;
+
+        if (gameObject.layer == 9)
+            SetLayer = 10;
+        else if (gameObject.layer == 11)
+            SetLayer = 12;
+
+        ProjectileScript.SetLayerAndMask(SetLayer);
+
     }
 
     public virtual void Trigger(bool Fire)
@@ -143,7 +157,7 @@ public class BaseShoot : MonoBehaviour
         int SlotNum = GetNextBulletSpawn();
         GameObject NewBullet = GameObject.Instantiate(ProjectilePrefab, BulletSpawns[SlotNum].position, BulletSpawns[SlotNum].rotation);
         NewBullet.SetActive(true);
-        NewBullet.transform.Rotate(new Vector3(0, Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), 0), Space.World);
+        NewBullet.transform.Rotate(new Vector3(Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), 0), Space.World);
 
         if (MuzzleFlarePrefab!=null)
             MuzzleFlares[SlotNum].Play();
@@ -154,9 +168,15 @@ public class BaseShoot : MonoBehaviour
         return 1;
     }
 
+    public virtual bool GetFirable()
+    {
+        return true;
+    }
+
     public virtual string GetAmmoText()
     {
         return "";
     }
+
 
 }

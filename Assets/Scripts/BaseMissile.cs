@@ -8,7 +8,7 @@ public class BaseMissile : BaseBullet
     public EnergySignal Target;
 
     [SerializeField]
-    protected float TrackingSpeed = 4;
+    protected float TrackingSpeed = 1;
 
     [SerializeField]
     protected float ActivationDelay = 0.5f;
@@ -27,6 +27,7 @@ public class BaseMissile : BaseBullet
         FlightCheck();
     }
 
+    // remenant system where missiles are instantiated at play and requires all info about themseles
     //public virtual void InitializeProjectile(float _Damage, int Layer, DamageSystem.DamageType DamageType, List<DamageSystem.DamageTag> DamageTags, float _TrackingSpeed, float _ActivationDelay)
     //{
     //    base.InitializeProjectile(_Damage, Layer, DamageType, DamageTags);
@@ -36,17 +37,17 @@ public class BaseMissile : BaseBullet
 
     //}
 
-    public void RecieveTarget(EnergySignal NewTarget)
+    public virtual void RecieveTarget(EnergySignal NewTarget)
     {
         Target = NewTarget;
     }
 
-    protected void TrackTarget()
+    protected virtual void TrackTarget()
     {
         if (Target != null)
         {
             Vector3 newDir = Vector3.RotateTowards(transform.forward, Target.transform.position - transform.position, TrackingSpeed * Time.deltaTime, 0.0f);
-            Debug.DrawRay(transform.position, newDir, Color.red);
+            //Debug.DrawRay(transform.position, newDir, Color.red);
 
             // Move our position a step closer to the target.
             transform.rotation = Quaternion.LookRotation(newDir);

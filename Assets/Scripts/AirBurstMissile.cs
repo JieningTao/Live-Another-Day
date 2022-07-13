@@ -44,12 +44,12 @@ public class AirBurstMissile : BaseMissile
             NewProjectile.transform.Rotate(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)), Random.Range(-SpreadAngle / 2, SpreadAngle / 2));
             NewProjectile.SetActive(true);
         }
-        Destroy(gameObject);
         if (BurstEffect)
         {
             BurstEffect.transform.parent = null;
             BurstEffect.Play();
         }
+        Destroy(gameObject);
 
     }
 

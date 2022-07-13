@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseMissileLauncher : BaseShoot
+public class BaseMissileLauncher : BaseKineticShoot
 {
 
 
     protected BaseMissile MissileScript;
     protected List<EnergySignal> Targets = new List<EnergySignal>();
-
+   
     //public override void InitializeGear(BaseMechFCS FCS)
     //{
     //    base.InitializeGear(FCS);
@@ -42,6 +42,8 @@ public class BaseMissileLauncher : BaseShoot
                 }
             }
         }
+
+        base.Update();
         
     }
 
@@ -61,19 +63,30 @@ public class BaseMissileLauncher : BaseShoot
         //MissileScript.InitializeProjectile(PerShotDamage, SetLayer, MyDamageType, MyDamageTags, TrackingSpeed, ActivationDelay, ExplosiveDamage, explosiveForce, ExplosionScript);
     }
 
-    public void FireVolly(List<EnergySignal> NewTargets)
+    public void FireVolley(List<EnergySignal> NewTargets)
     {
         Targets.AddRange(NewTargets);
         Firing = true;
     }
 
-    public virtual void Trigger(bool Fire)
+    public override void Trigger(bool Fire)
     {
+        base.Trigger(Fire);
         //haven't decided what trigger does for this yet
+    }
+
+    public void FireFocusedVolley(EnergySignal Target, int VollyAmount)
+    {
+        for (int i = 0; i < VollyAmount; i++)
+        {
+            Targets.Add(Target);
+            Firing = true;
+        }
     }
 
     public void Fire1(EnergySignal Target) //public for testing
     {
+
         MissileScript.RecieveTarget(Target);
         base.Fire1();
         MissileScript.RecieveTarget(null);

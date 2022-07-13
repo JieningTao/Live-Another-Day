@@ -23,7 +23,7 @@ public class ExplosiveBullet : BaseBullet
     public override void SetLayerAndMask(int Layer)
     {
         base.SetLayerAndMask(Layer);
-        MyExplosion.SetLayerAndMask(Layer);
+        MyExplosion.SetLayerAndMask(Layer,HitMask);
     }
 
     protected override void DealDamageTo(GameObject Target)

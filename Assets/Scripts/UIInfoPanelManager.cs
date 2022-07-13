@@ -6,8 +6,8 @@ public class UIInfoPanelManager : MonoBehaviour
 {
     [SerializeField]
     private BaseMechMain PlayerMechMain;
-    [SerializeField]
     private BaseMechMovement PlayerMechMovement;
+    private BaseEnergySource PlayerEnergySystem;
     [SerializeField]
     private float LowWarningThreshhold = 0.2f;
     [SerializeField]
@@ -61,6 +61,10 @@ public class UIInfoPanelManager : MonoBehaviour
 
     private void Start()
     {
+
+        PlayerMechMovement = PlayerMechMain.GetMovement();
+        PlayerEnergySystem = PlayerMechMain.GetEnergySystem();
+
         HealthWarning.gameObject.SetActive(false);
         EnergyWarning.gameObject.SetActive(false);
         BoostWarning.gameObject.SetActive(false);
@@ -72,7 +76,9 @@ public class UIInfoPanelManager : MonoBehaviour
     {
         UpdateHealth(PlayerMechMain.GetHealthText(),PlayerMechMain.GetHealthPercent());
         UpdateCoating(PlayerMechMain.GetCoatingPercent());
-        UpdateEnergy(PlayerMechMain.GetEnergyText(),PlayerMechMain.GetEnergyPercent());
+
+        UpdateEnergy(PlayerEnergySystem.GetEnergyText(),PlayerEnergySystem.GetEnergyPercent());
+
         UpdateBoost(PlayerMechMovement.GetBoostText(),PlayerMechMovement.GetBoostPercent());
         UpdateSpeed(PlayerMechMovement.GetSpeedText(),PlayerMechMovement.GetSpeedPercent());
         UpdateFlash();

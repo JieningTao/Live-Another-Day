@@ -23,6 +23,9 @@ public class BaseBullet : MonoBehaviour
     [SerializeField] //for some reason this doessnt work unless serialized, F**K!
     protected int HitMask;
 
+    [SerializeField]
+    protected ParticleSystem HitEffect;
+
     protected void Start()
     {
         Destroy(this.gameObject, Timer);
@@ -47,7 +50,7 @@ public class BaseBullet : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, Speed * Time.deltaTime, HitMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, Speed * Time.deltaTime, ~HitMask))
         {
             transform.Translate(Vector3.forward * hit.distance);
             DealDamageTo(hit.collider.gameObject);
@@ -65,17 +68,37 @@ public class BaseBullet : MonoBehaviour
 
     public virtual void SetLayerAndMask(int Layer)
     {
+        //Debug.Log("Ping");
         gameObject.layer = Layer;
         SetMask();
     }
 
+    public virtual void SetSpeed(float _Speed)
+    {
+        Speed = _Speed;
+    }
+
+    public virtual void SetDamage(float _Damage)
+    {
+        Damage = _Damage;
+    }
+
     protected void SetMask()
     {
+        if (gameObject.layer == 12) //bullet is in friendly projectile layer
+            HitMask = LayerMask.GetMask("Friendly", "Friendly_Shields");
+        else if (gameObject.layer == 10)
+            HitMask = LayerMask.GetMask("Enemy", "Enemy_Shields");
 
-        HitMask = 1 << (gameObject.layer-1);
-        HitMask = ~HitMask;
+        if (MyDamageType != DamageSystem.DamageType.Energy)
+            HitMask = HitMask | (1 << 15);
 
         //Debug.Log(gameObject.name+ " Mask set "+HitMask);
+    }
+
+    public void AddLayerToMask(int Layer)
+    {
+        HitMask = HitMask | ~(1 << Layer);
     }
 
     protected virtual void DealDamageTo(GameObject Target)
@@ -90,5 +113,16 @@ public class BaseBullet : MonoBehaviour
         }
 
         Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (HitEffect)
+        {
+            HitEffect.transform.parent = null;
+            HitEffect.transform.localScale = new Vector3(1, 1, 1);
+            HitEffect.Play();
+        }
+
     }
 }

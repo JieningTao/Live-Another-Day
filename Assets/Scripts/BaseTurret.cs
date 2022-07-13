@@ -29,7 +29,7 @@ public class BaseTurret : MonoBehaviour
         TurretHeadRotation = TurretHead.localRotation;
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if (Target)
             TurnToTarget(Target.transform.position);

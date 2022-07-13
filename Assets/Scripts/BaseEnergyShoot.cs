@@ -15,15 +15,18 @@ public class BaseEnergyShoot : BaseShoot
     [SerializeField]
     private float ChargePowerDraw;
 
-    private float CurrentCapacitorPercentage;
-    private float ChargeDelayRemaining;
-    protected BaseMechMain EnergySource;
+    protected float CurrentCapacitorPercentage;
+    protected float ChargeDelayRemaining;
+    protected BaseEnergySource EnergySource;
     bool WasCharging = false;
 
     protected override void Start()
     {
         CurrentCapacitorPercentage = 1;
-        EnergySource = GetComponentInParent<BaseMechMain>();
+
+        BaseMechMain Temp = GetComponentInParent<BaseMechMain>();
+        if(Temp)
+        EnergySource = Temp.GetEnergySystem();
         base.Start();
     }
 
@@ -35,6 +38,11 @@ public class BaseEnergyShoot : BaseShoot
             Recharge();
 
         base.Update();
+    }
+
+    public void GetPowerSource(BaseMechMain a)
+    {
+        EnergySource = a.GetEnergySystem();
     }
 
     protected virtual void Recharge()
@@ -56,6 +64,11 @@ public class BaseEnergyShoot : BaseShoot
 
     }
 
+    public override bool GetFirable()
+    {
+        return CurrentCapacitorPercentage >= PercentageConsumedPerShot;
+    }
+
     public override void Trigger(bool Fire)
     {
         base.Trigger(Fire);
@@ -63,12 +76,18 @@ public class BaseEnergyShoot : BaseShoot
 
     protected override void Fire1()
     {
-        if (CurrentCapacitorPercentage > PercentageConsumedPerShot)
+        if (CurrentCapacitorPercentage >= PercentageConsumedPerShot)
         {
             CurrentCapacitorPercentage -= PercentageConsumedPerShot;
             base.Fire1();
             ChargeDelayRemaining = ChargeDelay;
+
+            if (WasCharging)
+                EnergySource.CurrentPowerDraw -= ChargePowerDraw;
+            WasCharging = false;
         }
+
+
     }
 
     public override float GetAmmoGauge()

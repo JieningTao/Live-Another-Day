@@ -14,6 +14,8 @@ public class UILockManager : MonoBehaviour
     RadarUI RadarParent;
     [SerializeField]
     private GameObject UILockPrefab;
+    [SerializeField]
+    private GameObject MinorUILockPrefab;
     [SerializeField] // SFT
     private List<UILock> ManagedLocks = new List<UILock>();
 
@@ -64,11 +66,22 @@ public class UILockManager : MonoBehaviour
 
     private void CreateLock(EnergySignal Signal)
     {
-        GameObject a = Instantiate(UILockPrefab, transform);
-        UILock TempScript = a.GetComponent<UILock>();
+        if (Signal.MyType == EnergySignal.EnergySignalType.LowEnergy || Signal.MyType == EnergySignal.EnergySignalType.Mech)
+        {
+            GameObject a = Instantiate(UILockPrefab, transform);
+            UILock TempScript = a.GetComponent<UILock>();
 
-        TempScript.StartUp(this,PlayerMechFCS.LockRange,RadarParent,Signal);
-        ManagedLocks.Add(TempScript);
+            TempScript.StartUp(this, PlayerMechFCS.LockRange, RadarParent, Signal);
+            ManagedLocks.Add(TempScript);
+        }
+        else if (Signal.MyType == EnergySignal.EnergySignalType.Missile || Signal.MyType == EnergySignal.EnergySignalType.HES)
+        {
+            GameObject a = Instantiate(MinorUILockPrefab, transform);
+            MinorUILock TempScript = a.GetComponent<MinorUILock>();
+
+            TempScript.StartUp(this, Signal);
+        }
+
     }
 
     private void MoveCrossHair()

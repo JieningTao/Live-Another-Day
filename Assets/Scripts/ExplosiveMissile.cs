@@ -20,6 +20,12 @@ public class ExplosiveMissile : BaseMissile
 
     //}
 
+    public override void SetLayerAndMask(int Layer)
+    {
+        base.SetLayerAndMask(Layer);
+        MyExplosion.SetLayerAndMask(Layer, HitMask);
+    }
+
     protected override void DealDamageTo(GameObject Target)
     {
         //Debug.Log("boom");

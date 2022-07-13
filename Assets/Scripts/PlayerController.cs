@@ -1,24 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-
-    BaseMechMovement MyMech;
+    BaseMechMain MyMech;
+    BaseMechMovement MyMovement;
     BaseMechFCS MyFCS;
-   
+
+    [SerializeField]
+    bool Testing;
 
     private void Start()
     {
-        MyMech = GetComponent<BaseMechMovement>();
-        MyFCS = GetComponent<BaseMechFCS>();
+        MyMech = GetComponent<BaseMechMain>();
+        MyFCS = MyMech.GetFCS();
+        MyMovement = MyMech.GetMovement();
     }
 
     private void Update()
     {
         HandleMovementInput();
         HandleWeaponInput();
+        HandleEXGearInput();
+
+        if (Testing)
+            HandleDebugInput();
     }
 
     private void HandleMovementInput()
@@ -28,45 +36,106 @@ public class PlayerController : MonoBehaviour
 
         TempInput.y = Input.GetAxisRaw("UpDown");
 
-        MyMech.MovementInput = TempInput;
+        MyMovement.MovementInput = TempInput;
 
-        MyMech.Boosting = Input.GetButton("Boost");
+        if(Input.GetButtonDown("Boost"))
+            MyMovement.BoostControl(true);
+        else if(Input.GetButtonUp("Boost"))
+            MyMovement.BoostControl(false);
 
         MyMech.Rotate(new Vector3(Input.GetAxis("Mouse Y") * -1, Input.GetAxis("Mouse X"), 0) * Time.deltaTime);
     }
 
     private void HandleWeaponInput()
     {
-        if (Input.GetButtonDown("AltFire"))
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (Input.GetButton("AltFire"))
+                MyFCS.FirePrimary2(true);
+            else
+                MyFCS.FirePrimary1(true);
+        }
+        else if (Input.GetButtonUp("Fire1"))
         {
             MyFCS.FirePrimary1(false);
-            MyFCS.FireSecondary1(false);
+            MyFCS.FirePrimary2(false);
         }
 
-        if (Input.GetButton("AltFire"))
+        if (Input.GetButtonDown("Fire2"))
         {
-            if (Input.GetButtonDown("Fire1"))
-                MyFCS.FirePrimary2(true);
-            else if (Input.GetButtonUp("Fire1"))
-                MyFCS.FirePrimary2(false);
-
-            if (Input.GetButtonDown("Fire2"))
+            if (Input.GetButton("AltFire"))
                 MyFCS.FireSecondary2(true);
-            else if (Input.GetButtonUp("Fire2"))
-                MyFCS.FireSecondary2(false);
-        }
-        else
-        {
-            if (Input.GetButtonDown("Fire1"))
-                MyFCS.FirePrimary1(true);
-            else if (Input.GetButtonUp("Fire1"))
-                MyFCS.FirePrimary1(false);
-
-            if (Input.GetButtonDown("Fire2"))
+            else
                 MyFCS.FireSecondary1(true);
-            else if (Input.GetButtonUp("Fire2"))
-                MyFCS.FireSecondary1(false);
+        }
+        else if (Input.GetButtonUp("Fire2"))
+        {
+            MyFCS.FireSecondary1(false);
+            MyFCS.FireSecondary2(false);
         }
 
+
+
+
+
+
+
+
+
+
+        //if (Input.GetButtonDown("AltFire"))
+        //{
+        //    MyFCS.FirePrimary1(false);
+        //    MyFCS.FireSecondary1(false);
+        //}
+
+        //if (Input.GetButton("AltFire"))
+        //{
+        //    if (Input.GetButtonDown("Fire1"))
+        //        MyFCS.FirePrimary2(true);
+        //    else if (Input.GetButtonUp("Fire1"))
+        //        MyFCS.FirePrimary2(false);
+
+        //    if (Input.GetButtonDown("Fire2"))
+        //        MyFCS.FireSecondary2(true);
+        //    else if (Input.GetButtonUp("Fire2"))
+        //        MyFCS.FireSecondary2(false);
+        //}
+        //else
+        //{
+        //    if (Input.GetButtonDown("Fire1"))
+        //        MyFCS.FirePrimary1(true);
+        //    else if (Input.GetButtonUp("Fire1"))
+        //        MyFCS.FirePrimary1(false);
+
+        //    if (Input.GetButtonDown("Fire2"))
+        //        MyFCS.FireSecondary1(true);
+        //    else if (Input.GetButtonUp("Fire2"))
+        //        MyFCS.FireSecondary1(false);
+        //}
+
+    }
+
+    private void HandleEXGearInput()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            MyFCS.SwitchEXGear(false);
+        else if(Input.GetAxis("Mouse ScrollWheel") < 0)
+            MyFCS.SwitchEXGear(true);
+
+
+
+        if (Input.GetButtonDown("Trigger EXGear"))
+            MyFCS.TriggerEXGear(true);
+        else if(Input.GetButtonUp("Trigger EXGear"))
+            MyFCS.TriggerEXGear(false);
+    }
+
+    private void HandleDebugInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+        else if (Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftControl))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -11,9 +11,9 @@ public class ICoatedDamagable : IDamageable
     protected float MaxCoating;
 
 
-    protected override void Start()
+    protected override void InitializeIDamageable()
     {
-        base.Start();
+        base.InitializeIDamageable();
         MaxCoating = MaxHealth * 0.2f;
         CurrentCoatingLeft = MaxCoating;
     }

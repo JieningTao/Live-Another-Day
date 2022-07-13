@@ -6,12 +6,18 @@ public class UILock : MonoBehaviour
 {
     [SerializeField]
     public EnergySignal TrackedSignal;
+
+    [Space(20)]
+
     [SerializeField]
     UnityEngine.UI.Image RadarEnemyBlip;
     [SerializeField]
     UnityEngine.UI.Image RadarEnemyBlipLock;
     [SerializeField]
     Color RadarBlipLostColor;
+
+    [Space(20)]
+
     [SerializeField]
     GameObject HUDTracker;
     [SerializeField]
@@ -24,12 +30,23 @@ public class UILock : MonoBehaviour
     private UnityEngine.UI.Image HudLock;
     [SerializeField]
     Sprite TargetLostHUDSprite;
+
+
+
     [SerializeField]
-    Sprite OutOfRangeSprite;
+    Sprite LowEnergyInRange;
     [SerializeField]
-    Sprite InRangeSprite;
+    Sprite LowEnergyOutOfRange;
+
     [SerializeField]
+    Sprite MechInRange;
+    [SerializeField]
+    Sprite MechOutOfRange;
+
     private UILockManager MyManager;
+
+    Sprite OutOfRangeSprite;
+    Sprite InRangeSprite;
 
     private Vector3 TargetPosition;
     private float DistanceToTarget = 0;
@@ -88,12 +105,13 @@ public class UILock : MonoBehaviour
 
         RadarEnemyBlip.transform.localPosition = TempPos * RadarBlipRangeDelta;
 
-        RadarEnemyBlip.transform.rotation = Quaternion.Euler(0,0,0);
+        RadarEnemyBlip.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
-    public void StartUp(UILockManager _MyManager, float _LockRange, RadarUI RadarParent,EnergySignal Signal)
+    public void StartUp(UILockManager _MyManager, float _LockRange, RadarUI RadarParent, EnergySignal Signal)
     {
         TrackedSignal = Signal;
+        AssignSprites();
         MyManager = _MyManager;
         RadarEnemyBlip.gameObject.SetActive(true);
         HUDTracker.gameObject.SetActive(true);
@@ -107,6 +125,20 @@ public class UILock : MonoBehaviour
 
         HUDTracker.SetActive(false);
         HUDWasOn = HUDTracker.active;
+    }
+
+    private void AssignSprites()
+    {
+        if (TrackedSignal.MyType == EnergySignal.EnergySignalType.LowEnergy)
+        {
+            InRangeSprite = LowEnergyInRange;
+            OutOfRangeSprite = LowEnergyOutOfRange;
+        }
+        else if (TrackedSignal.MyType == EnergySignal.EnergySignalType.Mech)
+        {
+            InRangeSprite = MechInRange;
+            OutOfRangeSprite = MechOutOfRange;
+        }
     }
 
     private void RangeCheck()

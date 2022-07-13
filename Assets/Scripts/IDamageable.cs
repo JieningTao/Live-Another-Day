@@ -25,7 +25,13 @@ public class IDamageable : MonoBehaviour
 
     protected virtual void Start()
     {
+        InitializeIDamageable();
+    }
+
+    protected virtual void InitializeIDamageable()
+    {
         CurrentHealth = MaxHealth;
+        GetStuffToDisable();
     }
 
     public virtual void Hit(float Damage ,DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags)
@@ -49,7 +55,7 @@ public class IDamageable : MonoBehaviour
         {
             foreach (MonoBehaviour a in StuffToDisableAfterDestroy)
                 a.enabled = false;
-
+            if(DestroyEffect)
             DestroyEffect.Play();
         }
 
@@ -60,6 +66,32 @@ public class IDamageable : MonoBehaviour
 
         
     }
+
+    public virtual void GetStuffToDisable()
+    {
+        StuffToDisableAfterDestroy.AddRange(GetComponentsInChildren<MonoBehaviour>());
+
+        //StuffToDisableAfterDestroy.AddRange(GetComponentsInChildren<BaseShoot>());
+        //StuffToDisableAfterDestroy.AddRange(GetComponentsInChildren<BaseMechMovement>());
+        //StuffToDisableAfterDestroy.AddRange(GetComponentsInChildren<BaseMechFCS>());
+
+    }
+
+    public void Heal(float Amount)
+    {
+        CurrentHealth += Amount;
+        if (CurrentHealth > MaxHealth)
+            CurrentHealth = MaxHealth;
+    }
+
+    public bool HealthFull()
+    {
+        if (CurrentHealth >= MaxHealth)
+            return true;
+        return false;
+    }
+
+
 
     public string GetHealthText()
     {

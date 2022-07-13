@@ -12,7 +12,7 @@ public class ExplosiveRocket : BaseRocket
     {
         gameObject.layer = Layer;
         SetMask();
-        MyExplosion.SetLayerAndMask(Layer);
+        MyExplosion.SetLayerAndMask(Layer,HitMask);
     }
 
     protected override void DealDamageTo(GameObject Target)

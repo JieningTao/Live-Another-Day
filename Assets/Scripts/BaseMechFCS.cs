@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class BaseMechFCS : MonoBehaviour
 {
-    [SerializeField]
-    private Transform CameraAnchor;
-    [SerializeField]
-    private Transform RightHand;
-    [SerializeField]
-    private Transform Lefthand;
+
+    private BaseMechPartArm LeftArm;
+    private BaseMechPartArm RightArm;
+
     [SerializeField]
     private float TargetSpeed;
     [SerializeField]
@@ -25,10 +23,10 @@ public class BaseMechFCS : MonoBehaviour
     [SerializeField]
     public List<EnergySignal> TargetsWithinRange = new List<EnergySignal>();
 
-    [SerializeField]
     private bool PlayerFCS = false;
     public static event Action<String,EnergySignal> LockChanges;
     public static event Action<bool, BaseMainSlotEquipment> WeaponChanges;
+    public static event Action<int,string, BaseEXGear> EXGearChanges;
 
     [SerializeField]
     private SphereCollider RadarCollider;
@@ -37,37 +35,137 @@ public class BaseMechFCS : MonoBehaviour
     [SerializeField]
     public float LockRange  = 150;
 
+    [Space(10)]
+
+    [SerializeField]
+    protected BaseEXGear LeftLegEXG;
+    [SerializeField]
+    protected BaseEXGear LeftArmEXG;
+    [SerializeField]
+    protected BaseEXGear LeftShoulderEXG;
+    [SerializeField]
+    protected BaseEXGear ChestEXG;
+    [SerializeField]
+    protected BaseEXGear BackPackEXG;
+    [SerializeField]
+    protected BaseEXGear RightShoulderEXG;
+    [SerializeField]
+    protected BaseEXGear RightArmEXG;
+    [SerializeField]
+    protected BaseEXGear RightLegEXG;
+
+    protected BaseEXGear[] EquipedEXGear = new BaseEXGear[8];
+
+    [Space(10)]
+
+
+    protected int SelectedEXSlot;
+
     [SerializeField]
     private float LockTime;
 
-    [SerializeField] // SFT
-    public EnergySignal MainTarget; //public for testing
+    private Transform CameraAnchor;
+    protected EnergySignal MainTarget; //public for testing
     private Vector3 TargetPosition;
     private List<EnergySignal> CurrentListOfLocked = new List<EnergySignal>();
     private float LockCooldown;
     private bool CurrentlyLocking;
     private int LockRequested;
-
+    private BaseMechMain MyBMM;
     private bool FocusMode;
     private EnergySignal FocusTarget;
 
-    private void Start()
+    //private void Start()
+    //{
+    //    InitializeFCS(GetComponent<BaseMechMain>());
+    //}
+
+    public void InitializeFCS(BaseMechMain BMM,bool Player, BaseMechPartArm _LeftArm, BaseMechPartArm _RightArm)
     {
-        if (WeaponChanges != null)
-        {
-            WeaponChanges.Invoke(true, CurrentPrimary);
-            WeaponChanges.Invoke(false, CurrentSecondary);
-        }
+        MyBMM = BMM;
+        LeftArm = _LeftArm;
+        RightArm = _RightArm;
+        PlayerFCS = Player;
+
+        Equip(CurrentPrimary, true);
+        Equip(CurrentSecondary, false);
 
         RadarCollider.radius = RadarRange;
         RadarCollider.isTrigger = true;
+
+        InitializeEXGear();
+
+        CameraAnchor = BMM.CameraAnchor;
     }
+
+    public void InitStats(float _RadarRange, float _LockRange)
+    {
+        RadarRange = _RadarRange;
+        LockRange = _LockRange;
+
+        RadarCollider.radius = RadarRange;
+        RadarCollider.isTrigger = true;
+
+
+    }
+
+    private void InitializeEXGear()
+    {
+        EquipedEXGear = new BaseEXGear[8];
+
+        EquipedEXGear[0] = LeftLegEXG;
+        EquipedEXGear[1] = LeftArmEXG;
+        EquipedEXGear[2] = LeftShoulderEXG;
+        EquipedEXGear[3] = ChestEXG;
+        EquipedEXGear[4] = BackPackEXG;
+        EquipedEXGear[5] = RightShoulderEXG;
+        EquipedEXGear[6] = RightArmEXG;
+        EquipedEXGear[7] = RightLegEXG;
+
+
+
+        MyBMM.EXGInstall(ref EquipedEXGear); //requires mech assembly to be set up
+
+        Debug.Log(PlayerFCS);
+
+        for (int i = 0; i < EquipedEXGear.Length; i++)
+        {
+            if (PlayerFCS && EXGearChanges != null)
+                EXGearChanges.Invoke(i + 1, "New", EquipedEXGear[i]);
+
+            if (EquipedEXGear[i] != null)
+            {
+                if (i < 3)
+                    EquipedEXGear[i].InitializeGear(MyBMM,null, false);
+                else
+                    EquipedEXGear[i].InitializeGear(MyBMM,null, true);
+            }
+        }
+
+        SelectedEXSlot = 0;
+
+        if (EquipedEXGear[0] == null)
+            SwitchEXGear(true);
+        else
+            SelectSlot(0);
+    }
+
+    //public void InitializeEXGear()
+    //{
+    //    for (int i = 0; i < 8; i++)
+    //    {
+    //        if (EquipedEXGear[i] != null)
+    //        {
+
+    //            EquipedEXGear[i].InitializeGear(MyBMM, false);
+    //        }
+    //    }
+    //}
 
     private void Update()
     {
         //try to target weapon first to avoid not aiming correctly at targets
-        Targetweapons(Lefthand);
-        Targetweapons(RightHand);
+        TargetArms();
 
         CheckTargetValidity();
         FindMainLock();
@@ -76,8 +174,76 @@ public class BaseMechFCS : MonoBehaviour
 
     }
 
+    private void TargetArms()
+    {
+        if (MainTarget)
+        {
+            LeftArm.TargetArm(MainTarget.transform.position);
+            RightArm.TargetArm(MainTarget.transform.position);
+        }
+        else
+        {
+            LeftArm.TargetArmEmpty();
+            RightArm.TargetArmEmpty();
+        }
+    }
+
+    public EnergySignal GetMainTarget()
+    {
+        return MainTarget;
+    }
+
+    public EnergySignal GetFocusTarget()
+    {
+        return FocusTarget;
+    }
+
+    public Vector3 GetLookDirection()
+    {
+        return CameraAnchor.forward;
+    }
+
+    protected void Equip(BaseMainSlotEquipment Equipment,bool OnRightHand)
+    {
+        if (Equipment == null)
+        {
+            if (WeaponChanges != null)
+                WeaponChanges.Invoke(OnRightHand, Equipment);
+
+            if (OnRightHand)
+                CurrentPrimary = null;
+            else
+                CurrentSecondary = null;
+
+            return;
+        }
+
+        if (OnRightHand)
+        {
+            CurrentPrimary = Equipment;
+
+            RightArm.EquipEquipment(Equipment);
+
+            Equipment.Equip(true, MyBMM);
+        }
+        else
+        {
+            CurrentSecondary = Equipment;
+
+            LeftArm.EquipEquipment(Equipment);
+
+            Equipment.Equip(true, MyBMM);
+        }
+
+        Equipment.transform.localPosition = Vector3.zero;
+        Equipment.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+        
 
 
+        if (WeaponChanges != null)
+            WeaponChanges.Invoke(OnRightHand, Equipment);
+    }
 
     private void CheckTargetValidity()
     {
@@ -91,25 +257,48 @@ public class BaseMechFCS : MonoBehaviour
         }
     }
 
+    public int GetArmHoldPosition(bool Right)
+    {
+        if (Right)
+        {
+            if (!CurrentPrimary)
+                return 0;
+            else
+                return (int)CurrentPrimary.HoldStyle;
+        }
+        else
+        {
+            if (!CurrentSecondary)
+                return 0;
+            else
+            return (int)CurrentSecondary.HoldStyle;
+        }
+    }
+
+
     public void FirePrimary1(bool _Fire)
     {
-        CurrentPrimary.PrimaryFire(_Fire);
+        if (CurrentPrimary)
+            CurrentPrimary.PrimaryFire(_Fire);
     }
 
     public void FirePrimary2(bool _Fire)
     {
         //Debug.Log("1");
-        CurrentPrimary.SecondaryFire(_Fire);
+        if (CurrentPrimary)
+            CurrentPrimary.SecondaryFire(_Fire);
     }
 
     public void FireSecondary1(bool _Fire)
     {
-        CurrentSecondary.PrimaryFire(_Fire);
+        if (CurrentSecondary)
+            CurrentSecondary.PrimaryFire(_Fire);
     }
 
     public void FireSecondary2(bool _Fire)
     {
-        CurrentSecondary.SecondaryFire(_Fire);
+        if (CurrentSecondary)
+            CurrentSecondary.SecondaryFire(_Fire);
     }
 
     public BaseMainSlotEquipment SwitchPrimaryEquipment(BaseMainSlotEquipment NewEquipment)
@@ -130,14 +319,13 @@ public class BaseMechFCS : MonoBehaviour
         return Temp;
     }
 
-    private void Targetweapons(Transform ThingToAim)
+    private void Targetweapons(Transform ThingToAim,bool AtTarget)
     {
         Vector3 AimDir;
-
-        if (MainTarget)
+        
+        if (MainTarget && AtTarget)
         {
-            TargetPosition = MainTarget.transform.position;
-            AimDir = Vector3.RotateTowards(ThingToAim.forward, TargetPosition - ThingToAim.transform.position, TargetSpeed * Time.deltaTime, 0.0f);
+            AimDir = Vector3.RotateTowards(ThingToAim.forward, MainTarget.transform.position - ThingToAim.transform.position, TargetSpeed * Time.deltaTime, 0.0f);
         }
         else
         {
@@ -148,7 +336,7 @@ public class BaseMechFCS : MonoBehaviour
         ThingToAim.rotation = Quaternion.LookRotation(AimDir, this.transform.up);
 
     }
-
+    #region LockedList related
     private void UpdateLockedList()
     {
         if (CurrentlyLocking&&CurrentListOfLocked.Count<LockRequested)
@@ -161,8 +349,18 @@ public class BaseMechFCS : MonoBehaviour
         }
     }
 
+
+
     public void RequestLocks(int Amount)
     {
+        if (Amount == 0)
+        {
+            CurrentlyLocking = false;
+            LockRequested = Amount;
+            LockCooldown = 0;
+            CurrentListOfLocked.Clear();
+        }
+
         CurrentlyLocking = true;
         LockRequested = Amount;
         LockCooldown = LockTime;
@@ -256,6 +454,11 @@ public class BaseMechFCS : MonoBehaviour
         return Temp;
     }
 
+    public int GetLockedAmount()
+    {
+        return CurrentListOfLocked.Count;
+    }
+#endregion
     private void FindMainLock()
     {
         EnergySignal OldTarget = MainTarget;
@@ -316,19 +519,15 @@ public class BaseMechFCS : MonoBehaviour
 
     private void AddLock(EnergySignal a)
     {
+        if(a.MyType == EnergySignal.EnergySignalType.LowEnergy || a.MyType == EnergySignal.EnergySignalType.Mech)
         TargetsWithinRange.Add(a);
+
+
         if (PlayerFCS && LockChanges != null)
             LockChanges.Invoke("Add", a);
     }
 
-    private void RemoveLock(EnergySignal a)
-    {
-        TargetsWithinRange.Remove(a);
-        if (MainTarget == a)
-            MainTarget = null;
-        if (PlayerFCS && LockChanges != null)
-            LockChanges.Invoke("Remove", a);
-    }
+
 
     public void ToggleFocusMode()
     {
@@ -340,24 +539,93 @@ public class BaseMechFCS : MonoBehaviour
         FocusMode = a;
     }
 
+    #region EXGear related
+
+    public void TriggerEXGear(bool TriggerDown)
+    {
+        if (EquipedEXGear[SelectedEXSlot] != null)
+            EquipedEXGear[SelectedEXSlot].TriggerGear(TriggerDown);
+        
+    }
+
+    public void SwitchEXGear(bool Next)
+    {
+        int Temp = SwitchSlot(Next);
+
+        if(Temp!=SelectedEXSlot)
+        SelectSlot(Temp);
+    }
+
+    private void SelectSlot(int SlotNum)
+    {
+        if(EquipedEXGear[SelectedEXSlot]!=null)
+        EquipedEXGear[SelectedEXSlot].Equip(false);
+
+        SelectedEXSlot = SlotNum;
+
+        EquipedEXGear[SelectedEXSlot].Equip(true);
+
+        if (PlayerFCS && EXGearChanges != null)
+            EXGearChanges.Invoke(SelectedEXSlot + 1, "Select", null);
+    }
+
+    private int SwitchSlot(bool Next)
+    {
+        int step;
+
+        if (Next)
+            step = 1;
+        else
+            step = -1;
+
+        for (int i = SelectedEXSlot+step; i < EquipedEXGear.Length && i >= 0; i += step)
+        {
+            if (EquipedEXGear[i] != null)
+                return i;
+        }
+
+        return SelectedEXSlot;
+    }
+
+    #endregion
+
+
+    private void RemoveLock(EnergySignal a)
+    {
+        if (a.MyType == EnergySignal.EnergySignalType.LowEnergy || a.MyType == EnergySignal.EnergySignalType.Mech)
+            TargetsWithinRange.Remove(a);
+
+        if (MainTarget == a)
+            MainTarget = null;
+        if (PlayerFCS && LockChanges != null)
+            LockChanges.Invoke("Remove", a);
+    }
+
+    private void NewLock(EnergySignal a)
+    {
+        if ((gameObject.layer == 9 && (a.gameObject.layer == 11 || a.gameObject.layer == 12)) || (gameObject.layer == 11 && (a.gameObject.layer == 9 || a.gameObject.layer == 10)))
+        {
+            if (!TargetsWithinRange.Contains(a))
+            {
+                AddLock(a);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
+        if (other.isTrigger && (other.gameObject.layer == 9 || other.gameObject.layer ==11))
             return;
 
 
-        if ((gameObject.layer == 9 && other.gameObject.layer == 11) || (gameObject.layer == 11 && other.gameObject.layer == 9))
-        {
-            EnergySignal Temp = other.GetComponentInParent<EnergySignal>();
 
-            if (!Temp||!Temp.enabled)
-                return;
+        EnergySignal Temp = other.GetComponentInParent<EnergySignal>();
 
-            if (!TargetsWithinRange.Contains(Temp))
-            {
-                AddLock(Temp);
-            }
-        }
+        if (!Temp || !Temp.enabled)
+            return;
+        else
+            NewLock(Temp);
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -373,7 +641,27 @@ public class BaseMechFCS : MonoBehaviour
                 return;
 
             if (TargetsWithinRange.Contains(Temp))
-                RemoveLock(Temp);
+            {
+                if (Vector3.Distance(this.transform.position, Temp.transform.position) > RadarRange*0.9)
+                {
+                    Debug.Log("Peep" + Temp, this);
+                    RemoveLock(Temp);
+                }
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (CurrentPrimary)
+        {
+            FirePrimary1(false);
+            FirePrimary2(false);
+        }
+        if (CurrentSecondary != null)
+        {
+            FireSecondary1(false);
+            FireSecondary2(false);
         }
     }
 }

@@ -339,7 +339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745080626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.39, y: 5, z: 12.02}
+  m_LocalPosition: {x: -3.39, y: 0.58, z: 12.02}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -449,10 +449,19 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 745080630}
+    - target: {fileID: 26742115, guid: fc2d79bbed404f94c80817319d506300, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9109852415803508800, guid: fc2d79bbed404f94c80817319d506300,
         type: 3}
       propertyPath: m_Name
       value: SMV(Turret)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109852415803508800, guid: fc2d79bbed404f94c80817319d506300,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9109852415803508803, guid: fc2d79bbed404f94c80817319d506300,
         type: 3}
@@ -698,15 +707,15 @@ GameObject:
   - component: {fileID: 1343472452}
   - component: {fileID: 1343472451}
   - component: {fileID: 1343472450}
-  - component: {fileID: 1343472449}
   - component: {fileID: 1343472448}
+  - component: {fileID: 1343472449}
   m_Layer: 0
   m_Name: Capsule (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1343472448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,11 +838,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: SMV(Missile)
       objectReference: {fileID: 0}
+    - target: {fileID: 1012035450348518307, guid: 599d826d88c5a4047beb60cd4cd39b2a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1012035450348518309, guid: 599d826d88c5a4047beb60cd4cd39b2a,
         type: 3}
       propertyPath: Target
       value: 
       objectReference: {fileID: 745080630}
+    - target: {fileID: 1012035450348518309, guid: 599d826d88c5a4047beb60cd4cd39b2a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1012035450348518310, guid: 599d826d88c5a4047beb60cd4cd39b2a,
         type: 3}
       propertyPath: m_RootOrder
@@ -903,6 +922,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SMV(Cargo)
       objectReference: {fileID: 0}
+    - target: {fileID: 342561153250503044, guid: 2599402021104744d909549a2b83f043,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 342561153250503047, guid: 2599402021104744d909549a2b83f043,
         type: 3}
       propertyPath: m_RootOrder
@@ -963,5 +987,10 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 745080630}
+    - target: {fileID: 8839922907325131943, guid: 2599402021104744d909549a2b83f043,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2599402021104744d909549a2b83f043, type: 3}

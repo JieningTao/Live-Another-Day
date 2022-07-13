@@ -29,25 +29,31 @@ public class BaseExplosion : MonoBehaviour
         }
     }
 
-    public virtual void InitializeExplosion(float Damage, DamageSystem.DamageType DT, List<DamageSystem.DamageTag> Tags , float Force,int _HitMask )
-    {
-        ExplosiveDamage = Damage;
-        MyDamageType = DT;
-        MyDamageTags = Tags;
-        ExplosiveForce = Force;
-        HitMask = _HitMask;
-    }
+    // remenant system where explosions are instantiated at play and requires all info about themseles
+    //public virtual void InitializeExplosion(float Damage, DamageSystem.DamageType DT, List<DamageSystem.DamageTag> Tags , float Force,int _HitMask )
+    //{
+    //    ExplosiveDamage = Damage;
+    //    MyDamageType = DT;
+    //    MyDamageTags = Tags;
+    //    ExplosiveForce = Force;
+    //    HitMask = _HitMask;
+    //}
 
-    public virtual void SetLayerAndMask(int Layer)
+    public virtual void SetLayerAndMask(int Layer,int Mask)
     {
         gameObject.layer = Layer;
-        SetMask();
+        HitMask = Mask;
     }
 
     protected void SetMask()
     {
-        HitMask = 1 << (gameObject.layer - 1);
-        HitMask = ~HitMask;
+        if (gameObject.layer == 12) //bullet is in friendly projectile layer
+            HitMask = LayerMask.GetMask("Friendly", "Friendly_Shields");
+        else if (gameObject.layer == 10)
+            HitMask = LayerMask.GetMask("Enemy", "Enemy_Shields");
+
+        if (MyDamageType != DamageSystem.DamageType.Energy)
+            HitMask = HitMask | (1 << 15);
     }
 
     private void Update()
@@ -68,18 +74,25 @@ public class BaseExplosion : MonoBehaviour
     {
         ///Debug.Log("Boom");
 
-        Collider[] objects = UnityEngine.Physics.OverlapSphere(transform.position, ScaledExplosionRadius,HitMask);
+        Collider[] objects = UnityEngine.Physics.OverlapSphere(transform.position, ScaledExplosionRadius,~HitMask);
+        List < IDamageable > HitObjects = new List<IDamageable>();
         foreach (Collider h in objects)
         {
             IDamageable D = h.GetComponentInParent<IDamageable>();
             if (D != null)
-                D.Hit(ExplosiveDamage, MyDamageType, MyDamageTags);
+            {
+                if (!HitObjects.Contains(D))
+                    HitObjects.Add(D);
+            }
 
             Rigidbody r = h.GetComponent<Rigidbody>();
             if (r != null)
                 r.AddExplosionForce(ExplosiveForce, transform.position, ScaledExplosionRadius);
+        }
 
-            //Debug.Log(h.gameObject.name);
+        foreach (IDamageable D in HitObjects)
+        {
+            D.Hit(ExplosiveDamage, MyDamageType, MyDamageTags);
         }
     }
 

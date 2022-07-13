@@ -209,9 +209,11 @@ MonoBehaviour:
   HudLock: {fileID: 1711130467464597652}
   TargetLostHUDSprite: {fileID: 21300000, guid: 9003bf7fe49c3fd4185cd61eb4907a23,
     type: 3}
-  OutOfRangeSprite: {fileID: 21300000, guid: ccf94a84722955b4d844b96c98b80f3b, type: 3}
-  InRangeSprite: {fileID: 21300000, guid: 176829525d1521a40aef6f10c0abe1f4, type: 3}
-  MyManager: {fileID: 0}
+  LowEnergyInRange: {fileID: 21300000, guid: 176829525d1521a40aef6f10c0abe1f4, type: 3}
+  LowEnergyOutOfRange: {fileID: 21300000, guid: ccf94a84722955b4d844b96c98b80f3b,
+    type: 3}
+  MechInRange: {fileID: 21300000, guid: f232b502c6edbc54f9113665a83d8814, type: 3}
+  MechOutOfRange: {fileID: 21300000, guid: 9dacfd4c2decc6244a8d649815cec19e, type: 3}
 --- !u!1 &2049790762473903867
 GameObject:
   m_ObjectHideFlags: 0
