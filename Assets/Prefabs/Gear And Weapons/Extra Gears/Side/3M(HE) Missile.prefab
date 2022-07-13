@@ -293,6 +293,7 @@ MonoBehaviour:
   Mirrored: 0
   EXGearSprite: {fileID: 0}
   EXGearName: MP 3*HE
+  Passive: 0
   MultiLock: 1
   LockCount: 3
   MyLauncher: {fileID: 2821663007901706598}
@@ -537,6 +538,16 @@ PrefabInstance:
       propertyPath: MyExplosion
       value: 
       objectReference: {fileID: 8187510291259005972}
+    - target: {fileID: 1178645602972021193, guid: a4f2c28a85c1c86408a5491eda98b9a4,
+        type: 3}
+      propertyPath: ActivationDelay
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423011843554176831, guid: a4f2c28a85c1c86408a5491eda98b9a4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7982778234853565851, guid: a4f2c28a85c1c86408a5491eda98b9a4,
         type: 3}
       propertyPath: m_Name

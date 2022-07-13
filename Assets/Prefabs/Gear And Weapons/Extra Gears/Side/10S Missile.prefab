@@ -212,6 +212,7 @@ MonoBehaviour:
   Mirrored: 0
   EXGearSprite: {fileID: 0}
   EXGearName: MP 10*IE
+  Passive: 0
   MultiLock: 1
   LockCount: 10
   MyLauncher: {fileID: 1531035602240384041}
@@ -1382,6 +1383,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Damage
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067907045586032992, guid: af09cd9c8219dd84d8cf724f9c2518ef,
+        type: 3}
+      propertyPath: ActivationDelay
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af09cd9c8219dd84d8cf724f9c2518ef, type: 3}
