@@ -11,8 +11,7 @@ public class EXGearShoulderWeapon : EXGearShoulder
     BaseShoot MyWeapon;
     [SerializeField]
     float TargetSpeed = 1;
-    [SerializeField]
-    Animator MyAnimator;
+
 
     public override void InitializeGear(BaseMechMain Mech, Transform Parent, bool Right)
     {
@@ -54,8 +53,7 @@ public class EXGearShoulderWeapon : EXGearShoulder
     {
         base.Equip(a);
 
-        if (MyAnimator)
-            MyAnimator.SetBool("Deployed", a);
+
 
         if (!a)
             AimedPart.localRotation = Quaternion.Euler(0,0,0);
@@ -74,6 +72,7 @@ public class EXGearShoulderWeapon : EXGearShoulder
 
         MyWeapon.Trigger(Down);
     }
+
 
     public override float GetReadyPercentage()
     {

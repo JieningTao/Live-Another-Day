@@ -24,10 +24,19 @@ public class AirBurstMissile : BaseMissile
 
     protected override void Update()
     {
-        if (Vector3.Distance(Target.transform.position, transform.position) < BlastDistance && Vector3.Angle(transform.forward, Target.transform.position - transform.position)<SpreadAngle/2)
-            Burst();
 
-        base.Update();
+
+        if (ActivationDelay < 0)
+        {
+            TrackTarget();
+            if (Vector3.Distance(Target.transform.position, transform.position) < BlastDistance && Vector3.Angle(transform.forward, Target.transform.position - transform.position) < SpreadAngle / 2)
+                Burst();
+        }
+        else
+            ActivationDelay -= Time.deltaTime;
+
+
+        FlightCheck();
     }
 
     public override void SetLayerAndMask(int Layer)

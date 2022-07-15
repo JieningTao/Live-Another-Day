@@ -7,7 +7,8 @@ public class EXGearShoulder : BaseEXGear
 
     [SerializeField]
     float ReadyTime;
-
+    [SerializeField]
+    protected Animator MyAnimator;
 
     protected float ReadyTimer;
 
@@ -26,6 +27,9 @@ public class EXGearShoulder : BaseEXGear
     public override void Equip(bool a)
     {
         base.Equip(a);
+
+        if (MyAnimator)
+            MyAnimator.SetBool("Deployed", a);
 
         ReadyTimer = ReadyTime;
     }

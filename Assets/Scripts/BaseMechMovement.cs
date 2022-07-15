@@ -162,8 +162,9 @@ public class BaseMechMovement : MonoBehaviour
         JumpEffect.transform.position = Site.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        //force added with planar movement and maybe verticle movement seems inconsistant with framerate, putting them in fixed update seems to help with this
         DragChange();
         PlanarMovement();
         VerticleMovement();
@@ -198,6 +199,7 @@ public class BaseMechMovement : MonoBehaviour
             AirMultiplier = 0.7f;
 
 
+        //addforce forcemode.force should be independent and doesnot require time.deltatime, this combined with fixedupdate should help with inconsistancies with framerate
         if (Boosting && AttemptUseBoostJuice(BoostCost * Time.deltaTime))
         {
             MyRB.AddForce(transform.TransformDirection(PlanarInput).normalized * (MoveForce * AirMultiplier + BoostForce), ForceMode.Force);
