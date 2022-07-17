@@ -38,7 +38,7 @@ public class MainHandEnergyShield : BaseMainSlotEquipment
     public override void GetUpdateData(bool Main, out float BarFillPercentage, out string TextDisplay)
     {
         BarFillPercentage = Shield.GetHealthPercent();
-        TextDisplay = Shield.GetHealthText()+"%";
+        TextDisplay = Shield.GetHealthText();
     }
 
 }

@@ -152,6 +152,11 @@ public class BaseShoot : MonoBehaviour
 
     }
 
+    public virtual float GetProjectileSpeed()
+    {
+        return ProjectileScript.GetSpeed();
+    }
+
     protected virtual void Fire1()
     {
         int SlotNum = GetNextBulletSpawn();

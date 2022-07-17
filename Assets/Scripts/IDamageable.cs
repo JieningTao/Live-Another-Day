@@ -55,14 +55,24 @@ public class IDamageable : MonoBehaviour
         {
             foreach (MonoBehaviour a in StuffToDisableAfterDestroy)
                 a.enabled = false;
-            if(DestroyEffect)
-            DestroyEffect.Play();
+            if (DestroyEffect)
+                DestroyEffect.Play();
+        }
+        else
+        {
+            if (DestroyEffect)
+            {
+                DestroyEffect.transform.parent = null;
+                DestroyEffect.transform.localScale = new Vector3(1, 1, 1);
+                DestroyEffect.Play();
+            }
         }
 
         if (DestroyDelay >= 0)
         {
             Destroy(this.gameObject, DestroyDelay);
         }
+
 
         
     }

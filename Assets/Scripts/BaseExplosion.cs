@@ -92,8 +92,23 @@ public class BaseExplosion : MonoBehaviour
 
         foreach (IDamageable D in HitObjects)
         {
+            if(LOSCheck(D))
             D.Hit(ExplosiveDamage, MyDamageType, MyDamageTags);
         }
+    }
+
+    private bool LOSCheck(IDamageable a)
+    {
+        //checking LOS makes sure shields defend against AOE explosions
+        RaycastHit Hit;
+        if (Physics.Raycast(transform.position,   a.transform.position - transform.position, out Hit))
+        {
+            Debug.Log(Hit.collider,Hit.collider);
+            if (Hit.collider.GetComponentInParent<IDamageable>() == a)
+                return true;
+        }
+
+        return false;
     }
 
     private void OnDrawGizmosSelected()

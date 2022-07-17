@@ -178,8 +178,8 @@ public class BaseMechFCS : MonoBehaviour
     {
         if (MainTarget)
         {
-            LeftArm.TargetArm(MainTarget.transform.position);
-            RightArm.TargetArm(MainTarget.transform.position);
+            LeftArm.TargetArm(MainTarget);
+            RightArm.TargetArm(MainTarget);
         }
         else
         {

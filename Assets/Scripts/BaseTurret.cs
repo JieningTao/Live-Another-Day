@@ -32,7 +32,10 @@ public class BaseTurret : MonoBehaviour
     protected virtual void Update()
     {
         if (Target)
+        {
+            //Vector3 MoveDelta = Target.transform.position + Target.GetSpeed() * (Vector3.Distance(transform.position, Target.transform.position) / EquippedGear.GetBulletSpeed());
             TurnToTarget(Target.transform.position);
+        }
         else
             Target = RestAim.gameObject;
 

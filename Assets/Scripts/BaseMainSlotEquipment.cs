@@ -50,4 +50,9 @@ public class BaseMainSlotEquipment : MonoBehaviour
         BarFillPercentage = 0;
         TextDisplay = "";
     }
+
+    public virtual float GetBulletSpeed()
+    {
+        return 0;
+    }
 }

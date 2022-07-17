@@ -49,4 +49,9 @@ public class BaseMainWeapon : BaseMainSlotEquipment
             TextDisplay = MainWeapon.GetAmmoText();
         }
     }
+
+    public override float GetBulletSpeed()
+    {
+        return MainWeapon.GetProjectileSpeed();
+    }
 }

@@ -510,7 +510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2028634281782855760
 Transform:
   m_ObjectHideFlags: 0
@@ -557,7 +557,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028634281944412250}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -813,7 +813,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2028634282624555976
 Transform:
   m_ObjectHideFlags: 0
@@ -3077,10 +3077,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Launcher Muzzle 2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 6386517955185963631, guid: 3c4154805f8e2c343b148d2d28fa9f06,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6386517955307701872, guid: 3c4154805f8e2c343b148d2d28fa9f06,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.493
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386517955307701886, guid: 3c4154805f8e2c343b148d2d28fa9f06,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c4154805f8e2c343b148d2d28fa9f06, type: 3}

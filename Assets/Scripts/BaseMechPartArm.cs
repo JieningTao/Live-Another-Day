@@ -54,10 +54,51 @@ public class BaseMechPartArm : BaseMechPart
 
     public void TargetArm(Vector3 Pos)
     {
+        if (EquippedGear == null)
+        {
+            if (EquippedGear is BaseMainSlotEquipment)
+                UnequipEquipment();
+
+            TargetArmEmpty();
+            return;
+        }
+
         Vector3 AimDir;
 
         if(EquippedGear.RequireAiming)
             AimDir = Vector3.RotateTowards(AimedPart.forward, Pos - HandSlot.transform.position, AimSpeed * Time.deltaTime, 0.0f);
+        else
+            AimDir = Vector3.RotateTowards(AimedPart.forward, transform.forward, AimSpeed * Time.deltaTime, 0.0f);
+
+        AimedPart.rotation = Quaternion.LookRotation(AimDir, this.transform.up);
+    }
+
+    public void TargetArm(EnergySignal Tar)
+    {
+        if (EquippedGear == null)
+        {
+            if (EquippedGear is BaseMainSlotEquipment)
+                UnequipEquipment();
+
+            TargetArmEmpty();
+            return;
+        }
+
+        Vector3 AimDir;
+
+        if (EquippedGear.RequireAiming)
+        {
+            Vector3 MoveDelta;
+            if (EquippedGear.GetBulletSpeed() <= 0)
+                MoveDelta = Vector3.zero;
+            else
+            {
+                MoveDelta =  Tar.GetSpeed() * (Vector3.Distance(transform.position, Tar.transform.position) / EquippedGear.GetBulletSpeed());
+            }
+
+
+            AimDir = Vector3.RotateTowards(AimedPart.forward, (Tar.transform.position+MoveDelta) - HandSlot.transform.position, AimSpeed * Time.deltaTime, 0.0f);
+        }
         else
             AimDir = Vector3.RotateTowards(AimedPart.forward, transform.forward, AimSpeed * Time.deltaTime, 0.0f);
 

@@ -17,9 +17,26 @@ public class EnergySignal : MonoBehaviour
         HES,//high energy signiture
 
         Other,
+    }
+
+    private Vector3 Speed;
+    private Vector3 PreviousPosition;
 
 
 
+
+
+
+    private void Update()
+    {
+        Speed = (transform.position - PreviousPosition) / Time.deltaTime;
+
+        PreviousPosition = transform.position;
+    }
+
+    public Vector3 GetSpeed()
+    {
+        return Speed;
     }
 
 }

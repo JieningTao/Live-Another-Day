@@ -73,6 +73,11 @@ public class BaseBullet : MonoBehaviour
         SetMask();
     }
 
+    public virtual float GetSpeed()
+    {
+        return Speed;
+    }
+
     public virtual void SetSpeed(float _Speed)
     {
         Speed = _Speed;

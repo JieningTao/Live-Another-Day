@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyShield : IDamageable
+public class EnergyShield : BaseShield
 {
     [SerializeField]
     GameObject ProjectionShield;
