@@ -9,6 +9,11 @@ public class EnemyGearMissileLauncher : EnemyGear
     [SerializeField]
     int VolleyAmount;
 
+    public override void AssignController(BaseEnemy a)
+    {
+        base.AssignController(a);
+        MyML.EquipWeapon();
+    }
 
     public override void TriggerGear(bool Down)
     {

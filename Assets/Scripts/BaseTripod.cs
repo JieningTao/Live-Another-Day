@@ -92,12 +92,12 @@ public class BaseTripod : BaseEnemy
     {
         if (LeftWeapon)
         {
-        LeftFireControl.Weapon = LeftWeapon;
+            LeftFireControl.Weapon = LeftWeapon;
             LeftWeapon.AssignController(this);
         }
         if (RightWeapon)
         {
-        RightFireControl.Weapon = RightWeapon;
+            RightFireControl.Weapon = RightWeapon;
             RightWeapon.AssignController(this);
         }
     }

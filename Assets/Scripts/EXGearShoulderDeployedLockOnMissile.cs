@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EXGearShoulderDeployedLockOnMissile : EXGearShoulderLockOnMissile
 {
-    [SerializeField]
-    Animator MyAnimator;
 
     public override void Equip(bool a)
     {

@@ -1008,6 +1008,7 @@ MonoBehaviour:
   EXGearName: 4 * Cluster Missile
   Passive: 0
   ReadyTime: 0
+  MyAnimator: {fileID: 0}
   LockCount: 4
   MyLauncher: {fileID: 7374872896544964239}
 --- !u!1 &6176787046933972157
@@ -1573,6 +1574,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ActivationDelay
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017239507614878942, guid: 2d8f9e98a32c91147821b8e8697f6fde,
+        type: 3}
+      propertyPath: BlastDistance
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9105098611563224845, guid: 2d8f9e98a32c91147821b8e8697f6fde,
         type: 3}

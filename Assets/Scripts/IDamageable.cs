@@ -19,6 +19,7 @@ public class IDamageable : MonoBehaviour
     protected float DestroyDelay=0;
 
 
+    //[SerializeField]
     protected float CurrentHealth;
     protected bool IsDestroied = false;
 

@@ -139,6 +139,13 @@ public class UILock : MonoBehaviour
             InRangeSprite = MechInRange;
             OutOfRangeSprite = MechOutOfRange;
         }
+
+        HudImage.sprite = OutOfRangeSprite;
+
+        //if (DistanceToTarget > LockRange)
+        //else if (DistanceToTarget < LockRange)
+        //    HudImage.sprite = InRangeSprite;
+
     }
 
     private void RangeCheck()

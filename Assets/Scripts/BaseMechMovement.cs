@@ -122,12 +122,27 @@ public class BaseMechMovement : MonoBehaviour
 
         for (int i = 0; i < BoostPoints.Count; i++)
         {
-            BoostExhausts.Add(Instantiate(BoostEffectPrefab, BoostPoints[i]).GetComponentInChildren<ParticleSystem>());
-            BoostImpulses.Add(Instantiate(ImpulseBoostPrefab, BoostPoints[i]).GetComponentInChildren<ParticleSystem>());
+            ParticleSystem Boost = Instantiate(BoostEffectPrefab, BoostPoints[i]).GetComponentInChildren<ParticleSystem>();
+            AdjustEffectScale(Boost, BoostPoints[i].transform.localScale);
+            BoostExhausts.Add(Boost);
+
+            ParticleSystem Impulse = Instantiate(ImpulseBoostPrefab, BoostPoints[i]).GetComponentInChildren<ParticleSystem>();
+            AdjustEffectScale(Impulse, BoostPoints[i].transform.localScale);
+            BoostImpulses.Add(Impulse);
         }
         for (int i = 0; i < FloatThrustPoints.Count; i++)
         {
-            FloatThrusters.Add(Instantiate(FloatThrustPrefab, FloatThrustPoints[i]).GetComponentInChildren<ParticleSystem>());
+            ParticleSystem Float = Instantiate(FloatThrustPrefab, FloatThrustPoints[i]).GetComponentInChildren<ParticleSystem>();
+            AdjustEffectScale(Float, FloatThrustPoints[i].transform.localScale);
+            FloatThrusters.Add(Float);
+        }
+    }
+
+    public void AdjustEffectScale(ParticleSystem a,Vector3 Scale)
+    {
+        foreach (ParticleSystem b in a.GetComponentsInChildren<ParticleSystem>())
+        {
+            b.transform.localScale = Scale;
         }
     }
 

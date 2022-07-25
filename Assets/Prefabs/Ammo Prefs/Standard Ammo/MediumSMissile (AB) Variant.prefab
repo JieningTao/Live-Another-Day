@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9209615797532157763}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &3453725305579140645
 ParticleSystem:
@@ -4830,8 +4830,9 @@ MonoBehaviour:
   MyDamageType: 1
   MyDamageTags: 
   HitMask: 0
+  HitEffect: {fileID: 0}
   Target: {fileID: 0}
-  TrackingSpeed: 4
+  TrackingSpeed: 1.2
   ActivationDelay: 0.5
   BurstEffect: {fileID: 3453725305579140645}
   BlastDistance: 25
@@ -5009,6 +5010,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8343353544924239711, guid: 4ceeea05dae96da409a3402a7b145b49,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6579339629907119391, guid: 4ceeea05dae96da409a3402a7b145b49, type: 3}

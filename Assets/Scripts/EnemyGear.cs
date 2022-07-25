@@ -9,9 +9,12 @@ public class EnemyGear : MonoBehaviour
 
     public bool Aimed = true;
 
-    public void AssignController(BaseEnemy a)
+
+
+    public virtual void AssignController(BaseEnemy a)
     {
         Controller = a;
+        gameObject.layer = a.gameObject.layer;
     }
 
     public virtual void TriggerGear(bool Down)
@@ -22,5 +25,10 @@ public class EnemyGear : MonoBehaviour
     public virtual bool GearReady()
     {
         return false;
+    }
+
+    public virtual float GetBulletSpeed()
+    {
+        return 0;
     }
 }
