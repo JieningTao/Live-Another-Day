@@ -63,7 +63,7 @@ public class EXGearShoulderHealthPack : EXGearShoulder
 
     public override float GetReadyPercentage()
     {
-        return CurrentCharge/MaxCharge;
+        return (float)CurrentCharge/(float)MaxCharge;
     }
 
 

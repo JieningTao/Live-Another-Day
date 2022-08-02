@@ -127,8 +127,8 @@ MonoBehaviour:
   HoldStyle: 3
   RequireAiming: 0
   Shield: {fileID: 2327123528582464474}
-  GearSN: N-000
-  GearName: Null
+  GearSN: S-039
+  GearName: Medium Shield
   GearGaugeColor: {r: 0, g: 1, b: 0.024693727, a: 1}
 --- !u!114 &2327123528582464474
 MonoBehaviour:
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bc678e23aa58e48acfe637a4bcdddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 400
+  MaxHealth: 500
   MyArmorType: 0
   StuffToDisableAfterDestroy: []
   DestroyEffect: {fileID: 0}
@@ -170,14 +170,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2327123529325567513}
-  m_LocalRotation: {x: 0.15126339, y: -0.5937116, z: -0.3557881, w: 0.70572}
-  m_LocalPosition: {x: -0.126, y: 0.05, z: 0.017}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8185125782775384419}
   m_Father: {fileID: 2327123528582464475}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -12.062, y: -75.234, z: -44.201}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
 --- !u!1 &2868556104671837482
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4656019868624726776}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01505, y: 0.030179998, z: 0.0056736027}
+  m_LocalPosition: {x: 0.0019, y: -0.0009, z: 0.0056736027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7468824493999294936}
@@ -699,7 +699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7369086412223302721}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.015050958, y: -0.030184947, z: 0.0056736027}
+  m_LocalPosition: {x: -0.0282, y: -0.0613, z: 0.0056736027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7709910029518648376}

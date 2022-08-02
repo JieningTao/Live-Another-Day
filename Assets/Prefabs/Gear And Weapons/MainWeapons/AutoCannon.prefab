@@ -399,7 +399,7 @@ MonoBehaviour:
   - {fileID: 3465685157468858292}
   ProjectilePrefab: {fileID: 3281231035956968722}
   AccuracyDeviation: 0.08
-  TBS: 0.2
+  TBS: 0.35
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
@@ -1008,6 +1008,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277271662777892605, guid: 531c9de9a15384e47936a1a078c09b1c,
+        type: 3}
+      propertyPath: Damage
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7277271662777892605, guid: 531c9de9a15384e47936a1a078c09b1c,
         type: 3}

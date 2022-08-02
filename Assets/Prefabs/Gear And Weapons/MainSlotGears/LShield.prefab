@@ -265,7 +265,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2155902638949287043}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.005370326}
+  m_LocalPosition: {x: -0, y: -0.0325, z: 0.005370326}
   m_LocalScale: {x: 12.304316, y: 16.05967, z: 0.87616765}
   m_Children:
   - {fileID: 8310177853122887775}
@@ -1320,14 +1320,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7166595016318844623}
-  m_LocalRotation: {x: 0.15126339, y: -0.5937116, z: -0.3557881, w: 0.70572}
-  m_LocalPosition: {x: -0.126, y: 0.05, z: 0.017}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2123326123913824887}
   m_Father: {fileID: 7166595016394671810}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -12.062, y: -75.234, z: -44.201}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
 --- !u!1 &7166595016394671809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,8 +1376,8 @@ MonoBehaviour:
   HoldStyle: 3
   RequireAiming: 0
   Shield: {fileID: 5872223837332612304}
-  GearSN: N-000
-  GearName: Null
+  GearSN: AS-084
+  GearName: Heavy Shield
   GearGaugeColor: {r: 0, g: 1, b: 0.024693727, a: 1}
 --- !u!114 &5872223837332612304
 MonoBehaviour:
@@ -1391,7 +1391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bc678e23aa58e48acfe637a4bcdddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 600
+  MaxHealth: 700
   MyArmorType: 0
   StuffToDisableAfterDestroy: []
   DestroyEffect: {fileID: 0}

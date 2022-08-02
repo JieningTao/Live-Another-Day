@@ -335,8 +335,8 @@ MonoBehaviour:
   MissileDetectCollidder: {fileID: 6514371139028993317}
   DetectRange: 40
   LaserPath: {fileID: 5506437859720530731}
-  DPS: 5
-  PowerDraw: 10
+  DPS: 10
+  PowerDraw: 15
   LockedMissiles: []
 --- !u!114 &2142428243349032225
 MonoBehaviour:
@@ -356,6 +356,7 @@ MonoBehaviour:
   EXGearName: '''Umbrella'' LIS'
   Passive: 0
   ReadyTime: 0
+  MyAnimator: {fileID: 0}
   InterceptSystem: {fileID: 4005639322783109560}
 --- !u!135 &6514371139028993317
 SphereCollider:

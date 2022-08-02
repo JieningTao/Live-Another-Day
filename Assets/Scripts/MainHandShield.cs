@@ -19,6 +19,8 @@ public class MainHandShield : BaseMainSlotEquipment
     {
         gameObject.layer = Operator.gameObject.layer;
         Shield.Equip(Operator);
+        //needs to flip game object if on right hand
+        //if ()
     }
 
     public override void GetInitializeDate(out string MainFunction, out Color MainColor, out string SecondaryFunction, out Color SecondaryColor)

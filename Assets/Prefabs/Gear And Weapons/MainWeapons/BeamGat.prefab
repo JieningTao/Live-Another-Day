@@ -1184,7 +1184,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 211614741461414791, guid: 0d9a2c58333df124c872988556c3399d, type: 3}
-  - {fileID: -2184173280601260627, guid: 0d9a2c58333df124c872988556c3399d, type: 3}
+  - {fileID: 2100000, guid: 414344d3de27dc847bad1f20963de30a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2340,6 +2340,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3188632842184643692}
     m_Modifications:
+    - target: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: Damage
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}
       propertyPath: m_RootOrder

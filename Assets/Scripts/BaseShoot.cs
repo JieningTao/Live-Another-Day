@@ -86,7 +86,7 @@ public class BaseShoot : MonoBehaviour
         foreach (Transform a in BulletSpawns)
         {
             GameObject NewMuzzleFlare = Instantiate(MuzzleFlarePrefab, a.position, MuzzleFlarePrefab.transform.rotation, a.transform.parent);
-            NewMuzzleFlare.transform.localRotation = MuzzleFlarePrefab.transform.rotation;
+            NewMuzzleFlare.transform.localRotation = MuzzleFlarePrefab.transform.localRotation;
             MuzzleFlares.Add(NewMuzzleFlare.GetComponent<ParticleSystem>());
         }
     }

@@ -160,7 +160,7 @@ MonoBehaviour:
   BulletSpawns:
   - {fileID: 5550706249685202836}
   ProjectilePrefab: {fileID: 8154708175124665434}
-  AccuracyDeviation: 2
+  AccuracyDeviation: 6
   TBS: 0.5
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
@@ -704,6 +704,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2674323954759537966}
     m_Modifications:
+    - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: Damage
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
       propertyPath: m_RootOrder
