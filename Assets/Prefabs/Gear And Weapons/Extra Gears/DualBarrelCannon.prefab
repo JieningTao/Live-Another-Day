@@ -861,7 +861,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8309611781541976709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8309611782020532650}
@@ -884,7 +884,7 @@ MonoBehaviour:
   BulletSpawns:
   - {fileID: 8309611781931215960}
   - {fileID: 8309611782351787223}
-  ProjectilePrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 7104518043647486898}
   AccuracyDeviation: 0.01
   TBS: 0.2
   MyFireMode: 0
@@ -905,13 +905,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95a623f73dec9e4f9a2994d42847cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Displacement: {x: 0, y: 0, z: 0}
+  Displacement: {x: 0, y: 0, z: 0.012}
   Mirrored: 1
   EXGearSprite: {fileID: 0}
   EXGearName: '''Alder'' Dual barrel Cannon'
   Passive: 0
-  ReadyTime: 0.6
   MyAnimator: {fileID: 8309611781541976705}
+  ReadyTime: 0.6
   AimedPart: {fileID: 8309611781228373661}
   MyWeapon: {fileID: 8309611781541976711}
   TargetSpeed: 1
@@ -1200,6 +1200,12 @@ PrefabInstance:
       objectReference: {fileID: 1891403082858692084}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 531c9de9a15384e47936a1a078c09b1c, type: 3}
+--- !u!1 &7104518043647486898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1281830889375953337, guid: 531c9de9a15384e47936a1a078c09b1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8309611783024695819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7104518043647486796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1281830889375953223, guid: 531c9de9a15384e47936a1a078c09b1c,

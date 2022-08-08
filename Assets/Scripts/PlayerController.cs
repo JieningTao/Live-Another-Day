@@ -137,5 +137,8 @@ public class PlayerController : MonoBehaviour
             Application.Quit();
         else if (Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftControl))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        if (Input.GetKeyDown(KeyCode.Mouse3))
+            Debug.Break();
     }
 }

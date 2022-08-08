@@ -111,6 +111,36 @@ Transform:
   m_Father: {fileID: 410945625538560340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1625912841513173636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1443220823348332090}
+  m_Layer: 0
+  m_Name: Right Shoulder EXG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1443220823348332090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625912841513173636}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.64, y: 0, z: 0.08}
+  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_Children: []
+  m_Father: {fileID: 6494186702201101822}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1730060941150990237
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +471,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6138969395760161669}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0015, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0015, z: -0.177}
   m_LocalScale: {x: 12, y: 12, z: 12}
   m_Children:
   - {fileID: 1325531662975678557}
@@ -541,6 +571,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2319925632628521956}
+  - {fileID: 1548504887977680294}
+  - {fileID: 1443220823348332090}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -566,7 +598,41 @@ MonoBehaviour:
   - {fileID: 4286450411179209037}
   - {fileID: 5102415060347308411}
   Displacement: {x: 0, y: 0, z: 0}
+  LeftShoulderEXGSlot: {fileID: 1548504887977680294}
+  RightShoulderEXGSlot: {fileID: 1443220823348332090}
+  LeftShoulderEXG: {fileID: 0}
+  RightShoulderEXG: {fileID: 0}
   BackPackBuiltInEXG: {fileID: 0}
+--- !u!1 &6535028576398876915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1548504887977680294}
+  m_Layer: 0
+  m_Name: Left Shoulder EXG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1548504887977680294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535028576398876915}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.64, y: 0, z: 0.08}
+  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_Children: []
+  m_Father: {fileID: 6494186702201101822}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8384310094515153914
 GameObject:
   m_ObjectHideFlags: 0

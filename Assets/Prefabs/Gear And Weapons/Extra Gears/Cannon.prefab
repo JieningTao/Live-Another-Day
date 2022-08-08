@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpawns:
-  - {fileID: 0}
+  - {fileID: 4625803671614108798}
   ProjectilePrefab: {fileID: 6473818946047100154}
   AccuracyDeviation: 0.008
   TBS: 1
@@ -637,16 +637,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95a623f73dec9e4f9a2994d42847cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Displacement: {x: 0, y: 0, z: 0}
+  Displacement: {x: 0, y: 0, z: 0.012}
   Mirrored: 0
   EXGearSprite: {fileID: 0}
   EXGearName: '''Log'' Cannon'
   Passive: 0
+  MyAnimator: {fileID: 3385436526295278084}
   ReadyTime: 0.65
-  AimedPart: {fileID: 0}
+  AimedPart: {fileID: 4101913922888948170}
   MyWeapon: {fileID: 5196690453340276811}
   TargetSpeed: 1
-  MyAnimator: {fileID: 3385436526295278084}
 --- !u!95 &3385436526295278084
 Animator:
   serializedVersion: 3
@@ -917,7 +917,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5498084469326183971, guid: e857e84dfe3ec0b4bbf93c5899fe9320, type: 3}
+  - {fileID: 2100000, guid: 414344d3de27dc847bad1f20963de30a, type: 2}
   - {fileID: -400310251153081761, guid: e857e84dfe3ec0b4bbf93c5899fe9320, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0

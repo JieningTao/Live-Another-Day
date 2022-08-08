@@ -100,7 +100,7 @@ public class BaseMechMovement : MonoBehaviour
     {
         MyBMM = BMM;
         MyRB = GetComponent<Rigidbody>();
-        Debug.Log(MyRB, this);
+        //Debug.Log(MyRB, this);
         Cursor.lockState = CursorLockMode.Locked;
         JCRemaining = 0;
         CurrentBoostjuice = BoostJuiceCapacity;
@@ -146,11 +146,11 @@ public class BaseMechMovement : MonoBehaviour
         }
     }
 
-    public void SetStats(float MF,float SL, float BF,float IBF, float FF,float BC,float IC,float FC,float BJC, float BJR,float BJRC ,Vector3 Drag, float JF)
+    public void SetStats(float MF,float SL, float BSL, float BF,float IBF, float FF,float BC,float IC,float FC,float BJC, float BJR,float BJRC ,Vector3 Drag, float JF)
     {
         MoveForce = MF;
         SpeedLimit = SL;
-
+        BoostSpeedLimit = SL + BSL;
 
         BoostForce = BF;
         ImpulseBoostForce = IBF;

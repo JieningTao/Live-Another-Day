@@ -10,6 +10,8 @@ public class BaseBoostSystem :MonoBehaviour
     protected float ImpulseBoostForce = 90;
     [SerializeField]
     protected float FloatForce = 35;
+    [SerializeField]
+    protected float ExtraSpeedCap = 20;
 
     [Space(15)]
 
@@ -39,11 +41,12 @@ public class BaseBoostSystem :MonoBehaviour
     protected GameObject FloatThrust;
 
 
-    public void OutStats(out float BF, out float IBF, out float FF, out float BC, out float IBC, out float FC, out float BJC, out float BJR, out float BJRC)
+    public void OutStats(out float BF, out float IBF, out float FF, out float ESC, out float BC, out float IBC, out float FC, out float BJC, out float BJR, out float BJRC)
     {
         BF = BoostForce;
         IBF = ImpulseBoostForce;
         FF = FloatForce;
+        ESC = ExtraSpeedCap;
 
         BC = BoostCost;
         IBC = ImpulseBoostCost;

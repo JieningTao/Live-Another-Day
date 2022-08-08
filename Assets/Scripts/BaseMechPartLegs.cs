@@ -59,16 +59,7 @@ public class BaseMechPartLegs : BaseMechPart
         return new Vector3(MovingDrag, StoppingDrag, OverSpeedDrag);
     }
 
-    public void EquipLegEXGs(BaseEXGear Left, BaseEXGear Right)
-    {
-        LeftEXG = Left;
-        if (Left != null)
-            Left.InitializeGear(MyMech, LeftEXGSlot, false);
 
-        RightEXG = Right;
-        if (Right != null)
-            Right.InitializeGear(MyMech, RightEXGSlot, true);
-    }
 
     private void Update()
     {
@@ -80,21 +71,53 @@ public class BaseMechPartLegs : BaseMechPart
         Ground(MyMovement.grounded());
     }
 
+    #region EXG Related
+    public void EquipLegEXGs(BaseEXGear Left, BaseEXGear Right)
+    {
+
+        EquipLegEXG(Left, false);
+        EquipLegEXG(Right, true);
+
+    }
+
     public void EquipLegEXG(BaseEXGear EXG, bool Right)
     {
         if (Right)
         {
-            RightEXG = EXG;
-            if (EXG != null)
-                EXG.InitializeGear(MyMech, RightEXGSlot, Right);
+            if (RightEXG == null && RightEXGSlot)
+            {
+                RightEXG = EXG;
+                if (EXG != null)
+                    EXG.InitializeGear(MyMech, RightEXGSlot, Right);
+            }
+
         }
         else
         {
-            LeftEXG = EXG;
-            if (EXG != null)
-                EXG.InitializeGear(MyMech, LeftEXGSlot, Right);
+            if (LeftEXG == null && LeftEXGSlot)
+            {
+                LeftEXG = EXG;
+                if (EXG != null)
+                    EXG.InitializeGear(MyMech, LeftEXGSlot, Right);
+            }
         }
     }
+
+    public BaseEXGear AttemptEquipEXGAndGet(BaseEXGear EXG, bool Right)
+    {
+        EquipLegEXG(EXG, Right);
+
+        return GetEXG(Right);
+    }
+
+    public BaseEXGear GetEXG(bool Right)
+    {
+        if (Right)
+            return RightEXG;
+        else
+            return LeftEXG;
+    }
+    #endregion
 
     private void Ground(bool Landed)
     {

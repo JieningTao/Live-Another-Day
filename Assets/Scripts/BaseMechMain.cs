@@ -56,19 +56,23 @@ public class BaseMechMain : ICoatedDamagable
 
         PlayerMech = (GetComponent<PlayerController>() != null);
 
-        Debug.Log(PlayerMech);
+        SpawnParts();
+        BuildMech();
+
 
         MyFCS = GetComponent<BaseMechFCS>();
         MyFCS.InitializeFCS(this,PlayerMech,MPLArm,MPRArm);
+
 
         MyMovement = GetComponent<BaseMechMovement>();
         MyMovement.InitializeMechMovement(this,PlayerMech);
 
 
 
-        BuildMech();
 
         InitializeIDamageable();
+
+        FindObjectOfType<UIInfoPanelManager>().UIInitialize();
     }
 
     
@@ -120,6 +124,8 @@ public class BaseMechMain : ICoatedDamagable
     #region Mech Assembly related
     private void BuildMech()
     {
+
+
         if (MPTorso == null)
             return;
         MPTorso.Assemble(this, transform);
@@ -166,15 +172,28 @@ public class BaseMechMain : ICoatedDamagable
         AssignMovementStats();
     }
 
+    private void SpawnParts()
+    {
+        MPTorso = Instantiate(MPTorso.gameObject, transform).GetComponent<BaseMechPartTorso>();
+        MPHead = Instantiate(MPHead.gameObject, transform).GetComponent<BaseMechPartHead>();
+        MPLegs = Instantiate(MPLegs.gameObject, transform).GetComponent<BaseMechPartLegs>();
+        MPPack = Instantiate(MPPack.gameObject, transform).GetComponent<BaseMechPartPack>();
+        MPLArm = Instantiate(MPLArm.gameObject, transform).GetComponent<BaseMechPartArm>();
+        MPRArm = Instantiate(MPRArm.gameObject, transform).GetComponent<BaseMechPartArm>();
+
+        BoostSystem = Instantiate(BoostSystem.gameObject, transform).GetComponent<BaseBoostSystem>();
+        EnergySystem = Instantiate(EnergySystem.gameObject, transform).GetComponent<BasePowerSystem>();
+    }
+
     private void AssignMovementStats()
     {
         float MF = MPLegs.MovementForce;
         float SL = MPLegs.SpeedCap;
         float JF = MPLegs.JumpForce;
 
-        BoostSystem.OutStats(out float BF, out float IBF, out float FF, out float BC, out float IBC, out float FC, out float BJC, out float BJR, out float BJRC);
+        BoostSystem.OutStats(out float BF, out float IBF, out float FF, out float ESC, out float BC, out float IBC, out float FC, out float BJC, out float BJR, out float BJRC);
 
-        MyMovement.SetStats(MF, SL, BF, IBF, FF, BC, IBC, FC, BJC, BJR, BJRC, MPLegs.GetDrag(), JF);
+        MyMovement.SetStats(MF, SL, ESC, BF, IBF, FF, BC, IBC, FC, BJC, BJR, BJRC, MPLegs.GetDrag(), JF);
     }
 
     public void EXGInstall(ref BaseEXGear[] EXGs)
@@ -184,22 +203,16 @@ public class BaseMechMain : ICoatedDamagable
         //MPRArm.EquipEXG(EXGs[6]);
         //MPTorso.EquipShoulderEXGs(EXGs[2], EXGs[5]);
 
-        if (EXGs[0])
-            EXGs[0].InitializeGear(this, MPLegs.GetLeftEXGSlot(), false);
-        if (EXGs[1])
-            EXGs[1].InitializeGear(this, MPLArm.GetSideMountEXGSlot(), false);
-        if (EXGs[2])
-            EXGs[2].InitializeGear(this, MPTorso.GetLeftShoulderEXGSlot(), false);
 
-            EXGs[3] = MPTorso.GetBuilInEXG();
-            EXGs[4] = MPPack.GetBuilInEXG();
+        EXGs[0] = MPLegs.AttemptEquipEXGAndGet(EXGs[0], false);
+        EXGs[1] = MPLArm.AttemptEquipEXGAndGet(EXGs[1]);
+        EXGs[2] = MPPack.AttemptEquipEXGAndGet(EXGs[2], false);
+        EXGs[3] = MPTorso.GetBuilInEXG();
+        EXGs[4] = MPPack.GetBuilInEXG();
+        EXGs[5] = MPPack.AttemptEquipEXGAndGet(EXGs[5], true);
+        EXGs[6] = MPRArm.AttemptEquipEXGAndGet(EXGs[6]);
+        EXGs[7] = MPLegs.AttemptEquipEXGAndGet(EXGs[7], true);
 
-        if (EXGs[5])
-            EXGs[5].InitializeGear(this, MPTorso.GetRightShoulderEXGSlot(), true);
-        if (EXGs[6])
-            EXGs[6].InitializeGear(this, MPRArm.GetSideMountEXGSlot(), true);
-        if (EXGs[7])
-            EXGs[7].InitializeGear(this, MPLegs.GetRightEXGSlot(), true);
     }
 
     public void GetHands(out Transform Left, out Transform Right)

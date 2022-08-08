@@ -66,13 +66,17 @@ public class BaseMissileLauncher : BaseKineticShoot
     public void FireVolley(List<EnergySignal> NewTargets)
     {
         //Targets.AddRange(NewTargets);
-        for (int i = 0; i < MagazineRemaining; i++)
+
+        if (NewTargets.Count > 0)
         {
-            Targets.Add(NewTargets[i % NewTargets.Count]);
+            for (int i = 0; i < MagazineRemaining; i++)
+            {
+                Targets.Add(NewTargets[i % NewTargets.Count]);
+            }
+
+            Firing = true;
         }
 
-
-        Firing = true;
     }
 
     public override void Trigger(bool Fire)

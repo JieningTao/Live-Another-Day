@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 9026892890078646505}
   - component: {fileID: 7671202745400613515}
   - component: {fileID: 4574259729390437434}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TestRifle(GL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -901,10 +901,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6248584732470765589, guid: 6d51d3b342bf5b14d80f44d53642d240,
+        type: 3}
+      propertyPath: HitMask
+      value: 51200
+      objectReference: {fileID: 0}
     - target: {fileID: 9101633323893814125, guid: 6d51d3b342bf5b14d80f44d53642d240,
         type: 3}
       propertyPath: m_Name
       value: Medium Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101633323893814125, guid: 6d51d3b342bf5b14d80f44d53642d240,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d51d3b342bf5b14d80f44d53642d240, type: 3}
@@ -999,6 +1009,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1281830889375953337, guid: 531c9de9a15384e47936a1a078c09b1c,
         type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281830889375953337, guid: 531c9de9a15384e47936a1a078c09b1c,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1006,6 +1021,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Damage
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277271662777892605, guid: 531c9de9a15384e47936a1a078c09b1c,
+        type: 3}
+      propertyPath: HitMask
+      value: 51200
       objectReference: {fileID: 0}
     - target: {fileID: 7277271662777892605, guid: 531c9de9a15384e47936a1a078c09b1c,
         type: 3}
@@ -1037,6 +1057,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Damage
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: HitMask
+      value: 51200
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
@@ -1112,6 +1137,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: KineticBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386673, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386673, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}

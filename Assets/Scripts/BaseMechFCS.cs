@@ -43,10 +43,7 @@ public class BaseMechFCS : MonoBehaviour
     protected BaseEXGear LeftArmEXG;
     [SerializeField]
     protected BaseEXGear LeftShoulderEXG;
-    [SerializeField]
-    protected BaseEXGear ChestEXG;
-    [SerializeField]
-    protected BaseEXGear BackPackEXG;
+
     [SerializeField]
     protected BaseEXGear RightShoulderEXG;
     [SerializeField]
@@ -82,6 +79,8 @@ public class BaseMechFCS : MonoBehaviour
 
     public void InitializeFCS(BaseMechMain BMM,bool Player, BaseMechPartArm _LeftArm, BaseMechPartArm _RightArm)
     {
+        SpawnItems();
+
         MyBMM = BMM;
         LeftArm = _LeftArm;
         RightArm = _RightArm;
@@ -96,6 +95,27 @@ public class BaseMechFCS : MonoBehaviour
         InitializeEXGear();
 
         CameraAnchor = BMM.CameraAnchor;
+    }
+
+    private void GetInnateEXG()
+    {
+
+
+    }
+
+    private void SpawnItems()
+    {
+        CurrentPrimary = Instantiate(CurrentPrimary.gameObject,transform).GetComponent<BaseMainSlotEquipment>();
+        CurrentSecondary = Instantiate(CurrentSecondary.gameObject, transform).GetComponent<BaseMainSlotEquipment>();
+
+        LeftLegEXG = Instantiate(LeftLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        LeftArmEXG = Instantiate(LeftArmEXG.gameObject, transform).GetComponent<BaseEXGear>(); 
+        LeftShoulderEXG = Instantiate(LeftShoulderEXG.gameObject, transform).GetComponent<BaseEXGear>(); 
+        //ChestEXG = Instantiate(LeftLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        //BackPackEXG;
+        RightShoulderEXG = Instantiate(RightShoulderEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        RightArmEXG = Instantiate(RightArmEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        RightLegEXG = Instantiate(RightLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
     }
 
     public void InitStats(float _RadarRange, float _LockRange)
@@ -116,8 +136,8 @@ public class BaseMechFCS : MonoBehaviour
         EquipedEXGear[0] = LeftLegEXG;
         EquipedEXGear[1] = LeftArmEXG;
         EquipedEXGear[2] = LeftShoulderEXG;
-        EquipedEXGear[3] = ChestEXG;
-        EquipedEXGear[4] = BackPackEXG;
+        //EquipedEXGear[3] = ChestEXG;
+        //EquipedEXGear[4] = BackPackEXG;
         EquipedEXGear[5] = RightShoulderEXG;
         EquipedEXGear[6] = RightArmEXG;
         EquipedEXGear[7] = RightLegEXG;
@@ -133,13 +153,13 @@ public class BaseMechFCS : MonoBehaviour
             if (PlayerFCS && EXGearChanges != null)
                 EXGearChanges.Invoke(i + 1, "New", EquipedEXGear[i]);
 
-            if (EquipedEXGear[i] != null)
-            {
-                if (i < 3)
-                    EquipedEXGear[i].InitializeGear(MyBMM,null, false);
-                else
-                    EquipedEXGear[i].InitializeGear(MyBMM,null, true);
-            }
+            //if (EquipedEXGear[i] != null)
+            //{
+            //    if (i < 3)
+            //        EquipedEXGear[i].InitializeGear(MyBMM,null, false);
+            //    else
+            //        EquipedEXGear[i].InitializeGear(MyBMM,null, true);
+            //}
         }
 
         SelectedEXSlot = 0;

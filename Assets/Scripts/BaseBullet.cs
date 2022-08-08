@@ -26,7 +26,7 @@ public class BaseBullet : MonoBehaviour
     [SerializeField]
     protected ParticleSystem HitEffect;
 
-    protected void Start()
+    protected virtual void Start()
     {
         Destroy(this.gameObject, Timer);
     }
@@ -48,16 +48,21 @@ public class BaseBullet : MonoBehaviour
 
     protected virtual void FlightCheck()
     {
+        FlightCheck(1);
+    }
+
+    protected virtual void FlightCheck(float SpeedMod)
+    {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, Speed * Time.deltaTime, ~HitMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, SpeedMod * Speed * Time.deltaTime, ~HitMask))
         {
             transform.Translate(Vector3.forward * hit.distance);
             DealDamageTo(hit.collider.gameObject);
         }
         else
         {
-            transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+            transform.Translate(Vector3.forward * SpeedMod * Speed * Time.deltaTime);
         }
     }
 

@@ -150,17 +150,29 @@ public class BaseMechPartArm : BaseMechPart
         return b;
     }
 
-    public void EquipEXG(BaseEXGear a)
+    public virtual void EquipEXG(BaseEXGear a)
     {
-        if (a)
+        if (ArmEXG == null && SideMountedEXGSlot)
         {
-            a.transform.parent = SideMountedEXGSlot;
-            a.transform.localPosition = Vector3.zero;
+            if (a)
+            {
+                a.transform.parent = SideMountedEXGSlot;
+                a.transform.localPosition = Vector3.zero;
+                a.InitializeGear(MyMech, SideMountedEXGSlot, IsRightArm());
+            }
+            ArmEXG = a;
         }
-        ArmEXG = a;
+
     }
 
-    public BaseEXGear GetArmEXG()
+    public BaseEXGear AttemptEquipEXGAndGet(BaseEXGear EXG)
+    {
+        EquipEXG(EXG);
+
+        return GetEXG();
+    }
+
+    public BaseEXGear GetEXG()
     {
         return ArmEXG;
     }
@@ -170,4 +182,9 @@ public class BaseMechPartArm : BaseMechPart
         return EquippedGear;
     }
 
+
+    public virtual bool IsRightArm()
+    {
+        return true;
+    }
 }

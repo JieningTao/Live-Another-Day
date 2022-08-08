@@ -17,6 +17,9 @@ public class EXGearShoulderWeapon : EXGearShoulder
     {
         base.InitializeGear(Mech, Parent, Right);
         MyFCS = Mech.GetFCS();
+
+        if (MyWeapon is BaseEnergyShoot)
+            (MyWeapon as BaseEnergyShoot).GetPowerSource(Mech);
         //Debug.Log(gameObject.name + " Right: " + Right, this);
     }
 

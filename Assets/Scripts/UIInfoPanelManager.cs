@@ -61,7 +61,12 @@ public class UIInfoPanelManager : MonoBehaviour
 
     private void Start()
     {
+        //UIInitialize();
 
+    }
+
+    public void UIInitialize()
+    {
         PlayerMechMovement = PlayerMechMain.GetMovement();
         PlayerEnergySystem = PlayerMechMain.GetEnergySystem();
 
@@ -73,7 +78,8 @@ public class UIInfoPanelManager : MonoBehaviour
 
 
     private void Update()
-    {
+    { 
+
         UpdateHealth(PlayerMechMain.GetHealthText(),PlayerMechMain.GetHealthPercent());
         UpdateCoating(PlayerMechMain.GetCoatingPercent());
 

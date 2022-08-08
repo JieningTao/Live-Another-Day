@@ -48,7 +48,7 @@ public class BaseShoot : MonoBehaviour
     protected virtual void Start()
     {
         foreach(Transform a in BulletSpawns)
-            a.gameObject.SetActive(false);
+            a.gameObject.SetActive(true);
         InitializeBullet();
         InitializeMuzzleFlare();
         //MyStatus = WeaponStatus.Normal;
@@ -85,7 +85,7 @@ public class BaseShoot : MonoBehaviour
 
         foreach (Transform a in BulletSpawns)
         {
-            GameObject NewMuzzleFlare = Instantiate(MuzzleFlarePrefab, a.position, MuzzleFlarePrefab.transform.rotation, a.transform.parent);
+            GameObject NewMuzzleFlare = Instantiate(MuzzleFlarePrefab, a.position, MuzzleFlarePrefab.transform.rotation, a.transform);
             NewMuzzleFlare.transform.localRotation = MuzzleFlarePrefab.transform.localRotation;
             MuzzleFlares.Add(NewMuzzleFlare.GetComponent<ParticleSystem>());
         }

@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 3374845963381505274}
   - component: {fileID: 1513148294198331638}
   - component: {fileID: -6461478087840340995}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TestBeamRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,6 +791,11 @@ PrefabInstance:
       propertyPath: Damage
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: HitMask
+      value: 18432
+      objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}
       propertyPath: m_RootOrder
@@ -850,6 +855,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnergyBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386673, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386673, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}
