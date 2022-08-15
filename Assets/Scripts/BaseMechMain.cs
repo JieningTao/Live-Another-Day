@@ -66,13 +66,14 @@ public class BaseMechMain : ICoatedDamagable
 
         MyMovement = GetComponent<BaseMechMovement>();
         MyMovement.InitializeMechMovement(this,PlayerMech);
-
-
+        AssignMovementStats();
+        AssignWeight();
 
 
         InitializeIDamageable();
 
         FindObjectOfType<UIInfoPanelManager>().UIInitialize();
+        GetComponent<MechColorAdjuster>().switchColor();
     }
 
     
@@ -169,7 +170,7 @@ public class BaseMechMain : ICoatedDamagable
         LeftArm = MPLArm.transform;
         RightArm = MPRArm.transform;
 
-        AssignMovementStats();
+        
     }
 
     private void SpawnParts()
@@ -196,6 +197,19 @@ public class BaseMechMain : ICoatedDamagable
         MyMovement.SetStats(MF, SL, ESC, BF, IBF, FF, BC, IBC, FC, BJC, BJR, BJRC, MPLegs.GetDrag(), JF);
     }
 
+    private void AssignWeight()
+    {
+        float Weight = 5; //base weight
+
+
+        foreach (BaseMechPart a in AllParts)
+        {
+            Weight += a.GetWeight(true);
+        }
+
+        MyMovement.SetWeight(Weight);
+    }
+
     public void EXGInstall(ref BaseEXGear[] EXGs)
     {
         //MPLegs.EquipLegEXGs(EXGs[0], EXGs[7]);
@@ -207,8 +221,14 @@ public class BaseMechMain : ICoatedDamagable
         EXGs[0] = MPLegs.AttemptEquipEXGAndGet(EXGs[0], false);
         EXGs[1] = MPLArm.AttemptEquipEXGAndGet(EXGs[1]);
         EXGs[2] = MPPack.AttemptEquipEXGAndGet(EXGs[2], false);
+
         EXGs[3] = MPTorso.GetBuilInEXG();
+        if (EXGs[3])
+            EXGs[3].InitializeGear(this, MPTorso.transform, false);
         EXGs[4] = MPPack.GetBuilInEXG();
+        if (EXGs[4])
+            EXGs[4].InitializeGear(this, MPPack.transform, false);
+
         EXGs[5] = MPPack.AttemptEquipEXGAndGet(EXGs[5], true);
         EXGs[6] = MPRArm.AttemptEquipEXGAndGet(EXGs[6]);
         EXGs[7] = MPLegs.AttemptEquipEXGAndGet(EXGs[7], true);

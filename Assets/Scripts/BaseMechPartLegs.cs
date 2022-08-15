@@ -141,4 +141,24 @@ public class BaseMechPartLegs : BaseMechPart
         base.Assemble(Mech, JointPosition);
         MyMovement = Mech.GetMovement();
     }
+
+
+    public override float GetWeight(bool IncludeGear)
+    {
+        if (!IncludeGear)
+            return base.GetWeight(IncludeGear);
+        else
+        {
+            float TW = Weight;
+
+            if (LeftEXGSlot&&LeftEXG)
+                TW += LeftEXG.GetWeight();
+
+            if (RightEXGSlot&&RightEXG)
+                TW += RightEXG.GetWeight();
+
+            return TW;
+        }
+
+    }
 }

@@ -47,6 +47,7 @@ public class AcuteMissile : BaseMissile
         transform.rotation = Quaternion.LookRotation(Target.transform.position - transform.position,Vector3.up);
 
         Instantiate(SnapEffect.gameObject, transform.position, transform.rotation);
+
         Snapped = true;
 
     }

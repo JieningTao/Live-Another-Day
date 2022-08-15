@@ -187,4 +187,18 @@ public class BaseMechPartArm : BaseMechPart
     {
         return true;
     }
+    public override float GetWeight(bool IncludeGear)
+    {
+        if (!IncludeGear)
+            return base.GetWeight(IncludeGear);
+        else
+        {
+            float TW = Weight;
+
+            if (SideMountedEXGSlot&&ArmEXG)
+                TW += ArmEXG.GetWeight();
+
+            return TW;
+        }
+    }
 }

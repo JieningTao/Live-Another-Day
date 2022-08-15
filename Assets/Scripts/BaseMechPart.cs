@@ -68,6 +68,11 @@ public class BaseMechPart : MonoBehaviour
         }
     }
 
+    public virtual float GetWeight(bool IncludeGear)
+    {
+        return Weight;
+    }
+
 
 
 }

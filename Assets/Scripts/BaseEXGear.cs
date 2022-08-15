@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class BaseEXGear : MonoBehaviour
 {
-    protected BaseMechMain MyMech;
     [Tooltip("Displacement")]
     [SerializeField]
     protected Vector3 Displacement = Vector3.zero;
+    [SerializeField]
+    protected float Weight;
     [SerializeField]
     protected bool Mirrored = false;
     [SerializeField]
@@ -21,6 +22,8 @@ public class BaseEXGear : MonoBehaviour
     [SerializeField]
     protected float ReadyTime;
 
+
+    protected BaseMechMain MyMech;
     protected bool Equipped = false;
     protected BaseEnergySource MechEnergySystem;
     protected float ReadyTimer;
@@ -51,6 +54,12 @@ public class BaseEXGear : MonoBehaviour
     {
         return !Passive;
     }
+
+    public virtual float GetWeight()
+    {
+        return Weight;
+    }
+
 
     public virtual void TriggerGear(bool Down)
     {

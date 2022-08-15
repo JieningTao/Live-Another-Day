@@ -78,4 +78,23 @@ public class BaseMechPartPack : BaseMechPart
 
         return GetEXG(Right);
     }
+
+    public override float GetWeight(bool IncludeGear)
+    {
+        if (!IncludeGear)
+            return base.GetWeight(IncludeGear);
+        else
+        {
+            float TW = Weight;
+
+            if (LeftShoulderEXGSlot && LeftShoulderEXG)
+                TW += LeftShoulderEXG.GetWeight();
+            
+            if (RightShoulderEXGSlot && RightShoulderEXG)
+                TW += RightShoulderEXG.GetWeight();
+
+            return TW;
+        }
+
+    }
 }

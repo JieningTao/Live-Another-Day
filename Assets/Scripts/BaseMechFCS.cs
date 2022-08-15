@@ -105,16 +105,24 @@ public class BaseMechFCS : MonoBehaviour
 
     private void SpawnItems()
     {
+        if(CurrentPrimary)
         CurrentPrimary = Instantiate(CurrentPrimary.gameObject,transform).GetComponent<BaseMainSlotEquipment>();
+        if(CurrentSecondary)
         CurrentSecondary = Instantiate(CurrentSecondary.gameObject, transform).GetComponent<BaseMainSlotEquipment>();
 
+        if(LeftLegEXG)
         LeftLegEXG = Instantiate(LeftLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        if(LeftArmEXG)
         LeftArmEXG = Instantiate(LeftArmEXG.gameObject, transform).GetComponent<BaseEXGear>(); 
+        if(LeftShoulderEXG)
         LeftShoulderEXG = Instantiate(LeftShoulderEXG.gameObject, transform).GetComponent<BaseEXGear>(); 
         //ChestEXG = Instantiate(LeftLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
         //BackPackEXG;
+        if(RightShoulderEXG)
         RightShoulderEXG = Instantiate(RightShoulderEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        if(RightArm)
         RightArmEXG = Instantiate(RightArmEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        if(RightLegEXG)
         RightLegEXG = Instantiate(RightLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
     }
 

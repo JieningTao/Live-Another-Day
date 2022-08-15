@@ -113,6 +113,11 @@ public class BaseMechMovement : MonoBehaviour
         FloatThrustPrefab = Float; //currently boost system will use the same effect as boost for float
     }
 
+    public void SetWeight(float a)
+    {
+        MyRB.mass = a;
+    }
+
     public void CreateBoostAndJumpEffects(List<Transform> BoostPoints,List<Transform> FloatThrustPoints)
     {
         BoostExhausts = new List<ParticleSystem>();
@@ -309,6 +314,13 @@ public class BaseMechMovement : MonoBehaviour
         else
             return false;
 
+    }
+
+    public void RestoreBoostJuice(float Amount)
+    {
+        CurrentBoostjuice += Amount;
+        if (CurrentBoostjuice > BoostJuiceCapacity)
+            CurrentBoostjuice = BoostJuiceCapacity;
     }
 
     public float GetBoostJuicePercentage()

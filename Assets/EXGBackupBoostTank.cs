@@ -14,29 +14,38 @@ public class EXGBackupBoostTank : BaseEXGear
     float EjectionForce =3;
 
     protected int NextChargeCount;
+    protected BaseMechMovement MyMovement;
 
     public override void InitializeGear(BaseMechMain Mech, Transform Parent, bool Right)
     {
         base.InitializeGear(Mech, Parent, Right);
-
+        MyMovement = Mech.GetMovement();
         NextChargeCount = 0;
+
     }
 
     public override void TriggerGear(bool Down)
     {
         base.TriggerGear(Down);
 
-
-        if (Tanks.Count > NextChargeCount)
+        if (Down)
         {
-            Tanks[NextChargeCount].isKinematic = false;
-            Tanks[NextChargeCount].transform.parent = null;
-            EjectEffects[NextChargeCount].Play();
+            if (Tanks.Count > NextChargeCount)
+            {
+                Tanks[NextChargeCount].isKinematic = false;
+                Tanks[NextChargeCount].transform.parent = null;
+                EjectEffects[NextChargeCount].Play();
 
-            Tanks[NextChargeCount].AddForce(-Tanks[0].transform.forward * EjectionForce, ForceMode.Impulse);
-            Destroy(Tanks[NextChargeCount].gameObject, 5);
-            NextChargeCount++;
+                MyMovement.RestoreBoostJuice(ChargePerTank);
+
+
+                Tanks[NextChargeCount].AddForce(-Tanks[0].transform.forward * EjectionForce, ForceMode.Impulse);
+                Destroy(Tanks[NextChargeCount].gameObject, 5);
+                NextChargeCount++;
+            }
         }
+
+
 
 
 
