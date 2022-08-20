@@ -154,9 +154,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.01
-  m_Height: 0.10427754
+  m_Height: 0.09969696
   m_Direction: 2
-  m_Center: {x: 0.0000000012417635, y: -0.000000021700176, z: -0.0023505043}
+  m_Center: {x: 0.0000000012417635, y: -0.00000002366465, z: -0.004640808}
 --- !u!54 &3661057112430995417
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 50
-  Weight: 0.1
+  Weight: 1
   Attributs: []
   FloatThrusters:
   - {fileID: 1467211963252508928}
@@ -919,6 +919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Displacement: {x: 0, y: 0, z: 0}
+  Weight: 0
   Mirrored: 0
   EXGearSprite: {fileID: 0}
   EXGearName: BackUp Boost Tank
@@ -930,7 +931,9 @@ MonoBehaviour:
   EjectEffects:
   - {fileID: 3071945207815821418}
   ChargePerTank: 100
+  ChargeTime: 2
   EjectionForce: 3
+  WeightPerTank: 0.1
 --- !u!1 &8324150096955715008
 GameObject:
   m_ObjectHideFlags: 0

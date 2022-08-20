@@ -34,6 +34,15 @@ public class BaseMechPartTorso : BaseMechPart
         BP.Assemble(Mech, BackPackSocket);
     }
 
+    public void VisualAssembleMech(BaseMechPart H, BaseMechPart RA, BaseMechPart LA, BaseMechPart L, BaseMechPart BP)
+    {
+        H.VisualAssemble(HeadSocket);
+        RA.VisualAssemble(RightArmSocket);
+        LA.VisualAssemble(LeftArmSocket);
+        L.VisualAssemble(LegsSocket);
+        BP.VisualAssemble(BackPackSocket);
+    }
+
     public BaseEXGear GetBuilInEXG()
     {
         return TorsoBuiltInEXG;

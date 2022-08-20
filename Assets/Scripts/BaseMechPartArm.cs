@@ -31,6 +31,14 @@ public class BaseMechPartArm : BaseMechPart
         EquipEXG(ArmEXG);
     }
 
+    public override void VisualAssemble(Transform JointPosition)
+    {
+        base.VisualAssemble(JointPosition);
+
+        EquipEquipment(EquippedGear);
+        EquipEXG(ArmEXG);
+    }
+
     public Transform GetSideMountEXGSlot()
     {
         return SideMountedEXGSlot;
@@ -48,6 +56,7 @@ public class BaseMechPartArm : BaseMechPart
 
     public void SetArmAnimator(int State)
     {
+        Debug.Log(State);
         if (ArmAnimator)
             ArmAnimator.SetInteger("ArmState", State);
     }
@@ -123,13 +132,18 @@ public class BaseMechPartArm : BaseMechPart
 
     public void EquipEquipment(BaseMainSlotEquipment a)
     {
+        Debug.Log(a);
         EquippedGear = a;
         if (a)
         {
             a.transform.parent = HandSlot;
             a.transform.localPosition = Vector3.zero;
             Debug.Log((int)EquippedGear.HoldStyle);
-            SetArmAnimator((int) EquippedGear.HoldStyle);
+            SetArmAnimator((int)EquippedGear.HoldStyle);
+        }
+        else
+        {
+            SetArmAnimator(0);
         }
 
     }
@@ -156,8 +170,6 @@ public class BaseMechPartArm : BaseMechPart
         {
             if (a)
             {
-                a.transform.parent = SideMountedEXGSlot;
-                a.transform.localPosition = Vector3.zero;
                 a.InitializeGear(MyMech, SideMountedEXGSlot, IsRightArm());
             }
             ArmEXG = a;
@@ -197,6 +209,9 @@ public class BaseMechPartArm : BaseMechPart
 
             if (SideMountedEXGSlot&&ArmEXG)
                 TW += ArmEXG.GetWeight();
+
+            if (HandSlot && EquippedGear)
+                TW += EquippedGear.GetWeight();
 
             return TW;
         }

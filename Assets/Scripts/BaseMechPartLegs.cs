@@ -63,12 +63,16 @@ public class BaseMechPartLegs : BaseMechPart
 
     private void Update()
     {
-        Vector3 MovementSpeed = MyMovement.MovementInput;
-        //Debug.Log(MovementSpeed);
-        LegsAnimator.SetFloat("LSpeed", MovementSpeed.z);
-        LegsAnimator.SetFloat("HSpeed", MovementSpeed.x);
+        if (MyMovement)
+        {
+            Vector3 MovementSpeed = MyMovement.MovementInput;
+            //Debug.Log(MovementSpeed);
+            LegsAnimator.SetFloat("LSpeed", MovementSpeed.z);
+            LegsAnimator.SetFloat("HSpeed", MovementSpeed.x);
 
-        Ground(MyMovement.grounded());
+            Ground(MyMovement.grounded());
+        }
+
     }
 
     #region EXG Related

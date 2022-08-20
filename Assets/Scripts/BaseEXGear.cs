@@ -30,12 +30,17 @@ public class BaseEXGear : MonoBehaviour
 
     public virtual void InitializeGear(BaseMechMain Mech,Transform Parent,bool Right)
     {
-        if (Parent)
-            transform.parent = Parent;
+        PositionGear(Parent, Right);
 
         MyMech = Mech;
         MechEnergySystem = Mech.GetEnergySystem();
         gameObject.layer = Mech.gameObject.layer;
+    }
+
+    public virtual void PositionGear(Transform Parent, bool Right)
+    {
+        if (Parent)
+            transform.parent = Parent;
 
         if (!Right)
         {
@@ -49,6 +54,8 @@ public class BaseEXGear : MonoBehaviour
         }
         transform.localPosition = Displacement;
     }
+
+
 
     public virtual bool EXGIsPassive()
     {

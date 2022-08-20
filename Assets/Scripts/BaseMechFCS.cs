@@ -112,7 +112,7 @@ public class BaseMechFCS : MonoBehaviour
 
         if(LeftLegEXG)
         LeftLegEXG = Instantiate(LeftLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
-        if(LeftArmEXG)
+        if(LeftArmEXG != null)
         LeftArmEXG = Instantiate(LeftArmEXG.gameObject, transform).GetComponent<BaseEXGear>(); 
         if(LeftShoulderEXG)
         LeftShoulderEXG = Instantiate(LeftShoulderEXG.gameObject, transform).GetComponent<BaseEXGear>(); 
@@ -120,7 +120,7 @@ public class BaseMechFCS : MonoBehaviour
         //BackPackEXG;
         if(RightShoulderEXG)
         RightShoulderEXG = Instantiate(RightShoulderEXG.gameObject, transform).GetComponent<BaseEXGear>();
-        if(RightArm)
+        if (RightArmEXG != null)
         RightArmEXG = Instantiate(RightArmEXG.gameObject, transform).GetComponent<BaseEXGear>();
         if(RightLegEXG)
         RightLegEXG = Instantiate(RightLegEXG.gameObject, transform).GetComponent<BaseEXGear>();

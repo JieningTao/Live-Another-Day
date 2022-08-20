@@ -119,6 +119,10 @@ public class BaseMechMain : ICoatedDamagable
         return EnergySystem;
     }
 
+    public void DecreaseWeight(float DroppedWeight)
+    {
+        MyMovement.ChangeWeight(-DroppedWeight);
+    }
 
 
 
@@ -235,11 +239,13 @@ public class BaseMechMain : ICoatedDamagable
 
     }
 
-    public void GetHands(out Transform Left, out Transform Right)
-    {
-        Left = MPLArm.GetHandSlot() ;
-        Right = MPRArm.GetHandSlot();
-    }
+
+
+    //public void GetHands(out Transform Left, out Transform Right) // legacy function
+    //{
+    //    Left = MPLArm.GetHandSlot() ;
+    //    Right = MPRArm.GetHandSlot();
+    //}
 
     //public void GetLegEXGS(out Transform Left, out Transform Right)
     //{

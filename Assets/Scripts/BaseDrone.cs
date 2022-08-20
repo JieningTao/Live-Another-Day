@@ -49,8 +49,11 @@ public class BaseDrone : BaseEnemy
 
             Vector3 TempDir = Vector3.RotateTowards(a.forward, Dir, TurnSpeed * Time.deltaTime, 0.0f);
 
-            if(TempDir!=Vector3.zero)
+            if (TempDir!=null&& TempDir != Vector3.zero)
+            {
+                //Debug.Log(TempDir);
                 a.rotation = Quaternion.LookRotation(TempDir, a.up);
+            }
 
             //Debug.Log("Ping");
 

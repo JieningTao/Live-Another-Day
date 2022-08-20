@@ -15,8 +15,12 @@ public class BaseMainSlotEquipment : MonoBehaviour
         Shield = 3,
         UnderWeapon = 4,
     }
+
     [SerializeField]
     public bool RequireAiming = true;
+
+    [SerializeField]
+    private float Weight = 0.1f;
         
 
 
@@ -54,5 +58,10 @@ public class BaseMainSlotEquipment : MonoBehaviour
     public virtual float GetBulletSpeed()
     {
         return 0;
+    }
+
+    public virtual float GetWeight()
+    {
+        return Weight;
     }
 }

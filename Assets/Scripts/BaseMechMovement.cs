@@ -118,6 +118,11 @@ public class BaseMechMovement : MonoBehaviour
         MyRB.mass = a;
     }
 
+    public void ChangeWeight(float a)
+    {
+        MyRB.mass += a;
+    }
+
     public void CreateBoostAndJumpEffects(List<Transform> BoostPoints,List<Transform> FloatThrustPoints)
     {
         BoostExhausts = new List<ParticleSystem>();

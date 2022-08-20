@@ -4766,7 +4766,7 @@ GameObject:
   - component: {fileID: 3289916265734035225}
   - component: {fileID: 5292031638811483817}
   m_Layer: 0
-  m_Name: BoostSystem
+  m_Name: BoostSystem Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4803,7 +4803,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoostForce: 130
   ImpulseBoostForce: 90
-  FloatForce: 35
+  FloatForce: 80
+  ExtraSpeedCap: 20
   BoostCost: 4
   ImpulseBoostCost: 10
   FloatCost: 5

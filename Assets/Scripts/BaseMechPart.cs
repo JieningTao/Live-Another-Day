@@ -54,10 +54,15 @@ public class BaseMechPart : MonoBehaviour
 
     public virtual void Assemble(BaseMechMain Mech, Transform JointPosition)
     {
+        VisualAssemble(JointPosition);
         MyMech = Mech;
+        SetLayer(Mech.gameObject.layer);
+    }
+
+    public virtual void VisualAssemble(Transform JointPosition)
+    {
         transform.parent = JointPosition;
         transform.localPosition = Displacement;
-        SetLayer(Mech.gameObject.layer);
     }
 
     public virtual void SetLayer(int Layer)
