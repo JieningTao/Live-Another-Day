@@ -33,8 +33,12 @@ public class BaseEXGear : MonoBehaviour
         PositionGear(Parent, Right);
 
         MyMech = Mech;
-        MechEnergySystem = Mech.GetEnergySystem();
-        gameObject.layer = Mech.gameObject.layer;
+        if (Mech)
+        {
+            MechEnergySystem = Mech.GetEnergySystem();
+            gameObject.layer = Mech.gameObject.layer;
+        }
+
     }
 
     public virtual void PositionGear(Transform Parent, bool Right)
@@ -46,13 +50,17 @@ public class BaseEXGear : MonoBehaviour
         {
             if (Mirrored)
             {
-                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z); // this triggered twice and caused it to mirror twice and be back unmirrored
-                Debug.Log("Mirrored", this);
+                if(transform.localScale.x>0)
+                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z); // this triggered twice and caused it to mirror twice and be back unmirrored
+
+                //Debug.Log("Mirrored", this);
             }
 
             Displacement.x *= -1;
         }
         transform.localPosition = Displacement;
+
+        transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
 

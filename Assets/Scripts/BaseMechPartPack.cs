@@ -79,6 +79,21 @@ public class BaseMechPartPack : BaseMechPart
         return GetEXG(Right);
     }
 
+    public void PlaceEXGVisual(BaseEXGear Left, BaseEXGear Right)
+    {
+        if (LeftShoulderEXGSlot && Left)
+        {
+            LeftShoulderEXG = Left;
+            Left.PositionGear(LeftShoulderEXGSlot, false);
+        }
+
+        if (RightShoulderEXGSlot && Right)
+        {
+            RightShoulderEXG = Right;
+            Right.PositionGear(RightShoulderEXGSlot, true);
+        }
+    }
+
     public override float GetWeight(bool IncludeGear)
     {
         if (!IncludeGear)

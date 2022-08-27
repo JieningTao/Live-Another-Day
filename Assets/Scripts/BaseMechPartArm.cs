@@ -138,6 +138,7 @@ public class BaseMechPartArm : BaseMechPart
         {
             a.transform.parent = HandSlot;
             a.transform.localPosition = Vector3.zero;
+            a.transform.localRotation = Quaternion.Euler(Vector3.zero);
             Debug.Log((int)EquippedGear.HoldStyle);
             SetArmAnimator((int)EquippedGear.HoldStyle);
         }
@@ -182,6 +183,16 @@ public class BaseMechPartArm : BaseMechPart
         EquipEXG(EXG);
 
         return GetEXG();
+    }
+
+    public virtual void PlaceEXGVisual(BaseEXGear EXG)
+    {
+        if (SideMountedEXGSlot && EXG)
+        {
+            ArmEXG = EXG;
+            EXG.PositionGear(SideMountedEXGSlot, IsRightArm());
+        }
+
     }
 
     public BaseEXGear GetEXG()

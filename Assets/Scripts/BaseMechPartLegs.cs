@@ -121,6 +121,20 @@ public class BaseMechPartLegs : BaseMechPart
         else
             return LeftEXG;
     }
+
+    public void PlaceEXGVisual(BaseEXGear Left, BaseEXGear Right)
+    {
+        if (LeftEXGSlot && Left)
+        {
+            LeftEXG = Left;
+            Left.PositionGear(LeftEXGSlot, false);
+        }
+        if (RightEXGSlot && Right)
+        {
+            RightEXG = Right;
+            Right.PositionGear(RightEXGSlot, true);
+        }
+    }
     #endregion
 
     private void Ground(bool Landed)

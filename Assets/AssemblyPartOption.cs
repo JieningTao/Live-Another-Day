@@ -7,7 +7,7 @@ public class AssemblyPartOption : MonoBehaviour
     [SerializeField]
     UnityEngine.UI.Text NameText;
     [SerializeField]
-    BaseMechPart Part;
+    LoadOutPart Part;
 
     private PartSwitchManager MyManager;
     private bool selected = false;
@@ -15,9 +15,28 @@ public class AssemblyPartOption : MonoBehaviour
    
 
 
-    public void SetUp(PartSwitchManager Manager)
+    public void SetUp(PartSwitchManager Manager,LoadOutPart _Part)
     {
-        MyManager = Manager;
+        if (_Part == null)
+            gameObject.SetActive(false);
+        else
+        {
+            MyManager = Manager;
+            Part = _Part;
+            NameText.text = Part.Name;
+        }
+    }
+
+    public void SetUp( LoadOutPart _Part)
+    {
+
+        if (_Part == null)
+            gameObject.SetActive(false);
+        else
+        {
+            Part = _Part;
+            NameText.text = Part.Name;
+        }
     }
 
     public void Select()
@@ -30,6 +49,7 @@ public class AssemblyPartOption : MonoBehaviour
 
     public void Confirm()
     {
+        Debug.Log(Part.gameObject.name);
         MyManager.InstallPart(Part.gameObject);
     }
 

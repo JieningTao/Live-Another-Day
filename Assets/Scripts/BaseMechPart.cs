@@ -63,6 +63,7 @@ public class BaseMechPart : MonoBehaviour
     {
         transform.parent = JointPosition;
         transform.localPosition = Displacement;
+        transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
     public virtual void SetLayer(int Layer)
