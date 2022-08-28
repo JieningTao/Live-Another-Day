@@ -5,10 +5,6 @@ using UnityEditor;
 
 public class LOPPathTool : EditorWindow
 {
-    [SerializeField]
-    string Path;
-
-
     [MenuItem("Window/LOPPathTool")]
     public static void ShowWindow()
     {
@@ -22,6 +18,11 @@ public class LOPPathTool : EditorWindow
         {
             Execute();
         }
+
+        if (GUILayout.Button("Test"))
+        {
+
+        }
     }
 
     public void Execute()
@@ -34,11 +35,24 @@ public class LOPPathTool : EditorWindow
 
         Debug.Log(Temp.Count);
 
+      
+
         foreach (LoadOutPart a in Temp)
         {
-            a.GetPrefabPath(Path);
 
-            PrefabUtility.ApplyPrefabInstance(a.gameObject, InteractionMode.AutomatedAction);
+            string Path = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(a.gameObject);
+
+            Path = Path.Replace("Assets/Prefabs/Resources/", "");
+
+            Path = Path.Replace(".prefab", "");
+
+            a.PrefabPath = Path;
+
+            if (a.Name == "")
+                a.Name = "** "+ a.gameObject.name;
+            
+
+            PrefabUtility.SavePrefabAsset(a.gameObject);
         }
 
         Debug.Log("LOPPathTool Ran");

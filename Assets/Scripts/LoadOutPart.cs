@@ -23,13 +23,13 @@ public class LoadOutPart : MonoBehaviour
         return this == LoadPrefab();
     }
 
-    public void GetPrefabPath()
-    {
-        PrefabPath = gameObject.name;
-    }
+    //public void GetPrefabPath()
+    //{
+    //    PrefabPath = gameObject.name;
+    //}
 
-    public void GetPrefabPath(string a)
-    {
-        PrefabPath = a + gameObject.name;
-    }
+    //public void GetPrefabPath(string a)
+    //{
+    //    PrefabPath = a + gameObject.name;
+    //}
 }
