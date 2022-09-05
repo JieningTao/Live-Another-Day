@@ -33,7 +33,9 @@ public class BaseMechPartArm : BaseMechPart
 
     public override void VisualAssemble(Transform JointPosition)
     {
+        Transform Temp = transform.parent;
         base.VisualAssemble(JointPosition);
+        transform.parent = Temp;
 
         EquipEquipment(EquippedGear);
         EquipEXG(ArmEXG);
@@ -132,14 +134,15 @@ public class BaseMechPartArm : BaseMechPart
 
     public void EquipEquipment(BaseMainSlotEquipment a)
     {
-        Debug.Log(a);
+        //Debug.Log(a);
         EquippedGear = a;
         if (a)
         {
+            a.Equip(true, MyMech, IsRightArm());
             a.transform.parent = HandSlot;
             a.transform.localPosition = Vector3.zero;
             a.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            Debug.Log((int)EquippedGear.HoldStyle);
+            //Debug.Log((int)EquippedGear.HoldStyle);
             SetArmAnimator((int)EquippedGear.HoldStyle);
         }
         else

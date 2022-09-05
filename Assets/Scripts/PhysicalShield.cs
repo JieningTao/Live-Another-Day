@@ -8,7 +8,8 @@ public class PhysicalShield : BaseShield
 
     public void Equip(BaseMechMain Mech)
     {
-        gameObject.layer = Mech.gameObject.layer;
+        if (Mech)
+            gameObject.layer = Mech.gameObject.layer;
 
         List<Collider> AllColliders = new List<Collider>();
 

@@ -7,10 +7,9 @@ public class BaseMWMissileLauncher : BaseMainWeapon
     BaseMechFCS MyFCS;
     BaseMissileLauncher MyMissileLauncher;
 
-    public override void Equip(bool _Equip, BaseMechMain Operator)
+    public override void Equip(bool _Equip, BaseMechMain Operator, bool Right)
     {
-
-        base.Equip(_Equip, Operator);
+        base.Equip(_Equip, Operator, Right);
         MyMissileLauncher = MainWeapon as BaseMissileLauncher;
         MyFCS = Operator.GetFCS();
     }

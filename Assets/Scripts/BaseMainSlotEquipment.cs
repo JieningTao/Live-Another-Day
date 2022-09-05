@@ -21,6 +21,9 @@ public class BaseMainSlotEquipment : MonoBehaviour
 
     [SerializeField]
     private float Weight = 0.1f;
+
+    [SerializeField]
+    private bool Mirrored = false;
         
 
 
@@ -36,9 +39,21 @@ public class BaseMainSlotEquipment : MonoBehaviour
 
     }
 
-    public virtual void Equip(bool _Equip, BaseMechMain Operator )
+    public virtual void Equip(bool _Equip, BaseMechMain Operator,bool Right)
     {
+        if(Operator)
         this.gameObject.layer = Operator.gameObject.layer;
+
+        if (!Right)
+        {
+            if (Mirrored)
+            {
+                Vector3 a = transform.localScale;
+                a.x = -Mathf.Abs(transform.localScale.x);
+
+                transform.localScale = a;
+            }
+        }
     }
 
     public virtual void GetInitializeDate(out string MainFunction,out Color MainColor, out string SecondaryFunction,out Color SecondaryColor)

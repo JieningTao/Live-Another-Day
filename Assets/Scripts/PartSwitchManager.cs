@@ -42,6 +42,8 @@ public class PartSwitchManager : MonoBehaviour
     {
         AssemblyRack = FindObjectOfType<MechAssemblyRack>();
 
+        AssemblyRack.StarterLoad();
+
         LoadList();
         CreateOptionsForCurrentList();
 

@@ -42,7 +42,8 @@ public class BaseEnergyShoot : BaseShoot
 
     public void GetPowerSource(BaseMechMain a)
     {
-        EnergySource = a.GetEnergySystem();
+        if (a)
+            EnergySource = a.GetEnergySystem();
     }
 
     protected virtual void Recharge()

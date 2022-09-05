@@ -27,9 +27,9 @@ public class Shoot2MainWeapon : BaseMainWeapon
         SecondaryWeapon.Trigger(Fire);
     }
 
-    public override void Equip(bool _Equip, BaseMechMain Operator)
+    public override void Equip(bool _Equip, BaseMechMain Operator,bool Right)
     {
-        base.Equip(_Equip, Operator);
+        base.Equip(_Equip, Operator,Right);
 
         SecondaryWeapon.EquipWeapon();
         if (SecondaryWeapon is BaseEnergyShoot)

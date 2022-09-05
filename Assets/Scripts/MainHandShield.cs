@@ -15,9 +15,9 @@ public class MainHandShield : BaseMainSlotEquipment
 
 
 
-    public override void Equip(bool _Equip, BaseMechMain Operator)
+    public override void Equip(bool _Equip, BaseMechMain Operator, bool Right)
     {
-        gameObject.layer = Operator.gameObject.layer;
+        base.Equip(_Equip, Operator, Right);
         Shield.Equip(Operator);
         //needs to flip game object if on right hand
         //if ()

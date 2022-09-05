@@ -19,9 +19,9 @@ public class BaseMW2MLMissile : Shoot2MainWeapon
 
 
 
-    public override void Equip(bool _Equip, BaseMechMain Operator)
+    public override void Equip(bool _Equip, BaseMechMain Operator,bool Right)
     {
-        base.Equip(_Equip, Operator);
+        base.Equip(_Equip, Operator,Right);
         MainLauncher = MainWeapon as BaseMissileLauncher;
         SecondaryLauncher = SecondaryWeapon as BaseMissileLauncher;
         MyFCS = Operator.GetFCS();

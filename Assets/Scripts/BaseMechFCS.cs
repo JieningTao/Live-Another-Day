@@ -252,7 +252,7 @@ public class BaseMechFCS : MonoBehaviour
 
             RightArm.EquipEquipment(Equipment);
 
-            Equipment.Equip(true, MyBMM);
+            Equipment.Equip(true, MyBMM,true);
         }
         else
         {
@@ -260,7 +260,7 @@ public class BaseMechFCS : MonoBehaviour
 
             LeftArm.EquipEquipment(Equipment);
 
-            Equipment.Equip(true, MyBMM);
+            Equipment.Equip(true, MyBMM,false);
         }
 
         Equipment.transform.localPosition = Vector3.zero;

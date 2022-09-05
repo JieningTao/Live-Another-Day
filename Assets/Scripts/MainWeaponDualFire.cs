@@ -21,10 +21,11 @@ public class MainWeaponDualFire : Shoot2MainWeapon
         }
     }
 
-    public override void Equip(bool _Equip, BaseMechMain Operator)
+    public override void Equip(bool _Equip, BaseMechMain Operator, bool Right)
     {
+        base.Equip(_Equip, Operator, Right);
+        if(Operator)
         MyFCS = Operator.GetFCS();
-        base.Equip(_Equip, Operator);
         SecondaryLauncher = SecondaryWeapon as BaseMissileLauncher;
     }
 }
