@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     BaseMechMovement MyMovement;
     BaseMechFCS MyFCS;
 
-    [SerializeField]
-    bool Testing;
+    //[SerializeField]
+    //bool Testing;
 
     private void Start()
     {
@@ -25,8 +25,11 @@ public class PlayerController : MonoBehaviour
         HandleWeaponInput();
         HandleEXGearInput();
 
-        if (Testing)
-            HandleDebugInput();
+#if (UNITY_EDITOR)
+        HandleDebugInput();
+#else
+
+#endif
     }
 
     private void HandleMovementInput()
@@ -129,6 +132,14 @@ public class PlayerController : MonoBehaviour
             MyFCS.TriggerEXGear(true);
         else if(Input.GetButtonUp("Trigger EXGear"))
             MyFCS.TriggerEXGear(false);
+    }
+
+    private void HandlePauseInput()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+
+        }
     }
 
     private void HandleDebugInput()

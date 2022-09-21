@@ -52,7 +52,13 @@ public class BaseDrone : BaseEnemy
             if (TempDir!=null&& TempDir != Vector3.zero)
             {
                 //Debug.Log(TempDir);
-                a.rotation = Quaternion.LookRotation(TempDir, a.up);
+
+                if (float.IsNaN(TempDir.x) || float.IsInfinity(TempDir.x))
+                {
+
+                }
+                else
+                    a.rotation = Quaternion.LookRotation(TempDir, a.up);
             }
 
             //Debug.Log("Ping");
@@ -123,7 +129,7 @@ public class BaseDrone : BaseEnemy
             {
                 if (Firing)
                 {
-                    Debug.Log("Stop");
+                    //Debug.Log("Stop");
                     Weapon.TriggerGear(false);
                     Firing = false;
                     CurrentIntervalCD = FireInterval.y;
@@ -134,7 +140,7 @@ public class BaseDrone : BaseEnemy
                     {
                         if (Vector3.Angle(Target.transform.position - Part.transform.position, Part.forward) < AllowedDeviation && Vector3.Distance(Target.transform.position, Part.transform.position) > FireRange.x && Vector3.Distance(Target.transform.position, Part.transform.position) < FireRange.y)
                         {
-                            Debug.Log("Start");
+                            //Debug.Log("Start");
                             Weapon.TriggerGear(true);
                             Firing = true;
                             CurrentIntervalCD = FireInterval.x;

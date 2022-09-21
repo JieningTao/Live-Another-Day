@@ -4974,6 +4974,8 @@ GameObject:
   - component: {fileID: 5192948469989178966}
   - component: {fileID: 5192948469989178967}
   - component: {fileID: 5192948469989178969}
+  - component: {fileID: 6079628005511664761}
+  - component: {fileID: 157390735992016270}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -5155,6 +5157,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Testing: 1
+--- !u!114 &6079628005511664761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5192948469989178960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fa21572e8171348bafb325d41b319f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Main: {fileID: 2100000, guid: 1dbd66f055436cc47a19a0f711509ca8, type: 2}
+  Secondary: {fileID: 2100000, guid: 8c620f3290d01b84897af3b80ef6ce84, type: 2}
+  Frame: {fileID: 2100000, guid: 92591b6099692624cbdab913561dde1d, type: 2}
+--- !u!114 &157390735992016270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5192948469989178960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81c9c277598ebd4eaf31861306c6fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadKey: PlayerLoadout
 --- !u!1001 &1873666379659719365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5162,6 +5192,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1873666379384730050}
     m_Modifications:
+    - target: {fileID: 2174930671072612301, guid: afc34916ce56755498dc61b63f82dcb6,
+        type: 3}
+      propertyPath: ShapeModule.m_Rotation.x
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 5330509743195362680, guid: afc34916ce56755498dc61b63f82dcb6,
         type: 3}
       propertyPath: m_RootOrder

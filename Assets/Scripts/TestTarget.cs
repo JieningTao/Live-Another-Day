@@ -15,7 +15,7 @@ public class TestTarget : IDamageable
     private Material OriginalMaterial;
     private bool IndicatorOn;
 
-    private void Start()
+    protected override void Start()
     {
         OriginalMaterial = MyMR.material;
         IndicatorOn = false;

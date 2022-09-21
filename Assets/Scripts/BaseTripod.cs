@@ -19,11 +19,11 @@ public class BaseTripod : BaseEnemy
 
     [SerializeField]
     EnemyGear LeftWeapon;
-    [SerializeField]
-    WeaponFireControl LeftFireControl;
-    [SerializeField]
-    EnemyGear RightWeapon;
-    WeaponFireControl RightFireControl;
+    //[SerializeField]
+    //WeaponFireControl LeftFireControl;
+    //[SerializeField]
+    //EnemyGear RightWeapon;
+    //WeaponFireControl RightFireControl;
     [SerializeField]
     EnemyGear BackWeapon;
     [SerializeField]
@@ -76,10 +76,10 @@ public class BaseTripod : BaseEnemy
 
     private void CheckWeaponFire()
     {
-        if (LeftWeapon)
-            LeftFireControl.CheckUpdateFire();
-        if (RightWeapon)
-            RightFireControl.CheckUpdateFire();
+        //if (LeftWeapon)
+        //    LeftFireControl.CheckUpdateFire();
+        //if (RightWeapon)
+        //    RightFireControl.CheckUpdateFire();
     }
 
     protected override void InitializeEnemy()
@@ -90,16 +90,16 @@ public class BaseTripod : BaseEnemy
 
     protected void InitializeFireControl()
     {
-        if (LeftWeapon)
-        {
-            LeftFireControl.Weapon = LeftWeapon;
-            LeftWeapon.AssignController(this);
-        }
-        if (RightWeapon)
-        {
-            RightFireControl.Weapon = RightWeapon;
-            RightWeapon.AssignController(this);
-        }
+        //if (LeftWeapon)
+        //{
+        //    LeftFireControl.Weapon = LeftWeapon;
+        //    LeftWeapon.AssignController(this);
+        //}
+        //if (RightWeapon)
+        //{
+        //    RightFireControl.Weapon = RightWeapon;
+        //    RightWeapon.AssignController(this);
+        //}
     }
 
     protected void LookUpdate()
@@ -125,20 +125,20 @@ public class BaseTripod : BaseEnemy
 
     private void AimWeapons()
     {
-        if (MTargetSignal)
-        {
-            if (LeftWeapon && LeftWeapon.Aimed)
-                AimWeapon(LeftWeapon.transform, MTargetSignal.transform.position - LeftWeapon.transform.position, WeaponAimLimits, WeaponTurnSpeed);
-            if (RightWeapon && RightWeapon.Aimed)
-                AimWeapon(RightWeapon.transform, MTargetSignal.transform.position - RightWeapon.transform.position, WeaponAimLimits, WeaponTurnSpeed);
-        }
-        else
-        {
-            if (LeftWeapon && LeftWeapon.Aimed)
-                AimWeapon(LeftWeapon.transform, LeftWeapon.transform.forward, WeaponAimLimits, WeaponTurnSpeed);
-            if (RightWeapon && RightWeapon.Aimed)
-                AimWeapon(RightWeapon.transform, RightWeapon.transform.forward, WeaponAimLimits, WeaponTurnSpeed);
-        }
+        //if (MTargetSignal)
+        //{
+        //    if (LeftWeapon && LeftWeapon.Aimed)
+        //        AimWeapon(LeftWeapon.transform, MTargetSignal.transform.position - LeftWeapon.transform.position, WeaponAimLimits, WeaponTurnSpeed);
+        //    if (RightWeapon && RightWeapon.Aimed)
+        //        AimWeapon(RightWeapon.transform, MTargetSignal.transform.position - RightWeapon.transform.position, WeaponAimLimits, WeaponTurnSpeed);
+        //}
+        //else
+        //{
+        //    if (LeftWeapon && LeftWeapon.Aimed)
+        //        AimWeapon(LeftWeapon.transform, LeftWeapon.transform.forward, WeaponAimLimits, WeaponTurnSpeed);
+        //    if (RightWeapon && RightWeapon.Aimed)
+        //        AimWeapon(RightWeapon.transform, RightWeapon.transform.forward, WeaponAimLimits, WeaponTurnSpeed);
+        //}
 
 
     }

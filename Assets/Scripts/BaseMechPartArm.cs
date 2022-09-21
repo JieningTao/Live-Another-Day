@@ -58,7 +58,7 @@ public class BaseMechPartArm : BaseMechPart
 
     public void SetArmAnimator(int State)
     {
-        Debug.Log(State);
+        //Debug.Log(State);
         if (ArmAnimator)
             ArmAnimator.SetInteger("ArmState", State);
     }
@@ -71,6 +71,8 @@ public class BaseMechPartArm : BaseMechPart
                 UnequipEquipment();
 
             TargetArmEmpty();
+            SetArmAnimator(0);
+
             return;
         }
 

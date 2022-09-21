@@ -116,7 +116,7 @@ public class UILock : MonoBehaviour
         RadarEnemyBlip.gameObject.SetActive(true);
         HUDTracker.gameObject.SetActive(true);
         RadarBlipRangeDelta = RadarParent.GetRangeDelta();
-        RadarEnemyBlip.transform.parent = RadarParent.RadarBG.transform;
+        RadarEnemyBlip.transform.SetParent(RadarParent.RadarBG.transform);
         HUDName.text = TrackedSignal.SignalName;
         LockRange = _LockRange;
 

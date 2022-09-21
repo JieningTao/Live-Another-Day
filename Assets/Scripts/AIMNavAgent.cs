@@ -15,25 +15,46 @@ public class AIMNavAgent : AIMovement
             return _MyNMA;
         }
     }
+    //[SerializeField]
+    //private Transform Target;
 
-    private Transform ObjectToFollow;
 
-
-    public void RecieveTarget(Transform _Target)
+    public void RecieveTargetPosition(Vector3 Position)
     {
-        ObjectToFollow = _Target;
+        Target = null;
+        MyNMA.destination = Position;
+    }
+
+    public void RecieveFollowTarget(Transform _Target)
+    {
+        Target = _Target;
     }
 
     public void Spawn(Transform _Target)
     {
         MyNMA.Warp(transform.position);
-        RecieveTarget(_Target);
+        RecieveFollowTarget(_Target);
+    }
 
+    public void Spawn(Vector3 Position)
+    {
+        MyNMA.Warp(transform.position);
+        RecieveTargetPosition(Position);
+    }
+
+    public bool CheckReachable(Vector3 Position)
+    {
+        NavMeshPath navMeshPath = new NavMeshPath();
+
+        return (MyNMA.CalculatePath(Position, navMeshPath) && navMeshPath.status == NavMeshPathStatus.PathComplete);
     }
 
     private void Update()
     {
-        MyNMA.destination = ObjectToFollow.position;
+        if(Target && MyNMA)
+        MyNMA.destination = Target.position;
+
+
     }
 
     private void OnEnable()

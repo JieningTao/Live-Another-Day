@@ -14,18 +14,19 @@ public class LOPPathTool : EditorWindow
 
     private void OnGUI()
     {
-        if (GUILayout.Button("Execute"))
+        if (GUILayout.Button("FullRepath"))
         {
-            Execute();
+            FullRePath();
         }
 
-        if (GUILayout.Button("Test"))
+        if (GUILayout.Button("PatchRepath"))
         {
-
+            PatchRePath();
         }
+
     }
 
-    public void Execute()
+    public void FullRePath()
     {
         Debug.Log("Running LOPPathTool");
 
@@ -57,5 +58,43 @@ public class LOPPathTool : EditorWindow
 
         Debug.Log("LOPPathTool Ran");
     }
+
+    public void PatchRePath()
+    {
+        Debug.Log("Running LOPPathTool");
+
+        List<LoadOutPart> Temp = new List<LoadOutPart>();
+
+        Temp.AddRange(Resources.LoadAll<LoadOutPart>(""));
+
+        Debug.Log(Temp.Count);
+
+
+
+        foreach (LoadOutPart a in Temp)
+        {
+            if (a.PrefabPath == "")
+            {
+                string Path = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(a.gameObject);
+
+                Path = Path.Replace("Assets/Prefabs/Resources/", "");
+
+                Path = Path.Replace(".prefab", "");
+
+                a.PrefabPath = Path;
+
+                if (a.Name == "")
+                    a.Name = "** " + a.gameObject.name;
+
+
+                PrefabUtility.SavePrefabAsset(a.gameObject);
+            }
+
+        }
+
+        Debug.Log("LOPPathTool Ran");
+    }
+
+
 
 }

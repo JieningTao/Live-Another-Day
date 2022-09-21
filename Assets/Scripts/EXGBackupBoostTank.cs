@@ -67,7 +67,7 @@ public class EXGBackupBoostTank : BaseEXGear
 
         if (Down)
         {
-            if (ChargeTimeRemaining <= 0)
+            if (ChargeTimeRemaining <= 0 && NextChargeCount < Tanks.Count)
             {
                 if (ChargeTime == 0)
                 {
@@ -85,13 +85,16 @@ public class EXGBackupBoostTank : BaseEXGear
 
     public void EjectTank()
     {
+        //Debug.Log("Ejecting tank "+NextChargeCount);
+        //Debug.Log(Tanks[NextChargeCount]);
+        //Debug.Log(EjectEffects[NextChargeCount]);
         if (Tanks.Count > NextChargeCount)
         {
             Tanks[NextChargeCount].isKinematic = false;
             Tanks[NextChargeCount].transform.parent = null;
             EjectEffects[NextChargeCount].Play();
 
-            Tanks[NextChargeCount].AddForce(-Tanks[0].transform.forward * EjectionForce, ForceMode.Impulse);
+            Tanks[NextChargeCount].AddForce(-Tanks[NextChargeCount].transform.forward * EjectionForce, ForceMode.Impulse);
             Destroy(Tanks[NextChargeCount].gameObject, 5);
             NextChargeCount++;
 
@@ -101,7 +104,7 @@ public class EXGBackupBoostTank : BaseEXGear
 
     public override float GetReadyPercentage()
     {
-        return 1 - NextChargeCount/Tanks.Count;
+        return (1 -( NextChargeCount/Tanks.Count));
     }
 
 }

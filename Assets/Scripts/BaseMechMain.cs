@@ -53,7 +53,12 @@ public class BaseMechMain : ICoatedDamagable
 
     protected override void Start()
     {
+        if(!GetComponent<MechLoader>())
+            InitializeMech();
+    }
 
+    public virtual void InitializeMech()
+    {
         PlayerMech = (GetComponent<PlayerController>() != null);
 
         SpawnParts();
@@ -61,23 +66,24 @@ public class BaseMechMain : ICoatedDamagable
 
 
         MyFCS = GetComponent<BaseMechFCS>();
-        MyFCS.InitializeFCS(this,PlayerMech,MPLArm,MPRArm);
+        MyFCS.InitializeFCS(this, PlayerMech, MPLArm, MPRArm);
 
 
         MyMovement = GetComponent<BaseMechMovement>();
-        MyMovement.InitializeMechMovement(this,PlayerMech);
+        MyMovement.InitializeMechMovement(this, PlayerMech);
         AssignMovementStats();
         AssignWeight();
 
 
         InitializeIDamageable();
 
-        FindObjectOfType<UIInfoPanelManager>().UIInitialize();
         GetComponent<MechColorAdjuster>().switchColor();
+
+        if (PlayerMech)
+            FindObjectOfType<UIInfoPanelManager>().UIInitialize();
     }
 
-    
-
+   
     public void Rotate(Vector3 Rot)
     {
         transform.Rotate((new Vector3(0, Rot.y, 0)) * TurnSpeed);
@@ -111,11 +117,15 @@ public class BaseMechMain : ICoatedDamagable
 
     public BaseMechMovement GetMovement()
     {
+        if(!MyMovement)
+            MyMovement = GetComponent<BaseMechMovement>();
         return MyMovement;
     }
 
     public BaseEnergySource GetEnergySystem()
     {
+        if(!MyFCS)
+            MyFCS = GetComponent<BaseMechFCS>();
         return EnergySystem;
     }
 
@@ -125,6 +135,22 @@ public class BaseMechMain : ICoatedDamagable
     }
 
 
+
+    #region Mech loading related
+
+    public void AssignParts(BaseMechPartHead Head, BaseMechPartTorso Torso,LoadOutPart Arms,BaseMechPartLegs Legs,BaseMechPartPack Pack,  BaseBoostSystem Boost, BasePowerSystem Power)
+    {
+        MPHead = Head;
+        MPTorso = Torso;
+        MPLArm = Arms.GetComponentInChildren<BaseMechPartLArm>();
+        MPRArm = Arms.GetComponentInChildren<BaseMechPartRArm>();
+        MPLegs = Legs;
+        MPPack = Pack;
+        EnergySystem = Power;
+        BoostSystem = Boost;
+    }
+
+    #endregion
 
     #region Mech Assembly related
     private void BuildMech()
@@ -239,7 +265,10 @@ public class BaseMechMain : ICoatedDamagable
 
     }
 
+    public void ApplyAttributes(List<BaseMechPart.AdditionalAttribute> Attributes)
+    {
 
+    }
 
     //public void GetHands(out Transform Left, out Transform Right) // legacy function
     //{

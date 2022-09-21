@@ -15,6 +15,8 @@ public class EnergyShield : BaseShield
     [SerializeField]
     private float ChargePowerDraw;
     [SerializeField]
+    private float DeployedPowerDraw;
+    [SerializeField]
     float OverloadDelay;
 
     float DelayRemaining;
@@ -28,6 +30,11 @@ public class EnergyShield : BaseShield
         if (Charging)
         {
             Recharge();
+        }
+
+        if (ProjectionShield.gameObject.active&&DeployedPowerDraw>0)
+        {
+            
         }
 
         CheckCharge();
@@ -80,13 +87,17 @@ public class EnergyShield : BaseShield
 
     public void Equip(BaseMechMain Mech)
     {
-        EnergySource = Mech.GetEnergySystem();
-        gameObject.layer = Mech.gameObject.layer;
+        if (Mech)
+        {
+            EnergySource = Mech.GetEnergySystem();
+            gameObject.layer = Mech.gameObject.layer;
 
-        if (gameObject.layer == 11) //bullet is in friendly projectile layer
-            ProjectionShield.layer = LayerMask.NameToLayer("Friendly_Shields");
-        else if (gameObject.layer == 9)
-            ProjectionShield.layer = LayerMask.NameToLayer("Enemy_Shields");
+            if (gameObject.layer == 11) //bullet is in friendly projectile layer
+                ProjectionShield.layer = LayerMask.NameToLayer("Friendly_Shields");
+            else if (gameObject.layer == 9)
+                ProjectionShield.layer = LayerMask.NameToLayer("Enemy_Shields");
+        }
+
     }
 
     public void ToggleShield(bool On)
@@ -99,6 +110,9 @@ public class EnergyShield : BaseShield
 
                 if (ChargeWhileDeployed)
                     StartCharging(false);
+
+                if (DeployedPowerDraw > 0)
+                    EnergySource.CurrentPowerDraw += DeployedPowerDraw;
             }
         }
         else
@@ -109,6 +123,9 @@ public class EnergyShield : BaseShield
                 if (ChargeWhileDeployed)
                     if (DelayRemaining < RechargeDelay)
                         DelayRemaining = RechargeDelay;
+
+                if (DeployedPowerDraw > 0)
+                    EnergySource.CurrentPowerDraw -= DeployedPowerDraw;
             }
         }
     }

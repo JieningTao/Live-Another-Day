@@ -5,11 +5,13 @@ using UnityEngine;
 public class UILockManager : MonoBehaviour
 {
     [SerializeField]
-    Transform MovingCrossHair;
+    Transform CrossHairRest;
     [SerializeField]
-    Transform MovingCrossHairRest;
+    Transform MainCrossHair;
     [SerializeField]
-    float MovingCrossHairSpeed = 50;
+    Transform EXGCrossHair;
+    [SerializeField]
+    float MovingCrossHairSpeed = 500;
     [SerializeField]
     RadarUI RadarParent;
     [SerializeField]
@@ -24,31 +26,53 @@ public class UILockManager : MonoBehaviour
     private BaseMechFCS PlayerMechFCS;
     [SerializeField]
     private Transform MainTargetUILock;
+    [SerializeField]
+    private Transform EXGTargetUILock;
 
     private void Start()
     {
+        if (!PlayerTransform)
+        {
+            PlayerTransform = FindObjectOfType<PlayerController>().transform;
+        }
+
         PlayerMechFCS = PlayerTransform.GetComponent<BaseMechFCS>();
         RadarParent.SetRanges(PlayerMechFCS.RadarRange, PlayerMechFCS.LockRange);       
     }
 
     private void Update()
     {
-        MoveCrossHair();
+        MoveCrossHairs();
     }
 
     private void LockChanged(string Order, EnergySignal Signal)
     {
+        //Debug.Log(Order);
+
         if (Order == "Add")
             CreateLock(Signal);
-        else if (Order == "Target")
+        else if (Order == "MainTarget")
         {
             //Debug.Log("Targting " + Signal.name);
 
             if (Signal == null)
-                MainTargetUILock = MovingCrossHairRest;
+                MainTargetUILock = CrossHairRest;
             else
                 MainTargetUILock = GetHUDTransformFromSignal(Signal);
         }
+        else if (Order == "EXGReticleOn")
+            EXGCrossHair.gameObject.SetActive(true);
+        else if (Order == "EXGReticleOff")
+            EXGCrossHair.gameObject.SetActive(false);
+        else if (Order == "EXGLock")
+        {
+            if (Signal == null)
+                EXGTargetUILock = CrossHairRest;
+            else
+                EXGTargetUILock = GetHUDTransformFromSignal(Signal);
+        }
+
+
 
     }
 
@@ -84,14 +108,22 @@ public class UILockManager : MonoBehaviour
 
     }
 
-    private void MoveCrossHair()
+    private void MoveCrossHairs()
     {
         if (MainTargetUILock == null)
-            MainTargetUILock = MovingCrossHairRest;
+            MainTargetUILock = CrossHairRest;
 
-        if (MovingCrossHair.position != MainTargetUILock.position)
-            MovingCrossHair.position = Vector3.MoveTowards(MovingCrossHair.position, MainTargetUILock.position, MovingCrossHairSpeed * Time.deltaTime);
+        if (MainCrossHair.position != MainTargetUILock.position)
+            MainCrossHair.position = Vector3.MoveTowards(MainCrossHair.position, MainTargetUILock.position, MovingCrossHairSpeed * Time.deltaTime);
 
+        if (EXGCrossHair.gameObject.active)
+        {
+            if (EXGTargetUILock == null)
+                EXGTargetUILock = CrossHairRest;
+
+            if (EXGCrossHair.position != EXGTargetUILock.position)
+                EXGCrossHair.position = Vector3.MoveTowards(EXGCrossHair.position, EXGTargetUILock.position, MovingCrossHairSpeed * Time.deltaTime);
+        }
     }
 
 

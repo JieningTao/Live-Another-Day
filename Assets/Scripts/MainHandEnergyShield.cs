@@ -24,7 +24,6 @@ public class MainHandEnergyShield : BaseMainSlotEquipment
     public override void Equip(bool _Equip, BaseMechMain Operator,bool Right)
     {
         base.Equip(_Equip,Operator,Right);
-        gameObject.layer = Operator.gameObject.layer;
         Shield.Equip(Operator);
     }
 

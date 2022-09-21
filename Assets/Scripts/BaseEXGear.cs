@@ -50,13 +50,17 @@ public class BaseEXGear : MonoBehaviour
         {
             if (Mirrored)
             {
-                if(transform.localScale.x>0)
+                if (transform.localScale.x > 0)
+                {
                     transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z); // this triggered twice and caused it to mirror twice and be back unmirrored
 
+                }
+
+                Displacement.x = Mathf.Abs(Displacement.x);
                 //Debug.Log("Mirrored", this);
             }
-
-            Displacement.x *= -1;
+            else
+                Displacement.x = -Mathf.Abs(Displacement.x);
         }
         transform.localPosition = Displacement;
 

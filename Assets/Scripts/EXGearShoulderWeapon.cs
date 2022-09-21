@@ -12,6 +12,8 @@ public class EXGearShoulderWeapon : EXGearShoulder
     [SerializeField]
     float TargetSpeed = 1;
 
+    bool Aimed = false;
+    EnergySignal Target = null;
 
     public override void InitializeGear(BaseMechMain Mech, Transform Parent, bool Right)
     {
@@ -40,12 +42,33 @@ public class EXGearShoulderWeapon : EXGearShoulder
         Vector3 AimDir;
 
         if (MyFCS.GetMainTarget() != null && Vector3.Angle(MyFCS.transform.forward, MyFCS.GetMainTarget().transform.position - MyFCS.transform.position) < 10)
-        { 
+        {
+            if (Target != MyFCS.GetMainTarget())
+            {
+                MyFCS.EXGAimed(MyFCS.GetMainTarget());
+                Target = MyFCS.GetMainTarget();
+            }
+
             AimDir = Vector3.RotateTowards(AimedPart.forward, MyFCS.GetMainTarget().transform.position - AimedPart.transform.position, TargetSpeed * Time.deltaTime, 0.0f);
+
+            if (!Aimed)
+            {
+                MyFCS.EXGAimed(MyFCS.GetMainTarget());
+                Aimed = true;
+            }
         }
         else
         {
             AimDir = Vector3.RotateTowards(AimedPart.forward, MyFCS.GetLookDirection(), TargetSpeed * Time.deltaTime, 0.0f);
+
+            if (Target)
+                Target = null;
+
+            if (Aimed)
+            {
+                MyFCS.EXGAimed(null);
+                Aimed = false;
+            }
         }
 
         AimedPart.rotation = Quaternion.LookRotation(AimDir, transform.up);
@@ -56,10 +79,19 @@ public class EXGearShoulderWeapon : EXGearShoulder
     {
         base.Equip(a);
 
+        if (a)
+            MyFCS.EXGReticle(true);
+        else
 
-
-        if (!a)
-            AimedPart.localRotation = Quaternion.Euler(0,0,0);
+        {
+            AimedPart.localRotation = Quaternion.Euler(0, 0, 0);
+            MyFCS.EXGReticle(false);
+            if (Aimed)
+            {
+                MyFCS.EXGAimed(null);
+                Aimed = false;
+            }
+        }
 
         TriggerGear(false);
 

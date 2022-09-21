@@ -22,6 +22,8 @@ public class BaseMechPartTorso : BaseMechPart
 
     [SerializeField]
     BaseEXGear TorsoBuiltInEXG;
+    [SerializeField]
+    float AmmoAmount = 200;
 
 
 

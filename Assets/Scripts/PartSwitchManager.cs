@@ -112,7 +112,7 @@ public class PartSwitchManager : MonoBehaviour
         }
         else if (CurrentCatagory == BigCataGory.ShoulderEXG)
         {
-            Path += "ExtraGears/";
+            Path += "ExtraGears/Shoulder/";
         }
         else if (CurrentCatagory == BigCataGory.SideEXG)
         {

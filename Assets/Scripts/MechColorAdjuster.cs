@@ -18,7 +18,7 @@ public class MechColorAdjuster : MonoBehaviour
 
         Temp.AddRange(GetComponentsInChildren<MeshRenderer>());
 
-        Debug.Log(Temp.Count);
+        //Debug.Log(Temp.Count);
 
         foreach (MeshRenderer a in Temp)
         {

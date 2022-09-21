@@ -24,16 +24,16 @@ public class BaseMechFCS : MonoBehaviour
     public List<EnergySignal> TargetsWithinRange = new List<EnergySignal>();
 
     private bool PlayerFCS = false;
-    public static event Action<String,EnergySignal> LockChanges;
+    public static event Action<String, EnergySignal> LockChanges;
     public static event Action<bool, BaseMainSlotEquipment> WeaponChanges;
-    public static event Action<int,string, BaseEXGear> EXGearChanges;
+    public static event Action<int, string, BaseEXGear> EXGearChanges;
 
     [SerializeField]
     private SphereCollider RadarCollider;
     [SerializeField]
-    public float RadarRange  = 200;
+    public float RadarRange = 200;
     [SerializeField]
-    public float LockRange  = 150;
+    public float LockRange = 150;
 
     [Space(10)]
 
@@ -77,7 +77,7 @@ public class BaseMechFCS : MonoBehaviour
     //    InitializeFCS(GetComponent<BaseMechMain>());
     //}
 
-    public void InitializeFCS(BaseMechMain BMM,bool Player, BaseMechPartArm _LeftArm, BaseMechPartArm _RightArm)
+    public void InitializeFCS(BaseMechMain BMM, bool Player, BaseMechPartArm _LeftArm, BaseMechPartArm _RightArm)
     {
         SpawnItems();
 
@@ -97,33 +97,27 @@ public class BaseMechFCS : MonoBehaviour
         CameraAnchor = BMM.CameraAnchor;
     }
 
-    private void GetInnateEXG()
-    {
-
-
-    }
-
     private void SpawnItems()
     {
-        if(CurrentPrimary)
-        CurrentPrimary = Instantiate(CurrentPrimary.gameObject,transform).GetComponent<BaseMainSlotEquipment>();
-        if(CurrentSecondary)
-        CurrentSecondary = Instantiate(CurrentSecondary.gameObject, transform).GetComponent<BaseMainSlotEquipment>();
+        if (CurrentPrimary)
+            CurrentPrimary = Instantiate(CurrentPrimary.gameObject, transform).GetComponent<BaseMainSlotEquipment>();
+        if (CurrentSecondary)
+            CurrentSecondary = Instantiate(CurrentSecondary.gameObject, transform).GetComponent<BaseMainSlotEquipment>();
 
-        if(LeftLegEXG)
-        LeftLegEXG = Instantiate(LeftLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
-        if(LeftArmEXG != null)
-        LeftArmEXG = Instantiate(LeftArmEXG.gameObject, transform).GetComponent<BaseEXGear>(); 
-        if(LeftShoulderEXG)
-        LeftShoulderEXG = Instantiate(LeftShoulderEXG.gameObject, transform).GetComponent<BaseEXGear>(); 
+        if (LeftLegEXG)
+            LeftLegEXG = Instantiate(LeftLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        if (LeftArmEXG != null)
+            LeftArmEXG = Instantiate(LeftArmEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        if (LeftShoulderEXG)
+            LeftShoulderEXG = Instantiate(LeftShoulderEXG.gameObject, transform).GetComponent<BaseEXGear>();
         //ChestEXG = Instantiate(LeftLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
         //BackPackEXG;
-        if(RightShoulderEXG)
-        RightShoulderEXG = Instantiate(RightShoulderEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        if (RightShoulderEXG)
+            RightShoulderEXG = Instantiate(RightShoulderEXG.gameObject, transform).GetComponent<BaseEXGear>();
         if (RightArmEXG != null)
-        RightArmEXG = Instantiate(RightArmEXG.gameObject, transform).GetComponent<BaseEXGear>();
-        if(RightLegEXG)
-        RightLegEXG = Instantiate(RightLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
+            RightArmEXG = Instantiate(RightArmEXG.gameObject, transform).GetComponent<BaseEXGear>();
+        if (RightLegEXG)
+            RightLegEXG = Instantiate(RightLegEXG.gameObject, transform).GetComponent<BaseEXGear>();
     }
 
     public void InitStats(float _RadarRange, float _LockRange)
@@ -154,7 +148,7 @@ public class BaseMechFCS : MonoBehaviour
 
         MyBMM.EXGInstall(ref EquipedEXGear); //requires mech assembly to be set up
 
-        Debug.Log(PlayerFCS);
+        //Debug.Log(PlayerFCS);
 
         for (int i = 0; i < EquipedEXGear.Length; i++)
         {
@@ -231,7 +225,7 @@ public class BaseMechFCS : MonoBehaviour
         return CameraAnchor.forward;
     }
 
-    protected void Equip(BaseMainSlotEquipment Equipment,bool OnRightHand)
+    protected void Equip(BaseMainSlotEquipment Equipment, bool OnRightHand)
     {
         if (Equipment == null)
         {
@@ -252,7 +246,7 @@ public class BaseMechFCS : MonoBehaviour
 
             RightArm.EquipEquipment(Equipment);
 
-            Equipment.Equip(true, MyBMM,true);
+            Equipment.Equip(true, MyBMM, true);
         }
         else
         {
@@ -260,13 +254,13 @@ public class BaseMechFCS : MonoBehaviour
 
             LeftArm.EquipEquipment(Equipment);
 
-            Equipment.Equip(true, MyBMM,false);
+            Equipment.Equip(true, MyBMM, false);
         }
 
         Equipment.transform.localPosition = Vector3.zero;
         Equipment.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
-        
+
 
 
         if (WeaponChanges != null)
@@ -299,7 +293,7 @@ public class BaseMechFCS : MonoBehaviour
             if (!CurrentSecondary)
                 return 0;
             else
-            return (int)CurrentSecondary.HoldStyle;
+                return (int)CurrentSecondary.HoldStyle;
         }
     }
 
@@ -347,10 +341,10 @@ public class BaseMechFCS : MonoBehaviour
         return Temp;
     }
 
-    private void Targetweapons(Transform ThingToAim,bool AtTarget)
+    private void Targetweapons(Transform ThingToAim, bool AtTarget)
     {
         Vector3 AimDir;
-        
+
         if (MainTarget && AtTarget)
         {
             AimDir = Vector3.RotateTowards(ThingToAim.forward, MainTarget.transform.position - ThingToAim.transform.position, TargetSpeed * Time.deltaTime, 0.0f);
@@ -367,7 +361,7 @@ public class BaseMechFCS : MonoBehaviour
     #region LockedList related
     private void UpdateLockedList()
     {
-        if (CurrentlyLocking&&CurrentListOfLocked.Count<LockRequested)
+        if (CurrentlyLocking && CurrentListOfLocked.Count < LockRequested)
         {
             LockCooldown -= Time.deltaTime;
             if (LockCooldown <= 0)
@@ -486,7 +480,8 @@ public class BaseMechFCS : MonoBehaviour
     {
         return CurrentListOfLocked.Count;
     }
-#endregion
+    #endregion
+
     private void FindMainLock()
     {
         EnergySignal OldTarget = MainTarget;
@@ -501,7 +496,7 @@ public class BaseMechFCS : MonoBehaviour
                 if (OldTarget != MainTarget)
                 {
                     if (PlayerFCS && LockChanges != null)
-                        LockChanges.Invoke("Target", MainTarget);
+                        LockChanges.Invoke("MainTarget", MainTarget);
                 }
 
                 return;
@@ -510,12 +505,12 @@ public class BaseMechFCS : MonoBehaviour
 
         float MTAngle;
 
-        if (MainTarget == null )
+        if (MainTarget == null)
             MTAngle = 0;
         else
         {
-            MTAngle = Vector3.Angle(CameraAnchor.forward,  MainTarget.transform.position- transform.position);
-            if (MTAngle > MaxAimingAngle || !MainTarget.enabled|| Vector3.Distance(MainTarget.transform.position, transform.position) > LockRange)
+            MTAngle = Vector3.Angle(CameraAnchor.forward, MainTarget.transform.position - transform.position);
+            if (MTAngle > MaxAimingAngle || !MainTarget.enabled || Vector3.Distance(MainTarget.transform.position, transform.position) > LockRange)
             {
                 MTAngle = 0;
                 MainTarget = null;
@@ -524,11 +519,11 @@ public class BaseMechFCS : MonoBehaviour
 
         for (int i = 0; i < TargetsWithinRange.Count; i++)
         {
-            float NTAngle = Vector3.Angle(CameraAnchor.forward,  TargetsWithinRange[i].transform.position - transform.position );
+            float NTAngle = Vector3.Angle(CameraAnchor.forward, TargetsWithinRange[i].transform.position - transform.position);
 
             if (NTAngle < MaxAimingAngle)
             {
-                if ( Vector3.Distance( TargetsWithinRange[i].transform.position,transform.position)<LockRange && (MainTarget == null || NTAngle < MTAngle))
+                if (Vector3.Distance(TargetsWithinRange[i].transform.position, transform.position) < LockRange && (MainTarget == null || NTAngle < MTAngle))
                 {
                     //Debug.Log("FCS Targting " + TargetsWithinRange[i].name);
                     MainTarget = TargetsWithinRange[i];
@@ -540,22 +535,51 @@ public class BaseMechFCS : MonoBehaviour
         if (OldTarget != MainTarget)
         {
             if (PlayerFCS && LockChanges != null)
-                LockChanges.Invoke("Target", MainTarget);
+                LockChanges.Invoke("MainTarget", MainTarget);
         }
     }
 
 
     private void AddLock(EnergySignal a)
     {
-        if(a.MyType == EnergySignal.EnergySignalType.LowEnergy || a.MyType == EnergySignal.EnergySignalType.Mech)
-        TargetsWithinRange.Add(a);
+        if (a.MyType == EnergySignal.EnergySignalType.LowEnergy || a.MyType == EnergySignal.EnergySignalType.Mech)
+            TargetsWithinRange.Add(a);
 
 
         if (PlayerFCS && LockChanges != null)
             LockChanges.Invoke("Add", a);
     }
 
+    //public void EXGAimed(bool a)
+    //{
+    //    if (PlayerFCS && LockChanges != null)
+    //    {
+    //        if (a)
+    //        LockChanges.Invoke("EXGLock", MainTarget);
+    //    else
+    //        LockChanges.Invoke("EXGLock", null);
+    //    }
 
+    //}
+
+    public void EXGAimed(EnergySignal a)
+    {
+        if (PlayerFCS && LockChanges != null)
+        {
+                LockChanges.Invoke("EXGLock", a);
+        }
+    }
+
+    public void EXGReticle(bool a)
+    {
+        if (PlayerFCS && LockChanges != null)
+        {
+            if (a)
+                LockChanges.Invoke("EXGReticleOn", null);
+            else
+                LockChanges.Invoke("EXGReticleOff", null);
+        }
+    }
 
     public void ToggleFocusMode()
     {
@@ -573,21 +597,21 @@ public class BaseMechFCS : MonoBehaviour
     {
         if (EquipedEXGear[SelectedEXSlot] != null)
             EquipedEXGear[SelectedEXSlot].TriggerGear(TriggerDown);
-        
+
     }
 
     public void SwitchEXGear(bool Next)
     {
         int Temp = SwitchSlot(Next);
 
-        if(Temp!=SelectedEXSlot)
-        SelectSlot(Temp);
+        if (Temp != SelectedEXSlot)
+            SelectSlot(Temp);
     }
 
     private void SelectSlot(int SlotNum)
     {
-        if(EquipedEXGear[SelectedEXSlot]!=null)
-        EquipedEXGear[SelectedEXSlot].Equip(false);
+        if (EquipedEXGear[SelectedEXSlot] != null)
+            EquipedEXGear[SelectedEXSlot].Equip(false);
 
         SelectedEXSlot = SlotNum;
 
@@ -606,7 +630,7 @@ public class BaseMechFCS : MonoBehaviour
         else
             step = -1;
 
-        for (int i = SelectedEXSlot+step; i < EquipedEXGear.Length && i >= 0; i += step)
+        for (int i = SelectedEXSlot + step; i < EquipedEXGear.Length && i >= 0; i += step)
         {
             if (EquipedEXGear[i] != null)
                 return i;
@@ -617,6 +641,24 @@ public class BaseMechFCS : MonoBehaviour
 
     #endregion
 
+    #region Load Mech Related
+    public void RecieveEXGs(List<BaseEXGear> EXGList)
+    {
+        LeftLegEXG = EXGList[0];
+        LeftArmEXG = EXGList[1];
+        LeftShoulderEXG = EXGList[2];
+        RightShoulderEXG = EXGList[3];
+        RightArmEXG = EXGList[4];
+        RightLegEXG = EXGList[5];
+    }
+
+    public void RecieveMainEquipment(BaseMainSlotEquipment Main, BaseMainSlotEquipment Second)
+    {
+        CurrentPrimary = Main;
+        CurrentSecondary = Second;
+    }
+
+    #endregion
 
     private void RemoveLock(EnergySignal a)
     {
@@ -672,7 +714,7 @@ public class BaseMechFCS : MonoBehaviour
             {
                 if (Vector3.Distance(this.transform.position, Temp.transform.position) > RadarRange*0.9)
                 {
-                    Debug.Log("Peep" + Temp, this);
+                    //Debug.Log("Peep" + Temp, this);
                     RemoveLock(Temp);
                 }
             }

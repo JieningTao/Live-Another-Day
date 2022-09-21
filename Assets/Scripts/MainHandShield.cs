@@ -15,6 +15,8 @@ public class MainHandShield : BaseMainSlotEquipment
 
 
 
+
+
     public override void Equip(bool _Equip, BaseMechMain Operator, bool Right)
     {
         base.Equip(_Equip, Operator, Right);
@@ -36,4 +38,6 @@ public class MainHandShield : BaseMainSlotEquipment
         BarFillPercentage = Shield.GetHealthPercent();
         TextDisplay = Shield.GetHealthText();
     }
+
+
 }

@@ -18,50 +18,50 @@ public class BaseEnemy : IDamageable
     [SerializeField]
     protected AIMovement MyMovement;
 
-    [Serializable]
-    protected class WeaponFireControl
-    {
-        [SerializeField]
-        public EnemyGear Weapon;
-        [SerializeField]
-        public float FireAngle;
-        [SerializeField]
-        public float FireInterval;
-        [SerializeField]
-        public float CoolDownInterval;
+    //[Serializable]
+    //protected class WeaponFireControl
+    //{
+    //    [SerializeField]
+    //    public EnemyGear Weapon;
+    //    [SerializeField]
+    //    public float FireAngle;
+    //    [SerializeField]
+    //    public float FireInterval;
+    //    [SerializeField]
+    //    public float CoolDownInterval;
 
-        protected float CurrentIntervalRemaining;
-        public bool Firing;
+    //    protected float CurrentIntervalRemaining;
+    //    public bool Firing;
 
 
-        public virtual void CheckUpdateFire()
-        {
-            if (CurrentIntervalRemaining > 0)
-            {
-                CurrentIntervalRemaining -= Time.deltaTime;
-            }
-            else
-            {
-                if (Firing)
-                    TriggerFire(false);
-                else if((Weapon as EnemyGearWeapon).GetOffTargetDegree() < FireAngle)
-                    TriggerFire(true);
-            }
-        }
+    //    public virtual void CheckUpdateFire()
+    //    {
+    //        if (CurrentIntervalRemaining > 0)
+    //        {
+    //            CurrentIntervalRemaining -= Time.deltaTime;
+    //        }
+    //        else
+    //        {
+    //            if (Firing)
+    //                TriggerFire(false);
+    //            else if((Weapon as EnemyGearWeapon).GetOffTargetDegree() < FireAngle)
+    //                TriggerFire(true);
+    //        }
+    //    }
 
-        protected virtual void TriggerFire(bool Down)
-        {
-            Weapon.TriggerGear(Down);
-            Firing = Down;
+    //    protected virtual void TriggerFire(bool Down)
+    //    {
+    //        Weapon.TriggerGear(Down);
+    //        Firing = Down;
 
-            if (Down)
-                CurrentIntervalRemaining = FireInterval;
-            else
-                CurrentIntervalRemaining = CoolDownInterval;
-        }
+    //        if (Down)
+    //            CurrentIntervalRemaining = FireInterval;
+    //        else
+    //            CurrentIntervalRemaining = CoolDownInterval;
+    //    }
             
 
-    }
+    //}
 
     protected override void Start()
     {

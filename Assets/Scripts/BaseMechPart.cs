@@ -22,14 +22,11 @@ public class BaseMechPart : MonoBehaviour
             BoostCost,
             ImpulseBoostForce,
             ImpulseCost,
+            AmmoAmount,
 
             BoostJuiceCapacity,
             BoostJuiceRecovery,
             BoostJuiceRecoveryCooldown,
-
-            //MovingDrag = Drag.x;
-            //StoppingDrag = Drag.y;
-            //OverSpeedDrag = Drag.z;
 
             JumpForce,
             FloatForce,

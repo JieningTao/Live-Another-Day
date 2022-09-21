@@ -457,5 +457,10 @@ public class BaseMechMovement : MonoBehaviour
     {
         return (float)MyRB.velocity.magnitude / ((float)BoostSpeedLimit*1.2f);
     }
+
+    public float GetNormSpeedLimitRatio()
+    {
+        return (float)SpeedLimit / BoostSpeedLimit;
+    }
     #endregion
 }
