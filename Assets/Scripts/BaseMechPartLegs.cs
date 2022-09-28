@@ -49,6 +49,22 @@ public class BaseMechPartLegs : BaseMechPart
         return RightEXGSlot;
     }
 
+    public bool HadLeftEXGSlot()
+    {
+        if (LeftEXGSlot)
+            return true;
+        else
+            return false;
+    }
+
+    public bool HadRightEXGSlot()
+    {
+        if (RightEXGSlot)
+            return true;
+        else
+            return false;
+    }
+
     public Transform GetGroundDetection()
     {
         return GroundDetection;

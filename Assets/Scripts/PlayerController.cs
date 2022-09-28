@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         HandleMovementInput();
         HandleWeaponInput();
         HandleEXGearInput();
+        HandlePauseInput();
 
 #if (UNITY_EDITOR)
         HandleDebugInput();
@@ -138,7 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-
+            PauseMiniMenu.Instance.ToggleMenu();
         }
     }
 

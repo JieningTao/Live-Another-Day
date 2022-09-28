@@ -18,7 +18,11 @@ public class AssemblyPartOption : MonoBehaviour
     public void SetUp(PartSwitchManager Manager,LoadOutPart _Part)
     {
         if (_Part == null)
-            gameObject.SetActive(false);
+        {
+            MyManager = Manager;
+            Part = null;
+            NameText.text = "Empty";
+        }
         else
         {
             MyManager = Manager;
@@ -49,8 +53,16 @@ public class AssemblyPartOption : MonoBehaviour
 
     public void Confirm()
     {
-        Debug.Log(Part.gameObject.name);
-        MyManager.InstallPart(Part.gameObject);
+        if (Part)
+        {
+            Debug.Log(Part.gameObject.name);
+            MyManager.InstallPart(Part.gameObject);
+        }
+        else
+        {
+            Debug.Log("[Empty]");
+            MyManager.InstallPart(null);
+        }
     }
 
 }

@@ -56,6 +56,23 @@ public class BaseMechPartArm : BaseMechPart
         return AimedPart;
     }
 
+    public bool HasEquipmentSlot()
+    {
+        if (HandSlot)
+            return true;
+        else
+            return false;
+    }
+
+    public bool HasEXGSlot()
+    {
+        if (SideMountedEXGSlot)
+            return true;
+        else
+            return false;
+
+    }
+
     public void SetArmAnimator(int State)
     {
         //Debug.Log(State);

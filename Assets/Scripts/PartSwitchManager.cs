@@ -18,6 +18,12 @@ public class PartSwitchManager : MonoBehaviour
     private GameObject BodyPartsSelection;
     [SerializeField]
     private GameObject WeaponsAndEXGSelection;
+    [SerializeField]
+    private UnityEngine.UI.Text CatagoryTitle;
+
+
+    [SerializeField]
+    private UnityEngine.UI.Button[] EXGAndWeaponButtons = new UnityEngine.UI.Button[8];
 
     private MechAssemblyRack AssemblyRack;
     private List<AssemblyPartOption> CurrentDisplayedOptions = new List<AssemblyPartOption>();      //needs to impliment a object pool system for the options
@@ -46,7 +52,7 @@ public class PartSwitchManager : MonoBehaviour
 
         LoadList();
         CreateOptionsForCurrentList();
-
+        SetCatagoryTitle();
 
     }
 
@@ -71,6 +77,7 @@ public class PartSwitchManager : MonoBehaviour
             ClearOptions();
             LoadList();
             CreateOptionsForCurrentList();
+            SetCatagoryTitle();
         }
 
     }
@@ -82,6 +89,7 @@ public class PartSwitchManager : MonoBehaviour
         ClearOptions();
         LoadList();
         CreateOptionsForCurrentList();
+        SetCatagoryTitle();
     }
 
     public void SwitchCatagory()
@@ -90,12 +98,25 @@ public class PartSwitchManager : MonoBehaviour
         {
             BodyPartsSelection.SetActive(false);
             WeaponsAndEXGSelection.SetActive(true);
+
+            List<bool> Temp = AssemblyRack.GetEXGAndWeaponSlots();
+
+            for (int i = 0; i < 8; i++)
+            {
+                EXGAndWeaponButtons[i].interactable = Temp[i];
+            }
+
         }
         else
         {
             BodyPartsSelection.SetActive(true);
             WeaponsAndEXGSelection.SetActive(false);
         }
+    }
+
+    public void DetermineEXGAndWeaponSlots()
+    {
+
     }
 
     #endregion
@@ -139,6 +160,8 @@ public class PartSwitchManager : MonoBehaviour
 
 
         CurrentListOfParts.Clear();
+        if (CurrentCatagory == BigCataGory.MainWeapon || CurrentCatagory == BigCataGory.ShoulderEXG || CurrentCatagory == BigCataGory.SideEXG)
+            CurrentListOfParts.Add(null);
         CurrentListOfParts.AddRange(Resources.LoadAll<LoadOutPart>(Path));
         Debug.Log(CurrentListOfParts.Count);
     }
@@ -154,6 +177,58 @@ public class PartSwitchManager : MonoBehaviour
             Destroy(CurrentDisplayedOptions[i].gameObject);
         }
         CurrentDisplayedOptions.Clear();
+    }
+
+    private void SetCatagoryTitle()
+    {
+        string Temp = "";
+
+        if (CurrentCatagory == BigCataGory.MainWeapon)
+        {
+            if (CurrentPosition == 0)
+                Temp += "Main Hand Equipment";
+            else if (CurrentPosition == 1)
+                Temp += "Off Hand Equipment";
+        }
+        else if (CurrentCatagory == BigCataGory.SideEXG || CurrentCatagory == BigCataGory.ShoulderEXG)
+        {
+            Temp += "EXG: ";
+
+            if (CurrentPosition == 0)
+                Temp += "Left Leg";
+            else if (CurrentPosition == 1)
+                Temp += "Left Arm";
+            else if (CurrentPosition == 2)
+                Temp += "Left Shoulder";
+            else if (CurrentPosition == 5)
+                Temp += "Right Shoullder";
+            else if (CurrentPosition == 6)
+                Temp += "Right Arm";
+            else if (CurrentPosition == 7)
+                Temp += "Right Leg";
+        }
+        else
+        {
+            Temp += "Mech Part: ";
+
+            if (CurrentCatagory == BigCataGory.Head)
+                Temp += "Head";
+            else if (CurrentCatagory == BigCataGory.Torso)
+                Temp += "Torso";
+            else if (CurrentCatagory == BigCataGory.Arms)
+                Temp += "Arms";
+            else if (CurrentCatagory == BigCataGory.Pack)
+                Temp += "BackPack";
+            else if (CurrentCatagory == BigCataGory.Legs)
+                Temp += "Legs";
+
+            else if (CurrentCatagory == BigCataGory.EnergySystem)
+                Temp = "Energy Systems";
+            else if (CurrentCatagory == BigCataGory.BoostSystem)
+                Temp = "Boost Systems";
+        }
+
+        CatagoryTitle.text = Temp;
     }
 
     private void CreateOptionsForCurrentList()

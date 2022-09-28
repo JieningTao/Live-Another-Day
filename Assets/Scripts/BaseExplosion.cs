@@ -103,7 +103,7 @@ public class BaseExplosion : MonoBehaviour
         RaycastHit Hit;
         if (Physics.Raycast(transform.position,   a.transform.position - transform.position, out Hit))
         {
-            Debug.Log(Hit.collider,Hit.collider);
+            //Debug.Log(Hit.collider,Hit.collider);
             if (Hit.collider.GetComponentInParent<IDamageable>() == a)
                 return true;
         }

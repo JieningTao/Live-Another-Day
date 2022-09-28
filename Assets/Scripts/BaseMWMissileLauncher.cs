@@ -11,6 +11,7 @@ public class BaseMWMissileLauncher : BaseMainWeapon
     {
         base.Equip(_Equip, Operator, Right);
         MyMissileLauncher = MainWeapon as BaseMissileLauncher;
+        if(Operator)
         MyFCS = Operator.GetFCS();
     }
 

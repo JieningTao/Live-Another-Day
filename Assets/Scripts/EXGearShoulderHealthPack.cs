@@ -47,18 +47,23 @@ public class EXGearShoulderHealthPack : EXGearShoulder
     public override void TriggerGear(bool Down)
     {
         base.TriggerGear(Down);
-        if (CurrentCharge > 0)
-        {
-            CurrentCharge--;
 
-            if (HealTime > 0)
-                HealLeft = HealAmount;
-            else
+        if (Down)
+        {
+            if (CurrentCharge > 0&&HealLeft <=0)
             {
-                if (!MyMech.HealthFull())
-                    MyMech.Heal(HealAmount);
+                CurrentCharge--;
+
+                if (HealTime > 0)
+                    HealLeft = HealAmount;
+                else
+                {
+                    if (!MyMech.HealthFull())
+                        MyMech.Heal(HealAmount);
+                }
             }
         }
+
     }
 
     public override float GetReadyPercentage()

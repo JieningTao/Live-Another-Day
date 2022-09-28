@@ -35,6 +35,22 @@ public class BaseMechPartPack : BaseMechPart
         return RightShoulderEXGSlot;
     }
 
+    public bool HadLeftEXGSlot()
+    {
+        if (LeftShoulderEXGSlot)
+            return true;
+        else
+            return false;
+    }
+
+    public bool HadRightEXGSlot()
+    {
+        if (RightShoulderEXGSlot)
+            return true;
+        else
+            return false;
+    }
+
 
     public void EquipShoulderEXGs(BaseEXGear Left, BaseEXGear Right)
     {

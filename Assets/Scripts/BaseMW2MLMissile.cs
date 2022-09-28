@@ -24,6 +24,7 @@ public class BaseMW2MLMissile : Shoot2MainWeapon
         base.Equip(_Equip, Operator,Right);
         MainLauncher = MainWeapon as BaseMissileLauncher;
         SecondaryLauncher = SecondaryWeapon as BaseMissileLauncher;
+        if(Operator)
         MyFCS = Operator.GetFCS();
     }
 

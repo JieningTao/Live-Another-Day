@@ -297,6 +297,22 @@ public class MechAssemblyRack : MonoBehaviour
 
     }
 
+    public List<bool> GetEXGAndWeaponSlots()
+    {
+        List<bool> Temp = new List<bool>();
+
+        Temp.Add(MPLegs.HadLeftEXGSlot());
+        Temp.Add(MPLArm.HasEXGSlot());
+        Temp.Add(MPPack.HadLeftEXGSlot());
+        Temp.Add(MPPack.HadRightEXGSlot());
+        Temp.Add(MPRArm.HasEXGSlot());
+        Temp.Add(MPLegs.HadRightEXGSlot());
+        Temp.Add(MPRArm.HasEquipmentSlot());
+        Temp.Add(MPLArm.HasEquipmentSlot());
+
+        return Temp;
+    }
+
     public void FitNewPart(PartSwitchManager.BigCataGory PartType,int Position, GameObject PartToFit)
     {
         if (PartToFit)
@@ -308,17 +324,40 @@ public class MechAssemblyRack : MonoBehaviour
         {
             if (Position == 0)
             {
-                if(CurrentPrimary)
-                Destroy(CurrentPrimary.gameObject);
-                CurrentPrimary = PartToFit.GetComponent<BaseMainSlotEquipment>();
-                MPRArm.EquipEquipment(CurrentPrimary);
+                if (CurrentPrimary)
+                    Destroy(CurrentPrimary.gameObject);
+
+                if (PartToFit)
+                {
+                    CurrentPrimary = PartToFit.GetComponent<BaseMainSlotEquipment>();
+                    MPRArm.EquipEquipment(CurrentPrimary);
+                }
+                else
+                {
+                    CurrentPrimary = null;
+                }
+
+
+
+
+
             }
             else
             {
-                if(CurrentSecondary)
-                Destroy(CurrentSecondary.gameObject);
-                CurrentSecondary = PartToFit.GetComponent<BaseMainSlotEquipment>();
-                MPLArm.EquipEquipment(CurrentSecondary);
+                if (CurrentSecondary)
+                    Destroy(CurrentSecondary.gameObject);
+
+                if (PartToFit)
+                {
+                    CurrentSecondary = PartToFit.GetComponent<BaseMainSlotEquipment>();
+                    MPLArm.EquipEquipment(CurrentSecondary);
+                }
+                else
+                {
+                    CurrentSecondary = null;
+                }
+            
+
             }
         }
         else if (PartType == PartSwitchManager.BigCataGory.ShoulderEXG || PartType == PartSwitchManager.BigCataGory.SideEXG)
@@ -326,7 +365,10 @@ public class MechAssemblyRack : MonoBehaviour
             if(EquipedEXGear[Position])
                 Destroy(EquipedEXGear[Position].gameObject);
 
-            EquipedEXGear[Position] = PartToFit.GetComponent<BaseEXGear>();
+            if (PartToFit)
+                EquipedEXGear[Position] = PartToFit.GetComponent<BaseEXGear>();
+            else
+                EquipedEXGear[Position] = null;
 
         }
         else

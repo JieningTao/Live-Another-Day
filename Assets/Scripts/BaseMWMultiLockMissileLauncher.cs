@@ -15,7 +15,8 @@ public class BaseMWMultiLockMissileLauncher : BaseMainWeapon
     {
         base.Equip(_Equip, Operator, Right);
         MyMissileLauncher = MainWeapon as BaseMissileLauncher;
-        MyFCS = Operator.GetFCS();
+        if (Operator)
+            MyFCS = Operator.GetFCS();
     }
 
     public override void PrimaryFire(bool Fire)
