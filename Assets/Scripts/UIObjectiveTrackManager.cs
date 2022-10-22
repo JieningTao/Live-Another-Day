@@ -20,14 +20,23 @@ public class UIObjectiveTrackManager : MonoBehaviour
     [SerializeField]
     private GameObject TaskPrefab;
 
-    //List
+    List<UITaskDisplay> TasksOnDisplay = new List<UITaskDisplay>();
 
 
     public void CreateMission(string Mission, List<MissionGoal> a)
     {
         UITaskDisplay Temp = Instantiate(TaskPrefab, transform).GetComponent<UITaskDisplay>();
-
+        TasksOnDisplay.Add(Temp);
         Temp.Create(Mission,a);
+    }
+
+    public void ClearMissions()
+    {
+        for (int i = 0; i < TasksOnDisplay.Count; i++)
+        {
+            Destroy(TasksOnDisplay[i].gameObject);
+        }
+        TasksOnDisplay.Clear();
     }
 
 }

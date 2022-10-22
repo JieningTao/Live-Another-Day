@@ -14,9 +14,14 @@ public class MechColorAdjuster : MonoBehaviour
 
     public void switchColor()
     {
+        switchColor(gameObject);
+    }
+
+    public void switchColor(GameObject Target)
+    {
         List<MeshRenderer> Temp = new List<MeshRenderer>();
 
-        Temp.AddRange(GetComponentsInChildren<MeshRenderer>());
+        Temp.AddRange(Target.GetComponentsInChildren<MeshRenderer>());
 
         //Debug.Log(Temp.Count);
 
@@ -50,4 +55,5 @@ public class MechColorAdjuster : MonoBehaviour
 
 
     }
+
 }

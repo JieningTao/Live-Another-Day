@@ -11,6 +11,8 @@ public class EXGearSideWeapon : EXGearSide
     BaseShoot MyWeapon;
     [SerializeField]
     float TargetSpeed = 1;
+    [SerializeField]
+    float TargetingAngle = 10;
 
     public override void InitializeGear(BaseMechMain Mech, Transform Parent, bool Right)
     {
@@ -22,7 +24,7 @@ public class EXGearSideWeapon : EXGearSide
     {
         base.Update();
 
-        if (Equipped && ReadyTimer <= 0)
+        if (Equipped && ReadyTimer <= 1)
         {
             AimWeapon();
         }
@@ -34,7 +36,7 @@ public class EXGearSideWeapon : EXGearSide
     {
         Vector3 AimDir;
 
-        if (MyFCS.GetMainTarget() != null && Vector3.Angle(MyFCS.transform.forward, MyFCS.GetMainTarget().transform.position - MyFCS.transform.position) < 10)
+        if (MyFCS.GetMainTarget() != null && Vector3.Angle(MyFCS.transform.forward, MyFCS.GetMainTarget().transform.position - MyFCS.transform.position) < TargetingAngle)
         {
             AimDir = Vector3.RotateTowards(AimedPart.forward, MyFCS.GetMainTarget().transform.position - AimedPart.transform.position, TargetSpeed * Time.deltaTime, 0.0f);
         }
@@ -61,7 +63,8 @@ public class EXGearSideWeapon : EXGearSide
     public override void TriggerGear(bool Down)
     {
 
-        base.TriggerGear(Down); //base trigger considers ready time and returns if not ready
+        if (ReadyTimer > 0)
+            return;
 
         if (MyAnimator && Down && MyWeapon.GetFirable())
             MyAnimator.SetTrigger("Fire");

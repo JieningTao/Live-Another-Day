@@ -95,7 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c0728923541e64fb87faafcbd3bd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Testing: 0
 --- !u!1001 &1120464822957386918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107,22 +106,33 @@ PrefabInstance:
         type: 3}
       propertyPath: Main
       value: 
-      objectReference: {fileID: 2100000, guid: 1dbd66f055436cc47a19a0f711509ca8, type: 2}
+      objectReference: {fileID: 2100000, guid: f1f8c06e7307da846bd92397fa68eb63, type: 2}
     - target: {fileID: 1092554491150119586, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
         type: 3}
       propertyPath: Frame
       value: 
-      objectReference: {fileID: 2100000, guid: 92591b6099692624cbdab913561dde1d, type: 2}
+      objectReference: {fileID: 2100000, guid: 7ed422cbd027c4243a2e952fd94058c4, type: 2}
     - target: {fileID: 1092554491150119586, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
         type: 3}
       propertyPath: Secondary
       value: 
-      objectReference: {fileID: 2100000, guid: 8c620f3290d01b84897af3b80ef6ce84, type: 2}
+      objectReference: {fileID: 2100000, guid: ee97075d114c90046b14943aabb1fc65, type: 2}
     - target: {fileID: 1441433725846038064, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
         type: 3}
       propertyPath: LoadKey
       value: PlayerLoadout
       objectReference: {fileID: 0}
+    - target: {fileID: 3704789420456933514, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
+        type: 3}
+      propertyPath: MaxAimingAngle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704789420456933514, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
+        type: 3}
+      propertyPath: CurrentSecondary
+      value: 
+      objectReference: {fileID: 5919272020816644383, guid: c491e67d1e792574893eb613a8002eeb,
+        type: 3}
     - target: {fileID: 3818856327641792099, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
         type: 3}
       propertyPath: m_Name

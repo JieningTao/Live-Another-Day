@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,39 +18,86 @@ public class MissionTracker : MonoBehaviour
         }
     }
 
+    [Serializable]
+    class Stage
+    {
+        [SerializeField]
+        public String Stagename;
+        [SerializeField]
+        public List<MissionGoal> Objectives;
+
+        public bool StageCompleted()
+        {
+            for (int i = 0; i < Objectives.Count; i++)
+            {
+                if (!Objectives[i].Completed())
+                    return false;
+            }
+            return true;
+        }
+    }
+
     [SerializeField]
-    private string CurrentMission;
-    [SerializeField]
-    private List<MissionGoal> CurrentObjectives;
+    private List<Stage> MissionStages;
+    private int CurrentStage = 0;
 
     private void Start()
     {
-        CreateUIElement();
+        CreateUIElement(MissionStages[CurrentStage]);
     }
 
     public void UpdateProgress(string Marker, object Content)
     {
 
-        foreach (MissionGoal a in CurrentObjectives)
+        foreach (MissionGoal a in MissionStages[CurrentStage].Objectives)
         {
             a.UpdateProgress(Marker, Content);
+
+            if (a.Completed())
+            {
+                if (MissionStages[CurrentStage].StageCompleted())
+                {
+                    NextStage();
+                }
+            }
+            //check for stage completion
         }
     }
 
-    private void CreateUIElement()
+    private void CreateUIElement(Stage a)
     {
-        for(int i=0;i<CurrentObjectives.Count;i++)
+        for(int i=0;i< MissionStages[CurrentStage].Objectives.Count;i++)
         {
-            if (CurrentObjectives[i])
-                CurrentObjectives[i].Init(this);
+            if (MissionStages[CurrentStage].Objectives[i])
+                MissionStages[CurrentStage].Objectives[i].Init(this);
             else
             {
-                CurrentObjectives.RemoveAt(i);
+                MissionStages[CurrentStage].Objectives.RemoveAt(i);
                 i--;
             }
         }
-        UIObjectiveTrackManager.Instance.CreateMission(CurrentMission, CurrentObjectives);
-    }
 
+        UIObjectiveTrackManager.Instance.CreateMission(a.Stagename, a.Objectives);
+    }
+    private void NextStage()
+    {
+        if (CurrentStage < MissionStages.Count - 1)
+        {
+            CurrentStage++;
+            UIObjectiveTrackManager.Instance.ClearMissions();
+            CreateUIElement(MissionStages[CurrentStage]);
+
+            UILockManager.Instance.ClearMissionTrackers();
+
+
+
+        }
+        else
+        {
+            PauseMiniMenu.Instance.ShowLevelEndUI();
+            //mission completed
+        }
+
+    }
 
 }

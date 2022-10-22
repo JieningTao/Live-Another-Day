@@ -19,9 +19,11 @@ public class PauseMiniMenu : MonoBehaviour
     }
 
     [SerializeField]
-    GameObject Menu;
+    GameObject PauseMenu;
     [SerializeField]
     GameObject PlayCanvas;
+    [SerializeField]
+    GameObject EndLevelScreen;
 
     public void BackToMainMenu()
     {
@@ -40,24 +42,44 @@ public class PauseMiniMenu : MonoBehaviour
 
     public void ToggleMenu()
     {
-        ShowMenu(!Menu.active);
+        if (!EndLevelScreen.active)
+        {
+            if (!PauseMenu.active)
+                ShowPauseUI();
+            else
+                ShowPlayUI();
+        }
     }
 
-    public void ShowMenu(bool Show)
+    public void ShowPauseUI()
     {
-        if (Show)
-        {
-            Menu.SetActive(true);
-            PlayCanvas.SetActive(false);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Menu.SetActive(false);
-            PlayCanvas.SetActive(true);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        PauseMenu.SetActive(true);
+        PlayCanvas.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Time.timeScale = 0;
     }
+
+    public void ShowPlayUI()
+    {
+        PauseMenu.SetActive(false);
+        PlayCanvas.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        Time.timeScale = 1;
+    }
+
+    public void ShowLevelEndUI()
+    {
+        PauseMenu.SetActive(false);
+        PlayCanvas.SetActive(false);
+        EndLevelScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Time.timeScale = 0;
+    }
+
 }

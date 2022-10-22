@@ -16,18 +16,21 @@ public class MGDestroyTargets : MissionGoal
 
     public override void UpdateProgress(string UpdateMarker, object Content)
     {
-        base.UpdateProgress(UpdateMarker, Content);
+        if (Marker != UpdateMarker)
+            return;
 
+        Debug.Log(UpdateMarker + "---" + Content);
 
-        if (AmountDestroied<TargetAmount)
+            if (AmountDestroied < TargetAmount)
+                AmountDestroied += (int)((float)Content);
+        
 
-            AmountDestroied += (int)Content;
     }
 
 
-    public virtual bool Completed()
+    public override bool Completed()
     {
-        return AmountDestroied < TargetAmount;
+        return AmountDestroied >= TargetAmount;
     }
 
     public override void Init(MissionTracker a)

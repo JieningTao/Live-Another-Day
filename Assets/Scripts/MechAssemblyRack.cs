@@ -46,11 +46,16 @@ public class MechAssemblyRack : MonoBehaviour
     protected BaseEXGear[] EquipedEXGear = new BaseEXGear[8];
 
 
+    protected MechColorAdjuster MyMCA;
+
     public void StarterLoad()
     {
+        MyMCA = GetComponent<MechColorAdjuster>();
+
         LoadPlayerPrefLoadout();
         SpawnParts();
         AssembleVisual();
+        MyMCA.switchColor();
     }
 
     public void LoadPlayerPrefLoadout()
@@ -184,6 +189,8 @@ public class MechAssemblyRack : MonoBehaviour
 
         EquipWeapons();
         EquipEXGs();
+
+        
     }
 
     private void UnassembleVisual()
@@ -318,6 +325,7 @@ public class MechAssemblyRack : MonoBehaviour
         if (PartToFit)
         {
             PartToFit = Instantiate(PartToFit, null);
+            MyMCA.switchColor(PartToFit);
         }
 
         if (PartType == PartSwitchManager.BigCataGory.MainWeapon)
@@ -336,11 +344,6 @@ public class MechAssemblyRack : MonoBehaviour
                 {
                     CurrentPrimary = null;
                 }
-
-
-
-
-
             }
             else
             {

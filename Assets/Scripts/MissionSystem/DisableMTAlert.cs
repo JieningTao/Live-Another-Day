@@ -7,7 +7,7 @@ public class DisableMTAlert : MonoBehaviour
     [SerializeField]
     string Marker;
     [SerializeField]
-    int Amount = 1;
+    float Amount = 1;
 
 
 

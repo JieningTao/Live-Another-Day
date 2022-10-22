@@ -16,7 +16,7 @@ public class DroneSoldier : BaseDrone
     Vector2 SurroundRange = new Vector2(10, 50);
     [SerializeField]
     Vector2 RepositionTimeRange = new Vector2(8,20);
-    float RepositionCooldown;
+    float RepositionCooldown = 0;
 
 
     protected override void Start()
@@ -28,7 +28,7 @@ public class DroneSoldier : BaseDrone
 
     protected void Update()
     {
-        //if(MTargetSignal)
+        if(MTargetSignal)
         HandleReposition();
 
         AimWeapons();

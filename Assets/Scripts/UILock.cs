@@ -27,7 +27,7 @@ public class UILock : MonoBehaviour
     [SerializeField]
     UnityEngine.UI.Text HUDDistance;
     [SerializeField]
-    private UnityEngine.UI.Image HudLock;
+    GameObject HudLock;
     [SerializeField]
     Sprite TargetLostHUDSprite;
 

@@ -168,11 +168,11 @@ MonoBehaviour:
   - {fileID: 3390611820265464547}
   ProjectilePrefab: {fileID: 4522780724013840657}
   AccuracyDeviation: 0.2
-  TBS: 0.2
+  TBS: 0.3
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
-  MaxMagazine: 30
+  MaxMagazine: 20
   MaxReserveAmmo: 120
   ReloadTime: 3
 --- !u!114 &1990055625932398457
@@ -1678,6 +1678,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6248584732470765589, guid: 2818c07d69d879649ad3a62285ad8f41,
+        type: 3}
+      propertyPath: ExplosiveDamage
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 9101633323893814125, guid: 2818c07d69d879649ad3a62285ad8f41,
         type: 3}
       propertyPath: m_Name
@@ -1772,7 +1777,7 @@ PrefabInstance:
     - target: {fileID: 9067907045586032992, guid: af09cd9c8219dd84d8cf724f9c2518ef,
         type: 3}
       propertyPath: Damage
-      value: 35
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af09cd9c8219dd84d8cf724f9c2518ef, type: 3}

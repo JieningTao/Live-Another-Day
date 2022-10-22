@@ -29,6 +29,7 @@ public class MissionGoal : MonoBehaviour
     {
         if (Marker != UpdateMarker)
             return;
+        
     }
 
     public virtual void Init(MissionTracker a)
