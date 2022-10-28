@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EXGearLaserIntercept : EXGearShoulder
+public class EXGearLaserIntercept : BaseEXGear
 {
     [SerializeField]
     AntiMissileLaser InterceptSystem;

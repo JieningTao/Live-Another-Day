@@ -108,9 +108,29 @@ public class BaseEXGear : MonoBehaviour
         EXGName = EXGearName;
     }
 
+    public virtual string GetName()
+    {
+        return EXGearName;
+    }
+
     public virtual float GetReadyPercentage()
     {
         return 1;
+    }
+
+    public virtual float GetSubReadyPercentage()
+    {
+        return 0;
+    }
+
+    public virtual string GetBBMainText()
+    {
+        return "ERR";
+    }
+
+    public virtual string GetBBSubText()
+    {
+        return "";
     }
 
     public virtual void ReSupply(float Percentage)

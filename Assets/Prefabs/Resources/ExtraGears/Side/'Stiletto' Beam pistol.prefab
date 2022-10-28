@@ -506,7 +506,7 @@ Transform:
   m_GameObject: {fileID: 1983705423477078026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 383684997726800507}
   m_RootOrder: 0
@@ -536,7 +536,7 @@ Transform:
   m_GameObject: {fileID: 1983705424089667628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 3519677127344933730}
   m_RootOrder: 0
@@ -581,10 +581,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1983705424823137309}
-  - component: {fileID: 1983705424823137376}
   - component: {fileID: 1983705424823137311}
   - component: {fileID: 1983705424823137310}
   - component: {fileID: -6513973643959462302}
+  - component: {fileID: 5460307317532904627}
   m_Layer: 11
   m_Name: '''Stiletto'' Beam pistol'
   m_TagString: Untagged
@@ -608,30 +608,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1983705424823137376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983705424823137308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be0231fe41fd98c448036497a2299f9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Displacement: {x: 0, y: 0, z: 0}
-  Weight: 0
-  Mirrored: 1
-  EXGearSprite: {fileID: 21300000, guid: 1db71ac742c2b8448be593947058db39, type: 3}
-  EXGearName: '''Stiletto'' Beam Pistol'
-  Passive: 0
-  MyAnimator: {fileID: 1983705424823137310}
-  ReadyTime: 1.2
-  AimedPart: {fileID: 1983705424823137309}
-  MyWeapon: {fileID: 1983705424823137311}
-  TargetSpeed: 1
-  TargetingAngle: 10
 --- !u!114 &1983705424823137311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,8 +667,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: '''Stiletto'' Beam Pistol'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 9
   PrefabPath: ExtraGears/Side/'Stiletto' Beam pistol
+--- !u!114 &5460307317532904627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983705424823137308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95a623f73dec9e4f9a2994d42847cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Displacement: {x: 0, y: 0, z: 0}
+  Weight: 0
+  Mirrored: 1
+  EXGearSprite: {fileID: 21300000, guid: 1db71ac742c2b8448be593947058db39, type: 3}
+  EXGearName: '''Stiletto'' Beam Pistol'
+  Passive: 0
+  MyAnimator: {fileID: 1983705424823137310}
+  ReadyTime: 1.2
+  AimedPart: {fileID: 1983705424823137309}
+  MyWeapon: {fileID: 1983705424823137311}
+  TargetSpeed: 1
+  TargetingAngle: 10
 --- !u!1 &1983705425206856992
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +719,7 @@ Transform:
   m_GameObject: {fileID: 1983705425206856992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 7988310224532118253}
   m_RootOrder: 0
@@ -1539,7 +1540,7 @@ PrefabInstance:
     - target: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}
       propertyPath: Damage
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}

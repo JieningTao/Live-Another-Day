@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5165575711995773794
 Transform:
   m_ObjectHideFlags: 0
@@ -9742,7 +9742,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.04
+      scalar: 0.06
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9849,7 +9849,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.27058828, g: 0.8184808, b: 1, a: 0.2}
+      maxColor: {r: 0.27058828, g: 0.8184808, b: 1, a: 0.2509804}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10602,7 +10602,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 10
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -14394,7 +14394,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8538ca42fb84ed44bb1ed3d883fd6048, type: 2}
+  - {fileID: 2100000, guid: 6505d7365e00c874fb1f56fd3e81678a, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -15487,13 +15487,22 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
+          time: 0.50980353
+          value: 0.96120644
+          inSlope: 0.03587219
+          outSlope: 0.03587219
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.50690836
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0.15392308
+          outSlope: 0.15392308
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.42597196
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -15816,7 +15825,7 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 53970
+        atime0: 34117
         atime1: 65535
         atime2: 0
         atime3: 0

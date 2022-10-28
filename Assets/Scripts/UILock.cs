@@ -188,7 +188,7 @@ public class UILock : MonoBehaviour
         Destroy(this.gameObject, 1);
     }
 
-    private void CheckTargetLost(string Order, EnergySignal ES)
+    private void UpdateLockChanges(string Order, EnergySignal ES)
     {
         if (Order == "Remove")
         {
@@ -227,11 +227,11 @@ public class UILock : MonoBehaviour
 
     private void OnEnable()
     {
-        BaseMechFCS.LockChanges += CheckTargetLost;
+        BaseMechFCS.LockChanges += UpdateLockChanges;
     }
 
     private void OnDisable()
     {
-        BaseMechFCS.LockChanges -= CheckTargetLost;
+        BaseMechFCS.LockChanges -= UpdateLockChanges;
     }
 }

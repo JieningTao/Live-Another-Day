@@ -13,10 +13,34 @@ public class BaseMainWeapon : BaseMainSlotEquipment
     [SerializeField]
     protected Color MainWeaponGaugeColor;
 
+    bool MainAmmoWarning = false;
+    bool MainEnergyWarning = false;
 
     public override void PrimaryFire(bool Fire)
     {
         MainWeapon.Trigger(Fire);
+    }
+
+    protected virtual void Update()
+    {
+        CheckWarnings();
+    }
+
+    protected virtual void CheckWarnings()
+    {
+        if (MainWeapon.LowAmmoWarning() && !MainAmmoWarning)
+            Operator.SetWeaponWarning(Right, true, true, true);
+        else if (!MainWeapon.LowAmmoWarning() && MainAmmoWarning)
+            Operator.SetWeaponWarning(Right, true, true, false);
+
+        MainAmmoWarning = MainWeapon.LowAmmoWarning();
+
+        if (MainWeapon.LowEnergyWarning() && !MainEnergyWarning)
+            Operator.SetWeaponWarning(Right, true, false, true);
+        else if (!MainWeapon.LowEnergyWarning() && MainEnergyWarning)
+            Operator.SetWeaponWarning(Right, true, false, false);
+
+        MainEnergyWarning = MainWeapon.LowEnergyWarning();
     }
 
     public override void Equip(bool _Equip, BaseMechMain Operator,bool Right)
@@ -53,5 +77,10 @@ public class BaseMainWeapon : BaseMainSlotEquipment
     public override float GetBulletSpeed()
     {
         return MainWeapon.GetProjectileSpeed();
+    }
+
+    public virtual string GetName()
+    {
+        return MainWeaponName;
     }
 }

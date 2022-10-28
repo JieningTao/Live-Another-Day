@@ -6,6 +6,7 @@ public class UIInfoPanelManager : MonoBehaviour
 {
     [SerializeField]
     private BaseMechMain PlayerMechMain;
+    private BaseMechFCS PlayerMechFCS;
     private BaseMechMovement PlayerMechMovement;
     private BaseEnergySource PlayerEnergySystem;
 
@@ -15,12 +16,14 @@ public class UIInfoPanelManager : MonoBehaviour
     [SerializeField]
     private UIBarDisplayController EnergyDisplay;
     [SerializeField]
-    private UIBarDisplayController BoostDisplay;
+    private UIBarLockController LockDisplay;
     [SerializeField]
     private UIBarDisplayController AmmoDisplay;
     [Space(10)]
     [SerializeField]
     private UIBarSpeedController SpeedDisplay;
+    [SerializeField]
+    private UIBarDisplayController BoostDisplay;
 
 
     //[SerializeField]
@@ -73,6 +76,7 @@ public class UIInfoPanelManager : MonoBehaviour
         }
 
         PlayerMechMovement = PlayerMechMain.GetMovement();
+        PlayerMechFCS = PlayerMechMain.GetFCS();
         PlayerEnergySystem = PlayerMechMain.GetEnergySystem();
 
         HPDisplay.UIInitialize();
@@ -80,6 +84,7 @@ public class UIInfoPanelManager : MonoBehaviour
         SpeedDisplay.UIInitialize(PlayerMechMovement.GetNormSpeedLimitRatio());
         BoostDisplay.UIInitialize();
         AmmoDisplay.UIInitialize();
+        LockDisplay.Initilize(PlayerMechFCS);
 
 
     }
@@ -92,10 +97,11 @@ public class UIInfoPanelManager : MonoBehaviour
         HPDisplay.UpdateBar(PlayerMechMain.GetHealthText(), PlayerMechMain.GetHealthPercent(), PlayerMechMain.GetCoatingPercent());
         EnergyDisplay.UpdateBar(PlayerEnergySystem.GetEnergyText(), PlayerEnergySystem.GetEnergyPercent());
         BoostDisplay.UpdateBar(PlayerMechMovement.GetBoostText(), PlayerMechMovement.GetBoostPercent());
-
+        //LockDisplay.UpdateLockNumbers(PlayerMechFCS.GetLockedAmount());
         //circle displays
         SpeedDisplay.UpdateBar(PlayerMechMovement.GetSpeedText(), PlayerMechMovement.GetSpeedPercent());
     }
+
 
     //private void UpdateCoating(float Bar)
     //{

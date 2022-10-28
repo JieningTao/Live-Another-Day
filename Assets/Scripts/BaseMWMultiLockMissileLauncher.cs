@@ -32,7 +32,7 @@ public class BaseMWMultiLockMissileLauncher : BaseMainWeapon
             else
             {
                 Locking = true;
-                MyFCS.RequestLocks(LockCount);
+                MyFCS.RequestLocks(LockCount,this);
             }
         }
     }

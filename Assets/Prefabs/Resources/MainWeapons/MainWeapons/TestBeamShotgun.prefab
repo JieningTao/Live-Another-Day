@@ -893,10 +893,10 @@ MonoBehaviour:
   MuzzleFlarePrefab: {fileID: 2198442676551212465, guid: 3dc32f212ff5da3418ab4a4602a816ea,
     type: 3}
   PercentageConsumedPerShot: 0.16
-  ChargePerSecond: 0.16
+  ChargePerSecond: 0.2
   ChargeDelay: 0.2
   ChargePowerDraw: 2.5
-  ShotAmount: 15
+  ShotAmount: 10
 --- !u!114 &6116856496957321508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,6 +931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: '** TestBeamShotgun'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainWeapons/MainWeapons/TestBeamShotgun
 --- !u!1 &4803009838363063170
@@ -1535,7 +1536,7 @@ PrefabInstance:
     - target: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}
       propertyPath: Damage
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}

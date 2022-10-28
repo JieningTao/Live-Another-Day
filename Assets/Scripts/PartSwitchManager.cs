@@ -53,6 +53,7 @@ public class PartSwitchManager : MonoBehaviour
         LoadList();
         CreateOptionsForCurrentList();
         SetCatagoryTitle();
+        DetermineEXGAndWeaponSlots();
 
     }
 
@@ -98,13 +99,9 @@ public class PartSwitchManager : MonoBehaviour
         {
             BodyPartsSelection.SetActive(false);
             WeaponsAndEXGSelection.SetActive(true);
+            DetermineEXGAndWeaponSlots();
 
-            List<bool> Temp = AssemblyRack.GetEXGAndWeaponSlots();
 
-            for (int i = 0; i < 8; i++)
-            {
-                EXGAndWeaponButtons[i].interactable = Temp[i];
-            }
 
         }
         else
@@ -116,7 +113,12 @@ public class PartSwitchManager : MonoBehaviour
 
     public void DetermineEXGAndWeaponSlots()
     {
+        List<bool> Temp = AssemblyRack.GetEXGAndWeaponSlots();
 
+        for (int i = 0; i < 8; i++)
+        {
+            EXGAndWeaponButtons[i].interactable = Temp[i];
+        }
     }
 
     #endregion
@@ -242,6 +244,9 @@ public class PartSwitchManager : MonoBehaviour
     private void CreateLoadOutOption(LoadOutPart a)
     {
         //needs to impliment a object pool system for the options
+
+        if (a && a.HideForPlayer) //parts that are tagged with this is hidden, mainly used for testing and locking unfinished parts
+            return;
 
         AssemblyPartOption NewOption = Instantiate(ListOptionPrefab, ListParent).GetComponent<AssemblyPartOption>();
 

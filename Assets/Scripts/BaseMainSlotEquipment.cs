@@ -24,8 +24,9 @@ public class BaseMainSlotEquipment : MonoBehaviour
 
     [SerializeField]
     private bool Mirrored = false;
-        
 
+    protected bool Right;
+    protected BaseMechFCS Operator;
 
 
 
@@ -39,10 +40,15 @@ public class BaseMainSlotEquipment : MonoBehaviour
 
     }
 
-    public virtual void Equip(bool _Equip, BaseMechMain Operator,bool Right)
+    public virtual void Equip(bool _Equip, BaseMechMain _Operator,bool _Right)
     {
-        if(Operator)
-        this.gameObject.layer = Operator.gameObject.layer;
+        if (_Operator)
+        {
+            Operator = _Operator.GetFCS();
+            this.gameObject.layer = _Operator.gameObject.layer;
+        }
+
+        Right = _Right;
 
         if (!Right)
         {
@@ -79,4 +85,5 @@ public class BaseMainSlotEquipment : MonoBehaviour
     {
         return Weight;
     }
+
 }

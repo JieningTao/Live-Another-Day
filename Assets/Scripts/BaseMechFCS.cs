@@ -26,6 +26,7 @@ public class BaseMechFCS : MonoBehaviour
     private bool PlayerFCS = false;
     public static event Action<String, EnergySignal> LockChanges;
     public static event Action<bool, BaseMainSlotEquipment> WeaponChanges;
+    public static event Action<bool, bool, bool, bool> WeaponWarnings;
     public static event Action<int, string, BaseEXGear> EXGearChanges;
 
     [SerializeField]
@@ -60,6 +61,8 @@ public class BaseMechFCS : MonoBehaviour
 
     [SerializeField]
     private float LockTime;
+    [SerializeField]
+    private int MaxSupportedLock = 10;
 
     private Transform CameraAnchor;
     protected EnergySignal MainTarget; //public for testing
@@ -68,6 +71,7 @@ public class BaseMechFCS : MonoBehaviour
     private float LockCooldown;
     private bool CurrentlyLocking;
     private int LockRequested;
+    private object LockRequester;
     private BaseMechMain MyBMM;
     private bool FocusMode;
     private EnergySignal FocusTarget;
@@ -267,6 +271,14 @@ public class BaseMechFCS : MonoBehaviour
             WeaponChanges.Invoke(OnRightHand, Equipment);
     }
 
+    public void SetWeaponWarning(bool Right, bool Main, bool Ammo, bool Active)
+    {
+        if (WeaponWarnings !=null)
+        {
+            WeaponWarnings.Invoke(Right, Main, Ammo, Active);
+        }
+    }
+
     private void CheckTargetValidity()
     {
         for (int i = 0; i < TargetsWithinRange.Count; i++)
@@ -361,31 +373,68 @@ public class BaseMechFCS : MonoBehaviour
     #region LockedList related
     private void UpdateLockedList()
     {
-        if (CurrentlyLocking && CurrentListOfLocked.Count < LockRequested)
+        if (CurrentlyLocking)
         {
             LockCooldown -= Time.deltaTime;
             if (LockCooldown <= 0)
             {
-                LockClosestUnlocked(1);
+                if (CurrentListOfLocked.Count < LockRequested && CurrentListOfLocked.Count < MaxSupportedLock)
+                {
+                    LockClosestUnlocked(1);
+
+                    if (CurrentListOfLocked.Count >= LockRequested || CurrentListOfLocked.Count >= MaxSupportedLock)
+                    {
+                        CurrentlyLocking = false;
+                        LockChanges.Invoke("LockAtMax",null);
+                    }
+                }
+
             }
         }
     }
 
 
 
-    public void RequestLocks(int Amount)
+    public void RequestLocks(int Amount,object Requester)
     {
+
         if (Amount == 0)
         {
-            CurrentlyLocking = false;
+            if (Requester == LockRequester)
+            {
+                CurrentlyLocking = false;
+                LockRequested = Amount;
+                LockCooldown = 0;
+                CurrentListOfLocked.Clear();
+                LockRequester = null;
+                LockChanges.Invoke("UnlockAll", null);
+                LockChanges.Invoke("ClearLockRequester", null);
+            }
+        }
+        else
+        {
+            CurrentlyLocking = true;
             LockRequested = Amount;
-            LockCooldown = 0;
-            CurrentListOfLocked.Clear();
+            LockCooldown = LockTime;
+            LockRequester = Requester;
+            LockChanges.Invoke("NewLockRequester", null);
         }
 
-        CurrentlyLocking = true;
-        LockRequested = Amount;
-        LockCooldown = LockTime;
+
+    }
+
+    public string GetLockRequesterName()
+    {
+        if (LockRequester is BaseEXGear)
+        {
+            return (LockRequester as BaseEXGear).GetName();
+        }
+        else if (LockRequester is BaseMainWeapon)
+        {
+            return (LockRequester as BaseMainWeapon).GetName();
+        }
+        else
+            return "ERR";
     }
 
     private void LockClosestUnlocked(int Amount)
@@ -479,6 +528,23 @@ public class BaseMechFCS : MonoBehaviour
     public int GetLockedAmount()
     {
         return CurrentListOfLocked.Count;
+    }
+
+    public int GetCurrentRequestedAmount()
+    {
+        return LockRequested;
+    }
+
+    public int GetMaxLockAmount()
+    {
+        return MaxSupportedLock;
+    }
+
+    public bool MaxLockReached()
+    {
+        if (CurrentListOfLocked.Count == MaxSupportedLock || CurrentListOfLocked.Count == LockRequested)
+            return true;
+        return false;
     }
     #endregion
 
@@ -618,7 +684,10 @@ public class BaseMechFCS : MonoBehaviour
         EquipedEXGear[SelectedEXSlot].Equip(true);
 
         if (PlayerFCS && EXGearChanges != null)
+        {
             EXGearChanges.Invoke(SelectedEXSlot + 1, "Select", null);
+
+        }
     }
 
     private int SwitchSlot(bool Next)
@@ -637,6 +706,11 @@ public class BaseMechFCS : MonoBehaviour
         }
 
         return SelectedEXSlot;
+    }
+
+    public BaseEXGear GetCurrentEXG()
+    {
+        return EquipedEXGear[SelectedEXSlot];
     }
 
     #endregion

@@ -249,9 +249,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2821663007901706599}
-  - component: {fileID: 2821663007901706521}
   - component: {fileID: 2821663007901706598}
   - component: {fileID: 3192125888400098804}
+  - component: {fileID: 6236425985303788733}
   m_Layer: 0
   m_Name: 3M(HE) Missile
   m_TagString: Untagged
@@ -278,29 +278,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2821663007901706521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2821663007901706596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1762416cba7ca0d44ada28432bf08c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Displacement: {x: 0, y: 0, z: 0}
-  Weight: 0
-  Mirrored: 0
-  EXGearSprite: {fileID: 21300000, guid: f8f048f912d276f45a82380043a59436, type: 3}
-  EXGearName: MP 3*HE
-  Passive: 0
-  MyAnimator: {fileID: 0}
-  ReadyTime: 0
-  MultiLock: 1
-  LockCount: 3
-  MyLauncher: {fileID: 2821663007901706598}
 --- !u!114 &2821663007901706598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +318,29 @@ MonoBehaviour:
   Description: 
   PartCatagory: 9
   PrefabPath: ExtraGears/Side/3M(HE) Missile
+--- !u!114 &6236425985303788733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821663007901706596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880ef49fd7a030340b1525f3a4c51607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Displacement: {x: 0, y: 0, z: 0}
+  Weight: 0
+  Mirrored: 0
+  EXGearSprite: {fileID: 21300000, guid: f8f048f912d276f45a82380043a59436, type: 3}
+  EXGearName: MP 3*HE
+  Passive: 0
+  MyAnimator: {fileID: 0}
+  ReadyTime: 0
+  LockCount: 3
+  MultiLock: 1
+  MyLauncher: {fileID: 2821663007901706598}
 --- !u!1 &2821663008015901410
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class LoadOutPart : MonoBehaviour
 
     public string Name;
     public string Description;
+    public bool HideForPlayer = false;
     public PartSwitchManager.BigCataGory PartCatagory;
     public string PrefabPath;
 

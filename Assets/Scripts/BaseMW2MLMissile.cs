@@ -36,11 +36,12 @@ public class BaseMW2MLMissile : Shoot2MainWeapon
             {
                 MainLauncher.FireVolley(MyFCS.GetLockedList());
                 Locking = false;
+                MyFCS.RequestLocks(0, this);
             }
             else
             {
                 Locking = true;
-                MyFCS.RequestLocks(MainLockNum);
+                MyFCS.RequestLocks(MainLockNum,this);
             }
         }
     }
@@ -53,11 +54,12 @@ public class BaseMW2MLMissile : Shoot2MainWeapon
             {
                 SecondaryLauncher.FireVolley(MyFCS.GetLockedList());
                 Locking = false;
+                MyFCS.RequestLocks(0, this);
             }
             else
             {
                 Locking = true;
-                MyFCS.RequestLocks(SecondaryLockNum);
+                MyFCS.RequestLocks(SecondaryLockNum,this);
             }
         }
     }

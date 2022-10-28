@@ -50,6 +50,7 @@ public class BaseShoot : MonoBehaviour
         foreach(Transform a in BulletSpawns)
             a.gameObject.SetActive(true);
         InitializeBullet();
+        if(MuzzleFlarePrefab)
         InitializeMuzzleFlare();
         //MyStatus = WeaponStatus.Normal;
     }
@@ -87,7 +88,18 @@ public class BaseShoot : MonoBehaviour
         {
             GameObject NewMuzzleFlare = Instantiate(MuzzleFlarePrefab, a.position, MuzzleFlarePrefab.transform.rotation, a.transform);
             NewMuzzleFlare.transform.localRotation = MuzzleFlarePrefab.transform.localRotation;
-            MuzzleFlares.Add(NewMuzzleFlare.GetComponent<ParticleSystem>());
+            ParticleSystem NewPS = NewMuzzleFlare.GetComponent<ParticleSystem>();
+            AdjustEffectScale(NewPS,a.localScale);
+            MuzzleFlares.Add(NewPS);
+
+        }
+    }
+
+    public void AdjustEffectScale(ParticleSystem a, Vector3 Scale)
+    {
+        foreach (ParticleSystem b in a.GetComponentsInChildren<ParticleSystem>())
+        {
+            b.transform.localScale = Scale;
         }
     }
 
@@ -184,5 +196,14 @@ public class BaseShoot : MonoBehaviour
         return "";
     }
 
+    public virtual bool LowAmmoWarning()
+    {
+        return false;
+    }
+
+    public virtual bool LowEnergyWarning()
+    {
+        return false;
+    }
 
 }

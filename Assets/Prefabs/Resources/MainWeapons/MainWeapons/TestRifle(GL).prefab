@@ -442,8 +442,8 @@ MonoBehaviour:
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
-  MaxMagazine: 25
-  MaxReserveAmmo: 150
+  MaxMagazine: 12
+  MaxReserveAmmo: 60
   ReloadTime: 2
 --- !u!114 &7671202745400613515
 MonoBehaviour:
@@ -506,6 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: '** TestRifle(GL)'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainWeapons/MainWeapons/TestRifle(GL)
 --- !u!1 &3574976879581194534
@@ -924,6 +925,11 @@ PrefabInstance:
         type: 3}
       propertyPath: HitMask
       value: 51200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248584732470765589, guid: 6d51d3b342bf5b14d80f44d53642d240,
+        type: 3}
+      propertyPath: ExplosiveDamage
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 9101633323893814125, guid: 6d51d3b342bf5b14d80f44d53642d240,
         type: 3}

@@ -161,8 +161,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1531035602240384040}
-  - component: {fileID: 1531035602240384046}
   - component: {fileID: 1531035602240384041}
+  - component: {fileID: 8654502956916891918}
   - component: {fileID: 2479621282925787120}
   m_Layer: 0
   m_Name: 10S Missile
@@ -197,29 +197,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1531035602240384046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531035602240384043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1762416cba7ca0d44ada28432bf08c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Displacement: {x: 0, y: 0, z: 0}
-  Weight: 0
-  Mirrored: 0
-  EXGearSprite: {fileID: 21300000, guid: f8f048f912d276f45a82380043a59436, type: 3}
-  EXGearName: MP 10*IE
-  Passive: 0
-  MyAnimator: {fileID: 0}
-  ReadyTime: 0
-  MultiLock: 1
-  LockCount: 10
-  MyLauncher: {fileID: 1531035602240384041}
 --- !u!114 &1531035602240384041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +228,29 @@ MonoBehaviour:
   MaxMagazine: 10
   MaxReserveAmmo: 40
   ReloadTime: 6
+--- !u!114 &8654502956916891918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531035602240384043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880ef49fd7a030340b1525f3a4c51607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Displacement: {x: 0, y: 0, z: 0}
+  Weight: 0
+  Mirrored: 0
+  EXGearSprite: {fileID: 21300000, guid: f8f048f912d276f45a82380043a59436, type: 3}
+  EXGearName: MP 10*IE
+  Passive: 0
+  MyAnimator: {fileID: 0}
+  ReadyTime: 0
+  LockCount: 10
+  MultiLock: 1
+  MyLauncher: {fileID: 1531035602240384041}
 --- !u!114 &2479621282925787120
 MonoBehaviour:
   m_ObjectHideFlags: 0

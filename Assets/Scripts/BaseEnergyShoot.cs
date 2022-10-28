@@ -100,4 +100,11 @@ public class BaseEnergyShoot : BaseShoot
     {
         return (CurrentCapacitorPercentage * 100).ToString("F2") + "%";
     }
+
+    public override bool LowEnergyWarning()
+    {
+        if (CurrentCapacitorPercentage < 0.2)
+            return true;
+        return false;
+    }
 }

@@ -570,7 +570,7 @@ MonoBehaviour:
     type: 3}
   MaxMagazine: 3
   MaxReserveAmmo: 21
-  ReloadTime: 2
+  ReloadTime: 3.5
 --- !u!114 &8045345396498258720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,6 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: '** Heavy Cannon'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainWeapons/MainWeapons/Heavy Cannon
 --- !u!1 &7432949770673777058
@@ -822,7 +823,7 @@ PrefabInstance:
     - target: {fileID: 7597070055369782402, guid: 138b41b2b1fb50e4cabb6edd11ac2999,
         type: 3}
       propertyPath: ExplosiveDamage
-      value: 250
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 8485863104642300476, guid: 138b41b2b1fb50e4cabb6edd11ac2999,
         type: 3}

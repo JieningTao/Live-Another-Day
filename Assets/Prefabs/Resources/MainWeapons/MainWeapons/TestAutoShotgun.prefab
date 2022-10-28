@@ -339,6 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: '** TestAutoShotgun'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainWeapons/MainWeapons/TestAutoShotgun
 --- !u!1 &3967291098474804688
@@ -729,12 +730,27 @@ PrefabInstance:
     - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
       propertyPath: Damage
-      value: 14
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.64
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}

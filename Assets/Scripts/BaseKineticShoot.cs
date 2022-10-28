@@ -98,4 +98,12 @@ public class BaseKineticShoot : BaseShoot
     {
         return ReloadTimeRemaining<=0;
     }
+
+    public override bool LowAmmoWarning()
+    {
+        if (ReserveRemaining <= MaxMagazine)
+            return true;
+
+        return false;
+    }
 }

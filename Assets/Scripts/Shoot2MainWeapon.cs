@@ -14,7 +14,8 @@ public class Shoot2MainWeapon : BaseMainWeapon
     [SerializeField]
     protected Color SecondaryWeaponGaugeColor;
 
-
+    bool SecondaryAmmoWarning = false;
+    bool SecondaryEnergyWarning = false;
 
     public override void PrimaryFire(bool Fire)
     {
@@ -36,6 +37,25 @@ public class Shoot2MainWeapon : BaseMainWeapon
         {
             (SecondaryWeapon as BaseEnergyShoot).GetPowerSource(Operator);
         }
+    }
+
+    protected override void CheckWarnings()
+    {
+        base.CheckWarnings();
+
+        if (SecondaryWeapon.LowAmmoWarning() && !SecondaryAmmoWarning)
+            Operator.SetWeaponWarning(Right, false, true, true);
+        else if (!SecondaryWeapon.LowAmmoWarning() && SecondaryAmmoWarning)
+            Operator.SetWeaponWarning(Right, false, true, false);
+
+        SecondaryAmmoWarning = SecondaryWeapon.LowAmmoWarning();
+
+        if (SecondaryWeapon.LowEnergyWarning() && !SecondaryEnergyWarning)
+            Operator.SetWeaponWarning(Right, false, false, true);
+        else if (!SecondaryWeapon.LowEnergyWarning() && SecondaryEnergyWarning)
+            Operator.SetWeaponWarning(Right, false, false, false);
+
+        SecondaryEnergyWarning = SecondaryWeapon.LowEnergyWarning();
     }
 
     public override void GetInitializeDate(out string MainFunction, out Color MainColor, out string SecondaryFunction, out Color SecondaryColor)

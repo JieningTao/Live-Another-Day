@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 960311412314343615}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.11747304, z: 1.038}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 5080817679578718917}
   m_RootOrder: 1
@@ -299,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 3689874388130164156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.081473045, z: 0.98999995}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 5080817679578718917}
   m_RootOrder: 0
@@ -526,7 +526,7 @@ MonoBehaviour:
   PercentageConsumedPerShot: 0.025
   ChargePerSecond: 0.1
   ChargeDelay: 0.5
-  ChargePowerDraw: 0
+  ChargePowerDraw: 6
 --- !u!114 &5621437565566320066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +588,7 @@ Transform:
   m_GameObject: {fileID: 5080817680812035904}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.15347303, z: 1.086}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 5080817679578718917}
   m_RootOrder: 2
@@ -868,6 +868,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5080817679578718917}
     m_Modifications:
+    - target: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: Damage
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}
       propertyPath: m_RootOrder

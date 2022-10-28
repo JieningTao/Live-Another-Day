@@ -623,7 +623,7 @@ MonoBehaviour:
   MuzzleFlarePrefab: {fileID: 6063511500767265844}
   MaxMagazine: 6
   MaxReserveAmmo: 24
-  ReloadTime: 4
+  ReloadTime: 6.5
 --- !u!114 &2028634281944412228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,7 +650,7 @@ MonoBehaviour:
   MuzzleFlarePrefab: {fileID: 6063511500767265844}
   MaxMagazine: 6
   MaxReserveAmmo: 24
-  ReloadTime: 4
+  ReloadTime: 6.5
 --- !u!114 &-1038651691423277429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,6 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: '** M+M Missile Container'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainWeapons/MainWeapons/M+M Missile Container
 --- !u!1 &2028634282250333909
@@ -3377,7 +3378,7 @@ PrefabInstance:
     - target: {fileID: 6248584732470765589, guid: 6d51d3b342bf5b14d80f44d53642d240,
         type: 3}
       propertyPath: ExplosiveDamage
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 9101633323893814125, guid: 6d51d3b342bf5b14d80f44d53642d240,
         type: 3}

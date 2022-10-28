@@ -472,10 +472,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5288266991133313054}
-  - component: {fileID: 5288266991133313043}
   - component: {fileID: 5288266991133313052}
   - component: {fileID: 5288266991133313053}
   - component: {fileID: 3330955171779554101}
+  - component: {fileID: 38459207926739105}
   m_Layer: 0
   m_Name: '''Branch'' Side Rifle'
   m_TagString: Untagged
@@ -499,30 +499,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5288266991133313043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288266991133313055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be0231fe41fd98c448036497a2299f9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Displacement: {x: 0, y: 0, z: 0}
-  Weight: 0
-  Mirrored: 1
-  EXGearSprite: {fileID: 21300000, guid: 1db71ac742c2b8448be593947058db39, type: 3}
-  EXGearName: '''Branch'' Side Rifle'
-  Passive: 0
-  MyAnimator: {fileID: 5288266991133313053}
-  ReadyTime: 0.4
-  AimedPart: {fileID: 5288266991133313054}
-  MyWeapon: {fileID: 5288266991133313052}
-  TargetSpeed: 1
-  TargetingAngle: 10
 --- !u!114 &5288266991133313052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +557,30 @@ MonoBehaviour:
   Description: 
   PartCatagory: 9
   PrefabPath: ExtraGears/Side/'Branch' Side Rifle
+--- !u!114 &38459207926739105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288266991133313055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95a623f73dec9e4f9a2994d42847cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Displacement: {x: 0, y: 0, z: 0}
+  Weight: 0
+  Mirrored: 1
+  EXGearSprite: {fileID: 21300000, guid: 1db71ac742c2b8448be593947058db39, type: 3}
+  EXGearName: '''Branch'' Side Rifle'
+  Passive: 0
+  MyAnimator: {fileID: 5288266991133313053}
+  ReadyTime: 0.4
+  AimedPart: {fileID: 5288266991133313054}
+  MyWeapon: {fileID: 5288266991133313052}
+  TargetSpeed: 1
+  TargetingAngle: 10
 --- !u!1 &6611318672478779520
 GameObject:
   m_ObjectHideFlags: 0

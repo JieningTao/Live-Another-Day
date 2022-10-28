@@ -18,10 +18,6 @@ public class WeaponUIManager : MonoBehaviour
     private bool RightHasSecondary;
     private bool LeftHasSecondary;
 
-
-
-
-
     private void Update()
     {
         UpdateWeaponStatus(true);
@@ -88,7 +84,7 @@ public class WeaponUIManager : MonoBehaviour
 
         Equipment.GetInitializeDate(out string MainName,out Color MainColor,out string SecondaryName,out Color SecondaryColor);
 
-        TempMain.StartInitialize(MainName, MainColor);
+        TempMain.StartInitialize(MainName, MainColor,Right,true);
 
         if (SecondaryName != "")
         {
@@ -97,7 +93,7 @@ public class WeaponUIManager : MonoBehaviour
             else
                 LeftHasSecondary = true;
             TempSecondary.SetAvaliable(true);
-            TempSecondary.StartInitialize(SecondaryName, SecondaryColor);
+            TempSecondary.StartInitialize(SecondaryName, SecondaryColor,Right,false);
             
         }
         else
@@ -113,6 +109,8 @@ public class WeaponUIManager : MonoBehaviour
         UpdateWeaponStatus(Right);
         
     }
+
+
 
     private void OnEnable()
     {
