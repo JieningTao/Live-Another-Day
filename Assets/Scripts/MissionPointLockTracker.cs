@@ -18,7 +18,7 @@ public class MissionPointLockTracker : MonoBehaviour
 
     private float RadarBlipRangeDelta;
     private UILockManager MyManager;
-    private bool HUDWasOn;
+    private bool HUDWasOn = false;
     private Vector3 TargetPosition;
     private float DistanceToTarget;
 
@@ -28,6 +28,7 @@ public class MissionPointLockTracker : MonoBehaviour
         TrackedObject = _TrackedObject;
         Title.text = _Title;
         RadarBlipRangeDelta = RadarParent.GetRangeDelta();
+        RadarTrackBlip.transform.SetParent(RadarParent.RadarBG.transform);
     }
 
 

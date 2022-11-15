@@ -84,9 +84,10 @@ public class WeaponUIManager : MonoBehaviour
 
         Equipment.GetInitializeDate(out string MainName,out Color MainColor,out string SecondaryName,out Color SecondaryColor);
 
+
         TempMain.StartInitialize(MainName, MainColor,Right,true);
 
-        if (SecondaryName != "")
+        if (SecondaryName != "\n"&& SecondaryName != "")
         {
             if (Right)
                 RightHasSecondary = true;

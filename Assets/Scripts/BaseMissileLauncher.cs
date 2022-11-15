@@ -6,7 +6,8 @@ public class BaseMissileLauncher : BaseKineticShoot
 {
 
 
-    protected BaseMissile MissileScript;
+    protected BaseMissile MissileScript
+    { get { return (ProjectileScript as BaseMissile); } }
     protected List<EnergySignal> Targets = new List<EnergySignal>();
    
     //public override void InitializeGear(BaseMechFCS FCS)
@@ -49,8 +50,6 @@ public class BaseMissileLauncher : BaseKineticShoot
 
     protected override void InitializeBullet()
     {
-
-        MissileScript = ProjectilePrefab.GetComponent<BaseMissile>();
 
         int SetLayer = 0;
         if (gameObject.layer == 9)
@@ -102,5 +101,7 @@ public class BaseMissileLauncher : BaseKineticShoot
         MissileScript.RecieveTarget(null);
     }
 
+    public string GetTracking
+    { get { return MissileScript.GetTracking; } }
 
 }

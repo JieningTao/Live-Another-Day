@@ -359,7 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8015285879062667703}
   - component: {fileID: 3400751467080417918}
-  - component: {fileID: 5819752724471087131}
+  - component: {fileID: 1973668123052228869}
   m_Layer: 0
   m_Name: BackupGenerator
   m_TagString: Untagged
@@ -405,7 +405,7 @@ MonoBehaviour:
   MaxFuel: 200
   FuelConsumedPerSecond: 5
   EnergyGenerationPerSecond: 10
---- !u!114 &5819752724471087131
+--- !u!114 &1973668123052228869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,13 +414,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8015285879062667696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: ec42a61dd09d70a44840ffa7d3b07843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '''Steam Engine'' Generator'
+  Name: '** BackupGenerator'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/BackupGenerator
+  MyEXG: {fileID: 3400751467080417918}
 --- !u!1 &9072825036344654175
 GameObject:
   m_ObjectHideFlags: 0

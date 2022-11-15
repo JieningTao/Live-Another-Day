@@ -5034,7 +5034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1680351302066692770}
-  - component: {fileID: 433190185676054941}
+  - component: {fileID: 6954381686773738949}
   m_Layer: 0
   m_Name: '''Leo'' Arms'
   m_TagString: Untagged
@@ -5058,7 +5058,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &433190185676054941
+--- !u!114 &6954381686773738949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5067,13 +5067,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7159471525425804653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: 1939b50d0cc85b14580aeeb8a3b8883b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '''Leo'' arms'
+  Name: '''Leo'' Arms'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 2
   PrefabPath: MechParts/Arms/'Leo' Arms
+  MyPart: {fileID: 8207436072186123534}
+  MyOtherPart: {fileID: 910862404252628122}
 --- !u!1 &7159543907444210980
 GameObject:
   m_ObjectHideFlags: 0

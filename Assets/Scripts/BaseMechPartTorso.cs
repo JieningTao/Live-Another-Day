@@ -26,12 +26,27 @@ public class BaseMechPartTorso : BaseMechPart
     float AmmoAmount = 200;
 
 
+    BasePowerSystem PowerSystem
+    {
+        get {
+            if (!_PowerSystem)
+                _PowerSystem = GetComponent<BasePowerSystem>();
+            return _PowerSystem;
+        }
+    }
+    BasePowerSystem _PowerSystem;
+
+
+
 
     public void AssembleMech(BaseMechMain Mech, BaseMechPart H, BaseMechPart RA, BaseMechPart LA, BaseMechPart L, BaseMechPart BP)
     {
         H.Assemble(Mech, HeadSocket);
         RA.Assemble(Mech, RightArmSocket);
         LA.Assemble(Mech, LeftArmSocket);
+
+        //Debug.Log(RA.transform.parent.name);
+
         L.Assemble(Mech, LegsSocket);
         BP.Assemble(Mech, BackPackSocket);
     }
@@ -48,6 +63,23 @@ public class BaseMechPartTorso : BaseMechPart
     public BaseEXGear GetBuilInEXG()
     {
         return TorsoBuiltInEXG;
+    }
+
+    public override string GetBIEXG
+    {
+        get {
+            if (TorsoBuiltInEXG)
+            {
+                return TorsoBuiltInEXG.GetName();
+            }
+            else
+                return "None";
+        }
+    }
+
+    public BasePowerSystem GetPowerSystem()
+    {
+        return PowerSystem;
     }
 
 }

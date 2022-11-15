@@ -9520,7 +9520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3289916265734035225}
   - component: {fileID: 5292031638811483817}
-  - component: {fileID: -4894953974298836848}
+  - component: {fileID: 3543540522971106186}
   m_Layer: 0
   m_Name: '''RedLine'' Boost System'
   m_TagString: Untagged
@@ -9570,7 +9570,7 @@ MonoBehaviour:
   BoostExhaust: {fileID: 7000326237850287640}
   ImpulseBoost: {fileID: 6895928875604092342}
   FloatThrust: {fileID: 6333283128530172453}
---- !u!114 &-4894953974298836848
+--- !u!114 &3543540522971106186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9579,7 +9579,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3218472679067691737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: 45b28768e33a08d439de9e1c2539d0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''RedLine'' Boost System'
@@ -9587,6 +9587,7 @@ MonoBehaviour:
   HideForPlayer: 0
   PartCatagory: 5
   PrefabPath: MechParts/BoostSystem/'RedLine' Boost System
+  MyBS: {fileID: 5292031638811483817}
 --- !u!1 &4035484638774478494
 GameObject:
   m_ObjectHideFlags: 0

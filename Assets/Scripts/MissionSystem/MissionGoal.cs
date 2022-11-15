@@ -9,6 +9,8 @@ public class MissionGoal : MonoBehaviour
     string DisplayTarget;
     [SerializeField]
     public string Marker;
+    [SerializeField]
+    public List<GameObject> PingTrackerMarkers = new List<GameObject>();
 
     private MissionTracker MyTracker;
 
@@ -35,6 +37,16 @@ public class MissionGoal : MonoBehaviour
     public virtual void Init(MissionTracker a)
     {
         MyTracker = a;
+        if (PingTrackerMarkers.Count > 0)
+            CreateTrackers(PingTrackerMarkers);
+    }
+
+    public virtual void CreateTrackers(List<GameObject> a)
+    {
+        foreach (GameObject b in a)
+        {
+        UILockManager.Instance.CreateMissionTracker(b.name,b);
+        }
     }
 
     //public virtual string GetMissionName()

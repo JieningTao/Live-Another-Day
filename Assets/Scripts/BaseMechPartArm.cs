@@ -24,9 +24,13 @@ public class BaseMechPartArm : BaseMechPart
 
     public override void Assemble(BaseMechMain Mech, Transform JointPosition)
     {
-        base.Assemble(Mech, JointPosition);
+        //base.Assemble(Mech, JointPosition);
+        transform.parent = JointPosition;
+        transform.localPosition = Displacement;
+        transform.localRotation = Quaternion.Euler(Vector3.zero);
+        MyMech = Mech;
+        SetLayer(Mech.gameObject.layer);
 
-        
         EquipEquipment(EquippedGear);
         EquipEXG(ArmEXG);
     }
@@ -95,7 +99,7 @@ public class BaseMechPartArm : BaseMechPart
 
         Vector3 AimDir;
 
-        if(EquippedGear.RequireAiming)
+        if (EquippedGear.RequireAiming)
             AimDir = Vector3.RotateTowards(AimedPart.forward, Pos - HandSlot.transform.position, AimSpeed * Time.deltaTime, 0.0f);
         else
             AimDir = Vector3.RotateTowards(AimedPart.forward, transform.forward, AimSpeed * Time.deltaTime, 0.0f);
@@ -123,11 +127,11 @@ public class BaseMechPartArm : BaseMechPart
                 MoveDelta = Vector3.zero;
             else
             {
-                MoveDelta =  Tar.GetSpeed() * (Vector3.Distance(transform.position, Tar.transform.position) / EquippedGear.GetBulletSpeed());
+                MoveDelta = Tar.GetSpeed() * (Vector3.Distance(transform.position, Tar.transform.position) / EquippedGear.GetBulletSpeed());
             }
 
 
-            AimDir = Vector3.RotateTowards(AimedPart.forward, (Tar.transform.position+MoveDelta) - HandSlot.transform.position, AimSpeed * Time.deltaTime, 0.0f);
+            AimDir = Vector3.RotateTowards(AimedPart.forward, (Tar.transform.position + MoveDelta) - HandSlot.transform.position, AimSpeed * Time.deltaTime, 0.0f);
         }
         else
             AimDir = Vector3.RotateTowards(AimedPart.forward, transform.forward, AimSpeed * Time.deltaTime, 0.0f);
@@ -240,13 +244,34 @@ public class BaseMechPartArm : BaseMechPart
         {
             float TW = Weight;
 
-            if (SideMountedEXGSlot&&ArmEXG)
+            if (SideMountedEXGSlot && ArmEXG)
                 TW += ArmEXG.GetWeight();
 
             if (HandSlot && EquippedGear)
                 TW += EquippedGear.GetWeight();
 
             return TW;
+        }
+    }
+
+    public override string GetBIEXG
+    {
+        get {
+            if (ArmEXG && SideMountedEXGSlot == null)
+                return ArmEXG.GetName();
+            else
+                return null;
+        }
+    }
+
+
+    public override string GetEXGSlots
+    {
+        get {
+            if (SideMountedEXGSlot)
+                return "Y";
+            else
+                return "N";
         }
     }
 }

@@ -1179,7 +1179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3431982266138383200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.596, z: 0}
+  m_LocalPosition: {x: 0, y: -0.744, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1140915100474223796}
@@ -1728,7 +1728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1140915100474223796}
   - component: {fileID: 5891783599242692590}
-  - component: {fileID: 2474027588458874374}
+  - component: {fileID: -215748035898569671}
   m_Layer: 0
   m_Name: Legs
   m_TagString: Untagged
@@ -1791,7 +1791,7 @@ MonoBehaviour:
   DustTrails:
   - {fileID: 3378256643210535504}
   - {fileID: 4843423965353698634}
---- !u!114 &2474027588458874374
+--- !u!114 &-215748035898569671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1800,13 +1800,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5891783599242692591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: d25feb2e4fee990459e3d139c0d012c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** Legs'
+  Name: Default Legs
   Description: 
+  HideForPlayer: 0
   PartCatagory: 3
   PrefabPath: MechParts/Legs/Legs
+  MyPart: {fileID: 5891783599242692590}
 --- !u!1 &6077908616099499929
 GameObject:
   m_ObjectHideFlags: 0

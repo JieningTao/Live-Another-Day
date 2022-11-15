@@ -596,7 +596,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5552312318342144687}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -622,12 +622,16 @@ MonoBehaviour:
   BulletSpawns:
   - {fileID: 8635276412450693408}
   - {fileID: 697669049118820793}
-  ProjectilePrefab: {fileID: 729050805560958795}
+  ProjectileScript: {fileID: 729050805560958902}
   AccuracyDeviation: 0.02
   TBS: 0.3
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 2198442676551212465, guid: 3dc32f212ff5da3418ab4a4602a816ea,
     type: 3}
+  ShotSounds:
+  - {fileID: 8300000, guid: d4a52cdf97cd6874e856fa64101302d9, type: 3}
+  SoundMinMax: {x: 10, y: 500}
+  Volume: 1
 --- !u!114 &5552312318342144685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,15 +726,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c5b270491b9c914db6b55ce60052d0d, type: 3}
---- !u!1 &729050805560958795 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5121680720090386673, guid: 1c5b270491b9c914db6b55ce60052d0d,
-    type: 3}
-  m_PrefabInstance: {fileID: 5552312318820880314}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &729050805560958901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
     type: 3}
   m_PrefabInstance: {fileID: 5552312318820880314}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &729050805560958902 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5552312318820880314}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9692ae321e1b5ae4e8f5a51486ce6f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

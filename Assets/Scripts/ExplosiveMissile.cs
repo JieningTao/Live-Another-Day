@@ -47,4 +47,7 @@ public class ExplosiveMissile : BaseMissile
         Destroy(this.gameObject);
     }
 
+    public override string GetDamage
+    { get { return MyExplosion.GetDamage; } }
+
 }

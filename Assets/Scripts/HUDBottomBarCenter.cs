@@ -37,7 +37,6 @@ public class HUDBottomBarCenter : MonoBehaviour
 
         if (b == "New")
         {
-            Debug.Log(a);
             AllEXGs[a-1] = c;
         }
 

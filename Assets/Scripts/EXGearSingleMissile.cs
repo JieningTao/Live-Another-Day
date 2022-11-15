@@ -28,4 +28,12 @@ public class EXGearSingleMissile : BaseEXGear
     {
         return MyLauncher.GetAmmoGauge();
     }
+
+    public override List<string> GetStats()
+    {
+        List<string> Temp = new List<string>();
+
+
+        return Temp;
+    }
 }

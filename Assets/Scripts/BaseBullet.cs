@@ -135,4 +135,7 @@ public class BaseBullet : MonoBehaviour
         }
 
     }
+
+    public virtual string GetDamage
+    { get { return Damage + ""; } }
 }

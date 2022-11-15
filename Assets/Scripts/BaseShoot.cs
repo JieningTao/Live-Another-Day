@@ -8,8 +8,10 @@ public class BaseShoot : MonoBehaviour
     protected List<Transform> BulletSpawns;
 
     [SerializeField]
-    protected GameObject ProjectilePrefab;
     protected BaseBullet ProjectileScript;
+
+    protected GameObject ProjectilePrefab
+    { get { return ProjectileScript.gameObject; } }
 
     [SerializeField]
     protected float AccuracyDeviation;
@@ -31,12 +33,21 @@ public class BaseShoot : MonoBehaviour
     [SerializeField]
     protected GameObject MuzzleFlarePrefab;
     protected List<ParticleSystem> MuzzleFlares;
+    [Space(20)]
+    [SerializeField]
+    protected List<AudioClip> ShotSounds;
+    protected List<AudioSource> SoundSources;
+    [SerializeField]
+    protected Vector2 SoundMinMax = new Vector2(5,500);
+    [SerializeField]
+    protected float Volume = 1;
 
     public enum FireMode
     {
         SemiAuto,
         FullAuto,
         Charge,
+        MultiLock,
     }
 
 
@@ -47,11 +58,17 @@ public class BaseShoot : MonoBehaviour
 
     protected virtual void Start()
     {
-        foreach(Transform a in BulletSpawns)
+        foreach (Transform a in BulletSpawns)
             a.gameObject.SetActive(true);
         InitializeBullet();
-        if(MuzzleFlarePrefab)
-        InitializeMuzzleFlare();
+
+        if (MuzzleFlarePrefab)
+            InitializeMuzzleFlare();
+
+        if (ShotSounds.Count > 0)
+        {
+            InitializeAudioSources();
+        }
         //MyStatus = WeaponStatus.Normal;
     }
 
@@ -89,7 +106,7 @@ public class BaseShoot : MonoBehaviour
             GameObject NewMuzzleFlare = Instantiate(MuzzleFlarePrefab, a.position, MuzzleFlarePrefab.transform.rotation, a.transform);
             NewMuzzleFlare.transform.localRotation = MuzzleFlarePrefab.transform.localRotation;
             ParticleSystem NewPS = NewMuzzleFlare.GetComponent<ParticleSystem>();
-            AdjustEffectScale(NewPS,a.localScale);
+            AdjustEffectScale(NewPS, a.localScale);
             MuzzleFlares.Add(NewPS);
 
         }
@@ -122,7 +139,7 @@ public class BaseShoot : MonoBehaviour
     {
         gameObject.layer = Layer;
 
-        if(ProjectileScript == null)
+        if (ProjectileScript == null)
             ProjectileScript = ProjectilePrefab.GetComponent<BaseBullet>();
 
         int SetLayer = 0;
@@ -177,9 +194,86 @@ public class BaseShoot : MonoBehaviour
         NewBullet.SetActive(true);
         NewBullet.transform.Rotate(new Vector3(Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), 0), Space.World);
 
-        if (MuzzleFlarePrefab!=null)
+        if (MuzzleFlarePrefab != null)
             MuzzleFlares[SlotNum].Play();
+
+        if (ShotSounds.Count > 0)
+            PlayShotSound(SlotNum);
+        
     }
+
+    #region Editor Tool Stuff
+
+    public virtual void RecieveBSs(List<Transform> a)
+    {
+        BulletSpawns = a;
+    }
+
+    #endregion
+
+    #region Audio Related
+
+    private void InitializeAudioSources()
+    {
+        SoundSources = new List<AudioSource>();
+
+
+        //foreach (Transform a in BulletSpawns)
+        //{
+        //    AudioSource Temp = a.GetComponent<AudioSource>();
+        //    if(Temp)
+        //    Temp.loop = false;
+        //    Temp.playOnAwake = false;
+        //    Temp.spatialBlend = 1;
+        //    Temp.Stop();
+        //    SoundSources.Add(Temp);
+
+        //}
+
+        //this creates audio sources
+        foreach (Transform a in BulletSpawns)
+        {
+            AudioSource Temp = a.gameObject.AddComponent<AudioSource>();
+            Temp.loop = false;
+            Temp.playOnAwake = false;
+            Temp.Stop();
+            Temp.spatialBlend = 1;
+            Temp.volume = Volume;
+            Temp.minDistance = SoundMinMax.x;
+            Temp.maxDistance = SoundMinMax.y;
+            SoundSources.Add(Temp);
+
+        }
+    }
+
+    private void PlayShotSound(int SpawnNum, AudioClip Clip)
+    {
+        if (ShotSounds.Count >= 1&&SoundSources[SpawnNum]!=null)
+        {
+            if(SoundSources[SpawnNum].isPlaying)
+                SoundSources[SpawnNum].Stop();
+
+            SoundSources[SpawnNum].clip = Clip;
+
+            SoundSources[SpawnNum].Play();
+        }
+    }
+
+    private void PlayShotSound(int SpawnNum)
+    {
+        if(ShotSounds.Count>1)
+            PlayShotSound(SpawnNum, ShotSounds[Random.Range(0, ShotSounds.Count)]);
+        else
+            PlayShotSound(SpawnNum, ShotSounds[Random.Range(0, 0)]);
+    }
+
+    
+
+
+    #endregion
+
+    #region Info Request stuff
+
 
     public virtual float GetAmmoGauge()
     {
@@ -205,5 +299,40 @@ public class BaseShoot : MonoBehaviour
     {
         return false;
     }
+
+    #region Loadoutpart request info stuff
+
+    public virtual string GetDamage
+    { get { return ProjectileScript.GetDamage; } }
+
+    public virtual string GetAccuracy
+    { get { return AccuracyDeviation+ "°"; } }
+
+    public virtual string GetFireRate
+    { get { return (1f/TBS).ToString("F2")+"/s"; } }
+
+    public virtual string GetFireMode
+    {
+        get {
+            if (MyFireMode == FireMode.FullAuto)
+                return "Auto";
+            else if (MyFireMode == FireMode.SemiAuto)
+                return "Semi";
+            else if (MyFireMode == FireMode.Charge)
+                return "Charge";
+            else
+                return "Lock";
+        }
+    }
+
+    public virtual string GetMag
+    { get { return "Err"; } }
+
+    public virtual string GetReload
+    { get { return "Err"; } }
+
+    #endregion
+
+    #endregion
 
 }

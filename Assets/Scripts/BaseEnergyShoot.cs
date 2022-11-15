@@ -44,6 +44,8 @@ public class BaseEnergyShoot : BaseShoot
     {
         if (a)
             EnergySource = a.GetEnergySystem();
+
+        //Debug.Log(EnergySource);
     }
 
     protected virtual void Recharge()
@@ -107,4 +109,10 @@ public class BaseEnergyShoot : BaseShoot
             return true;
         return false;
     }
+
+    public override string GetMag
+    { get { return PercentageConsumedPerShot*100+"%/shot"; } }
+
+    public override string GetReload
+    { get { return ChargePerSecond*100+"%/s"; } }
 }

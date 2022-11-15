@@ -21,6 +21,7 @@ public class BaseExplosion : MonoBehaviour
     [SerializeField]
     int HitMask;
 
+
     private float ScaledExplosionRadius
     {
         get
@@ -117,4 +118,7 @@ public class BaseExplosion : MonoBehaviour
 
         Gizmos.DrawWireSphere(transform.position, ScaledExplosionRadius);
     }
+
+    public virtual string GetDamage
+    { get { return "EXP-"+ExplosiveDamage; } }
 }

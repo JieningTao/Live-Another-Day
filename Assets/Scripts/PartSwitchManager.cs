@@ -25,8 +25,12 @@ public class PartSwitchManager : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Button[] EXGAndWeaponButtons = new UnityEngine.UI.Button[8];
 
+    [SerializeField]
+    private UIPartCompare PartCompareDisplay;
+
     private MechAssemblyRack AssemblyRack;
     private List<AssemblyPartOption> CurrentDisplayedOptions = new List<AssemblyPartOption>();      //needs to impliment a object pool system for the options
+    LoadOutPart CurrentSelectedPart;
 
     public enum BigCataGory
     {
@@ -36,7 +40,7 @@ public class PartSwitchManager : MonoBehaviour
         Legs,
         Pack,
         BoostSystem,
-        EnergySystem,
+        FCSChip,
 
         MainWeapon,
         ShoulderEXG,
@@ -62,12 +66,30 @@ public class PartSwitchManager : MonoBehaviour
         AssemblyRack.FitNewPart(CurrentCatagory, CurrentPosition, Part);
     }
 
+
+
     public BigCataGory GetCurrentBigCatagory()
     {
         return CurrentCatagory;
     }
 
     #region Button Functions
+
+    public void ButtonClickedPart(LoadOutPart Part)
+    {
+        if (Part == CurrentSelectedPart)
+        {
+            //installs part
+            InstallPart(Part.gameObject);
+            PartCompareDisplay.LoadCurrentPart(AssemblyRack.GetpostionPart(CurrentCatagory, CurrentPosition));
+        }
+        else
+        {
+            //selects part
+            CurrentSelectedPart = Part;
+            PartCompareDisplay.LoadSelectedPart(Part);
+        }
+    }
 
     public void SelectCatagory(int Cata)
     {
@@ -79,6 +101,10 @@ public class PartSwitchManager : MonoBehaviour
             LoadList();
             CreateOptionsForCurrentList();
             SetCatagoryTitle();
+
+            PartCompareDisplay.LoadCurrentPart(AssemblyRack.GetpostionPart(CurrentCatagory, CurrentPosition));
+            CurrentSelectedPart = null;
+            PartCompareDisplay.LoadSelectedPart(null);
         }
 
     }
@@ -91,6 +117,10 @@ public class PartSwitchManager : MonoBehaviour
         LoadList();
         CreateOptionsForCurrentList();
         SetCatagoryTitle();
+
+        PartCompareDisplay.LoadCurrentPart(AssemblyRack.GetpostionPart(CurrentCatagory, CurrentPosition));
+        CurrentSelectedPart = null;
+        PartCompareDisplay.LoadSelectedPart(null);
     }
 
     public void SwitchCatagory()
@@ -131,7 +161,7 @@ public class PartSwitchManager : MonoBehaviour
 
         if (CurrentCatagory == BigCataGory.MainWeapon)
         {
-            Path += "MainWeapons/";
+            Path += "MainSlot/";
         }
         else if (CurrentCatagory == BigCataGory.ShoulderEXG)
         {
@@ -156,16 +186,19 @@ public class PartSwitchManager : MonoBehaviour
                 Path += "Pack/";
             else if (CurrentCatagory == BigCataGory.BoostSystem)
                 Path += "BoostSystem/";
-            else if (CurrentCatagory == BigCataGory.EnergySystem)
-                Path += "EnergySystem/";
+            else if (CurrentCatagory == BigCataGory.FCSChip)
+                Path += "FCS/";
         }
 
 
         CurrentListOfParts.Clear();
+
         if (CurrentCatagory == BigCataGory.MainWeapon || CurrentCatagory == BigCataGory.ShoulderEXG || CurrentCatagory == BigCataGory.SideEXG)
             CurrentListOfParts.Add(null);
+
         CurrentListOfParts.AddRange(Resources.LoadAll<LoadOutPart>(Path));
-        Debug.Log(CurrentListOfParts.Count);
+
+        Debug.Log(Path +"--"+ CurrentListOfParts.Count);
     }
 
     private void ClearOptions()
@@ -224,8 +257,8 @@ public class PartSwitchManager : MonoBehaviour
             else if (CurrentCatagory == BigCataGory.Legs)
                 Temp += "Legs";
 
-            else if (CurrentCatagory == BigCataGory.EnergySystem)
-                Temp = "Energy Systems";
+            else if (CurrentCatagory == BigCataGory.FCSChip)
+                Temp = "FCS Chip";
             else if (CurrentCatagory == BigCataGory.BoostSystem)
                 Temp = "Boost Systems";
         }

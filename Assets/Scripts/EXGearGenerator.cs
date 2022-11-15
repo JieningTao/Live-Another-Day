@@ -17,7 +17,11 @@ public class EXGearGenerator : BaseEXGear
 
 
 
-
+    public override void InitializeGear(BaseMechMain Mech, Transform Parent, bool Right)
+    {
+        base.InitializeGear(Mech, Parent, Right);
+        CurrentFuel = MaxFuel;
+    }
 
     protected override void Update()
     {
@@ -62,6 +66,28 @@ public class EXGearGenerator : BaseEXGear
 
     public override float GetReadyPercentage()
     {
-        return CurrentFuel/MaxFuel;
+        return (float)(CurrentFuel/MaxFuel);
+    }
+
+    public override string GetBBMainText()
+    {
+        if (GeneratorOn)
+            return "Active\n" + EnergyGenerationPerSecond + "EU/s";
+        else
+            return "Standby";
+    }
+
+    public override List<string> GetStats()
+    {
+        List<string> Temp = new List<string>();
+
+        Temp.Add("Output: ");
+        Temp.Add(EnergyGenerationPerSecond+"/s");
+
+        Temp.Add("BurnTime: ");
+        Temp.Add((MaxFuel/FuelConsumedPerSecond).ToString("F2")+"s");
+
+
+        return Temp;
     }
 }

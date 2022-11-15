@@ -76,6 +76,18 @@ public class BaseMechPart : MonoBehaviour
         return Weight;
     }
 
+    #region Loadoutpart request info stuff
+    public virtual string GetHealth
+    { get { return Health+""; } }
 
+    public virtual string GetPartWeight
+    { get { return Weight+""; } }
+
+    public virtual string GetBIEXG
+    { get { return null; } }
+
+    public virtual string GetEXGSlots
+    { get { return null; } }
+    #endregion
 
 }

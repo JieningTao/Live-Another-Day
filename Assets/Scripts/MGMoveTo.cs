@@ -18,6 +18,13 @@ public class MGMoveTo : MissionGoal
             Arrived = (bool)Content;
     }
 
+    public override void Init(MissionTracker a)
+    {
+        base.Init(a);
+
+
+    }
+
     public override bool Completed()
     {
         return Arrived;

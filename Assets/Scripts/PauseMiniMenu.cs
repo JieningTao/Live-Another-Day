@@ -24,6 +24,8 @@ public class PauseMiniMenu : MonoBehaviour
     GameObject PlayCanvas;
     [SerializeField]
     GameObject EndLevelScreen;
+    [SerializeField]
+    UnityEngine.UI.Text EndText;
 
     public void BackToMainMenu()
     {
@@ -71,15 +73,27 @@ public class PauseMiniMenu : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void ShowLevelEndUI()
+    public void ShowLevelEndUI(bool Win)
     {
+        if (Win)
+        {
+            EndText.text = "Mission Complete";
+            Time.timeScale = 0;
+        }
+        else
+        {
+            EndText.text = "Mission Failed";
+            Time.timeScale = 1;
+        }
+
+
         PauseMenu.SetActive(false);
         PlayCanvas.SetActive(false);
         EndLevelScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        Time.timeScale = 0;
+        
     }
 
 }

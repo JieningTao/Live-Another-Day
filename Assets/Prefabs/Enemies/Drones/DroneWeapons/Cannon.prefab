@@ -396,12 +396,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSpawns:
   - {fileID: 5556854418571949036}
-  ProjectilePrefab: {fileID: 4550627414747060104}
+  ProjectileScript: {fileID: 5337040317417986252}
   AccuracyDeviation: 0.02
   TBS: 1
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  ShotSounds:
+  - {fileID: 8300000, guid: c1af6cc4ee33c7443b5a33bdeb3e1490, type: 3}
+  SoundMinMax: {x: 10, y: 800}
+  Volume: 1
 --- !u!114 &3381897524093615685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,18 +774,24 @@ PrefabInstance:
       objectReference: {fileID: 8672111352769655632}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 531c9de9a15384e47936a1a078c09b1c, type: 3}
---- !u!1 &4550627414747060104 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1281830889375953337, guid: 531c9de9a15384e47936a1a078c09b1c,
-    type: 3}
-  m_PrefabInstance: {fileID: 3381897522884077105}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4550627414747060086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1281830889375953223, guid: 531c9de9a15384e47936a1a078c09b1c,
     type: 3}
   m_PrefabInstance: {fileID: 3381897522884077105}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5337040317417986252 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7277271662777892605, guid: 531c9de9a15384e47936a1a078c09b1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3381897522884077105}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 006d1ea54c9a0f54189931b60ca9d98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3381897523679386437
 PrefabInstance:
   m_ObjectHideFlags: 0

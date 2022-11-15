@@ -26,10 +26,12 @@ public class BaseMechMain : ICoatedDamagable
     BaseMechPartHead MPHead;
     [SerializeField]
     BaseMechPartTorso MPTorso;
+
     [SerializeField]
+    LoadOutPart MPArms;
     BaseMechPartArm MPLArm;
-    [SerializeField]
     BaseMechPartArm MPRArm;
+
     [SerializeField]
     BaseMechPartLegs MPLegs;
     [SerializeField]
@@ -37,17 +39,17 @@ public class BaseMechMain : ICoatedDamagable
 
     private List<BaseMechPart> AllParts;
     [Space(10)]
-
+    [SerializeField]
+    BaseFCSChip FCSChip;
     [SerializeField]
     BaseBoostSystem BoostSystem;
-    [SerializeField]
-    BaseEnergySource EnergySystem;
+
 
     [Space(20)]
 
 
     protected bool PlayerMech = false;
-
+    protected BaseEnergySource EnergySystem;
     //{ get; protected set; }
 
 
@@ -66,14 +68,14 @@ public class BaseMechMain : ICoatedDamagable
 
 
         MyFCS = GetComponent<BaseMechFCS>();
-        MyFCS.InitializeFCS(this, PlayerMech, MPLArm, MPRArm);
+        MyFCS.InitializeFCS(this, PlayerMech, MPLArm, MPRArm,FCSChip);
 
 
         MyMovement = GetComponent<BaseMechMovement>();
         MyMovement.InitializeMechMovement(this, PlayerMech);
         AssignMovementStats();
         AssignWeight();
-
+        EnergySystem = MPTorso.GetPowerSystem();
 
         InitializeIDamageable();
 
@@ -112,6 +114,8 @@ public class BaseMechMain : ICoatedDamagable
 
     public BaseMechFCS GetFCS()
     {
+        if (!MyFCS)
+            MyFCS = GetComponent<BaseMechFCS>();
         return MyFCS;
     }
 
@@ -124,8 +128,8 @@ public class BaseMechMain : ICoatedDamagable
 
     public BaseEnergySource GetEnergySystem()
     {
-        if(!MyFCS)
-            MyFCS = GetComponent<BaseMechFCS>();
+        if (!EnergySystem)
+            EnergySystem = MPTorso.GetPowerSystem();
         return EnergySystem;
     }
 
@@ -134,20 +138,30 @@ public class BaseMechMain : ICoatedDamagable
         MyMovement.ChangeWeight(-DroppedWeight);
     }
 
+    protected override void Destroied()
+    {
+        base.Destroied();
+        PauseMiniMenu.Instance.ShowLevelEndUI(false);
+    }
 
 
     #region Mech loading related
 
-    public void AssignParts(BaseMechPartHead Head, BaseMechPartTorso Torso,LoadOutPart Arms,BaseMechPartLegs Legs,BaseMechPartPack Pack,  BaseBoostSystem Boost, BasePowerSystem Power)
+    public void AssignParts(BaseMechPartHead Head, BaseMechPartTorso Torso,LoadOutPart Arms,BaseMechPartLegs Legs,BaseMechPartPack Pack,  BaseBoostSystem Boost,BaseFCSChip _FCSChip)
     {
         MPHead = Head;
         MPTorso = Torso;
+
+
+        MPArms = Arms;
         MPLArm = Arms.GetComponentInChildren<BaseMechPartLArm>();
         MPRArm = Arms.GetComponentInChildren<BaseMechPartRArm>();
+
         MPLegs = Legs;
         MPPack = Pack;
-        EnergySystem = Power;
         BoostSystem = Boost;
+
+        FCSChip = _FCSChip;
     }
 
     #endregion
@@ -161,6 +175,7 @@ public class BaseMechMain : ICoatedDamagable
             return;
         MPTorso.Assemble(this, transform);
         MPTorso.AssembleMech(this, MPHead,MPRArm,MPLArm,MPLegs,MPPack);
+
 
         AllParts = new List<BaseMechPart>();
         AllParts.Add(MPTorso);
@@ -190,9 +205,8 @@ public class BaseMechMain : ICoatedDamagable
         }
 
         BoostSystem.transform.parent = transform;
+        BoostSystem.CreateBoostAndJumpEffects(BoostPoints, FloatThrustPoints);
 
-        MyMovement.SetBoostEffects(BoostSystem.GetBoostExhaust(), BoostSystem.GetImpulseBoost(),BoostSystem.GetFloatThrust());
-        MyMovement.CreateBoostAndJumpEffects(BoostPoints, FloatThrustPoints);
         MyMovement.SetGroundDetection(MPLegs.GetGroundDetection());
 
         MyFCS.InitStats(300, 150); // radar and lock range now hard coded to test integration with assembly, if you try to integrate range status without changing this, you're a dumbass future jiening.
@@ -209,11 +223,14 @@ public class BaseMechMain : ICoatedDamagable
         MPHead = Instantiate(MPHead.gameObject, transform).GetComponent<BaseMechPartHead>();
         MPLegs = Instantiate(MPLegs.gameObject, transform).GetComponent<BaseMechPartLegs>();
         MPPack = Instantiate(MPPack.gameObject, transform).GetComponent<BaseMechPartPack>();
-        MPLArm = Instantiate(MPLArm.gameObject, transform).GetComponent<BaseMechPartArm>();
-        MPRArm = Instantiate(MPRArm.gameObject, transform).GetComponent<BaseMechPartArm>();
+
+        GameObject TempArms = Instantiate(MPArms.gameObject, transform);
+
+        MPLArm = TempArms.GetComponentInChildren<BaseMechPartLArm>();
+        MPRArm = TempArms.GetComponentInChildren<BaseMechPartRArm>();
 
         BoostSystem = Instantiate(BoostSystem.gameObject, transform).GetComponent<BaseBoostSystem>();
-        EnergySystem = Instantiate(EnergySystem.gameObject, transform).GetComponent<BasePowerSystem>();
+        //EnergySystem = Instantiate(EnergySystem.gameObject, transform).GetComponent<BasePowerSystem>();
     }
 
     private void AssignMovementStats()
@@ -222,9 +239,9 @@ public class BaseMechMain : ICoatedDamagable
         float SL = MPLegs.SpeedCap;
         float JF = MPLegs.JumpForce;
 
-        BoostSystem.OutStats(out float BF, out float IBF, out float FF, out float ESC, out float BC, out float IBC, out float FC, out float BJC, out float BJR, out float BJRC);
+        BoostSystem.OutStats(out float BF, out float IBF, out float FF, out float ESC, out float BC, out float IBC, out float FC, out float BJC, out float BJR, out float BJRC, out BaseBoostSystem BS);
 
-        MyMovement.SetStats(MF, SL, ESC, BF, IBF, FF, BC, IBC, FC, BJC, BJR, BJRC, MPLegs.GetDrag(), JF);
+        MyMovement.SetStats(MF, SL, ESC, BF, IBF, FF, BC, IBC, FC, BJC, BJR, BJRC, MPLegs.GetDrag(), JF, BS);
     }
 
     private void AssignWeight()

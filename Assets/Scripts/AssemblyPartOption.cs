@@ -56,12 +56,12 @@ public class AssemblyPartOption : MonoBehaviour
         if (Part)
         {
             Debug.Log(Part.gameObject.name);
-            MyManager.InstallPart(Part.gameObject);
+            MyManager.ButtonClickedPart(Part);
         }
         else
         {
             Debug.Log("[Empty]");
-            MyManager.InstallPart(null);
+            MyManager.ButtonClickedPart(null);
         }
     }
 

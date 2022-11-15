@@ -86,4 +86,8 @@ public class BaseMainSlotEquipment : MonoBehaviour
         return Weight;
     }
 
+    public virtual List<string> GetStats()
+    {
+        return null;
+    }
 }

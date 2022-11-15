@@ -505,8 +505,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983705423477078026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0.035299998}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 383684997726800507}
   m_RootOrder: 0
@@ -535,8 +535,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983705424089667628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0353}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 3519677127344933730}
   m_RootOrder: 0
@@ -583,8 +583,8 @@ GameObject:
   - component: {fileID: 1983705424823137309}
   - component: {fileID: 1983705424823137311}
   - component: {fileID: 1983705424823137310}
-  - component: {fileID: -6513973643959462302}
   - component: {fileID: 5460307317532904627}
+  - component: {fileID: 3018851965611018661}
   m_Layer: 11
   m_Name: '''Stiletto'' Beam pistol'
   m_TagString: Untagged
@@ -624,16 +624,20 @@ MonoBehaviour:
   - {fileID: 1983705423477078027}
   - {fileID: 1983705424089667629}
   - {fileID: 1983705425206856993}
-  ProjectilePrefab: {fileID: 6671050304724488969}
-  AccuracyDeviation: 0
+  ProjectileScript: {fileID: 6671050304724489204}
+  AccuracyDeviation: 2
   TBS: 0.1
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 2198442676551212465, guid: 3dc32f212ff5da3418ab4a4602a816ea,
     type: 3}
-  PercentageConsumedPerShot: 0
+  ShotSounds:
+  - {fileID: 8300000, guid: 511509b0d90c10244b57736539e197f4, type: 3}
+  SoundMinMax: {x: 5, y: 500}
+  Volume: 1
+  PercentageConsumedPerShot: 0.16
   ChargePerSecond: 1
-  ChargeDelay: 0
-  ChargePowerDraw: 0
+  ChargeDelay: 2
+  ChargePowerDraw: 3
 --- !u!95 &1983705424823137310
 Animator:
   serializedVersion: 3
@@ -653,23 +657,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-6513973643959462302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983705424823137308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: '''Stiletto'' Beam Pistol'
-  Description: 
-  HideForPlayer: 0
-  PartCatagory: 9
-  PrefabPath: ExtraGears/Side/'Stiletto' Beam pistol
 --- !u!114 &5460307317532904627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +681,24 @@ MonoBehaviour:
   MyWeapon: {fileID: 1983705424823137311}
   TargetSpeed: 1
   TargetingAngle: 10
+--- !u!114 &3018851965611018661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983705424823137308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec42a61dd09d70a44840ffa7d3b07843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: '''Stiletto'' Beam pistol'
+  Description: 
+  HideForPlayer: 0
+  PartCatagory: 9
+  PrefabPath: ExtraGears/Side/'Stiletto' Beam pistol
+  MyEXG: {fileID: 5460307317532904627}
 --- !u!1 &1983705425206856992
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,8 +723,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983705425206856992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0.035299998}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 7988310224532118253}
   m_RootOrder: 0
@@ -1609,15 +1614,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c5b270491b9c914db6b55ce60052d0d, type: 3}
---- !u!1 &6671050304724488969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5121680720090386673, guid: 1c5b270491b9c914db6b55ce60052d0d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1983705425033888760}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6671050304724489207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
     type: 3}
   m_PrefabInstance: {fileID: 1983705425033888760}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6671050304724489204 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1983705425033888760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9692ae321e1b5ae4e8f5a51486ce6f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

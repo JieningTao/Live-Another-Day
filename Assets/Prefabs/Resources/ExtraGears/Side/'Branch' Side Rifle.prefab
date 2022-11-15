@@ -104,7 +104,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770490974854605139}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.5527136e-17, y: -0.030266082, z: 0.004830157}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -263,7 +263,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3611737308838614539}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.004629276, z: 8.8817837e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -272,7 +272,7 @@ Transform:
   - {fileID: 8279181921272591467}
   m_Father: {fileID: 1897059890016385918}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7921623777685464050
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -474,8 +474,8 @@ GameObject:
   - component: {fileID: 5288266991133313054}
   - component: {fileID: 5288266991133313052}
   - component: {fileID: 5288266991133313053}
-  - component: {fileID: 3330955171779554101}
   - component: {fileID: 38459207926739105}
+  - component: {fileID: 2049706800778786647}
   m_Layer: 0
   m_Name: '''Branch'' Side Rifle'
   m_TagString: Untagged
@@ -513,12 +513,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSpawns:
   - {fileID: 5288266990536015278}
-  ProjectilePrefab: {fileID: 1040454341220332604}
+  ProjectileScript: {fileID: 1040454341220332737}
   AccuracyDeviation: 0.1
   TBS: 0.8
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  ShotSounds:
+  - {fileID: 8300000, guid: 5710652a3d8b1bf4aadeecccc99fdc94, type: 3}
+  - {fileID: 8300000, guid: 41370d2b1e225c34db40e97b0c4a85f6, type: 3}
+  - {fileID: 8300000, guid: c94ff1d0f3309bf4e9ff11730eafbcd7, type: 3}
+  SoundMinMax: {x: 5, y: 500}
+  Volume: 1
   MaxMagazine: 5
   MaxReserveAmmo: 40
   ReloadTime: 4
@@ -541,22 +547,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3330955171779554101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288266991133313055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: '''Branch'' Side Rifle'
-  Description: 
-  PartCatagory: 9
-  PrefabPath: ExtraGears/Side/'Branch' Side Rifle
 --- !u!114 &38459207926739105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +571,24 @@ MonoBehaviour:
   MyWeapon: {fileID: 5288266991133313052}
   TargetSpeed: 1
   TargetingAngle: 10
+--- !u!114 &2049706800778786647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288266991133313055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec42a61dd09d70a44840ffa7d3b07843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: '''Branch'' Side Rifle'
+  Description: 
+  HideForPlayer: 0
+  PartCatagory: 9
+  PrefabPath: ExtraGears/Side/'Branch' Side Rifle
+  MyEXG: {fileID: 38459207926739105}
 --- !u!1 &6611318672478779520
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +614,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6611318672478779520}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5527136e-17, y: -0.018269295, z: 0.006108316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -686,7 +694,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6937692739331032745}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.004629276, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -695,7 +703,7 @@ Transform:
   - {fileID: 4818122853691257361}
   m_Father: {fileID: 1897059890016385918}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5846872401510014070
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -847,7 +855,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665092172617624403}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5527136e-17, y: -0.017443005, z: 0.004568509}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1060,15 +1068,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0044575a3e23bc4b93c96e2925b167b, type: 3}
---- !u!1 &1040454341220332604 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5121680720090386673, guid: d0044575a3e23bc4b93c96e2925b167b,
-    type: 3}
-  m_PrefabInstance: {fileID: 5288266990942102733}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1040454341220332738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
     type: 3}
   m_PrefabInstance: {fileID: 5288266990942102733}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1040454341220332737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5288266990942102733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9692ae321e1b5ae4e8f5a51486ce6f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

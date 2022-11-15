@@ -47,5 +47,6 @@ public class ExplosiveBullet : BaseBullet
         Destroy(this.gameObject);
     }
 
-
+    public override string GetDamage
+    { get { return MyExplosion.GetDamage; } }
 }

@@ -76,8 +76,10 @@ public class AntiMissileLaser : BaseTurret
     public void InitializeGear(BaseMechMain Mech)
     {
         EnergySource = Mech.GetEnergySystem();
+        Debug.Log(EnergySource.gameObject.name);
         gameObject.layer = Mech.gameObject.layer;
         MissileDetectCollidder.radius = DetectRange;
+        Debug.Log(EnergySource);
     }
 
     public void ToggleOn(bool On)
@@ -134,14 +136,16 @@ public class AntiMissileLaser : BaseTurret
 
     private void ToggleLaser(bool On)
     {
-        Debug.Log("Laser " + On);
+        //Debug.Log("Laser " + On);
 
             LaserOn = On;
         if (On)
         {
             LaserPath.enabled = true;
-            if(EnergySource)
+            if (EnergySource)
+            {
             EnergySource.CurrentPowerDraw += PowerDraw;
+            }
         }
         else
         {
@@ -192,6 +196,18 @@ public class AntiMissileLaser : BaseTurret
 
     }
 
+    public float GetPowerDraw()
+    {
+        return PowerDraw;
+    }
 
+    public bool IsLaserOn
+    { get { return LaserOn; } }
+    public string GetEnergyDraw
+    { get { return PowerDraw+"";} }
+    public string GetDPS
+    { get { return DPS + "/s"; } }
+    public string GetInterceptRange
+    { get { return DetectRange + ""; } }
 
 }

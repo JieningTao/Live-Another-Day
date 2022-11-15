@@ -77,4 +77,23 @@ public class EXGearLockOnMissile : BaseEXGear
         return base.GetBBSubText();
     }
 
+    public override List<string> GetStats()
+    {
+        List<string> Temp = new List<string>();
+
+        Temp.Add("Damage: ");
+        Temp.Add(MyLauncher.GetDamage);
+
+        Temp.Add("Max Lock: ");
+        Temp.Add(LockCount+"");
+
+        Temp.Add("Tracking: ");
+        Temp.Add(MyLauncher.GetTracking);
+
+        Temp.Add("Reload: ");
+        Temp.Add(MyLauncher.GetReload);
+
+        return Temp;
+    }
+
 }

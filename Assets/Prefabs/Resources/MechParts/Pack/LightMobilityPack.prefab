@@ -290,7 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4772568589179543881}
   - component: {fileID: 4772568589179543886}
-  - component: {fileID: 6007353873646854992}
+  - component: {fileID: -6868633604880454464}
   m_Layer: 0
   m_Name: LightMobilityPack
   m_TagString: Untagged
@@ -342,7 +342,7 @@ MonoBehaviour:
   LeftShoulderEXG: {fileID: 0}
   RightShoulderEXG: {fileID: 0}
   BackPackBuiltInEXG: {fileID: 0}
---- !u!114 &6007353873646854992
+--- !u!114 &-6868633604880454464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -351,13 +351,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4772568589179543887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: d25feb2e4fee990459e3d139c0d012c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Light mobility Pack
+  Name: '** LightMobilityPack'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 4
   PrefabPath: MechParts/Pack/LightMobilityPack
+  MyPart: {fileID: 4772568589179543886}
 --- !u!1 &6997072634311634558
 GameObject:
   m_ObjectHideFlags: 0

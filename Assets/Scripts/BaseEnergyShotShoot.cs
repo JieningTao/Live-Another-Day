@@ -27,4 +27,6 @@ public class BaseEnergyShotShoot : BaseEnergyShoot
         }
     }
 
+    public override string GetDamage
+    { get { return ShotAmount + " * " + ProjectileScript.GetDamage; } }
 }

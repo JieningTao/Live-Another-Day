@@ -138,6 +138,16 @@ public class BaseMechPartLegs : BaseMechPart
             return LeftEXG;
     }
 
+    public bool RightBuiltInEXG
+    {
+        get { return (RightEXGSlot == null && RightEXG); }
+    }
+
+    public bool LeftBuiltInEXG
+    {
+        get { return (LeftEXGSlot == null && LeftEXG); }
+    }
+
     public void PlaceEXGVisual(BaseEXGear Left, BaseEXGear Right)
     {
         if (LeftEXGSlot && Left)
@@ -194,5 +204,28 @@ public class BaseMechPartLegs : BaseMechPart
             return TW;
         }
 
+    }
+
+
+    public override string GetEXGSlots
+    {
+        get
+        {
+            string Temp = "";
+
+            if (LeftEXGSlot)
+                Temp += "Y";
+            else
+                Temp += "N";
+
+            Temp += " | ";
+
+            if (RightEXGSlot)
+                Temp += "Y";
+            else
+                Temp += "N";
+
+            return Temp;
+        }
     }
 }

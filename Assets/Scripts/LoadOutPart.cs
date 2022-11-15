@@ -33,4 +33,9 @@ public class LoadOutPart : MonoBehaviour
     //{
     //    PrefabPath = a + gameObject.name;
     //}
+
+    public virtual List<string> GetStats()
+    {
+        return null;
+    }
 }

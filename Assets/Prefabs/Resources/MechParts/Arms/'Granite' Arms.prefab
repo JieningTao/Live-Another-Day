@@ -22,7 +22,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7674854125119833806}
-  - component: {fileID: 6730364023632540307}
+  - component: {fileID: 371962884008959677}
   m_Layer: 0
   m_Name: '''Granite'' Arms'
   m_TagString: Untagged
@@ -46,7 +46,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6730364023632540307
+--- !u!114 &371962884008959677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,13 +55,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7384885560132529844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: 1939b50d0cc85b14580aeeb8a3b8883b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '''Granite'' arms'
+  Name: '''Granite'' Arms'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 2
   PrefabPath: MechParts/Arms/'Granite' Arms
+  MyPart: {fileID: 2846341827597966528}
+  MyOtherPart: {fileID: 2508483169258028351}
 --- !u!1001 &5969826207612040251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,6 +140,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5969826207612040251}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2508483169258028351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8076917209208965380, guid: 4f0b638ec2b3f1b439044e21a6f33e54,
+    type: 3}
+  m_PrefabInstance: {fileID: 5969826207612040251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211ff732f1dc5ac4285186fc1a294e9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5971800698789588628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -222,6 +237,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5971800698789588628}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2846341827597966528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -765570328090348972, guid: 29121c3a1f1e9054f812e567eaf73864,
+    type: 3}
+  m_PrefabInstance: {fileID: 5971800698789588628}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18927e66febeeba43ade27278a39e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5093269259865108811 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1463375692617310175, guid: 29121c3a1f1e9054f812e567eaf73864,

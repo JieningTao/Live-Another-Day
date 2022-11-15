@@ -9,7 +9,7 @@ public class AirBurstMissile : BaseMissile
     [SerializeField]
     float BlastDistance = 10;
     [SerializeField]
-    GameObject FragmentPrefab;
+    BaseBullet FragmentPrefab;
     [SerializeField]
     float SpreadAngle = 30;
     [SerializeField]
@@ -42,14 +42,14 @@ public class AirBurstMissile : BaseMissile
     public override void SetLayerAndMask(int Layer)
     {
         base.SetLayerAndMask(Layer);
-        FragmentPrefab.GetComponent<BaseBullet>().SetLayerAndMask(Layer);
+        FragmentPrefab.SetLayerAndMask(Layer);
     }
 
     private void Burst()
     {
         for (int i = 0; i < FragAmount; i++)
         {
-            GameObject NewProjectile = Instantiate(FragmentPrefab, transform.position, transform.rotation);
+            GameObject NewProjectile = Instantiate(FragmentPrefab.gameObject, transform.position, transform.rotation);
             NewProjectile.transform.Rotate(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)), Random.Range(-SpreadAngle / 2, SpreadAngle / 2));
             NewProjectile.SetActive(true);
         }
@@ -61,5 +61,9 @@ public class AirBurstMissile : BaseMissile
         Destroy(gameObject);
 
     }
+
+    public override string GetDamage
+    { get { return FragAmount + " * "+FragmentPrefab.GetDamage; } }
+
 
 }

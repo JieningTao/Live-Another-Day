@@ -60,6 +60,8 @@ public class BaseMechFCS : MonoBehaviour
     protected int SelectedEXSlot;
 
     [SerializeField]
+    private int PerLockCount = 1;
+    [SerializeField]
     private float LockTime;
     [SerializeField]
     private int MaxSupportedLock = 10;
@@ -75,15 +77,18 @@ public class BaseMechFCS : MonoBehaviour
     private BaseMechMain MyBMM;
     private bool FocusMode;
     private EnergySignal FocusTarget;
-
+    private BaseFCSChip MyChip;
     //private void Start()
     //{
     //    InitializeFCS(GetComponent<BaseMechMain>());
     //}
 
-    public void InitializeFCS(BaseMechMain BMM, bool Player, BaseMechPartArm _LeftArm, BaseMechPartArm _RightArm)
+    public void InitializeFCS(BaseMechMain BMM, bool Player, BaseMechPartArm _LeftArm, BaseMechPartArm _RightArm,BaseFCSChip Chip)
     {
         SpawnItems();
+
+        MyChip = Chip;
+        InstallFCSChip();
 
         MyBMM = BMM;
         LeftArm = _LeftArm;
@@ -93,12 +98,26 @@ public class BaseMechFCS : MonoBehaviour
         Equip(CurrentPrimary, true);
         Equip(CurrentSecondary, false);
 
-        RadarCollider.radius = RadarRange;
+        RadarCollider.radius = RadarRange; //needs to happen after chip install for correct radar range
         RadarCollider.isTrigger = true;
 
         InitializeEXGear();
 
         CameraAnchor = BMM.CameraAnchor;
+
+
+    }
+
+    public void InstallFCSChip()
+    {
+        PerLockCount = MyChip.GetPerLockCount;
+        LockTime = MyChip.GetLockTime;
+        MaxSupportedLock = MyChip.GetMaxLock;
+
+        LockRange = MyChip.GetLockRange;
+        RadarRange = MyChip.GetRadarRange;
+
+        MaxAimingAngle = MyChip.GetAimAngle;
     }
 
     private void SpawnItems()
@@ -380,7 +399,7 @@ public class BaseMechFCS : MonoBehaviour
             {
                 if (CurrentListOfLocked.Count < LockRequested && CurrentListOfLocked.Count < MaxSupportedLock)
                 {
-                    LockClosestUnlocked(1);
+                    LockClosestUnlocked(PerLockCount);
 
                     if (CurrentListOfLocked.Count >= LockRequested || CurrentListOfLocked.Count >= MaxSupportedLock)
                     {

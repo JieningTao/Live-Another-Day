@@ -137,4 +137,9 @@ public class BaseEXGear : MonoBehaviour
     {
 
     }
+
+    public virtual List<string> GetStats()
+    {
+        return null;
+    }
 }

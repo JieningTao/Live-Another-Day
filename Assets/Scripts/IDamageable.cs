@@ -33,6 +33,9 @@ public class IDamageable : MonoBehaviour
     {
         CurrentHealth = MaxHealth;
         GetStuffToDisable();
+        if(DestroyEffect)
+            DestroyEffect.gameObject.SetActive(false);
+        
     }
 
     public virtual void Hit(float Damage ,DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags)
@@ -61,7 +64,10 @@ public class IDamageable : MonoBehaviour
             }
 
             if (DestroyEffect)
+            {
+                DestroyEffect.gameObject.SetActive(true);
                 DestroyEffect.Play();
+            }
         }
         else
         {
@@ -69,6 +75,7 @@ public class IDamageable : MonoBehaviour
             {
                 DestroyEffect.transform.parent = null;
                 DestroyEffect.transform.localScale = new Vector3(1, 1, 1);
+                DestroyEffect.gameObject.SetActive(true);
                 DestroyEffect.Play();
             }
         }

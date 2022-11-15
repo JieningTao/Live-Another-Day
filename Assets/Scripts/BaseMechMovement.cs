@@ -39,6 +39,11 @@ public class BaseMechMovement : MonoBehaviour
     protected float BoostJuiceRecoveryCooldown;
     protected float BoostRecoveryCooldownRemaining;
 
+    [SerializeField]
+    protected AudioSource BoostPlayer;
+    [SerializeField]
+    protected AudioSource ImpulsePlayer;
+
 
     private bool Floating
     {
@@ -63,19 +68,19 @@ public class BaseMechMovement : MonoBehaviour
     private Transform GroundDetectionSite;
     [SerializeField]
     private float GroundDetectionRadius;
+    RaycastHit GroundUnder;
 
-    private List<ParticleSystem> BoostExhausts;
-    private List<ParticleSystem> BoostImpulses;
-    private List<ParticleSystem> FloatThrusters;
+
     [SerializeField]
     private ParticleSystem JumpEffect;
 
-    [SerializeField]
-    private GameObject BoostEffectPrefab;
-    [SerializeField]
-    private GameObject ImpulseBoostPrefab;
-    [SerializeField]
-    private GameObject FloatThrustPrefab;
+    //boost effects are now being handled by the base boost system script
+    //[SerializeField]
+    //private GameObject BoostEffectPrefab;
+    //[SerializeField]
+    //private GameObject ImpulseBoostPrefab;
+    //[SerializeField]
+    //private GameObject FloatThrustPrefab;
 
 
     float JumpCooldown = 0.2f;
@@ -85,6 +90,7 @@ public class BaseMechMovement : MonoBehaviour
     [SerializeField] //SFT
     private Rigidbody MyRB;
     private BaseMechMain MyBMM;
+    private BaseBoostSystem MyBS;
 
     
     //private void Start()
@@ -106,12 +112,12 @@ public class BaseMechMovement : MonoBehaviour
         CurrentBoostjuice = BoostJuiceCapacity;
     }
 
-    public void SetBoostEffects(GameObject Boost, GameObject Impulse,GameObject Float)
-    {
-        BoostEffectPrefab = Boost;
-        ImpulseBoostPrefab = Impulse;
-        FloatThrustPrefab = Float; //currently boost system will use the same effect as boost for float
-    }
+    //public void SetBoostEffects(GameObject Boost, GameObject Impulse,GameObject Float)
+    //{
+    //    BoostEffectPrefab = Boost;
+    //    ImpulseBoostPrefab = Impulse;
+    //    FloatThrustPrefab = Float;
+    //}
 
     public void SetWeight(float a)
     {
@@ -123,40 +129,11 @@ public class BaseMechMovement : MonoBehaviour
         MyRB.mass += a;
     }
 
-    public void CreateBoostAndJumpEffects(List<Transform> BoostPoints,List<Transform> FloatThrustPoints)
-    {
-        BoostExhausts = new List<ParticleSystem>();
-        BoostImpulses = new List<ParticleSystem>();
+    
 
-        FloatThrusters = new List<ParticleSystem>();
 
-        for (int i = 0; i < BoostPoints.Count; i++)
-        {
-            ParticleSystem Boost = Instantiate(BoostEffectPrefab, BoostPoints[i]).GetComponentInChildren<ParticleSystem>();
-            AdjustEffectScale(Boost, BoostPoints[i].transform.localScale);
-            BoostExhausts.Add(Boost);
 
-            ParticleSystem Impulse = Instantiate(ImpulseBoostPrefab, BoostPoints[i]).GetComponentInChildren<ParticleSystem>();
-            AdjustEffectScale(Impulse, BoostPoints[i].transform.localScale);
-            BoostImpulses.Add(Impulse);
-        }
-        for (int i = 0; i < FloatThrustPoints.Count; i++)
-        {
-            ParticleSystem Float = Instantiate(FloatThrustPrefab, FloatThrustPoints[i]).GetComponentInChildren<ParticleSystem>();
-            AdjustEffectScale(Float, FloatThrustPoints[i].transform.localScale);
-            FloatThrusters.Add(Float);
-        }
-    }
-
-    public void AdjustEffectScale(ParticleSystem a,Vector3 Scale)
-    {
-        foreach (ParticleSystem b in a.GetComponentsInChildren<ParticleSystem>())
-        {
-            b.transform.localScale = Scale;
-        }
-    }
-
-    public void SetStats(float MF,float SL, float BSL, float BF,float IBF, float FF,float BC,float IC,float FC,float BJC, float BJR,float BJRC ,Vector3 Drag, float JF)
+    public void SetStats(float MF,float SL, float BSL, float BF,float IBF, float FF,float BC,float IC,float FC,float BJC, float BJR,float BJRC ,Vector3 Drag, float JF, BaseBoostSystem BS)
     {
         MoveForce = MF;
         SpeedLimit = SL;
@@ -179,6 +156,8 @@ public class BaseMechMovement : MonoBehaviour
         OverSpeedDrag = Drag.z;
 
         JumpForce = JF;
+
+        MyBS = BS;
     }
 
     public void SetGroundDetection(Transform Site)
@@ -218,25 +197,35 @@ public class BaseMechMovement : MonoBehaviour
         }
 
         float AirMultiplier = 1; //mid-air manuvering is less effective unless boosting, under test
-        if (!grounded())
-            AirMultiplier = 0.2f;
-        else if (!grounded() && Boosting)
-            AirMultiplier = 0.7f;
+
+        PlanarInput = transform.TransformDirection(PlanarInput).normalized;
+
+        if (grounded())
+        {
+            //converts planar movement to sloped plane under player 
+            PlanarInput = Vector3.ProjectOnPlane(PlanarInput, GroundUnder.normal).normalized;
+            Debug.DrawRay(transform.position, PlanarInput * 100,Color.cyan);
+        }
+        else
+        {
+            if (Boosting)
+                AirMultiplier = 0.7f;
+            else
+                AirMultiplier = 0.2f;
+        }
 
 
         //addforce forcemode.force should be independent and doesnot require time.deltatime, this combined with fixedupdate should help with inconsistancies with framerate
         if (Boosting && AttemptUseBoostJuice(BoostCost * Time.deltaTime))
         {
-            MyRB.AddForce(transform.TransformDirection(PlanarInput).normalized * (MoveForce * AirMultiplier + BoostForce), ForceMode.Force);
+            MyRB.AddForce(PlanarInput * (MoveForce * AirMultiplier + BoostForce), ForceMode.Force);
         }
         else
         {
             if (Boosting)
                 BoostControl(false);
-            
 
-
-            MyRB.AddForce(transform.TransformDirection(PlanarInput).normalized * MoveForce * AirMultiplier, ForceMode.Force);
+            MyRB.AddForce(PlanarInput * MoveForce * AirMultiplier, ForceMode.Force);
         }
 
 
@@ -257,6 +246,15 @@ public class BaseMechMovement : MonoBehaviour
         //WasBoosting = ShouldBeBoosting;
     }
 
+
+
+
+    public void SetBoostSounds(AudioClip Boost, AudioClip Impulse)
+    {
+        BoostPlayer.clip = Boost;
+        ImpulsePlayer.clip = Impulse;
+    }
+
     public void BoostControl(bool Start)
     {
         if (Start)
@@ -271,13 +269,17 @@ public class BaseMechMovement : MonoBehaviour
 
             if (AttemptUseBoostJuice(ImpulseCost))
             {
-                ImpulseBoostEffect();
+                MyBS.ImpulseBoostEffect();
+                if (ImpulsePlayer.isPlaying)
+                    ImpulsePlayer.Stop();
+                ImpulsePlayer.Play();
                 MyRB.AddForce(transform.TransformDirection(PlanarInput).normalized * ImpulseBoostForce, ForceMode.Impulse);
             }
 
             if (CurrentBoostjuice >= BoostCost * Time.deltaTime)
             {
-                BoostEffect(true);
+                MyBS.BoostEffect(true);
+                BoostPlayer.Play();
                 Boosting = true;
             }
         }
@@ -286,7 +288,8 @@ public class BaseMechMovement : MonoBehaviour
             if (Boosting)
             {
                 Boosting = false;
-                BoostEffect(false);
+                BoostPlayer.Stop();
+                MyBS.BoostEffect(false);
             }
         }
 
@@ -359,10 +362,26 @@ public class BaseMechMovement : MonoBehaviour
 
     public bool grounded()
     {
-        if (Physics.OverlapSphere(GroundDetectionSite.position, GroundDetectionRadius, GroundDetection).Length > 0)
+        //old detection method using overlapsphere, new one helps slope movement
+        //if (Physics.OverlapSphere(GroundDetectionSite.position, GroundDetectionRadius, GroundDetection).Length > 0)
+        //    return true;
+        //else
+        //    return false;
+
+
+        if (Physics.Raycast(GroundDetectionSite.position, -transform.up, out GroundUnder, GroundDetectionRadius,GroundDetection))
+        {
+            //float Angle = Vector3.Angle(transform.up, GroundUnder.normal); //gets angle of slope
+
             return true;
-        else
-            return false;
+        }
+        return false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(GroundDetectionSite)
+        Debug.DrawRay(GroundDetectionSite.position,-transform.up*GroundDetectionRadius,Color.red);
     }
 
     public void Jump()
@@ -387,53 +406,21 @@ public class BaseMechMovement : MonoBehaviour
             if (grounded() && JCRemaining <= 0)
                 Jump();
 
-            FloatEffect(true);
+            MyBS.FloatEffect(true);
         }
         else if (!Floating && WasFloating)
-            FloatEffect(false);
+            MyBS.FloatEffect(false);
 
         WasFloating = Floating;
     }
 
 
 
-    private void OnDisable()
-    {
-        BoostEffect(false);
-        FloatEffect(false);
-    }
+
 
     #region Effects
 
-    private void ImpulseBoostEffect()
-    {
-        foreach (ParticleSystem a in BoostImpulses)
-        {
-            a.Play();
-        }
-    }
 
-    private void BoostEffect(bool boost)
-    {
-        foreach (ParticleSystem a in BoostExhausts)
-        {
-            if (boost)
-                a.Play();
-            else
-                a.Stop();
-        }
-    }
-
-    private void FloatEffect(bool _float)
-    {
-        foreach (ParticleSystem a in FloatThrusters)
-        {
-            if (_float)
-                a.Play();
-            else
-                a.Stop();
-        }
-    }
 
     #endregion
 

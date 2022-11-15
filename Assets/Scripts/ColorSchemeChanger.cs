@@ -42,6 +42,8 @@ public class ColorSchemeChanger : MonoBehaviour
         MainMatButton.color = Main.color;
         SecondaryMatButton.color = Secondary.color;
         FrameMatButton.color = Frame.color;
+
+        SetCurrentMain();
     }
     #region Button Functions
     public void SetCurrentMain()

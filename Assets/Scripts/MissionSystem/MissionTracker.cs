@@ -83,18 +83,19 @@ public class MissionTracker : MonoBehaviour
     {
         if (CurrentStage < MissionStages.Count - 1)
         {
-            CurrentStage++;
+            UILockManager.Instance.ClearMissionTrackers();
             UIObjectiveTrackManager.Instance.ClearMissions();
+
+            CurrentStage++;
             CreateUIElement(MissionStages[CurrentStage]);
 
-            UILockManager.Instance.ClearMissionTrackers();
 
 
 
         }
         else
         {
-            PauseMiniMenu.Instance.ShowLevelEndUI();
+            PauseMiniMenu.Instance.ShowLevelEndUI(true);
             //mission completed
         }
 

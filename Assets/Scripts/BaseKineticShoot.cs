@@ -106,4 +106,10 @@ public class BaseKineticShoot : BaseShoot
 
         return false;
     }
+
+    public override string GetMag
+    { get { return MaxMagazine+"/"+MaxReserveAmmo; } }
+
+    public override string GetReload
+    { get { return ReloadTime+"s"; } }
 }

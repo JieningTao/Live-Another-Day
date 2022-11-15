@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
         MyMech = GetComponent<BaseMechMain>();
         MyFCS = MyMech.GetFCS();
         MyMovement = MyMech.GetMovement();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
     }
 
     private void Update()

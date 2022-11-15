@@ -7,7 +7,6 @@ public class MainWeaponDualFire : Shoot2MainWeapon
     [SerializeField]
     int SecondaryBurst =3;
 
-    BaseMechFCS MyFCS;
     BaseMissileLauncher SecondaryLauncher;
 
 

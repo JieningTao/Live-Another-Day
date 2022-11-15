@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseMWMissileLauncher : BaseMainWeapon
 {
-    BaseMechFCS MyFCS;
     BaseMissileLauncher MyMissileLauncher;
 
     public override void Equip(bool _Equip, BaseMechMain Operator, bool Right)

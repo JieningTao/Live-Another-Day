@@ -13,16 +13,19 @@ public class MechLoader : MonoBehaviour
 
     void Start()
     {
+           
+
+        string Load = SaveLoadManager.LoadData(LoadKey);
         MyMech = GetComponent<BaseMechMain>();
 
-        if (PlayerPrefs.HasKey(LoadKey))
+        if (Load != null)
         {
+
+
             Debug.Log("Saved Loadout detected, loading...");
+            Debug.Log(Load);
 
-            string a = PlayerPrefs.GetString(LoadKey);
-            Debug.Log(a);
-
-            List<List<LoadOutPart>> LoadedLoadout = SaveCoder.LoadLoadout(a);
+            List<List<LoadOutPart>> LoadedLoadout = SaveCoder.LoadLoadout(Load);
 
             List<LoadOutPart> LoadoutBodyPart = LoadedLoadout[0];
             List<LoadOutPart> LoadoutMainEquipment = LoadedLoadout[1];
@@ -34,10 +37,14 @@ public class MechLoader : MonoBehaviour
             //Arms cannot use the get comp method
             BaseMechPartLegs Legs = LoadoutBodyPart[3].GetComponent<BaseMechPartLegs>();
             BaseMechPartPack Pack = LoadoutBodyPart[4].GetComponent<BaseMechPartPack>();
-            BaseBoostSystem Boost = LoadoutBodyPart[5].GetComponent<BaseBoostSystem>();
-            BasePowerSystem Power = LoadoutBodyPart[6].GetComponent<BasePowerSystem>();
 
-            MyMech.AssignParts(Head, Torso, LoadoutBodyPart[2], Legs, Pack, Boost, Power);
+            Debug.Log(LoadoutBodyPart[5].Name);
+            BaseBoostSystem Boost = LoadoutBodyPart[5].GetComponent<BaseBoostSystem>();
+            Debug.Log(LoadoutBodyPart[6].Name);
+            BaseFCSChip FCSChip = LoadoutBodyPart[6].GetComponent<BaseFCSChip>();
+
+
+            MyMech.AssignParts(Head, Torso, LoadoutBodyPart[2], Legs, Pack, Boost,FCSChip);
 
             BaseMainSlotEquipment CP;
             BaseMainSlotEquipment CS;

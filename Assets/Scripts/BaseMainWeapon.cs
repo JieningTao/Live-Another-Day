@@ -12,18 +12,116 @@ public class BaseMainWeapon : BaseMainSlotEquipment
     protected string MainWeaponName= "Null";
     [SerializeField]
     protected Color MainWeaponGaugeColor;
+    [Tooltip("Leave as 0 for any weapon except locking ones")]
+    [SerializeField]
+    int MainLockNum = 0;
 
-    bool MainAmmoWarning = false;
-    bool MainEnergyWarning = false;
+    protected BaseMissileLauncher MainLauncher
+    {
+        get {
+            if (_MainLauncher)
+                return _MainLauncher;
+            else
+            {
+                _MainLauncher = MainWeapon as BaseMissileLauncher;
+                return _MainLauncher;
+            }
+        }
+    }
+    protected BaseMissileLauncher _MainLauncher;
+    protected bool MainAmmoWarning = false;
+    protected bool MainEnergyWarning = false;
+
+    [Space(20)]
+
+    [SerializeField]
+    protected BaseShoot SecondaryWeapon;
+    [SerializeField]
+    protected string SecondaryWeaponSN = "";
+    [SerializeField]
+    protected string SecondaryWeaponName = "";
+    [SerializeField]
+    protected Color SecondaryWeaponGaugeColor;
+    [Tooltip("Leave as 0 for any weapon except locking ones")]
+    [SerializeField]
+    int SecondaryLockNum = 0;
+
+    protected BaseMissileLauncher SecondaryLauncher
+    {
+        get
+        {
+            if (_SecondaryLauncher)
+                return _SecondaryLauncher;
+            else
+            {
+                _SecondaryLauncher = SecondaryWeapon as BaseMissileLauncher;
+                return _SecondaryLauncher;
+            }
+        }
+    }
+    protected BaseMissileLauncher _SecondaryLauncher;
+    protected bool SecondaryAmmoWarning = false;
+    protected bool SecondaryEnergyWarning = false;
+
+    protected BaseMechFCS MyFCS;
+    protected bool Locking = false;
 
     public override void PrimaryFire(bool Fire)
     {
+        if (Fire && MainLockNum>0)
+        {
+            if (Locking)
+            {
+                MainLauncher.FireVolley(MyFCS.GetLockedList());
+                Locking = false;
+                MyFCS.RequestLocks(0, this);
+            }
+            else
+            {
+                Locking = true;
+                MyFCS.RequestLocks(MainLockNum, this);
+            }
+        }
+        else
         MainWeapon.Trigger(Fire);
+    }
+
+    public override void SecondaryFire(bool Fire)
+    {
+        if (HasSecondary)
+        {
+            if (Fire && SecondaryLockNum > 0)
+            {
+                if (Locking)
+                {
+                    SecondaryLauncher.FireVolley(MyFCS.GetLockedList());
+                    Locking = false;
+                    MyFCS.RequestLocks(0, this);
+                }
+                else
+                {
+                    Locking = true;
+                    MyFCS.RequestLocks(SecondaryLockNum, this);
+                }
+            }
+            else
+                SecondaryWeapon.Trigger(Fire);
+        }
+
     }
 
     protected virtual void Update()
     {
+        if(Operator)
         CheckWarnings();
+    }
+
+    public bool HasSecondary
+    {
+        get
+        {
+            return SecondaryWeapon != null;
+        }
     }
 
     protected virtual void CheckWarnings()
@@ -41,24 +139,58 @@ public class BaseMainWeapon : BaseMainSlotEquipment
             Operator.SetWeaponWarning(Right, true, false, false);
 
         MainEnergyWarning = MainWeapon.LowEnergyWarning();
+
+        if (HasSecondary)
+        {
+            if (SecondaryWeapon.LowAmmoWarning() && !SecondaryAmmoWarning)
+                Operator.SetWeaponWarning(Right, false, true, true);
+            else if (!SecondaryWeapon.LowAmmoWarning() && SecondaryAmmoWarning)
+                Operator.SetWeaponWarning(Right, false, true, false);
+
+            SecondaryAmmoWarning = SecondaryWeapon.LowAmmoWarning();
+
+            if (SecondaryWeapon.LowEnergyWarning() && !SecondaryEnergyWarning)
+                Operator.SetWeaponWarning(Right, false, false, true);
+            else if (!SecondaryWeapon.LowEnergyWarning() && SecondaryEnergyWarning)
+                Operator.SetWeaponWarning(Right, false, false, false);
+
+            SecondaryEnergyWarning = SecondaryWeapon.LowEnergyWarning();
+        }
+
     }
 
     public override void Equip(bool _Equip, BaseMechMain Operator,bool Right)
     {
         base.Equip(_Equip, Operator,Right);
+
+        if (Operator)
+            MyFCS = Operator.GetFCS();
+
         MainWeapon.EquipWeapon();
         if (MainWeapon is BaseEnergyShoot)
         {
             (MainWeapon as BaseEnergyShoot).GetPowerSource(Operator);
         }
+
+
+        if (HasSecondary)
+        {
+            SecondaryWeapon.EquipWeapon();
+            if (SecondaryWeapon is BaseEnergyShoot)
+            {
+                (SecondaryWeapon as BaseEnergyShoot).GetPowerSource(Operator);
+            }
+        }
+
     }
 
     public override void GetInitializeDate(out string MainFunction, out Color MainColor, out string SecondaryFunction, out Color SecondaryColor)
     {
-        MainFunction = MainWeaponSN+"\n"+ MainWeaponName;
+        MainFunction = MainWeaponSN + "\n" + MainWeaponName;
         MainColor = MainWeaponGaugeColor;
-        SecondaryFunction = "";
-        SecondaryColor = Color.black;
+
+        SecondaryFunction = SecondaryWeaponSN + "\n" + SecondaryWeaponName;
+        SecondaryColor = SecondaryWeaponGaugeColor;
     }
 
     public override void GetUpdateData(bool Main, out float BarFillPercentage, out string TextDisplay)
@@ -72,6 +204,21 @@ public class BaseMainWeapon : BaseMainSlotEquipment
             BarFillPercentage = MainWeapon.GetAmmoGauge();
             TextDisplay = MainWeapon.GetAmmoText();
         }
+        else
+        {
+            if (HasSecondary)
+            {
+                BarFillPercentage = SecondaryWeapon.GetAmmoGauge();
+                TextDisplay = SecondaryWeapon.GetAmmoText();
+            }
+            else
+            {
+                BarFillPercentage = 0;
+                TextDisplay = "";
+            }
+
+
+        }
     }
 
     public override float GetBulletSpeed()
@@ -82,5 +229,43 @@ public class BaseMainWeapon : BaseMainSlotEquipment
     public virtual string GetName()
     {
         return MainWeaponName;
+    }
+
+    public override List<string> GetStats()
+    {
+        List<string> Temp = new List<string>();
+
+        Temp.Add("Damage: ");
+        Temp.Add(MainWeapon.GetDamage);
+
+        Temp.Add("Accuracy: ");
+        Temp.Add(MainWeapon.GetAccuracy);
+
+        Temp.Add("Fire Rate: ");
+        Temp.Add(MainWeapon.GetFireRate);
+
+        Temp.Add("Fire Mode: ");
+        Temp.Add(MainWeapon.GetFireMode);
+
+        if (MainWeapon is BaseKineticShoot)
+        {
+            Temp.Add("Magazine: ");
+            Temp.Add(MainWeapon.GetMag);
+
+            Temp.Add("Reload: ");
+            Temp.Add(MainWeapon.GetReload);
+        }
+        else if (MainWeapon is BaseEnergyShoot)
+        {
+            Temp.Add("Charge: ");
+            Temp.Add(MainWeapon.GetMag);
+
+            Temp.Add("Recharge: ");
+            Temp.Add(MainWeapon.GetReload);
+        }
+
+
+
+        return Temp;
     }
 }

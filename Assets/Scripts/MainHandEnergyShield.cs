@@ -41,4 +41,29 @@ public class MainHandEnergyShield : BaseMainSlotEquipment
         TextDisplay = Shield.GetHealthText();
     }
 
+
+    public override List<string> GetStats()
+    {
+        List<string> Temp = new List<string>();
+
+        Temp.Add("HP:");
+        Temp.Add(Shield.GetMaxHealth);
+
+        Temp.Add("Recharge:");
+        Temp.Add(Shield.GetRechargeRate+"--"+Shield.GetRechargeDelay);
+
+        Temp.Add("Active Charge:");
+        Temp.Add(Shield.GetChargeWhileDeployed);
+
+        Temp.Add("Overload Time:");
+        Temp.Add(Shield.GetOverLoadRecharge);
+
+        Temp.Add("Charge Power:");
+        Temp.Add(Shield.GetChargePowerDraw);
+
+        Temp.Add("Deployed Power:");
+        Temp.Add(Shield.GetDeployedPowerDraw);
+
+        return null;
+    }
 }

@@ -39,5 +39,15 @@ public class MainHandShield : BaseMainSlotEquipment
         TextDisplay = Shield.GetHealthText();
     }
 
+    public override List<string> GetStats()
+    {
+        List<string> Temp = new List<string>();
+
+        Temp.Add("HP:");
+        Temp.Add(Shield.GetMaxHealth);
+
+        return null;
+    }
+
 
 }

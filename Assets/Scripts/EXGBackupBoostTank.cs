@@ -104,7 +104,48 @@ public class EXGBackupBoostTank : BaseEXGear
 
     public override float GetReadyPercentage()
     {
-        return (1 -( NextChargeCount/Tanks.Count));
+        return (1.0f -( (float)NextChargeCount/(float)Tanks.Count));
     }
 
+    public override float GetSubReadyPercentage()
+    {
+        return ChargeTimeRemaining/ChargeTime;
+    }
+
+
+    public override string GetBBMainText()
+    {
+        if (NextChargeCount < Tanks.Count)
+        {
+            return Tanks.Count - NextChargeCount + " Charges";
+        }
+        else
+        return "EMPTY";
+    }
+
+    public override string GetBBSubText()
+    {
+        if(ChargeTimeRemaining>0)
+        return "Current Tank\n" + (ChargePerSecond * ChargeTimeRemaining).ToString("F1");
+        else if(NextChargeCount < Tanks.Count)
+            return "Current Tank\n" + ChargePerTank;
+        else
+            return " Tank Empty";
+    }
+
+    public override List<string> GetStats()
+    {
+        List<string> Temp = new List<string>();
+
+        Temp.Add("Per Tank: ");
+        Temp.Add(ChargePerTank+"");
+
+        Temp.Add("Tanks: ");
+        Temp.Add(Tanks.Count+"");
+
+        Temp.Add("Apply Time:");
+        Temp.Add(ChargeTime+"");
+
+        return Temp;
+    }
 }

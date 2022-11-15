@@ -514,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1621795499525420261}
   - component: {fileID: 1621795499525420263}
-  - component: {fileID: 1621795499525420260}
+  - component: {fileID: -7091306872762858057}
   m_Layer: 0
   m_Name: DashPack
   m_TagString: Untagged
@@ -569,7 +569,7 @@ MonoBehaviour:
   LeftShoulderEXG: {fileID: 0}
   RightShoulderEXG: {fileID: 0}
   BackPackBuiltInEXG: {fileID: 1621795499642852050}
---- !u!114 &1621795499525420260
+--- !u!114 &-7091306872762858057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -578,13 +578,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1621795499525420258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: d25feb2e4fee990459e3d139c0d012c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '** DashPack'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 4
   PrefabPath: MechParts/Pack/DashPack
+  MyPart: {fileID: 1621795499525420263}
 --- !u!1 &1621795499642852051
 GameObject:
   m_ObjectHideFlags: 0

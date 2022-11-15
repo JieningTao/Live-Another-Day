@@ -20,10 +20,14 @@ public class EXGearAimedWeapon : BaseEXGear
     public override void InitializeGear(BaseMechMain Mech, Transform Parent, bool Right)
     {
         base.InitializeGear(Mech, Parent, Right);
+
         MyFCS = Mech.GetFCS();
 
         if (MyWeapon is BaseEnergyShoot)
+        {
             (MyWeapon as BaseEnergyShoot).GetPowerSource(Mech);
+            Debug.Log("Is E");
+        }
         //Debug.Log(gameObject.name + " Right: " + Right, this);
     }
 
@@ -119,5 +123,43 @@ public class EXGearAimedWeapon : BaseEXGear
     public override string GetBBMainText()
     {
         return MyWeapon.GetAmmoText();
+    }
+
+    public override List<string> GetStats()
+    {
+        List<string> Temp = new List<string>();
+
+        Temp.Add("Damage: ");
+        Temp.Add(MyWeapon.GetDamage);
+
+        Temp.Add("Accuracy: ");
+        Temp.Add(MyWeapon.GetAccuracy);
+
+        Temp.Add("Fire Rate: ");
+        Temp.Add(MyWeapon.GetFireRate);
+
+        Temp.Add("Fire Mode: ");
+        Temp.Add(MyWeapon.GetFireMode);
+
+        if (MyWeapon is BaseKineticShoot)
+        {
+            Temp.Add("Magazine: ");
+            Temp.Add(MyWeapon.GetMag);
+
+            Temp.Add("Reload: ");
+            Temp.Add(MyWeapon.GetReload);
+        }
+        else if (MyWeapon is BaseEnergyShoot)
+        {
+            Temp.Add("Charge: ");
+            Temp.Add(MyWeapon.GetMag);
+
+            Temp.Add("Recharge: ");
+            Temp.Add(MyWeapon.GetReload);
+        }
+
+
+
+        return Temp;
     }
 }

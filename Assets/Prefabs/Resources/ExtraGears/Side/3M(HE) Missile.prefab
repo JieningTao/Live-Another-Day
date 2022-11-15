@@ -250,8 +250,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2821663007901706599}
   - component: {fileID: 2821663007901706598}
-  - component: {fileID: 3192125888400098804}
   - component: {fileID: 6236425985303788733}
+  - component: {fileID: 7768920681508986403}
   m_Layer: 0
   m_Name: 3M(HE) Missile
   m_TagString: Untagged
@@ -294,30 +294,18 @@ MonoBehaviour:
   - {fileID: 2821663008015901413}
   - {fileID: 2821663008302824626}
   - {fileID: 2821663008111032653}
-  ProjectilePrefab: {fileID: 5323264709345985453}
+  ProjectileScript: {fileID: 3995797193312393215}
   AccuracyDeviation: 0
   TBS: 0.1
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 1920875775695580840}
+  ShotSounds:
+  - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
+  SoundMinMax: {x: 5, y: 500}
+  Volume: 1
   MaxMagazine: 3
   MaxReserveAmmo: 15
   ReloadTime: 5
---- !u!114 &3192125888400098804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2821663007901706596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Missile pod 3*HE
-  Description: 
-  PartCatagory: 9
-  PrefabPath: ExtraGears/Side/3M(HE) Missile
 --- !u!114 &6236425985303788733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +329,24 @@ MonoBehaviour:
   LockCount: 3
   MultiLock: 1
   MyLauncher: {fileID: 2821663007901706598}
+--- !u!114 &7768920681508986403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821663007901706596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec42a61dd09d70a44840ffa7d3b07843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 3M(HE) Missile
+  Description: 
+  HideForPlayer: 0
+  PartCatagory: 9
+  PrefabPath: ExtraGears/Side/3M(HE) Missile
+  MyEXG: {fileID: 6236425985303788733}
 --- !u!1 &2821663008015901410
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,18 +641,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f2c28a85c1c86408a5491eda98b9a4, type: 3}
---- !u!1 &5323264709345985453 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7982778234853565851, guid: a4f2c28a85c1c86408a5491eda98b9a4,
-    type: 3}
-  m_PrefabInstance: {fileID: 2821663006811383350}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5895692426243784912 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8572947723343537894, guid: a4f2c28a85c1c86408a5491eda98b9a4,
     type: 3}
   m_PrefabInstance: {fileID: 2821663006811383350}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3995797193312393215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1178645602972021193, guid: a4f2c28a85c1c86408a5491eda98b9a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2821663006811383350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479bff24859b9aa469c798d1c5ca6a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2821663007241696257
 PrefabInstance:
   m_ObjectHideFlags: 0

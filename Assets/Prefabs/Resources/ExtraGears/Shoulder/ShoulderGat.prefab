@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 7823720922712957810}
   - component: {fileID: 1514333468037396745}
   - component: {fileID: 7366496081310081518}
-  - component: {fileID: -865982032182875541}
+  - component: {fileID: -1159262285321810488}
   m_Layer: 0
   m_Name: ShoulderGat
   m_TagString: Untagged
@@ -413,6 +413,7 @@ MonoBehaviour:
   AimedPart: {fileID: 2414661557401686060}
   MyWeapon: {fileID: 7366496081310081518}
   TargetSpeed: 1.5
+  TargetingAngle: 10
 --- !u!114 &7366496081310081518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,16 +430,20 @@ MonoBehaviour:
   - {fileID: 5850334065362912109}
   - {fileID: 7782209382072650122}
   - {fileID: 2377481053177095335}
-  ProjectilePrefab: {fileID: 8361021206474383789}
+  ProjectileScript: {fileID: 8361021206474383696}
   AccuracyDeviation: 0.1
   TBS: 0.05
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  ShotSounds:
+  - {fileID: 8300000, guid: 98ed3d3cf68d7f84b80ec9c956a87c6c, type: 3}
+  SoundMinMax: {x: 5, y: 500}
+  Volume: 1
   MaxMagazine: 30
   MaxReserveAmmo: 150
   ReloadTime: 5
---- !u!114 &-865982032182875541
+--- !u!114 &-1159262285321810488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -447,13 +452,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2730051396992958608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: ec42a61dd09d70a44840ffa7d3b07843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Shoulder mounted gattling
+  Name: '** ShoulderGat'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/ShoulderGat
+  MyEXG: {fileID: 1514333468037396745}
 --- !u!1 &3340111608598017186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,15 +1234,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0044575a3e23bc4b93c96e2925b167b, type: 3}
---- !u!1 &8361021206474383789 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5121680720090386673, guid: d0044575a3e23bc4b93c96e2925b167b,
-    type: 3}
-  m_PrefabInstance: {fileID: 3682692184707805532}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8361021206474383699 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
     type: 3}
   m_PrefabInstance: {fileID: 3682692184707805532}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8361021206474383696 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3682692184707805532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9692ae321e1b5ae4e8f5a51486ce6f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -136,6 +136,7 @@ public class UILockManager : MonoBehaviour
     {
         GameObject a = Instantiate(ObjectiveUILockPrefab, transform);
         MissionPointLockTracker TempScript = a.GetComponent<MissionPointLockTracker>();
+        ManagedMissionTrackers.Add(TempScript);
 
         TempScript.Create(this, RadarParent, FollowObject, Title);
     }

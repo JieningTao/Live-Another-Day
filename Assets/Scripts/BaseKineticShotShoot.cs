@@ -40,5 +40,7 @@ public class BaseKineticShotShoot : BaseKineticShoot
         
     }
 
+    public override string GetDamage
+    { get { return ShotAmount+" * "+ProjectileScript.GetDamage; } }
 
 }

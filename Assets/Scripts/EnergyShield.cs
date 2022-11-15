@@ -158,5 +158,30 @@ public class EnergyShield : BaseShield
     }
 
 
+    #region InfoAccess
+
+    public string GetRechargeRate
+    { get { return RechargeRate+"/s"; } }
+
+    public string GetRechargeDelay
+    { get { return RechargeDelay + ""; } }
+
+    public string GetChargeWhileDeployed
+    { get {
+            if(ChargeWhileDeployed)
+            return "Y";
+            return "N";
+        } }
+
+    public string GetOverLoadRecharge
+    { get { return OverloadDelay + "s"; } }
+
+    public string GetChargePowerDraw
+    { get { return ChargePowerDraw + "/s"; } }
+
+    public string GetDeployedPowerDraw
+    { get { return DeployedPowerDraw + "/s"; } }
+
+    #endregion
 
 }

@@ -51,6 +51,15 @@ public class BaseMechPartPack : BaseMechPart
             return false;
     }
 
+    public bool RightBuiltInEXG
+    {
+        get { return (RightShoulderEXGSlot == null && RightShoulderEXG); }
+    }
+
+    public bool LeftBuiltInEXG
+    {
+        get { return (LeftShoulderEXGSlot == null && LeftShoulderEXG); }
+    }
 
     public void EquipShoulderEXGs(BaseEXGear Left, BaseEXGear Right)
     {
@@ -127,5 +136,40 @@ public class BaseMechPartPack : BaseMechPart
             return TW;
         }
 
+    }
+
+    public virtual string GetBIEXG
+    {
+        get
+        {
+            if (BackPackBuiltInEXG)
+            {
+                return BackPackBuiltInEXG.GetName();
+            }
+            else
+                return "None";
+        }
+    }
+
+    public override string GetEXGSlots
+    {
+        get
+        {
+            string Temp = "";
+
+            if (LeftShoulderEXGSlot)
+                Temp += "Y";
+            else
+                Temp+= "N";
+
+            Temp += " | ";
+
+            if (RightShoulderEXGSlot)
+                Temp += "Y";
+            else
+                Temp += "N";
+
+            return Temp;
+        }
     }
 }

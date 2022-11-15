@@ -202,7 +202,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5654977074515183144}
   - component: {fileID: 3795722268953671466}
-  - component: {fileID: -4064015046377576541}
+  - component: {fileID: -8385145243354315860}
+  - component: {fileID: -4014511857809197370}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -245,7 +246,7 @@ MonoBehaviour:
   Displacement: {x: 0, y: 0, z: 0}
   Head: {fileID: 3326158416133542709}
   TurnSpeed: 1
---- !u!114 &-4064015046377576541
+--- !u!114 &-8385145243354315860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,13 +255,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 3795722268953671467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: d25feb2e4fee990459e3d139c0d012c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** Head'
+  Name: Default Head
   Description: 
+  HideForPlayer: 0
   PartCatagory: 0
   PrefabPath: MechParts/Head/Head
+  MyPart: {fileID: 3795722268953671466}
+--- !u!114 &-4014511857809197370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3795722268953671467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25feb2e4fee990459e3d139c0d012c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Description: 
+  HideForPlayer: 0
+  PartCatagory: 0
+  PrefabPath: 
+  MyPart: {fileID: 0}
 --- !u!1 &6195353653820008625
 GameObject:
   m_ObjectHideFlags: 0

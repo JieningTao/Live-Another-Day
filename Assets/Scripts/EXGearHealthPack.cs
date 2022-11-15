@@ -71,5 +71,20 @@ public class EXGearHealthPack : BaseEXGear
         return (float)CurrentCharge/(float)MaxCharge;
     }
 
+    public override List<string> GetStats()
+    {
+        List<string> Temp = new List<string>();
+
+        Temp.Add("Repair: ");
+        Temp.Add(HealAmount+"");
+
+        Temp.Add("Time: ");
+        Temp.Add(HealTime+"s");
+
+        Temp.Add("Charges: ");
+        Temp.Add(MaxCharge+"");
+
+        return Temp;
+    }
 
 }

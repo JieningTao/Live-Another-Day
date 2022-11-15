@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 6514371139028993317}
   - component: {fileID: 5506437859720530731}
   - component: {fileID: 4613000544457353260}
-  - component: {fileID: 3010287976685206473}
+  - component: {fileID: 405278833819684483}
   m_Layer: 0
   m_Name: '''Umbrella'' missile defense'
   m_TagString: Untagged
@@ -487,7 +487,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &3010287976685206473
+--- !u!114 &405278833819684483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -496,13 +496,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5936814680060183537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: ec42a61dd09d70a44840ffa7d3b07843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '''Umbrella'' Active Laser Defense'
+  Name: '''Umbrella'' missile defense'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/'Umbrella' missile defense
+  MyEXG: {fileID: 2142428243349032225}
 --- !u!1 &6234265982894831802
 GameObject:
   m_ObjectHideFlags: 0

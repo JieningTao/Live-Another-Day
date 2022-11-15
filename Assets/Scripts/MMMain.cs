@@ -11,6 +11,11 @@ public class MMMain : MonoBehaviour
     private Animator MissionAnim;
 
 
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
+
     public void Quit()
     {
         Application.Quit();
@@ -31,5 +36,13 @@ public class MMMain : MonoBehaviour
     {
         MainAnim.SetBool("Show", true);
         MissionAnim.SetBool("Show",false);
+    }
+
+    public void ResetPrefs()
+    {
+        if( PlayerPrefs.HasKey("PlayerLoadout"))
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 }

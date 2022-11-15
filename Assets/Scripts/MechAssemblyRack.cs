@@ -30,7 +30,7 @@ public class MechAssemblyRack : MonoBehaviour
     [SerializeField]
     BaseBoostSystem BoostSystem;
     [SerializeField]
-    BaseEnergySource EnergySystem;
+    BaseFCSChip FCSChip;
 
     [Space(10)]
 
@@ -52,7 +52,16 @@ public class MechAssemblyRack : MonoBehaviour
     {
         MyMCA = GetComponent<MechColorAdjuster>();
 
-        LoadPlayerPrefLoadout();
+        //this try catch should solve issues where old playerprefs can cause bugs when attempting to load a part that has been renamed or no longer exists
+        try
+        {
+            LoadPlayerPrefLoadout();
+        }
+        catch
+        {
+
+        }
+
         SpawnParts();
         AssembleVisual();
         MyMCA.switchColor();
@@ -60,11 +69,13 @@ public class MechAssemblyRack : MonoBehaviour
 
     public void LoadPlayerPrefLoadout()
     {
-        if (PlayerPrefs.HasKey("PlayerLoadout"))
+        string Load = SaveLoadManager.LoadData("PlayerLoadout");
+
+        if (Load!=null)
         {
             Debug.Log("Saved Loadout detected, loading...");
 
-            string a = PlayerPrefs.GetString("PlayerLoadout");
+            string a = Load;
             Debug.Log(a);
 
             List<List<LoadOutPart>> LoadedLoadout = SaveCoder.LoadLoadout(a);
@@ -89,7 +100,7 @@ public class MechAssemblyRack : MonoBehaviour
             MPPack = LoadoutBodyPart[4].GetComponent<BaseMechPartPack>();
             
             BoostSystem = LoadoutBodyPart[5].GetComponent<BaseBoostSystem>();
-            EnergySystem = LoadoutBodyPart[6].GetComponent<BasePowerSystem>();
+            FCSChip = LoadoutBodyPart[6].GetComponent<BaseFCSChip>();
 
             if (LoadoutMainEquipment[0])
                 CurrentPrimary = LoadoutMainEquipment[0].GetComponent<BaseMainSlotEquipment>();
@@ -137,7 +148,7 @@ public class MechAssemblyRack : MonoBehaviour
         LoadoutBodyPart.Add(MPPack.GetComponent<LoadOutPart>());
 
         LoadoutBodyPart.Add(BoostSystem.GetComponent<LoadOutPart>());
-        LoadoutBodyPart.Add(EnergySystem.GetComponent<LoadOutPart>());
+        LoadoutBodyPart.Add(FCSChip.GetComponent<LoadOutPart>());
 
         if (CurrentPrimary)
             LoadoutMainEquipment.Add(CurrentPrimary.GetComponent<LoadOutPart>());
@@ -167,10 +178,13 @@ public class MechAssemblyRack : MonoBehaviour
 
         string a = SaveCoder.ConvertLoadoutToString(Temp);
 
+
         Debug.Log("Player loadout: "+a);
 
-        PlayerPrefs.SetString("PlayerLoadout", a);
-        PlayerPrefs.Save();
+        SaveLoadManager.SaveData("PlayerLoadout", a);
+
+        //PlayerPrefs.SetString("PlayerLoadout", a);
+        //PlayerPrefs.Save();
 
     }
 
@@ -233,7 +247,7 @@ public class MechAssemblyRack : MonoBehaviour
         //MPRArm = Instantiate(MPRArm.gameObject, transform).GetComponent<BaseMechPartArm>();
 
         BoostSystem = Instantiate(BoostSystem.gameObject, transform).GetComponent<BaseBoostSystem>();
-        EnergySystem = Instantiate(EnergySystem.gameObject, transform).GetComponent<BasePowerSystem>();
+        FCSChip = Instantiate(FCSChip.gameObject, transform).GetComponent<BaseFCSChip>();
 
         SpawnWeapons();
         SpawnEXGs();
@@ -410,12 +424,85 @@ public class MechAssemblyRack : MonoBehaviour
                     MPLegs = PartToFit.GetComponent<BaseMechPartLegs>();
                     break;
 
+                case PartSwitchManager.BigCataGory.BoostSystem:
+                    Destroy(BoostSystem.gameObject);
+                    BoostSystem = PartToFit.GetComponent<BaseBoostSystem>();
+                    break;
+
+                case PartSwitchManager.BigCataGory.FCSChip:
+                    Destroy(FCSChip.gameObject);
+                    FCSChip = PartToFit.GetComponent<BaseFCSChip>();
+                    break;
+
             }
         }
 
        ReassembleVisual();
 
 
+    }
+
+    public LoadOutPart GetpostionPart(PartSwitchManager.BigCataGory PartType, int Position)
+    {
+        if (PartType == PartSwitchManager.BigCataGory.MainWeapon)
+        {
+            if (Position == 0)
+            {
+                if (CurrentPrimary)
+                    return CurrentPrimary.GetComponent<LoadOutPart>();
+                else
+                    return null;
+            }
+            else
+            {
+                if (CurrentSecondary)
+                    return CurrentSecondary.GetComponent<LoadOutPart>();
+                else
+                    return null;
+            }
+        }
+        else if (PartType == PartSwitchManager.BigCataGory.ShoulderEXG || PartType == PartSwitchManager.BigCataGory.SideEXG)
+        {
+            if (EquipedEXGear[Position] != null)
+                return EquipedEXGear[Position].GetComponent<LoadOutPart>();
+            else
+                return null;
+        }
+        else
+        {
+            switch (PartType)
+            {
+                case PartSwitchManager.BigCataGory.Head:
+                    return MPHead.GetComponent<LoadOutPart>();
+                    break;
+
+                case PartSwitchManager.BigCataGory.Torso:
+                    return MPTorso.GetComponent<LoadOutPart>();
+                    break;
+
+                case PartSwitchManager.BigCataGory.Arms:
+                    return MPArms.GetComponent<LoadOutPart>();
+                    break;
+
+                case PartSwitchManager.BigCataGory.Pack:
+                    return MPPack.GetComponent<LoadOutPart>();
+                    break;
+
+                case PartSwitchManager.BigCataGory.Legs:
+                    return MPLegs.GetComponent<LoadOutPart>();
+                    break;
+
+                case PartSwitchManager.BigCataGory.BoostSystem:
+                    return BoostSystem.GetComponent<LoadOutPart>();
+                    break;
+
+                case PartSwitchManager.BigCataGory.FCSChip:
+                    return FCSChip.GetComponent<LoadOutPart>();
+                    break;
+
+            }
+        }
+        return null;
     }
 
     //public void FitNewPart() //legacy function used during testing

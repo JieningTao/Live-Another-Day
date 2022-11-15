@@ -1730,7 +1730,7 @@ MonoBehaviour:
   BulletSpawns:
   - {fileID: 2378001343028686511}
   - {fileID: 6817088739547013757}
-  ProjectilePrefab: {fileID: 1144163783179131347}
+  ProjectileScript: {fileID: 1144163783179131182}
   AccuracyDeviation: 2
   TBS: 0.15
   MyFireMode: 1
@@ -2074,7 +2074,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
+      scalar: 1
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -7544,15 +7544,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0044575a3e23bc4b93c96e2925b167b, type: 3}
---- !u!4 &1144163783179131181 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
+--- !u!114 &1144163783179131182 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
     type: 3}
   m_PrefabInstance: {fileID: 5256615132283668770}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1144163783179131347 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5121680720090386673, guid: d0044575a3e23bc4b93c96e2925b167b,
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9692ae321e1b5ae4e8f5a51486ce6f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1144163783179131181 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
     type: 3}
   m_PrefabInstance: {fileID: 5256615132283668770}
   m_PrefabAsset: {fileID: 0}

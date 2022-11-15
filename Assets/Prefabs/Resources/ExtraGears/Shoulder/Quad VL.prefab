@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 9174711323302920194}
   - component: {fileID: 900457222346896363}
   - component: {fileID: 7717123220323542272}
-  - component: {fileID: 1523448889230891358}
+  - component: {fileID: -5892565740741366678}
   m_Layer: 0
   m_Name: Quad VL
   m_TagString: Untagged
@@ -558,12 +558,16 @@ MonoBehaviour:
   - {fileID: 9174711322373502486}
   - {fileID: 9174711323211601889}
   - {fileID: 9174711322665121290}
-  ProjectilePrefab: {fileID: 6878106939957691925}
+  ProjectileScript: {fileID: 7829252635485151616}
   AccuracyDeviation: 5
   TBS: 0.1
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  ShotSounds:
+  - {fileID: 8300000, guid: 121c1575e4cf5684ba487c62130d809d, type: 3}
+  SoundMinMax: {x: 5, y: 500}
+  Volume: 1
   MaxMagazine: 4
   MaxReserveAmmo: 16
   ReloadTime: 3
@@ -590,7 +594,7 @@ MonoBehaviour:
   LockCount: 4
   MultiLock: 1
   MyLauncher: {fileID: 900457222346896363}
---- !u!114 &1523448889230891358
+--- !u!114 &-5892565740741366678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -599,13 +603,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 9174711323302920195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: ec42a61dd09d70a44840ffa7d3b07843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '** Quad VL'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/Quad VL
+  MyEXG: {fileID: 7717123220323542272}
 --- !u!1001 &9174711322748235339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -787,15 +793,21 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 9098030246287672022, guid: 93c2272d11bdb284faa33a3ca863bc5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 93c2272d11bdb284faa33a3ca863bc5f, type: 3}
---- !u!1 &6878106939957691925 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2315112473502611373, guid: 93c2272d11bdb284faa33a3ca863bc5f,
-    type: 3}
-  m_PrefabInstance: {fileID: 9174711322886091192}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5134752128377275752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4040101109106930896, guid: 93c2272d11bdb284faa33a3ca863bc5f,
     type: 3}
   m_PrefabInstance: {fileID: 9174711322886091192}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7829252635485151616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1437783650761642040, guid: 93c2272d11bdb284faa33a3ca863bc5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 9174711322886091192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a766dc21d3a6641b1c93704d811614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

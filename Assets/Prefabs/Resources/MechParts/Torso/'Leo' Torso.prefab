@@ -549,8 +549,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7842707289178978152}
   - component: {fileID: 1960244249804401429}
-  - component: {fileID: 7682515488422830433}
   - component: {fileID: 44599660957857629}
+  - component: {fileID: 6656506206207810867}
+  - component: {fileID: -1542728823653097196}
   m_Layer: 0
   m_Name: '''Leo'' Torso'
   m_TagString: Untagged
@@ -605,22 +606,6 @@ MonoBehaviour:
   BackPackSocket: {fileID: 2771640116796416021}
   TorsoBuiltInEXG: {fileID: 6589032578772940460}
   AmmoAmount: 0
---- !u!114 &7682515488422830433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960244249804401430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: '''Leo'' Torso'
-  Description: Resources/MechParts/Torso/'DragonFly' Torso.prefab
-  PartCatagory: 1
-  PrefabPath: MechParts/Torso/'Leo' Torso
 --- !u!95 &44599660957857629
 Animator:
   serializedVersion: 3
@@ -640,6 +625,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6656506206207810867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960244249804401430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25feb2e4fee990459e3d139c0d012c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: '''Leo'' Torso'
+  Description: 
+  HideForPlayer: 0
+  PartCatagory: 1
+  PrefabPath: MechParts/Torso/'Leo' Torso
+  MyPart: {fileID: 1960244249804401429}
+--- !u!114 &-1542728823653097196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960244249804401430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449751b6535da4e4090b94dd2c1b19c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxEnergy: 200
+  NaturalEnergyRegen: 3
+  CurrentPowerDraw: 0
 --- !u!1 &2229059816391162834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,12 +2150,15 @@ MonoBehaviour:
   - {fileID: 6295894702047743223}
   - {fileID: 890354373708211790}
   - {fileID: 6463617446761686916}
-  ProjectilePrefab: {fileID: 1419243256873502216}
+  ProjectileScript: {fileID: 6781793966687148135}
   AccuracyDeviation: 5
   TBS: 0.12
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  ShotSounds: []
+  SoundMinMax: {x: 5, y: 500}
+  Volume: 1
   MaxMagazine: 12
   MaxReserveAmmo: 48
   ReloadTime: 10
@@ -3340,15 +3361,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af09cd9c8219dd84d8cf724f9c2518ef, type: 3}
---- !u!1 &1419243256873502216 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3492615163809154831, guid: af09cd9c8219dd84d8cf724f9c2518ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 2578988929259438343}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7785404755964518602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5746936876792177101, guid: af09cd9c8219dd84d8cf724f9c2518ef,
     type: 3}
   m_PrefabInstance: {fileID: 2578988929259438343}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6781793966687148135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9067907045586032992, guid: af09cd9c8219dd84d8cf724f9c2518ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 2578988929259438343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75d85d7e1dc8d14092f685f32fcc15c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

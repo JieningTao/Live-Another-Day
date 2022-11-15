@@ -201,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854627994871447488}
   - component: {fileID: 1854627994871447495}
-  - component: {fileID: 6184902100171447762}
+  - component: {fileID: 7594319034468520126}
   m_Layer: 0
   m_Name: RepairPacks
   m_TagString: Untagged
@@ -247,7 +247,7 @@ MonoBehaviour:
   HealAmount: 100
   HealTime: 1
   MaxCharge: 6
---- !u!114 &6184902100171447762
+--- !u!114 &7594319034468520126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,13 +256,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1854627994871447489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: ec42a61dd09d70a44840ffa7d3b07843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Repair Kits
+  Name: '** RepairPacks'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/RepairPacks
+  MyEXG: {fileID: 1854627994871447495}
 --- !u!1 &2849886913915423359
 GameObject:
   m_ObjectHideFlags: 0

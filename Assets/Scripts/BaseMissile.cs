@@ -54,4 +54,6 @@ public class BaseMissile : BaseBullet
         }
     }
 
+    public string GetTracking
+    {get {  return TrackingSpeed + "";  } }
 }

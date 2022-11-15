@@ -941,7 +941,7 @@ GameObject:
   - component: {fileID: 6176787046168544607}
   - component: {fileID: 7374872896544964239}
   - component: {fileID: 7259087460688244815}
-  - component: {fileID: -794790264512831157}
+  - component: {fileID: 5366926621790784759}
   m_Layer: 0
   m_Name: QuadL(CE)
   m_TagString: Untagged
@@ -983,12 +983,16 @@ MonoBehaviour:
   - {fileID: 6176787046933972158}
   - {fileID: 6176787047139619634}
   - {fileID: 6176787045854722552}
-  ProjectilePrefab: {fileID: 7940656050017299117}
+  ProjectileScript: {fileID: 4089150328935224215}
   AccuracyDeviation: 0.5
   TBS: 0.4
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  ShotSounds:
+  - {fileID: 8300000, guid: bf43f22e11de9ee4297dd6e293d8b7f1, type: 3}
+  SoundMinMax: {x: 5, y: 500}
+  Volume: 1
   MaxMagazine: 1
   MaxReserveAmmo: 7
   ReloadTime: 10
@@ -1015,7 +1019,7 @@ MonoBehaviour:
   LockCount: 1
   MultiLock: 1
   MyLauncher: {fileID: 7374872896544964239}
---- !u!114 &-794790264512831157
+--- !u!114 &5366926621790784759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1024,13 +1028,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6176787046168544606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f24b4165689e0644b960cb17da788602, type: 3}
+  m_Script: {fileID: 11500000, guid: ec42a61dd09d70a44840ffa7d3b07843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '** QuadL(CE)'
   Description: 
+  HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/QuadL(CE)
+  MyEXG: {fileID: 7259087460688244815}
 --- !u!1 &6176787046933972157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,15 +1663,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d8f9e98a32c91147821b8e8697f6fde, type: 3}
---- !u!1 &7940656050017299117 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 363933296542463460, guid: 2d8f9e98a32c91147821b8e8697f6fde,
-    type: 3}
-  m_PrefabInstance: {fileID: 7727635985924611913}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1541881502960123972 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9105098611563224845, guid: 2d8f9e98a32c91147821b8e8697f6fde,
     type: 3}
   m_PrefabInstance: {fileID: 7727635985924611913}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4089150328935224215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6017239507614878942, guid: 2d8f9e98a32c91147821b8e8697f6fde,
+    type: 3}
+  m_PrefabInstance: {fileID: 7727635985924611913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1ea427e5076634a9608e1bf304d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
