@@ -71,14 +71,25 @@ public class MechAssemblyRack : MonoBehaviour
     {
         string Load = SaveLoadManager.LoadData("PlayerLoadout");
 
-        if (Load!=null)
+        string Parts = "";
+        string Colors = "";
+
+        if (Load.Contains("[ColorPartSeperator]"))
+        {
+            string[] a = Load.Split(new string[] { "[ColorPartSeperator]" }, System.StringSplitOptions.None);
+            Parts = a[0];
+            Colors = a[1];
+        }
+        else
+            Parts = Load;
+
+
+        if (Parts != null)
         {
             Debug.Log("Saved Loadout detected, loading...");
+            Debug.Log(Parts);
 
-            string a = Load;
-            Debug.Log(a);
-
-            List<List<LoadOutPart>> LoadedLoadout = SaveCoder.LoadLoadout(a);
+            List<List<LoadOutPart>> LoadedLoadout = SaveCoder.LoadLoadout(Parts);
 
             List<LoadOutPart> LoadoutBodyPart = LoadedLoadout[0];
             List<LoadOutPart> LoadoutMainEquipment = LoadedLoadout[1];
@@ -98,7 +109,7 @@ public class MechAssemblyRack : MonoBehaviour
 
             MPLegs = LoadoutBodyPart[3].GetComponent<BaseMechPartLegs>();
             MPPack = LoadoutBodyPart[4].GetComponent<BaseMechPartPack>();
-            
+
             BoostSystem = LoadoutBodyPart[5].GetComponent<BaseBoostSystem>();
             FCSChip = LoadoutBodyPart[6].GetComponent<BaseFCSChip>();
 
@@ -129,6 +140,15 @@ public class MechAssemblyRack : MonoBehaviour
                 EquipedEXGear[7] = LoadoutEXGs[5].GetComponent<BaseEXGear>();
 
             Debug.Log("Loadout loaded");
+        }
+
+        if (Colors != null)
+        {
+            Debug.Log(Colors);
+            MyMCA = GetComponent<MechColorAdjuster>();
+
+            MyMCA.RecieveMaterials(SaveCoder.ConvertStringToColorScheme(Colors));
+
         }
     }
 
@@ -177,6 +197,11 @@ public class MechAssemblyRack : MonoBehaviour
         Temp.Add(LoadoutEXGs);
 
         string a = SaveCoder.ConvertLoadoutToString(Temp);
+
+        a += "[ColorPartSeperator]";
+
+
+        a += SaveCoder.ConvertColorSchemeToString(MyMCA.ExtractMaterials());
 
 
         Debug.Log("Player loadout: "+a);

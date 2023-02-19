@@ -21,31 +21,19 @@ public class BaseMissileLauncher : BaseKineticShoot
 
     protected override void Update()
     {
-
-        if (FireCooldown > 0)
-            FireCooldown -= Time.deltaTime;
-        else
-        {
-            if (Firing)
-            {
-
-
-                if (Targets.Count > 0)
-                {
-                    Fire1(Targets[0]);
-                    FireCooldown = TBS;
-                    Targets.RemoveAt(0);
-                }
-                else
-                {
-                    Firing = false;
-                    Targets.Clear();
-                }
-            }
-        }
-
         base.Update();
-        
+
+        if (Firing)
+        {
+            if (FireCooldown <= 0)
+            {
+                Fire1();
+                if (Targets.Count <= 0)
+                    Firing = false;
+            }
+            else if (Targets.Count <= 0)
+                Firing = false;
+        }
     }
 
     protected override void InitializeBullet()
@@ -60,6 +48,17 @@ public class BaseMissileLauncher : BaseKineticShoot
         MissileScript.SetLayerAndMask(SetLayer);
 
         //MissileScript.InitializeProjectile(PerShotDamage, SetLayer, MyDamageType, MyDamageTags, TrackingSpeed, ActivationDelay, ExplosiveDamage, explosiveForce, ExplosionScript);
+    }
+
+
+
+    public override void Trigger(bool Fire)
+    {
+
+
+        //something is using trigger to stop the volley fire
+        //base.Trigger(Fire);
+        //haven't decided what trigger does for this yet
     }
 
     public void FireVolley(List<EnergySignal> NewTargets)
@@ -78,28 +77,63 @@ public class BaseMissileLauncher : BaseKineticShoot
 
     }
 
-    public override void Trigger(bool Fire)
-    {
-        base.Trigger(Fire);
-        //haven't decided what trigger does for this yet
-    }
-
     public void FireFocusedVolley(EnergySignal Target, int VollyAmount)
     {
         for (int i = 0; i < VollyAmount; i++)
         {
             Targets.Add(Target);
+        }
             Firing = true;
+    }
+
+    public void FireCustomVolley(List<EnergySignal> NewTargets,int VollyAmount)
+    {
+        if (NewTargets.Count > 0)
+        {
+            for (int i = 0; i < MagazineRemaining; i++)
+            {
+                for (int j = 0; j < VollyAmount; j++)
+                {
+                    Targets.Add(NewTargets[i % NewTargets.Count]);
+                }
+            }
+            Firing = true;
+        }
+
+    }
+
+    public void FireSingleShot(EnergySignal Target)
+    {
+        Targets.Add(Target);
+        Firing = true;
+    }
+
+    protected override void Fire1()
+    {
+        if (Targets.Count > 0)
+        {
+            Fire1(Targets[0]);
+            Targets.RemoveAt(0);
         }
     }
 
-    public void Fire1(EnergySignal Target) //public for testing
+    private void Fire1(EnergySignal Target) //public for testing
     {
 
-        MissileScript.RecieveTarget(Target);
-        base.Fire1();
-        MissileScript.RecieveTarget(null);
+        if (MagazineRemaining > 0 && ReloadTimeRemaining <= 0)
+        {
+            MissileScript.RecieveTarget(Target);
+            base.Fire1();
+            MissileScript.RecieveTarget(null);
+
+        }
+        else
+        {
+            Reload();
+        }
     }
+
+
 
     public string GetTracking
     { get { return MissileScript.GetTracking; } }

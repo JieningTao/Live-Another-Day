@@ -564,7 +564,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 50
   Weight: 0.4
-  Attributs: []
+  Attributs:
+  - AttributeType: 13
+    TributeAmount: 20
+  - AttributeType: 14
+    TributeAmount: 5
   FloatThrusters: []
   BoostThrusters: []
   Displacement: {x: 0, y: 0, z: 0}

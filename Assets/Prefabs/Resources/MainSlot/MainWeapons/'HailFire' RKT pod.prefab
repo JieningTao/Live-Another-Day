@@ -913,8 +913,14 @@ MonoBehaviour:
   ProjectileScript: {fileID: 7513636091298325030}
   AccuracyDeviation: 0.008
   TBS: 0.12
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 8432195871566190179}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
@@ -935,6 +941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 2
+  Size: 4
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -943,11 +950,13 @@ MonoBehaviour:
   MainWeaponName: '''HailFire'' Rocket Pod'
   MainWeaponGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 0}
   SecondaryWeaponSN: 
   SecondaryWeaponName: 
   SecondaryWeaponGaugeColor: {r: 0, g: 0, b: 0, a: 0}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &-8048353409471156568
 MonoBehaviour:
   m_ObjectHideFlags: 0

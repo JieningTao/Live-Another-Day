@@ -47,7 +47,7 @@ public class EXGearAimedWeapon : BaseEXGear
     {
         Vector3 AimDir;
 
-        if (MyFCS.GetMainTarget() != null && Vector3.Angle(MyFCS.transform.forward, MyFCS.GetMainTarget().transform.position - MyFCS.transform.position) < TargetingAngle)
+        if (MyFCS.GetMainTarget() != null && TargetingAngle>0 && Vector3.Angle(MyFCS.transform.forward, MyFCS.GetMainTarget().transform.position - MyFCS.transform.position) < TargetingAngle)
         {
             if (Target != MyFCS.GetMainTarget())
             {
@@ -105,12 +105,7 @@ public class EXGearAimedWeapon : BaseEXGear
 
     public override void TriggerGear(bool Down)
     {
-
         base.TriggerGear(Down); //base trigger considers ready time and returns if not ready
-
-        if (MyAnimator && Down && MyWeapon.GetFirable())
-            MyAnimator.SetTrigger("Fire");
-
         MyWeapon.Trigger(Down);
     }
 
@@ -161,5 +156,10 @@ public class EXGearAimedWeapon : BaseEXGear
 
 
         return Temp;
+    }
+
+    public override bool IsAimed
+    {
+        get { return true; }
     }
 }

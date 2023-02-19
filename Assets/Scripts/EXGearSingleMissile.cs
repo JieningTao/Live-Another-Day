@@ -20,7 +20,7 @@ public class EXGearSingleMissile : BaseEXGear
         base.TriggerGear(Down);
 
         if (Down)
-            MyLauncher.Fire1(MyFCS.GetMainTarget());
+            MyLauncher.FireFocusedVolley(MyFCS.GetMainTarget(), 1);
 
     }
 

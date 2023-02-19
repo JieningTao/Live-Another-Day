@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &8188783420482657979
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093269259865108811}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.03871391, y: 0.0047183884, z: 0.044583395}
-  m_Center: {x: -0.005463927, y: 0.02246176, z: 0}
 --- !u!1 &7384885560132529844
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,16 +151,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u2018Granite\u2019 L.Arm"
       objectReference: {fileID: 0}
-    - target: {fileID: 7974904607524684598, guid: 29121c3a1f1e9054f812e567eaf73864,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.004374206
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974904607524684598, guid: 29121c3a1f1e9054f812e567eaf73864,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.022633787
-      objectReference: {fileID: 0}
     - target: {fileID: 9013654771251957127, guid: 29121c3a1f1e9054f812e567eaf73864,
         type: 3}
       propertyPath: m_RootOrder
@@ -249,9 +226,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18927e66febeeba43ade27278a39e846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &5093269259865108811 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1463375692617310175, guid: 29121c3a1f1e9054f812e567eaf73864,
-    type: 3}
-  m_PrefabInstance: {fileID: 5971800698789588628}
-  m_PrefabAsset: {fileID: 0}

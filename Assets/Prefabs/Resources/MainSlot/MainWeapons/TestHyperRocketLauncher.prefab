@@ -194,8 +194,14 @@ MonoBehaviour:
   ProjectileScript: {fileID: 8437429162008981281}
   AccuracyDeviation: 0.1
   TBS: 0.7
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 708347852864592671}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: 070104d9e9435b640840a72fee96d2a1, type: 3}
   SoundMinMax: {x: 5, y: 200}
@@ -216,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 2
+  Size: 4
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -224,11 +231,13 @@ MonoBehaviour:
   MainWeaponName: Hyper Bazooka
   MainWeaponGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 0}
   SecondaryWeaponSN: 
   SecondaryWeaponName: 
   SecondaryWeaponGaugeColor: {r: 0, g: 0, b: 0, a: 0}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &4956585230303896918
 MonoBehaviour:
   m_ObjectHideFlags: 0

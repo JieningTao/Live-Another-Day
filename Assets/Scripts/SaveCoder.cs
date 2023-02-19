@@ -72,6 +72,59 @@ public static class SaveCoder
     }
 
 
+    public static string ConvertColorSchemeToString(List<Material> Mats)
+    {
+        string Temp = "";
+
+        foreach (Material a in Mats)
+        {
+            if (a != null)
+            {
+                Temp += a.color.r + "|";
+                Temp += a.color.g + "|";
+                Temp += a.color.b + "|";
+
+                Temp += a.GetFloat("_Metallic") + "|";
+                Temp += a.GetFloat("_Glossiness") + "|";
+            }
+
+            Temp += "[s]";
+        }
+
+        return Temp;
+    }
+
+    public static List<Material> ConvertStringToColorScheme(string Loaded)
+    {
+        List<Material> Mats = new List<Material>();
+
+        List<string> Temp = new List<string>();
+
+        Temp.AddRange(Loaded.Split(new string[] { "[s]" }, System.StringSplitOptions.None));
+
+        foreach (string a in Temp)
+        {
+            if (a == "")
+                Mats.Add(null);
+            else
+            {
+                List<string> MatTemp = new List<string>();
+                MatTemp.AddRange(a.Split(new string[] { "|" }, System.StringSplitOptions.None));
+
+                Material TempMat = new Material(Shader.Find("Standard"));
+
+                TempMat.color = new Color(float.Parse(MatTemp[0]), float.Parse(MatTemp[1]), float.Parse(MatTemp[2]));
+
+                TempMat.SetFloat("_Metallic", float.Parse(MatTemp[3]));
+                TempMat.SetFloat("_Glossiness", float.Parse(MatTemp[4]));
+
+                Mats.Add(TempMat);
+            }
+        }
+
+        return Mats;
+
+    }
 
 
 

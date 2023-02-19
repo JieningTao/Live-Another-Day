@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1432781091963204912}
   - component: {fileID: 1432781091963204913}
-  - component: {fileID: 1432781091963204918}
+  - component: {fileID: 8545741052588504458}
   - component: {fileID: -3643606094540794876}
   m_Layer: 0
   m_Name: LockLauncher
@@ -114,9 +114,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 7899578186145460875}
   AccuracyDeviation: 2
   TBS: 0.8
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: 2df2cd51effda254cbdcfcd06d191ded, type: 3}
   SoundMinMax: {x: 5, y: 500}
@@ -124,7 +130,7 @@ MonoBehaviour:
   MaxMagazine: 3
   MaxReserveAmmo: 15
   ReloadTime: 1.2
---- !u!114 &1432781091963204918
+--- !u!114 &8545741052588504458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,10 +139,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1432781091963204919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a42931754f7f94abab68fd8beeb7fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 2362ae984640b6140a091afd9ddf1704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 2
+  Size: 4
   RequireAiming: 0
   Weight: 0.1
   Mirrored: 0
@@ -144,12 +151,14 @@ MonoBehaviour:
   MainWeaponSN: RL-025
   MainWeaponName: Missile Launcher
   MainWeaponGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
-  MainLockNum: 0
+  MainLockNum: 1
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 0}
   SecondaryWeaponSN: 
   SecondaryWeaponName: 
   SecondaryWeaponGaugeColor: {r: 0, g: 0, b: 0, a: 0}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &-3643606094540794876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +176,7 @@ MonoBehaviour:
   HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/LockLauncher
-  MyEquipment: {fileID: 1432781091963204918}
+  MyEquipment: {fileID: 8545741052588504458}
 --- !u!1 &1432781092036355353
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1432781092036355352
 Transform:
   m_ObjectHideFlags: 0
@@ -193,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 1432781092036355353}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.17049503, z: 0.7669325}
-  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1432781091963204912}
   m_RootOrder: 0
@@ -872,12 +881,12 @@ PrefabInstance:
     - target: {fileID: 4040101109106930896, guid: 7c0c870bffd9f4e40b1b521c2ec35c93,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0641
       objectReference: {fileID: 0}
     - target: {fileID: 4040101109106930896, guid: 7c0c870bffd9f4e40b1b521c2ec35c93,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.96000004
+      value: -0.5921
       objectReference: {fileID: 0}
     - target: {fileID: 4040101109106930896, guid: 7c0c870bffd9f4e40b1b521c2ec35c93,
         type: 3}

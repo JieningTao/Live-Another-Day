@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1558217216895422011
 Transform:
   m_ObjectHideFlags: 0
@@ -86,15 +86,21 @@ MonoBehaviour:
   ProjectileScript: {fileID: 1479627437490149406}
   AccuracyDeviation: 0.2
   TBS: 0.33
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: 8289a30eb7500864481a7ae17d4eddcc, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
   MaxMagazine: 12
-  MaxReserveAmmo: 60
+  MaxReserveAmmo: 84
   ReloadTime: 2
 --- !u!114 &5854587744309282254
 MonoBehaviour:
@@ -118,9 +124,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 7314584676102665106}
   AccuracyDeviation: 0.08
   TBS: 0.2
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds: []
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
@@ -140,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 1
+  Size: 3
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -149,11 +162,13 @@ MonoBehaviour:
   MainWeaponName: Rifle
   MainWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 5854587744309282254}
   SecondaryWeaponSN: UB-008
   SecondaryWeaponName: Rocket
   SecondaryWeaponGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &8778805920450725318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +212,7 @@ Transform:
   m_GameObject: {fileID: 1723248282831792995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.029003743, z: 0.227}
-  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4132400526227514484}
   m_RootOrder: 1
@@ -389,7 +404,7 @@ Transform:
   m_GameObject: {fileID: 1993142797083213272}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.07199955, y: -0.07434714, z: 0.227}
-  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4132400526227514484}
   m_RootOrder: 3
@@ -419,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 2242844402179503843}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.07199955, y: -0.07434714, z: 0.227}
-  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4132400526227514484}
   m_RootOrder: 5
@@ -449,7 +464,7 @@ Transform:
   m_GameObject: {fileID: 2254713019938135986}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.07199955, y: -0.0069233216, z: 0.227}
-  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4132400526227514484}
   m_RootOrder: 2
@@ -909,7 +924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4132400526227514484
 Transform:
   m_ObjectHideFlags: 0
@@ -1273,7 +1288,7 @@ Transform:
   m_GameObject: {fileID: 6808217752119200241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.07199955, y: -0.0069233216, z: 0.227}
-  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4132400526227514484}
   m_RootOrder: 0
@@ -1468,7 +1483,7 @@ Transform:
   m_GameObject: {fileID: 8491724025331622492}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.096426606, z: 0.227}
-  m_LocalScale: {x: 12, y: 12, z: 12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4132400526227514484}
   m_RootOrder: 4

@@ -542,8 +542,8 @@ GameObject:
   - component: {fileID: 2028634281944412251}
   - component: {fileID: 2028634281944412229}
   - component: {fileID: 2028634281944412228}
-  - component: {fileID: 1660535270642328}
   - component: {fileID: 5085153265517124789}
+  - component: {fileID: 1660535270642328}
   m_Layer: 0
   m_Name: M+M Missile Container
   m_TagString: Untagged
@@ -593,8 +593,14 @@ MonoBehaviour:
   ProjectileScript: {fileID: 899677381825661186}
   AccuracyDeviation: 5
   TBS: 0.2
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 3
   MuzzleFlarePrefab: {fileID: 6063511500767265844}
+  MyAnimator: {fileID: 0}
   ShotSounds: []
   SoundMinMax: {x: 5, y: 200}
   Volume: 0.8
@@ -623,8 +629,14 @@ MonoBehaviour:
   ProjectileScript: {fileID: 3986691474894525015}
   AccuracyDeviation: 5
   TBS: 0.2
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 3
   MuzzleFlarePrefab: {fileID: 6063511500767265844}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
@@ -632,6 +644,35 @@ MonoBehaviour:
   MaxMagazine: 6
   MaxReserveAmmo: 24
   ReloadTime: 6.5
+--- !u!114 &5085153265517124789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028634281944412250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2362ae984640b6140a091afd9ddf1704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoldStyle: 4
+  Size: 4
+  RequireAiming: 0
+  Weight: 0.1
+  Mirrored: 0
+  MainWeapon: {fileID: 2028634281944412229}
+  MainWeaponSN: MM(HE)
+  MainWeaponName: Medium Missile (HE)
+  MainWeaponGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
+  MainLockNum: 6
+  MainLockBurstAmount: 1
+  SecondaryWeapon: {fileID: 2028634281944412228}
+  SecondaryWeaponSN: MM(AB)
+  SecondaryWeaponName: Medium Missile (AB)
+  SecondaryWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
+  SecondaryLockNum: 6
+  SecondaryLockBurstAmount: 1
 --- !u!114 &1660535270642328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,32 +691,6 @@ MonoBehaviour:
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/M+M Missile Container
   MyEquipment: {fileID: 5085153265517124789}
---- !u!114 &5085153265517124789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028634281944412250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2362ae984640b6140a091afd9ddf1704, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HoldStyle: 4
-  RequireAiming: 0
-  Weight: 0.1
-  Mirrored: 0
-  MainWeapon: {fileID: 0}
-  MainWeaponSN: MM(HE)
-  MainWeaponName: Medium Missile (HE)
-  MainWeaponGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
-  MainLockNum: 6
-  SecondaryWeapon: {fileID: 0}
-  SecondaryWeaponSN: MM(AB)
-  SecondaryWeaponName: Medium Missile (AB)
-  SecondaryWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
-  SecondaryLockNum: 6
 --- !u!1 &2028634282250333909
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634282250333910}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,7 +731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634282256670185}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -746,7 +761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634282270040669}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -776,7 +791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634282463429813}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -806,7 +821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634282492726704}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -872,7 +887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634282628998152}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -902,7 +917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634282663243270}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -932,7 +947,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634282725029481}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -962,7 +977,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634282776527635}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -992,7 +1007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634283082899130}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1022,7 +1037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634283088471721}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1083,7 +1098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028634283609699534}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

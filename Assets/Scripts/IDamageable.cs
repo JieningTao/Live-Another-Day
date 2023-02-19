@@ -9,7 +9,7 @@ public class IDamageable : MonoBehaviour
     [SerializeField]
     protected float MaxHealth = 100;
     [SerializeField]
-    protected DamageSystem.ArmorType MyArmorType;
+    protected DamageSystem.ArmorType MyArmorType = DamageSystem.ArmorType.NormSteelArmor;
     [SerializeField]
     protected List<MonoBehaviour> StuffToDisableAfterDestroy;
     [SerializeField]

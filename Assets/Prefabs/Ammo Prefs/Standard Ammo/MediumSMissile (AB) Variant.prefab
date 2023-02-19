@@ -4833,10 +4833,12 @@ MonoBehaviour:
   HitEffect: {fileID: 0}
   Target: {fileID: 0}
   TrackingSpeed: 1.2
+  TrackingSpeedChange: {x: 2.5, y: 0.6}
+  TrackingChangeTime: 1.5
   ActivationDelay: 0.5
   BurstEffect: {fileID: 3453725305579140645}
   BlastDistance: 25
-  FragmentPrefab: {fileID: 7853481079533280813}
+  FragmentPrefab: {fileID: 0}
   SpreadAngle: 30
   FragAmount: 20
 --- !u!1001 &3165738154084880092
@@ -4928,12 +4930,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0044575a3e23bc4b93c96e2925b167b, type: 3}
---- !u!1 &7853481079533280813 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5121680720090386673, guid: d0044575a3e23bc4b93c96e2925b167b,
-    type: 3}
-  m_PrefabInstance: {fileID: 3165738154084880092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6584216452565350853
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -681,7 +681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3374845962081063294
 Transform:
   m_ObjectHideFlags: 0
@@ -749,9 +749,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 8595624179288962596}
   AccuracyDeviation: 0.001
   TBS: 0.8
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: cbe286eb28d853e4a94b6ba75e0a7783, type: 3}
   SoundMinMax: {x: 5, y: 500}
@@ -772,6 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 1
+  Size: 3
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -780,11 +787,13 @@ MonoBehaviour:
   MainWeaponName: Sniper Rifle
   MainWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 0}
   SecondaryWeaponSN: 
   SecondaryWeaponName: 
   SecondaryWeaponGaugeColor: {r: 0, g: 0, b: 0, a: 0}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &1274070496596303362
 MonoBehaviour:
   m_ObjectHideFlags: 0

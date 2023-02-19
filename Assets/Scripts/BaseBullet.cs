@@ -131,7 +131,9 @@ public class BaseBullet : MonoBehaviour
         {
             HitEffect.transform.parent = null;
             HitEffect.transform.localScale = new Vector3(1, 1, 1);
+            HitEffect.gameObject.SetActive(true); //for some reason on impact explosives, the game obejct keeps getting set to false
             HitEffect.Play();
+            //Debug.Log("HitEffect Play", HitEffect);
         }
 
     }

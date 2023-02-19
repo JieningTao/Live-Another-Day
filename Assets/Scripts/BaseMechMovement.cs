@@ -6,7 +6,9 @@ public class BaseMechMovement : MonoBehaviour
 {
 
     [SerializeField]
-    float MoveForce;
+    float MoveForce { get { return _MoveForce + MyBMM.MyAttProfile.MoveForce; } set { _MoveForce = value; } }
+    float _MoveForce;
+    //float AttMoveForce;
 
     [SerializeField]
     float SpeedLimit;
@@ -14,30 +16,49 @@ public class BaseMechMovement : MonoBehaviour
     float BoostSpeedLimit;
 
     [SerializeField]
-    float BoostForce;
+    float BoostForce { get { return _BoostForce + MyBMM.MyAttProfile.BoostForce; } set { _BoostForce = value; } }
+    float _BoostForce;
     [SerializeField]
-    float BoostCost;
+    float BoostCost { get { return _BoostCost * MyBMM.MyAttProfile.BoostCost; } set { _BoostCost = value; } }
+    float _BoostCost;
+    //float AttBoostForce;
+    //float AttBoostCost;
 
     [SerializeField]
-    float ImpulseBoostForce;
+    float ImpulseBoostForce { get { return _ImpulseBoostForce + MyBMM.MyAttProfile.ImpulseForce; } set { _ImpulseBoostForce = value; } }
+    float _ImpulseBoostForce;
     [SerializeField]
-    float ImpulseCost;
+    float ImpulseCost { get { return _ImpulseCost * MyBMM.MyAttProfile.ImpulseCost; } set { _ImpulseCost = value; } }
+    float _ImpulseCost;
+    //float AttImpulseForce;
+    //float AttImpulseCost;
 
     [SerializeField]
-    private float FloatForce;
-    [SerializeField]
-    float FloatCost;
+    private float FloatForce { get { return _FloatForce + MyBMM.MyAttProfile.FloatForce; } set { _FloatForce = value; } }
+    private float _FloatForce;
+   [SerializeField]
+    float FloatCost { get { return _FloatCost * MyBMM.MyAttProfile.FloatCost; } set { _FloatCost = value; } }
+    float _FloatCost;
+    //float AttFloatForce;
+    //float AttFloatCost;
 
     [SerializeField] //SFT (Serialized for testing)
     public bool Boosting;
     [SerializeField]
-    protected float BoostJuiceCapacity;
+    protected float BoostJuiceCapacity { get { return _BoostJuiceCapacity + MyBMM.MyAttProfile.BoostJuiceCapacity; } set { _BoostJuiceCapacity = value; } }
+    protected float _BoostJuiceCapacity;
     protected float CurrentBoostjuice;
     [SerializeField]
-    protected float BoostJuiceRecovery;
+    protected float BoostJuiceRecovery { get { return _BoostJuiceRecovery + MyBMM.MyAttProfile.BoostJuiceRecovery; } set { _BoostJuiceRecovery = value; } }
+    protected float _BoostJuiceRecovery;
     [SerializeField]
-    protected float BoostJuiceRecoveryCooldown;
+    protected float BoostJuiceRecoveryCooldown { get { return _BoostJuiceRecoveryCooldown + MyBMM.MyAttProfile.BoostJuiceRecoveryCooldown; } set { _BoostJuiceRecoveryCooldown = value; } }
+    protected float _BoostJuiceRecoveryCooldown;
     protected float BoostRecoveryCooldownRemaining;
+
+    //float AttBoostCapacity;
+    //float AttBoostRecovery;
+    //float AttBoostRecoveryCooldown;
 
     [SerializeField]
     protected AudioSource BoostPlayer;
@@ -59,10 +80,11 @@ public class BaseMechMovement : MonoBehaviour
     private float OverSpeedDrag;
 
     [SerializeField]
-    private float JumpForce;
+    private float JumpForce { get { return _JumpForce + MyBMM.MyAttProfile.JumpForce; } set { _JumpForce = value; } }
+    private float _JumpForce;
 
 
-    [SerializeField]
+   [SerializeField]
     private LayerMask GroundDetection;
     [SerializeField]
     private Transform GroundDetectionSite;
@@ -109,6 +131,7 @@ public class BaseMechMovement : MonoBehaviour
         //Debug.Log(MyRB, this);
         Cursor.lockState = CursorLockMode.Locked;
         JCRemaining = 0;
+        Debug.Log(BoostJuiceCapacity);
         CurrentBoostjuice = BoostJuiceCapacity;
     }
 
@@ -129,9 +152,15 @@ public class BaseMechMovement : MonoBehaviour
         MyRB.mass += a;
     }
 
-    
+    //public void RecieveAttributes(float _AttMoveForce, float _AttBoostForce, float _AttBoostCost, float _AttIBForce,float _AttIBCost, float _AttFloatForce, float _AttFloatCost, float _AttBoostCapacity, float _AttBoostRecovery, float _AttBoostRecoveryCooldown)
+    //{
 
+    //}
 
+    public void RecieveBMM(BaseMechMain BMM)
+    {
+        MyBMM = BMM;
+    }
 
     public void SetStats(float MF,float SL, float BSL, float BF,float IBF, float FF,float BC,float IC,float FC,float BJC, float BJR,float BJRC ,Vector3 Drag, float JF, BaseBoostSystem BS)
     {
@@ -218,7 +247,7 @@ public class BaseMechMovement : MonoBehaviour
         //addforce forcemode.force should be independent and doesnot require time.deltatime, this combined with fixedupdate should help with inconsistancies with framerate
         if (Boosting && AttemptUseBoostJuice(BoostCost * Time.deltaTime))
         {
-            MyRB.AddForce(PlanarInput * (MoveForce * AirMultiplier + BoostForce), ForceMode.Force);
+            MyRB.AddForce(PlanarInput * ((MoveForce + BoostForce) * AirMultiplier ), ForceMode.Force);
         }
         else
         {
@@ -397,7 +426,7 @@ public class BaseMechMovement : MonoBehaviour
     {
         if (Floating)
         {
-            if (AttemptUseBoostJuice(BoostCost * Time.deltaTime))
+            if (AttemptUseBoostJuice(FloatCost * Time.deltaTime))
                 MyRB.AddForce(transform.up * FloatForce, ForceMode.Force);
         }
 

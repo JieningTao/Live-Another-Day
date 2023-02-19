@@ -10,6 +10,8 @@ public class PhysicalShield : BaseShield
     {
         if (Mech)
             gameObject.layer = Mech.gameObject.layer;
+        else
+            return;
 
         List<Collider> AllColliders = new List<Collider>();
 

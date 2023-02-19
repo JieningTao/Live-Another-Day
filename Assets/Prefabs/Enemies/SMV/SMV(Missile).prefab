@@ -302,6 +302,9 @@ MonoBehaviour:
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  ShotSounds: []
+  SoundMinMax: {x: 5, y: 500}
+  Volume: 1
   MaxMagazine: 3
   MaxReserveAmmo: 300
   ReloadTime: 0.1
@@ -319,7 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyWeapon: {fileID: 1012035449161838057}
   BurstAmount: 3
-  BurstInterval: 3
+  BurstInterval: 5
   FocusMain: 0
   TargetsWithinRange: []
 --- !u!135 &4998096136383422374
@@ -492,7 +495,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 1.47
-  m_Speed: 4
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

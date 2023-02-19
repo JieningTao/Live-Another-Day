@@ -20,11 +20,11 @@ public class VerticalDropMissile : BaseMissile
 
             if (!Dropping)
             {
-                newDir = Vector3.RotateTowards(transform.forward, (Target.transform.position + new Vector3(0, DropHeight, 0)) - transform.position, TrackingSpeed * Time.deltaTime, 0.0f);
+                newDir = Vector3.RotateTowards(transform.forward, (Target.transform.position + new Vector3(0, DropHeight, 0)) - transform.position, CurrentTrackingSpeed * Time.deltaTime, 0.0f);
                 CheckToDrop();
             }
             else
-                newDir = Vector3.RotateTowards(transform.forward, Target.transform.position - transform.position, TrackingSpeed * Time.deltaTime, 0.0f);
+                newDir = Vector3.RotateTowards(transform.forward, Target.transform.position - transform.position, CurrentTrackingSpeed * Time.deltaTime, 0.0f);
 
             transform.rotation = Quaternion.LookRotation(newDir);
         }

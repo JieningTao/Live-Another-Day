@@ -12,6 +12,8 @@ public class MissionGoal : MonoBehaviour
     [SerializeField]
     public List<GameObject> PingTrackerMarkers = new List<GameObject>();
 
+    
+
     private MissionTracker MyTracker;
 
 

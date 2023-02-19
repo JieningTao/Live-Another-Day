@@ -15,6 +15,8 @@ public class BaseMainWeapon : BaseMainSlotEquipment
     [Tooltip("Leave as 0 for any weapon except locking ones")]
     [SerializeField]
     int MainLockNum = 0;
+    [SerializeField]
+    int MainLockBurstAmount = 1;
 
     protected BaseMissileLauncher MainLauncher
     {
@@ -45,6 +47,8 @@ public class BaseMainWeapon : BaseMainSlotEquipment
     [Tooltip("Leave as 0 for any weapon except locking ones")]
     [SerializeField]
     int SecondaryLockNum = 0;
+    [SerializeField]
+    int SecondaryLockBurstAmount = 1;
 
     protected BaseMissileLauncher SecondaryLauncher
     {
@@ -68,41 +72,21 @@ public class BaseMainWeapon : BaseMainSlotEquipment
 
     public override void PrimaryFire(bool Fire)
     {
-        if (Fire && MainLockNum>0)
+        if (MainLockNum > 0)
         {
-            if (Locking)
-            {
-                MainLauncher.FireVolley(MyFCS.GetLockedList());
-                Locking = false;
-                MyFCS.RequestLocks(0, this);
-            }
-            else
-            {
-                Locking = true;
-                MyFCS.RequestLocks(MainLockNum, this);
-            }
+            MissileLauncherControls(MainLauncher, MainLockNum, MainLockBurstAmount, Fire);
         }
         else
-        MainWeapon.Trigger(Fire);
+            MainWeapon.Trigger(Fire);
     }
 
     public override void SecondaryFire(bool Fire)
     {
         if (HasSecondary)
         {
-            if (Fire && SecondaryLockNum > 0)
+            if ( SecondaryLockNum > 0)
             {
-                if (Locking)
-                {
-                    SecondaryLauncher.FireVolley(MyFCS.GetLockedList());
-                    Locking = false;
-                    MyFCS.RequestLocks(0, this);
-                }
-                else
-                {
-                    Locking = true;
-                    MyFCS.RequestLocks(SecondaryLockNum, this);
-                }
+                MissileLauncherControls(SecondaryLauncher, SecondaryLockNum, SecondaryLockBurstAmount, Fire);
             }
             else
                 SecondaryWeapon.Trigger(Fire);
@@ -110,6 +94,8 @@ public class BaseMainWeapon : BaseMainSlotEquipment
 
     }
 
+
+    
     protected virtual void Update()
     {
         if(Operator)
@@ -123,6 +109,36 @@ public class BaseMainWeapon : BaseMainSlotEquipment
             return SecondaryWeapon != null;
         }
     }
+
+    private void MissileLauncherControls(BaseMissileLauncher Launcher, int LockCount, int BurstAmount, bool Fire)
+    {
+        if (LockCount == 1)
+        {
+            if (Fire)
+                Launcher.FireFocusedVolley(MyFCS.GetMainTarget(), BurstAmount);
+        }
+        else if (LockCount > 1)
+        {
+            if (Fire)
+            {
+                if (Locking)
+                {
+                    Launcher.FireVolley(MyFCS.GetLockedList());
+                    Locking = false;
+                    MyFCS.RequestLocks(0, this);
+                }
+                else
+                {
+                    Locking = true;
+                    MyFCS.RequestLocks(LockCount, this);
+                }
+
+
+            }
+        }
+
+    }
+
 
     protected virtual void CheckWarnings()
     {

@@ -502,7 +502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7658054542608636725
 Transform:
   m_ObjectHideFlags: 0
@@ -512,7 +512,7 @@ Transform:
   m_GameObject: {fileID: 1298312330818255822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.10864258, z: 1.3466494}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children: []
   m_Father: {fileID: 1671754780365652346}
   m_RootOrder: 0
@@ -889,9 +889,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 8111504660622686628}
   AccuracyDeviation: 5
   TBS: 0.5
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 2198442676551212465, guid: 3dc32f212ff5da3418ab4a4602a816ea,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: bbe09d9a6801bfe47999f2a8c8ba8b71, type: 3}
   SoundMinMax: {x: 5, y: 500}
@@ -914,6 +920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 1
+  Size: 3
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -922,11 +929,13 @@ MonoBehaviour:
   MainWeaponName: Beam Shotgun
   MainWeaponGaugeColor: {r: 0, g: 0.98099947, b: 1, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 0}
   SecondaryWeaponSN: 
   SecondaryWeaponName: 
   SecondaryWeaponGaugeColor: {r: 0, g: 0, b: 0, a: 0}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &-6535614132193632522
 MonoBehaviour:
   m_ObjectHideFlags: 0

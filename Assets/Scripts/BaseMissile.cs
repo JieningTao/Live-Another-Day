@@ -8,10 +8,15 @@ public class BaseMissile : BaseBullet
     public EnergySignal Target;
 
     [SerializeField]
-    protected float TrackingSpeed = 1;
+    protected Vector2 TrackingSpeedChange = new Vector2(2.5f, 0.8f);
+
+    [SerializeField]
+    protected float TrackingChangeTime = 1.5f;
 
     [SerializeField]
     protected float ActivationDelay = 0.5f;
+
+    protected float Lifetime = 0;
 
     // Update is called once per frame
     protected override void Update()
@@ -21,7 +26,13 @@ public class BaseMissile : BaseBullet
         if (ActivationDelay < 0)
             TrackTarget();
         else
+        {
+            if (Lifetime < TrackingChangeTime)
+                Lifetime += Time.deltaTime;
+
             ActivationDelay -= Time.deltaTime;
+        }
+
         
 
         FlightCheck();
@@ -46,7 +57,7 @@ public class BaseMissile : BaseBullet
     {
         if (Target != null)
         {
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, Target.transform.position - transform.position, TrackingSpeed * Time.deltaTime, 0.0f);
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, Target.transform.position - transform.position, CurrentTrackingSpeed * Time.deltaTime, 0.0f);
             //Debug.DrawRay(transform.position, newDir, Color.red);
 
             // Move our position a step closer to the target.
@@ -54,6 +65,18 @@ public class BaseMissile : BaseBullet
         }
     }
 
+
+    protected virtual float CurrentTrackingSpeed
+    {
+        get
+        {
+            if (Lifetime > TrackingChangeTime)
+                return TrackingSpeedChange.y;
+
+            return Mathf.Lerp(TrackingSpeedChange.x, TrackingSpeedChange.y, Lifetime / TrackingChangeTime);
+        }
+    }
+
     public string GetTracking
-    {get {  return TrackingSpeed + "";  } }
+    {get {  return TrackingSpeedChange.y + "";  } }
 }

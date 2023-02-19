@@ -16,10 +16,10 @@ public class WeaponTool : EditorWindow
     private void OnGUI()
     {
 
-        //if (GUILayout.Button("Test"))
-        //{
-        //    Test();
-        //}
+        if (GUILayout.Button("Test"))
+        {
+            GUIUtility.systemCopyBuffer = "Test";
+        }
 
         if (GUILayout.Button("GetProjectileSpawn"))
         {

@@ -17,6 +17,20 @@ public class BaseMainSlotEquipment : MonoBehaviour
     }
 
     [SerializeField]
+    public MainEquipmentSize Size = MainEquipmentSize.Medium;
+
+    public enum MainEquipmentSize
+    {
+        Special,
+
+        ExtraSmall,
+        Small,
+        Medium,
+        Large,
+        ExtraLarge,
+    }
+
+    [SerializeField]
     public bool RequireAiming = true;
 
     [SerializeField]

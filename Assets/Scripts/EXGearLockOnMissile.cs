@@ -96,4 +96,9 @@ public class EXGearLockOnMissile : BaseEXGear
         return Temp;
     }
 
+    public override bool IsAimed
+    {
+        get { return true; }
+    }
+
 }

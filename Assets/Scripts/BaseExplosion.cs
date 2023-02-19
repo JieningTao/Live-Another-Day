@@ -11,7 +11,7 @@ public class BaseExplosion : MonoBehaviour
     [SerializeField]
     public List<DamageSystem.DamageTag> MyDamageTags;
     [SerializeField]
-    float ExplosionRadius;
+    protected float ExplosionRadius;
     [SerializeField]
     float Delay;
     [SerializeField]
@@ -112,7 +112,7 @@ public class BaseExplosion : MonoBehaviour
         return false;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
 

@@ -20,6 +20,22 @@ public class BaseShoot : MonoBehaviour
     [SerializeField]
     protected float TBS = 0.1f;
 
+    [SerializeField]
+    [Tooltip("only useful with a burst amount > 1")]
+    protected BurstFireSettings MyBurstSettings;
+
+    [System.Serializable]
+    public class BurstFireSettings
+    {
+        [SerializeField]
+        public int BurstAmount = 1;
+        [SerializeField]
+        public float BurstInterval = 0;
+
+        public float BurstCD = 0;
+        public int BurstRemaining = 0;
+    }
+
     //[SerializeField]
     //protected float PerShotDamage = 10;
 
@@ -33,6 +49,10 @@ public class BaseShoot : MonoBehaviour
     [SerializeField]
     protected GameObject MuzzleFlarePrefab;
     protected List<ParticleSystem> MuzzleFlares;
+
+    [Space(20)]
+    [SerializeField]
+    protected Animator MyAnimator;
     [Space(20)]
     [SerializeField]
     protected List<AudioClip> ShotSounds;
@@ -49,7 +69,6 @@ public class BaseShoot : MonoBehaviour
         Charge,
         MultiLock,
     }
-
 
     protected bool Firing = false;
     protected float FireCooldown = 0;
@@ -156,37 +175,68 @@ public class BaseShoot : MonoBehaviour
     public virtual void Trigger(bool Fire)
     {
 
+        Debug.Log(Fire +"\n TBS "+ FireCooldown, this);
+
         if (Fire && MyFireMode == FireMode.SemiAuto && FireCooldown <= 0)
-            Fire1();
+        {
+            if (MyBurstSettings.BurstAmount > 1)
+                MyBurstSettings.BurstRemaining = MyBurstSettings.BurstAmount;
+            else
+                Fire1();
+        }
+        else if (Fire && MyBurstSettings.BurstAmount > 1 && FireCooldown <= 0)
+        {
+
+        }
         else
             Firing = Fire;
     }
 
     protected virtual void Update()
     {
+        if (FireCooldown > 0)
+            FireCooldown -= Time.deltaTime;
 
         if (MyFireMode == FireMode.FullAuto)
         {
-            if (FireCooldown > 0)
-                FireCooldown -= Time.deltaTime;
-            else
+
+            if (FireCooldown <= 0)
             {
                 if (Firing)
                 {
-                    Fire1();
+                    if (MyBurstSettings.BurstAmount > 1)
+                        MyBurstSettings.BurstRemaining = MyBurstSettings.BurstAmount;
+                    else
+                        Fire1();
 
                     FireCooldown = TBS;
                 }
             }
         }
 
+        if (MyBurstSettings.BurstAmount > 1)
+        {
+            if (MyBurstSettings.BurstCD > 0)
+            {
+                MyBurstSettings.BurstCD -= Time.deltaTime;
+            }
+            else if(MyBurstSettings.BurstRemaining>0)
+            {
+                if (MyBurstSettings.BurstCD <= 0)
+                {
+                    Fire1();
+                    MyBurstSettings.BurstCD = MyBurstSettings.BurstInterval;
+                }
+            }
+
+
+        }
+
     }
 
-    public virtual float GetProjectileSpeed()
-    {
-        return ProjectileScript.GetSpeed();
-    }
 
+
+    //actual executioon of firing 1 projectile
     protected virtual void Fire1()
     {
         int SlotNum = GetNextBulletSpawn();
@@ -199,7 +249,11 @@ public class BaseShoot : MonoBehaviour
 
         if (ShotSounds.Count > 0)
             PlayShotSound(SlotNum);
-        
+
+        FireCooldown = TBS;
+
+        if (MyAnimator)
+            MyAnimator.SetTrigger("Fire");
     }
 
     #region Editor Tool Stuff
@@ -298,6 +352,11 @@ public class BaseShoot : MonoBehaviour
     public virtual bool LowEnergyWarning()
     {
         return false;
+    }
+
+    public virtual float GetProjectileSpeed()
+    {
+        return ProjectileScript.GetSpeed();
     }
 
     #region Loadoutpart request info stuff

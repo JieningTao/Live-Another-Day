@@ -31,6 +31,9 @@ public static class DamageSystem
 
     public enum ArmorType
     {
+        Ruins,
+        ConcreteFotification,
+
         NormSteelArmor,
         HeavyCompositeArmor,// (weight+ damage- AP Resistance- Small Caliber---)
         EnergyShield,//(Flux resistance-)

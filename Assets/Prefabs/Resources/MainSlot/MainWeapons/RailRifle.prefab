@@ -256,7 +256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1428565120979322066
 Transform:
   m_ObjectHideFlags: 0
@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 1
+  Size: 4
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -330,11 +331,13 @@ MonoBehaviour:
   MainWeaponName: RailRifle
   MainWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 0}
   SecondaryWeaponSN: 
   SecondaryWeaponName: 
   SecondaryWeaponGaugeColor: {r: 0, g: 0, b: 0, a: 0}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &1428565122229430617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,9 +355,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 4151588345854328635}
   AccuracyDeviation: 0
   TBS: 1
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 2
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds: []
   SoundMinMax: {x: 5, y: 500}
   Volume: 1

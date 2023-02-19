@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseKineticShoot : BaseShoot
 {
+    [Space(20)]
     [SerializeField]
     protected int MaxMagazine;
     [SerializeField]

@@ -77,10 +77,13 @@ public class PartSwitchManager : MonoBehaviour
 
     public void ButtonClickedPart(LoadOutPart Part)
     {
-        if (Part == CurrentSelectedPart)
+        if (Part == CurrentSelectedPart )
         {
             //installs part
-            InstallPart(Part.gameObject);
+            if (Part)
+                InstallPart(Part.gameObject);
+            else
+                InstallPart(null);
             PartCompareDisplay.LoadCurrentPart(AssemblyRack.GetpostionPart(CurrentCatagory, CurrentPosition));
         }
         else
@@ -97,14 +100,7 @@ public class PartSwitchManager : MonoBehaviour
 
         if (Cata < 7)
         {
-            ClearOptions();
-            LoadList();
-            CreateOptionsForCurrentList();
-            SetCatagoryTitle();
-
-            PartCompareDisplay.LoadCurrentPart(AssemblyRack.GetpostionPart(CurrentCatagory, CurrentPosition));
-            CurrentSelectedPart = null;
-            PartCompareDisplay.LoadSelectedPart(null);
+            RecreateListButtons();
         }
 
     }
@@ -112,7 +108,11 @@ public class PartSwitchManager : MonoBehaviour
     public void SelectPosition(int Pos)
     {
         CurrentPosition = Pos;
+        RecreateListButtons();
+    }
 
+    private void RecreateListButtons()
+    {
         ClearOptions();
         LoadList();
         CreateOptionsForCurrentList();
@@ -122,6 +122,8 @@ public class PartSwitchManager : MonoBehaviour
         CurrentSelectedPart = null;
         PartCompareDisplay.LoadSelectedPart(null);
     }
+
+
 
     public void SwitchCatagory()
     {
@@ -150,6 +152,124 @@ public class PartSwitchManager : MonoBehaviour
             EXGAndWeaponButtons[i].interactable = Temp[i];
         }
     }
+
+    #endregion
+
+    #region show display use functions
+
+    public void SlotRandomPart()
+    {
+        int Cata = UnityEngine.Random.Range(0, 9);
+        Debug.Log(Cata);
+        CurrentCatagory = (BigCataGory)Cata;
+        if (Cata < 5)
+        {
+            LoadList();
+            RandomSelectPart();
+            return;
+        }
+
+        Cata+=2;
+
+        int Pos = 0;
+
+        if (Cata == 7)
+        {
+            Pos = UnityEngine.Random.Range(0, 2);
+            CurrentCatagory = BigCataGory.MainWeapon;
+        }
+        else
+        {
+            Pos = UnityEngine.Random.Range(0, 6);
+            if (Pos >= 3)
+                Pos += 2;
+
+            if (Pos == 2 || Pos == 5)
+                CurrentCatagory = BigCataGory.ShoulderEXG;
+            else
+                CurrentCatagory = BigCataGory.SideEXG;
+
+        }
+
+        Debug.Log(Pos);
+        CurrentPosition = Pos;
+        LoadList();
+        RandomSelectPart();
+        return;
+
+    }
+
+    public void SlotRandomPart(BigCataGory Cata)
+    {
+        CurrentCatagory = Cata;
+
+        if ((int)Cata < 7)
+        {
+            LoadList();
+            RandomSelectPart();
+            return;
+        }
+
+        int Pos = 0;
+
+        if ((int)Cata == 7)
+        {
+            Pos = UnityEngine.Random.Range(0, 2);
+            CurrentCatagory = BigCataGory.MainWeapon;
+        }
+        else
+        {
+            Pos = UnityEngine.Random.Range(0, 6);
+            if (Pos >= 3)
+                Pos += 2;
+
+            if (Pos == 2 || Pos == 5)
+                CurrentCatagory = BigCataGory.ShoulderEXG;
+            else
+                CurrentCatagory = BigCataGory.SideEXG;
+
+        }
+
+
+
+        Debug.Log(Pos);
+        CurrentPosition = Pos;
+        LoadList();
+        RandomSelectPart();
+        return;
+    }
+
+    public void SlotRandomEXG(int Pos)
+    {
+        if (Pos == 3 || Pos == 4 || Pos < 0 || Pos > 7)
+        {
+            Debug.Log("Random EXG out of bound error");
+            return;
+        }
+
+        if (Pos == 2 || Pos == 5)
+            CurrentCatagory = BigCataGory.ShoulderEXG;
+        else
+            CurrentCatagory = BigCataGory.SideEXG;
+
+        CurrentPosition = Pos;
+
+
+        Debug.Log(Pos);
+        CurrentPosition = Pos;
+        LoadList();
+        RandomSelectPart();
+        return;
+    }
+
+    private void RandomSelectPart()
+    {
+        int Temp = UnityEngine.Random.Range(0, CurrentListOfParts.Count);
+        Debug.Log(CurrentListOfParts[Temp].gameObject.name);
+        InstallPart(CurrentListOfParts[Temp].gameObject);
+    }
+
+
 
     #endregion
 
@@ -288,5 +408,6 @@ public class PartSwitchManager : MonoBehaviour
         NewOption.SetUp(this, a);
     }
 
+    
 
 }

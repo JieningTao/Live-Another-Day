@@ -13,6 +13,9 @@ public class RadarUI : MonoBehaviour
     [SerializeField]
     RectTransform LockRangeDisplay;
 
+    [SerializeField]
+    public RectTransform CompassBearing;
+
     private float RangeDelta;
 
 
@@ -38,6 +41,7 @@ public class RadarUI : MonoBehaviour
 
         //Debug.Log(UILM.PlayerTransform.eulerAngles.y);
         RadarBG.rotation = Quaternion.Euler(0, 0, UILM.PlayerTransform.eulerAngles.y);
+        CompassBearing.rotation = Quaternion.Euler(0, 0, UILM.PlayerTransform.eulerAngles.y);
         /*
         for (int i = 0; i < UILM.LockedEnemies.Count; i++)
         {

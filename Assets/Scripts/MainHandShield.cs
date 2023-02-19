@@ -5,7 +5,7 @@ using UnityEngine;
 public class MainHandShield : BaseMainSlotEquipment
 {
     [SerializeField]
-    PhysicalShield Shield;
+    protected PhysicalShield Shield;
     [SerializeField]
     protected string GearSN = "N-000";
     [SerializeField]
@@ -13,14 +13,24 @@ public class MainHandShield : BaseMainSlotEquipment
     [SerializeField]
     protected Color GearGaugeColor;
 
-
+    protected BaseMechFCS MyFCS;
 
 
 
     public override void Equip(bool _Equip, BaseMechMain Operator, bool Right)
     {
         base.Equip(_Equip, Operator, Right);
-        Shield.Equip(Operator);
+        if (_Equip)
+        {
+            if(Operator)
+            MyFCS = Operator.GetFCS();
+            Shield.Equip(Operator);
+        }
+        else
+        {
+            MyFCS = null;
+            Shield.Equip(null);
+        }
         //needs to flip game object if on right hand
         //if ()
     }
@@ -46,8 +56,13 @@ public class MainHandShield : BaseMainSlotEquipment
         Temp.Add("HP:");
         Temp.Add(Shield.GetMaxHealth);
 
-        return null;
+        return Temp;
     }
 
+    private void OnDestroy()
+    {
+        if(MyFCS)
+        MyFCS.UnEquip(this);   
+    }
 
 }

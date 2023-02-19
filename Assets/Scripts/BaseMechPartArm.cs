@@ -7,6 +7,8 @@ public class BaseMechPartArm : BaseMechPart
     [SerializeField]
     Transform SideMountedEXGSlot;
     [SerializeField]
+    Transform EXGAimed;
+    [SerializeField]
     Transform AimedPart;
     [SerializeField]
     Transform HandSlot;
@@ -109,6 +111,9 @@ public class BaseMechPartArm : BaseMechPart
 
     public void TargetArm(EnergySignal Tar)
     {
+        if (Time.timeScale == 0) //this check stops the "look vector is zero" when game is paused, not a fix"
+            return;
+
         if (EquippedGear == null)
         {
             if (EquippedGear is BaseMainSlotEquipment)
@@ -152,6 +157,7 @@ public class BaseMechPartArm : BaseMechPart
 
         EquippedGear = null;
         SetArmAnimator(0);
+
         return a;
     }
 
@@ -197,7 +203,11 @@ public class BaseMechPartArm : BaseMechPart
         {
             if (a)
             {
-                a.InitializeGear(MyMech, SideMountedEXGSlot, IsRightArm());
+                if(a.IsAimed)
+                    a.InitializeGear(MyMech, EXGAimed, IsRightArm());
+                else
+                    a.InitializeGear(MyMech, SideMountedEXGSlot, IsRightArm());
+
             }
             ArmEXG = a;
         }

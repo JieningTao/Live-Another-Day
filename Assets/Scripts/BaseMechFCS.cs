@@ -32,9 +32,12 @@ public class BaseMechFCS : MonoBehaviour
     [SerializeField]
     private SphereCollider RadarCollider;
     [SerializeField]
-    public float RadarRange = 200;
+    public float RadarRange{ get { return (_RadarRange + MyBMM.MyAttProfile.RadarRange);}set { _RadarRange = value; } }
+    protected float _RadarRange;
     [SerializeField]
-    public float LockRange = 150;
+    public float LockRange { get { return _LockRange + MyBMM.MyAttProfile.LockRange; } set { _LockRange = value; } }
+    protected float _LockRange;
+
 
     [Space(10)]
 
@@ -63,14 +66,16 @@ public class BaseMechFCS : MonoBehaviour
     private int PerLockCount = 1;
     [SerializeField]
     private float LockTime;
+    private float LockCooldown;
     [SerializeField]
-    private int MaxSupportedLock = 10;
+    private int MaxSupportedLock { get { return (int)(_MaxSupportedLock + MyBMM.MyAttProfile.MaxLock); } set { _MaxSupportedLock = value; } }
+    protected int _MaxSupportedLock;
 
     private Transform CameraAnchor;
     protected EnergySignal MainTarget; //public for testing
     private Vector3 TargetPosition;
     private List<EnergySignal> CurrentListOfLocked = new List<EnergySignal>();
-    private float LockCooldown;
+
     private bool CurrentlyLocking;
     private int LockRequested;
     private object LockRequester;
@@ -86,6 +91,8 @@ public class BaseMechFCS : MonoBehaviour
     public void InitializeFCS(BaseMechMain BMM, bool Player, BaseMechPartArm _LeftArm, BaseMechPartArm _RightArm,BaseFCSChip Chip)
     {
         SpawnItems();
+
+        
 
         MyChip = Chip;
         InstallFCSChip();
@@ -118,6 +125,11 @@ public class BaseMechFCS : MonoBehaviour
         RadarRange = MyChip.GetRadarRange;
 
         MaxAimingAngle = MyChip.GetAimAngle;
+    }
+
+    public void RecieveBMM(BaseMechMain BMM)
+    {
+        MyBMM = BMM;
     }
 
     private void SpawnItems()
@@ -252,7 +264,7 @@ public class BaseMechFCS : MonoBehaviour
     {
         if (Equipment == null)
         {
-            if (WeaponChanges != null)
+            if (WeaponChanges != null && MyBMM.PlayerMech)
                 WeaponChanges.Invoke(OnRightHand, Equipment);
 
             if (OnRightHand)
@@ -286,13 +298,26 @@ public class BaseMechFCS : MonoBehaviour
 
 
 
-        if (WeaponChanges != null)
+        if (WeaponChanges != null&& MyBMM.PlayerMech)
             WeaponChanges.Invoke(OnRightHand, Equipment);
+    }
+
+    public void UnEquip(BaseMainSlotEquipment Equipment)
+    {
+        if (CurrentPrimary == Equipment)
+            UnEquip(true);
+        else if (CurrentSecondary == Equipment)
+            UnEquip(false);
+    }
+
+    public void UnEquip(bool Right)
+    {
+        Equip(null, Right);
     }
 
     public void SetWeaponWarning(bool Right, bool Main, bool Ammo, bool Active)
     {
-        if (WeaponWarnings !=null)
+        if (WeaponWarnings !=null && PlayerFCS)
         {
             WeaponWarnings.Invoke(Right, Main, Ammo, Active);
         }
@@ -394,7 +419,7 @@ public class BaseMechFCS : MonoBehaviour
     {
         if (CurrentlyLocking)
         {
-            LockCooldown -= Time.deltaTime;
+            LockCooldown -= Time.deltaTime * MyBMM.MyAttProfile.LockSpeed;
             if (LockCooldown <= 0)
             {
                 if (CurrentListOfLocked.Count < LockRequested && CurrentListOfLocked.Count < MaxSupportedLock)
@@ -404,6 +429,7 @@ public class BaseMechFCS : MonoBehaviour
                     if (CurrentListOfLocked.Count >= LockRequested || CurrentListOfLocked.Count >= MaxSupportedLock)
                     {
                         CurrentlyLocking = false;
+                        if(MyBMM.PlayerMech)
                         LockChanges.Invoke("LockAtMax",null);
                     }
                 }
@@ -426,8 +452,12 @@ public class BaseMechFCS : MonoBehaviour
                 LockCooldown = 0;
                 CurrentListOfLocked.Clear();
                 LockRequester = null;
-                LockChanges.Invoke("UnlockAll", null);
-                LockChanges.Invoke("ClearLockRequester", null);
+                if (MyBMM.PlayerMech && LockChanges != null)
+                {
+                    LockChanges.Invoke("UnlockAll", null);
+                    LockChanges.Invoke("ClearLockRequester", null);
+                }
+
             }
         }
         else
@@ -436,7 +466,8 @@ public class BaseMechFCS : MonoBehaviour
             LockRequested = Amount;
             LockCooldown = LockTime;
             LockRequester = Requester;
-            LockChanges.Invoke("NewLockRequester", null);
+            if (MyBMM.PlayerMech && LockChanges!=null)
+                LockChanges.Invoke("NewLockRequester", null);
         }
 
 
@@ -469,7 +500,8 @@ public class BaseMechFCS : MonoBehaviour
 
         if (MainTarget != null && !CurrentListOfLocked.Contains(MainTarget))
         {
-            LockChanges.Invoke("Lock", MainTarget);
+            if (MyBMM.PlayerMech)
+                LockChanges.Invoke("Lock", MainTarget);
             CurrentListOfLocked.Add(MainTarget);
             LockCooldown = LockTime;
         }
@@ -483,7 +515,9 @@ public class BaseMechFCS : MonoBehaviour
                 if (!CurrentListOfLocked.Contains(Temp[i]))
                 {
                     CurrentListOfLocked.Add(Temp[i]);
-                    LockChanges.Invoke("Lock", Temp[i]);
+
+                    if (MyBMM.PlayerMech)
+                        LockChanges.Invoke("Lock", Temp[i]);
 
                     Amount--;
                     if (Amount <= 0)
@@ -540,7 +574,10 @@ public class BaseMechFCS : MonoBehaviour
 
         CurrentlyLocking = false;
         LockCooldown = LockTime;
-        LockChanges.Invoke("UnlockAll", null);
+
+        if (MyBMM.PlayerMech)
+            LockChanges.Invoke("UnlockAll", null);
+
         return Temp;
     }
 

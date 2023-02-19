@@ -7,12 +7,9 @@ public class ColorSchemeChanger : MonoBehaviour
 
     [SerializeField]
     private UnityEngine.UI.Text MaterialTitle;
+
     [SerializeField]
-    private Material Main;
-    [SerializeField]
-    private Material Secondary;
-    [SerializeField]
-    private Material Frame;
+    private MechColorAdjuster MyMCA;
 
     private Material CurrentAdjustingMaterial;
     [Space(20)]
@@ -39,31 +36,32 @@ public class ColorSchemeChanger : MonoBehaviour
 
     private void Start()
     {
-        MainMatButton.color = Main.color;
-        SecondaryMatButton.color = Secondary.color;
-        FrameMatButton.color = Frame.color;
+        MainMatButton.color = MyMCA.Main.color;
+        SecondaryMatButton.color = MyMCA.Secondary.color;
+        FrameMatButton.color = MyMCA.Frame.color;
 
         SetCurrentMain();
     }
+
     #region Button Functions
     public void SetCurrentMain()
     {
         MaterialTitle.text = "Main Material";
-        CurrentAdjustingMaterial = Main;
+        CurrentAdjustingMaterial = MyMCA.Main;
         LoadMaterial();
     }
 
     public void SetCurrentSecondary()
     {
         MaterialTitle.text = "Secondary Material";
-        CurrentAdjustingMaterial = Secondary;
+        CurrentAdjustingMaterial = MyMCA.Secondary;
         LoadMaterial();
     }
 
     public void SetCurrentFrame()
     {
         MaterialTitle.text = "Frame Material";
-        CurrentAdjustingMaterial = Frame;
+        CurrentAdjustingMaterial = MyMCA.Frame;
         LoadMaterial();
     }
     #endregion
@@ -74,12 +72,12 @@ public class ColorSchemeChanger : MonoBehaviour
         H = _H;
         CurrentAdjustingMaterial.color = Color.HSVToRGB(H, S, V);
 
-        if(CurrentAdjustingMaterial == Main)
-            MainMatButton.color = Main.color;
-        else if(CurrentAdjustingMaterial == Secondary)
-            SecondaryMatButton.color = Secondary.color;
+        if(CurrentAdjustingMaterial == MyMCA.Main)
+            MainMatButton.color = MyMCA.Main.color;
+        else if(CurrentAdjustingMaterial == MyMCA.Secondary)
+            SecondaryMatButton.color = MyMCA.Secondary.color;
         else
-            FrameMatButton.color = Frame.color;
+            FrameMatButton.color = MyMCA.Frame.color;
 
     }
     public void SetColorS(System.Single _S)
@@ -87,24 +85,24 @@ public class ColorSchemeChanger : MonoBehaviour
         S = _S;
         CurrentAdjustingMaterial.color = Color.HSVToRGB(H, S, V);
 
-        if (CurrentAdjustingMaterial == Main)
-            MainMatButton.color = Main.color;
-        else if (CurrentAdjustingMaterial == Secondary)
-            SecondaryMatButton.color = Secondary.color;
+        if (CurrentAdjustingMaterial == MyMCA.Main)
+            MainMatButton.color = MyMCA.Main.color;
+        else if (CurrentAdjustingMaterial == MyMCA.Secondary)
+            SecondaryMatButton.color = MyMCA.Secondary.color;
         else
-            FrameMatButton.color = Frame.color;
+            FrameMatButton.color = MyMCA.Frame.color;
     }
     public void SetColorV(System.Single _V)
     {
         V = _V;
         CurrentAdjustingMaterial.color = Color.HSVToRGB(H, S, V);
 
-        if (CurrentAdjustingMaterial == Main)
-            MainMatButton.color = Main.color;
-        else if (CurrentAdjustingMaterial == Secondary)
-            SecondaryMatButton.color = Secondary.color;
+        if (CurrentAdjustingMaterial == MyMCA.Main)
+            MainMatButton.color = MyMCA.Main.color;
+        else if (CurrentAdjustingMaterial == MyMCA.Secondary)
+            SecondaryMatButton.color = MyMCA.Secondary.color;
         else
-            FrameMatButton.color = Frame.color;
+            FrameMatButton.color = MyMCA.Frame.color;
     }
 
     public void SetMetallic(System.Single Mt)

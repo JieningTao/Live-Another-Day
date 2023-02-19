@@ -14,6 +14,8 @@ public class MMMain : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void Quit()
@@ -38,11 +40,11 @@ public class MMMain : MonoBehaviour
         MissionAnim.SetBool("Show",false);
     }
 
-    public void ResetPrefs()
-    {
-        if( PlayerPrefs.HasKey("PlayerLoadout"))
-        {
-            PlayerPrefs.DeleteAll();
-        }
-    }
+    //public void ResetPrefs()
+    //{
+    //    if( PlayerPrefs.HasKey("PlayerLoadout"))
+    //    {
+    //        PlayerPrefs.DeleteAll();
+    //    }
+    //}
 }

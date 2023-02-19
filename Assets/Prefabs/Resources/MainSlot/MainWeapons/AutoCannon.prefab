@@ -401,9 +401,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 6394738033571639894}
   AccuracyDeviation: 0.08
   TBS: 0.35
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: eb787a01bfbbab844bb16af928145178, type: 3}
   SoundMinMax: {x: 5, y: 500}
@@ -424,6 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 4
+  Size: 3
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -432,11 +439,13 @@ MonoBehaviour:
   MainWeaponName: Autocannon
   MainWeaponGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 0}
   SecondaryWeaponSN: 
   SecondaryWeaponName: 
   SecondaryWeaponGaugeColor: {r: 0, g: 0, b: 0, a: 0}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &-4000633854435826260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,7 +479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3465685157468858292
 Transform:
   m_ObjectHideFlags: 0

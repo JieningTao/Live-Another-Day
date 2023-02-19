@@ -53,7 +53,7 @@ public class UILockManager : MonoBehaviour
     [SerializeField]
     private Transform EXGTargetUILock;
 
-    private void Start()
+    public void Initialize()
     {
         if (!PlayerTransform)
         {
@@ -61,9 +61,8 @@ public class UILockManager : MonoBehaviour
         }
 
         PlayerMechFCS = PlayerTransform.GetComponent<BaseMechFCS>();
-        RadarParent.SetRanges(PlayerMechFCS.RadarRange, PlayerMechFCS.LockRange);       
+        RadarParent.SetRanges(PlayerMechFCS.RadarRange, PlayerMechFCS.LockRange);
     }
-
     private void Update()
     {
         MoveCrossHairs();

@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this class has been replaced in function by BaseMainWeapon
 public class BaseMWMissileLauncher : BaseMainWeapon
 {
     BaseMissileLauncher MyMissileLauncher;
+
+
+    [SerializeField]
+    int MainBurstAmount =1;
 
     public override void Equip(bool _Equip, BaseMechMain Operator, bool Right)
     {
@@ -18,7 +23,6 @@ public class BaseMWMissileLauncher : BaseMainWeapon
     {
         //Debug.Log(MyFCS);
         if (Fire)
-                MyMissileLauncher.Fire1(MyFCS.GetMainTarget());
-
+            MyMissileLauncher.FireFocusedVolley(MyFCS.GetMainTarget(),MainBurstAmount);
     }
 }

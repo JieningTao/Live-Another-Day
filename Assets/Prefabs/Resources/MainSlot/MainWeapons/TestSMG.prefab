@@ -370,7 +370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3374845962081063294
 Transform:
   m_ObjectHideFlags: 0
@@ -438,9 +438,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 7053716784770763839}
   AccuracyDeviation: 0.8
   TBS: 0.08
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: c3ad0996a57d224438ccac3adc4d3868, type: 3}
   - {fileID: 8300000, guid: 8f914ad620a0f484a8055eac05ef3e2f, type: 3}
@@ -462,6 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 1
+  Size: 2
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -470,11 +477,13 @@ MonoBehaviour:
   MainWeaponName: SMG
   MainWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 0}
   SecondaryWeaponSN: 
   SecondaryWeaponName: 
   SecondaryWeaponGaugeColor: {r: 0, g: 0, b: 0, a: 0}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &584640755354265225
 MonoBehaviour:
   m_ObjectHideFlags: 0

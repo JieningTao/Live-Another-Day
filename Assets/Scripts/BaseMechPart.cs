@@ -9,34 +9,8 @@ public class BaseMechPart : MonoBehaviour
     public float Weight = 0.1f;
 
     [SerializeField]
-    public List<AdditionalAttribute> Attributs = new List<AdditionalAttribute>();
-    [Serializable]
-    public class AdditionalAttribute
-    {
-        public enum Attribute
-        {
-            TurnSpeed,
-            MoveForce,
-            SpeedLimit,
-            BoostMultiplier,
-            BoostCost,
-            ImpulseBoostForce,
-            ImpulseCost,
-            AmmoAmount,
-
-            BoostJuiceCapacity,
-            BoostJuiceRecovery,
-            BoostJuiceRecoveryCooldown,
-
-            JumpForce,
-            FloatForce,
-        }
-
-        [SerializeField]
-        public Attribute AttributeType;
-        [SerializeField]
-        public float TributeAmount;
-    }
+    public List<AttributeManager.AdditionalAttribute> Attributs = new List<AttributeManager.AdditionalAttribute>();
+    
 
     public List<Transform> FloatThrusters;
     public List<Transform> BoostThrusters;

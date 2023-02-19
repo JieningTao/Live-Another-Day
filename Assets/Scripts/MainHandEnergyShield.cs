@@ -64,6 +64,6 @@ public class MainHandEnergyShield : BaseMainSlotEquipment
         Temp.Add("Deployed Power:");
         Temp.Add(Shield.GetDeployedPowerDraw);
 
-        return null;
+        return Temp;
     }
 }

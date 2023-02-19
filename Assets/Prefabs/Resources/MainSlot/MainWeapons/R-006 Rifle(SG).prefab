@@ -457,15 +457,21 @@ MonoBehaviour:
   ProjectileScript: {fileID: 1274071852883482842}
   AccuracyDeviation: 0.2
   TBS: 0.33
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: 8289a30eb7500864481a7ae17d4eddcc, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
   MaxMagazine: 12
-  MaxReserveAmmo: 60
+  MaxReserveAmmo: 84
   ReloadTime: 2
 --- !u!114 &6846520075447091095
 MonoBehaviour:
@@ -484,9 +490,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 2035546323585842733}
   AccuracyDeviation: 5
   TBS: 0.5
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: c2f0064733ba7574e8baca49387487f4, type: 3}
   SoundMinMax: {x: 5, y: 500}
@@ -508,6 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 1
+  Size: 3
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -516,11 +529,13 @@ MonoBehaviour:
   MainWeaponName: Rifle
   MainWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 6846520075447091095}
   SecondaryWeaponSN: UB-003
   SecondaryWeaponName: ShotGun
   SecondaryWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &1586455038026152971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,7 +761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5734209844258223622
 Transform:
   m_ObjectHideFlags: 0
@@ -776,7 +791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1726257137980595782
 Transform:
   m_ObjectHideFlags: 0
@@ -786,7 +801,7 @@ Transform:
   m_GameObject: {fileID: 7519167032726955025}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.040263176, z: 1.161}
-  m_LocalScale: {x: 16.705837, y: 16.705837, z: 9.066667}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children: []
   m_Father: {fileID: 678049140337125363}
   m_RootOrder: 1

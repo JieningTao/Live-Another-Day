@@ -142,4 +142,9 @@ public class BaseEXGear : MonoBehaviour
     {
         return null;
     }
+
+    public virtual bool IsAimed
+    {
+        get { return false; }
+    }
 }

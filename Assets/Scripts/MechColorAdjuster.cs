@@ -5,16 +5,34 @@ using UnityEngine;
 public class MechColorAdjuster : MonoBehaviour
 {
     [SerializeField]
-    Material Main;
+    public Material Main;
     [SerializeField]
-    Material Secondary;
+    public Material Secondary;
     [SerializeField]
-    Material Frame;
+    public Material Frame;
 
 
     public void switchColor()
     {
         switchColor(gameObject);
+    }
+
+    public void RecieveMaterials(List<Material> Mats)
+    {
+        Main = Mats[0];
+        Secondary = Mats[1];
+        Frame = Mats[2];
+    }
+
+    public List<Material> ExtractMaterials()
+    {
+        List<Material> Temp = new List<Material>();
+
+        Temp.Add(Main);
+        Temp.Add(Secondary);
+        Temp.Add(Frame);
+
+        return Temp;
     }
 
     public void switchColor(GameObject Target)

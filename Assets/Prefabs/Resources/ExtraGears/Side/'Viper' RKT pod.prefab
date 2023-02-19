@@ -2299,7 +2299,7 @@ MonoBehaviour:
   EXGearName: '''Viper'' RKT pod'
   Passive: 0
   MyAnimator: {fileID: 0}
-  ReadyTime: 1.2
+  ReadyTime: 0
   AimedPart: {fileID: 8512927686607638574}
   MyWeapon: {fileID: 3388554183347349332}
   TargetSpeed: 1
@@ -2925,6 +2925,21 @@ PrefabInstance:
       propertyPath: MyExplosion
       value: 
       objectReference: {fileID: 8984612795573490821}
+    - target: {fileID: 4872641672360539977, guid: 7866269dcb6716a4c8671f38e1050440,
+        type: 3}
+      propertyPath: SpeedUpTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872641672360539977, guid: 7866269dcb6716a4c8671f38e1050440,
+        type: 3}
+      propertyPath: MinMaxSpeed.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872641672360539977, guid: 7866269dcb6716a4c8671f38e1050440,
+        type: 3}
+      propertyPath: MinMaxSpeed.y
+      value: 240
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7866269dcb6716a4c8671f38e1050440, type: 3}
 --- !u!114 &3312195676079256032 stripped

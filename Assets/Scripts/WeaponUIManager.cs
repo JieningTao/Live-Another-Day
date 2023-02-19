@@ -9,9 +9,14 @@ public class WeaponUIManager : MonoBehaviour
     [SerializeField]
     UIWeaponDisplayBox RightSecondary;
     [SerializeField]
+    Animator RightECWarning;
+
+    [SerializeField]
     UIWeaponDisplayBox LeftMain;
     [SerializeField]
     UIWeaponDisplayBox LeftSecondary;
+    [SerializeField]
+    Animator LeftECWarning;
 
     private BaseMainSlotEquipment RightEquipment;
     private BaseMainSlotEquipment LeftEquipment;
@@ -66,12 +71,18 @@ public class WeaponUIManager : MonoBehaviour
             TempMain = RightMain;
             TempSecondary = RightSecondary;
             RightEquipment = Equipment;
+            RightECWarning.SetTrigger("EquipmentChanged");
+            //RightECWarning.gameObject.SetActive(false);
+            //RightECWarning.gameObject.SetActive(true);
         }
         else
         {
             TempMain = LeftMain;
             TempSecondary = LeftSecondary;
             LeftEquipment = Equipment;
+            LeftECWarning.SetTrigger("EquipmentChanged");
+            //LeftECWarning.gameObject.SetActive(false);
+            //LeftECWarning.gameObject.SetActive(true);
         }
 
         if (!Equipment)

@@ -45,11 +45,18 @@ public class BaseMechMain : ICoatedDamagable
     BaseBoostSystem BoostSystem;
 
 
+
+
     [Space(20)]
 
 
-    protected bool PlayerMech = false;
+    public bool PlayerMech = false;
+
+
+
     protected BaseEnergySource EnergySystem;
+    public AttributeManager.AttributeProfile MyAttProfile { get; protected set; } = new AttributeManager.AttributeProfile();
+        
     //{ get; protected set; }
 
 
@@ -63,8 +70,18 @@ public class BaseMechMain : ICoatedDamagable
     {
         PlayerMech = (GetComponent<PlayerController>() != null);
 
+        MyFCS.RecieveBMM(this);
+        MyMovement.RecieveBMM(this);
+
         SpawnParts();
         BuildMech();
+
+        List<AttributeManager.AdditionalAttribute> PartAtts = new List<AttributeManager.AdditionalAttribute>();
+        foreach(BaseMechPart a in AllParts)
+        {
+            PartAtts.AddRange(a.Attributs);
+        }
+        ApplyAttributes(PartAtts);
 
 
         MyFCS = GetComponent<BaseMechFCS>();
@@ -72,8 +89,8 @@ public class BaseMechMain : ICoatedDamagable
 
 
         MyMovement = GetComponent<BaseMechMovement>();
-        MyMovement.InitializeMechMovement(this, PlayerMech);
         AssignMovementStats();
+        MyMovement.InitializeMechMovement(this, PlayerMech);
         AssignWeight();
         EnergySystem = MPTorso.GetPowerSystem();
 
@@ -82,7 +99,10 @@ public class BaseMechMain : ICoatedDamagable
         GetComponent<MechColorAdjuster>().switchColor();
 
         if (PlayerMech)
+        {
             FindObjectOfType<UIInfoPanelManager>().UIInitialize();
+            UILockManager.Instance.Initialize();
+        }
     }
 
    
@@ -107,6 +127,32 @@ public class BaseMechMain : ICoatedDamagable
         Temp.z = 0;
 
         CameraAnchor.localEulerAngles = Temp;
+
+        RightArm.transform.rotation = CameraAnchor.rotation;
+        LeftArm.transform.rotation = CameraAnchor.rotation;
+    }
+
+    public void AIRotate(Vector3 LookPosition, float Speed)
+    {
+        Vector3 TargetDir = (LookPosition - transform.position).normalized;
+        Debug.DrawRay(CameraAnchor.position, CameraAnchor.forward*10,Color.red);
+        Debug.DrawRay(CameraAnchor.position, TargetDir*10, Color.cyan);
+
+        if (Vector3.Angle(CameraAnchor.forward,  LookPosition- transform.position) <= 10)
+            return;
+
+
+        Vector3 TempDir;
+
+        TempDir = Vector3.RotateTowards(CameraAnchor.forward, (transform.position - LookPosition).normalized, Speed * Time.deltaTime, 0.0f);
+        //TempDir = Vector3.ProjectOnPlane(TargetDir, -CameraAnchor.forward);
+
+        Vector3 Processed = Quaternion.ToEulerAngles(Quaternion.LookRotation(TempDir, transform.up));
+
+        Debug.Log(TempDir);
+
+        CameraAnchor.rotation = Quaternion.Euler(TempDir.y,0,0);
+        transform.rotation = Quaternion.Euler(0, -TempDir.x, 0);
 
         RightArm.transform.rotation = CameraAnchor.rotation;
         LeftArm.transform.rotation = CameraAnchor.rotation;
@@ -141,6 +187,7 @@ public class BaseMechMain : ICoatedDamagable
     protected override void Destroied()
     {
         base.Destroied();
+        if(PlayerMech)
         PauseMiniMenu.Instance.ShowLevelEndUI(false);
     }
 
@@ -282,10 +329,21 @@ public class BaseMechMain : ICoatedDamagable
 
     }
 
-    public void ApplyAttributes(List<BaseMechPart.AdditionalAttribute> Attributes)
+    public void ApplyAttributes(List<AttributeManager.AdditionalAttribute> Attributes)
     {
-
+        foreach (AttributeManager.AdditionalAttribute A in Attributes)
+        {
+            MyAttProfile.ApplyAdditionalAttribute(A);
+        }
     }
+
+
+
+
+
+
+
+
 
     //public void GetHands(out Transform Left, out Transform Right) // legacy function
     //{

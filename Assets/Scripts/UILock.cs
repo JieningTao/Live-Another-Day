@@ -208,7 +208,7 @@ public class UILock : MonoBehaviour
             HudLock.gameObject.SetActive(false);
             RadarEnemyBlipLock.gameObject.SetActive(false);
         }
-        else if (Order == "Target")
+        else if (Order == "MainTarget")
         {
             //Debug.Log("Targting " + Signal.name);
 

@@ -209,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3374845962081063294
 Transform:
   m_ObjectHideFlags: 0
@@ -277,15 +277,21 @@ MonoBehaviour:
   ProjectileScript: {fileID: 756370287822545945}
   AccuracyDeviation: 0.2
   TBS: 0.33
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: 8289a30eb7500864481a7ae17d4eddcc, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
   MaxMagazine: 12
-  MaxReserveAmmo: 60
+  MaxReserveAmmo: 84
   ReloadTime: 2
 --- !u!114 &-6461478087840340995
 MonoBehaviour:
@@ -300,6 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 1
+  Size: 3
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -308,11 +315,13 @@ MonoBehaviour:
   MainWeaponName: Rifle
   MainWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 0}
   SecondaryWeaponSN: 
   SecondaryWeaponName: 
   SecondaryWeaponGaugeColor: {r: 0, g: 0, b: 0, a: 0}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &1979018206784287231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,6 +649,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: KineticBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386673, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386673, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}

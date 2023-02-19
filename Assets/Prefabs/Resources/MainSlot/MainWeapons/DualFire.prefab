@@ -94,7 +94,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1990055625688937210
 Transform:
   m_ObjectHideFlags: 0
@@ -169,9 +169,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 5472946092348814933}
   AccuracyDeviation: 0.2
   TBS: 0.3
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: eb787a01bfbbab844bb16af928145178, type: 3}
   SoundMinMax: {x: 5, y: 500}
@@ -198,9 +204,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 5970209695744248494}
   AccuracyDeviation: 2
   TBS: 0.2
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
@@ -221,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 4
+  Size: 4
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -229,11 +242,13 @@ MonoBehaviour:
   MainWeaponName: DualAutoCannon
   MainWeaponGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 1990055625932398457}
   SecondaryWeaponSN: M-90
   SecondaryWeaponName: 3*Impact Missile
   SecondaryWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
   SecondaryBurst: 3
 --- !u!114 &6132570774605678912
 MonoBehaviour:
@@ -347,7 +362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3390611818322396991
 Transform:
   m_ObjectHideFlags: 0
@@ -377,7 +392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3390611818339620136
 Transform:
   m_ObjectHideFlags: 0
@@ -407,7 +422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3390611819681711269
 Transform:
   m_ObjectHideFlags: 0
@@ -437,7 +452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3390611820265464547
 Transform:
   m_ObjectHideFlags: 0

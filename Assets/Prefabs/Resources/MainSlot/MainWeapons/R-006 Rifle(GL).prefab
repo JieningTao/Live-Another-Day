@@ -368,7 +368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3374845962081063294
 Transform:
   m_ObjectHideFlags: 0
@@ -439,15 +439,21 @@ MonoBehaviour:
   ProjectileScript: {fileID: 3441466553335695195}
   AccuracyDeviation: 0.2
   TBS: 0.33
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: 8289a30eb7500864481a7ae17d4eddcc, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
   MaxMagazine: 12
-  MaxReserveAmmo: 60
+  MaxReserveAmmo: 84
   ReloadTime: 2
 --- !u!114 &7671202745400613515
 MonoBehaviour:
@@ -466,9 +472,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 5188997220746769849}
   AccuracyDeviation: 0.01
   TBS: 0.7
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds: []
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
@@ -488,6 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldStyle: 1
+  Size: 3
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
@@ -496,11 +509,13 @@ MonoBehaviour:
   MainWeaponName: Rifle
   MainWeaponGaugeColor: {r: 1, g: 0.9027058, b: 0, a: 1}
   MainLockNum: 0
+  MainLockBurstAmount: 1
   SecondaryWeapon: {fileID: 7671202745400613515}
   SecondaryWeaponSN: UB-004
   SecondaryWeaponName: Grenade
   SecondaryWeaponGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
   SecondaryLockNum: 0
+  SecondaryLockBurstAmount: 1
 --- !u!114 &8701285061323915434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,7 +869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &149470540940081969
 Transform:
   m_ObjectHideFlags: 0
@@ -864,7 +879,7 @@ Transform:
   m_GameObject: {fileID: 9073146012245917400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.039262433, z: 1.079}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children: []
   m_Father: {fileID: 3374845963381505274}
   m_RootOrder: 1

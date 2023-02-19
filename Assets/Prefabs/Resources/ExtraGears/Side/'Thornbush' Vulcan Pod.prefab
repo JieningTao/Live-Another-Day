@@ -372,7 +372,7 @@ MonoBehaviour:
   EXGearName: '''Thornbush'' Vulcan Pod'
   Passive: 0
   MyAnimator: {fileID: 0}
-  ReadyTime: 1.2
+  ReadyTime: 0.1
   AimedPart: {fileID: 5949317119853284279}
   MyWeapon: {fileID: 9220622211533889388}
   TargetSpeed: 1.5
@@ -415,8 +415,9 @@ MonoBehaviour:
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
-  ShotSounds: []
-  SoundMinMax: {x: 5, y: 400}
+  ShotSounds:
+  - {fileID: 8300000, guid: 8e996494ea2d01e418712b2f86c63093, type: 3}
+  SoundMinMax: {x: 3, y: 300}
   Volume: 0.5
   MaxMagazine: 50
   MaxReserveAmmo: 150
@@ -575,7 +576,7 @@ PrefabInstance:
     - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
       propertyPath: Damage
-      value: 70
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
