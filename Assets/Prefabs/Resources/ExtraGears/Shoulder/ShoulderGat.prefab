@@ -433,9 +433,15 @@ MonoBehaviour:
   ProjectileScript: {fileID: 8361021206474383696}
   AccuracyDeviation: 0.1
   TBS: 0.05
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: 98ed3d3cf68d7f84b80ec9c956a87c6c, type: 3}
   SoundMinMax: {x: 5, y: 500}
@@ -443,6 +449,7 @@ MonoBehaviour:
   MaxMagazine: 30
   MaxReserveAmmo: 150
   ReloadTime: 5
+  AmmoTypeIdentifier: 
 --- !u!114 &-1159262285321810488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec42a61dd09d70a44840ffa7d3b07843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** ShoulderGat'
+  Name: G112 Shoulder Repeater
   Description: 
   HideForPlayer: 0
   PartCatagory: 8

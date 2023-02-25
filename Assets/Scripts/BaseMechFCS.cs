@@ -112,7 +112,10 @@ public class BaseMechFCS : MonoBehaviour
 
         CameraAnchor = BMM.CameraAnchor;
 
-
+        if(CurrentPrimary)
+        CurrentPrimary.OperatorInit();
+        if(CurrentSecondary)
+        CurrentSecondary.OperatorInit();
     }
 
     public void InstallFCSChip()
@@ -201,7 +204,7 @@ public class BaseMechFCS : MonoBehaviour
 
         SelectedEXSlot = 0;
 
-        if (EquipedEXGear[0] == null)
+        if (EquipedEXGear[0] == null || EquipedEXGear[0].EXGIsPassive)
             SwitchEXGear(true);
         else
             SelectSlot(0);
@@ -414,6 +417,7 @@ public class BaseMechFCS : MonoBehaviour
         ThingToAim.rotation = Quaternion.LookRotation(AimDir, this.transform.up);
 
     }
+
     #region LockedList related
     private void UpdateLockedList()
     {
@@ -661,7 +665,6 @@ public class BaseMechFCS : MonoBehaviour
         }
     }
 
-
     private void AddLock(EnergySignal a)
     {
         if (a.MyType == EnergySignal.EnergySignalType.LowEnergy || a.MyType == EnergySignal.EnergySignalType.Mech)
@@ -757,7 +760,7 @@ public class BaseMechFCS : MonoBehaviour
 
         for (int i = SelectedEXSlot + step; i < EquipedEXGear.Length && i >= 0; i += step)
         {
-            if (EquipedEXGear[i] != null)
+            if (EquipedEXGear[i] != null && !EquipedEXGear[i].EXGIsPassive)
                 return i;
         }
 
@@ -786,6 +789,12 @@ public class BaseMechFCS : MonoBehaviour
     {
         CurrentPrimary = Main;
         CurrentSecondary = Second;
+    }
+
+    public BaseEXGear[] GetEquipedEXGear
+    {
+        get { return EquipedEXGear; }
+
     }
 
     #endregion
@@ -849,6 +858,11 @@ public class BaseMechFCS : MonoBehaviour
                 }
             }
         }
+    }
+
+    public AttributeManager.ExtraAttribute FetchExtraAttribute(string ExtraAttributeName)
+    {
+        return MyBMM.MyAttProfile.FetchAttribute(ExtraAttributeName);
     }
 
     private void OnDisable()

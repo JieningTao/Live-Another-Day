@@ -21,17 +21,14 @@ public class BaseMissile : BaseBullet
     // Update is called once per frame
     protected override void Update()
     {
+        if (Lifetime < TrackingChangeTime)
+            Lifetime += Time.deltaTime;
+
+        ActivationDelay -= Time.deltaTime;
 
 
         if (ActivationDelay < 0)
             TrackTarget();
-        else
-        {
-            if (Lifetime < TrackingChangeTime)
-                Lifetime += Time.deltaTime;
-
-            ActivationDelay -= Time.deltaTime;
-        }
 
         
 
@@ -72,6 +69,8 @@ public class BaseMissile : BaseBullet
         {
             if (Lifetime > TrackingChangeTime)
                 return TrackingSpeedChange.y;
+
+            Debug.Log(Mathf.Lerp(TrackingSpeedChange.x, TrackingSpeedChange.y, Lifetime / TrackingChangeTime));
 
             return Mathf.Lerp(TrackingSpeedChange.x, TrackingSpeedChange.y, Lifetime / TrackingChangeTime);
         }

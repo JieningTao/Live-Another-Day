@@ -175,7 +175,7 @@ public class BaseShoot : MonoBehaviour
     public virtual void Trigger(bool Fire)
     {
 
-        Debug.Log(Fire +"\n TBS "+ FireCooldown, this);
+        //Debug.Log(Fire +"\n TBS "+ FireCooldown, this);
 
         if (Fire && MyFireMode == FireMode.SemiAuto && FireCooldown <= 0)
         {

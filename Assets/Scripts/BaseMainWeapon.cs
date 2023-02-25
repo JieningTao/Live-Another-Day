@@ -94,8 +94,30 @@ public class BaseMainWeapon : BaseMainSlotEquipment
 
     }
 
+    public override void OperatorInit()
+    {
+        base.OperatorInit();
 
-    
+        if (MainWeapon is BaseKineticShoot)
+            KineticWeaponInitAmmo(MainWeapon as BaseKineticShoot);
+
+        if (SecondaryWeapon is BaseKineticShoot)
+            KineticWeaponInitAmmo(SecondaryWeapon as BaseKineticShoot);
+
+    }
+
+    public void KineticWeaponInitAmmo(BaseKineticShoot a)
+    {
+        if (a.GetAmmoIdentifier!="")
+        {
+            AttributeManager.ExtraAttribute EA = MyFCS.FetchExtraAttribute(a.GetAmmoIdentifier);
+            //Debug.Log(EA.AttributeName);
+            if (EA!=null)
+                a.SetAttributeExtraAmmo(EA.TributeAmount);
+
+        }
+    }
+
     protected virtual void Update()
     {
         if(Operator)
@@ -138,7 +160,6 @@ public class BaseMainWeapon : BaseMainSlotEquipment
         }
 
     }
-
 
     protected virtual void CheckWarnings()
     {

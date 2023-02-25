@@ -18,7 +18,6 @@ public class MainHandMLShield : MainHandShield
     [SerializeField]
     int MLLockBurstAmount = 1;
 
-    protected BaseMechFCS MyFCS;
     protected bool Locking = false;
 
 

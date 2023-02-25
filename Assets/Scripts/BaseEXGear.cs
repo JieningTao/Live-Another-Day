@@ -67,18 +67,13 @@ public class BaseEXGear : MonoBehaviour
         transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
-
-
-    public virtual bool EXGIsPassive()
-    {
-        return !Passive;
-    }
+    public virtual bool EXGIsPassive
+    { get { return Passive; } }
 
     public virtual float GetWeight()
     {
         return Weight;
     }
-
 
     public virtual void TriggerGear(bool Down)
     {

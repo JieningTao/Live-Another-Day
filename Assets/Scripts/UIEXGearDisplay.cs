@@ -29,11 +29,14 @@ public class UIEXGearDisplay : MonoBehaviour
     [SerializeField]
     UnityEngine.UI.Text Name;
 
+    [SerializeField]
+    Animator MyAnimator;
+
     protected BaseEXGear MyEXGear;
 
     private void Start()
     {
-        Number.text = SlotNumber + "";
+        //Number.text = SlotNumber + "";
     }
 
     private void EXGearInitialize(BaseEXGear Gear)
@@ -45,13 +48,26 @@ public class UIEXGearDisplay : MonoBehaviour
             SetBGColor(UnavaliableColor);
             Icon.gameObject.SetActive(false);
             Name.text = "";
+            MyAnimator.SetBool("Avaliable", false);
             return;
         }
+        else
+        {
+            Gear.GetInitializeData(out Sprite a, out string b);
+            Icon.sprite = a;
+            Name.text = b;
 
-        SetBGColor(StandByColor);
-        Gear.GetInitializeData(out Sprite a, out string b);
-        Icon.sprite = a;
-        Name.text = b;
+            if (Gear.EXGIsPassive)
+            {
+                SetBGColor(UnavaliableColor);
+                MyAnimator.SetBool("Avaliable", false);
+            }
+            else
+            {
+                SetBGColor(StandByColor);
+                MyAnimator.SetBool("Avaliable", true);
+            }
+        }
     }
 
     private void SetBGColor(Color a)
@@ -75,6 +91,7 @@ public class UIEXGearDisplay : MonoBehaviour
 
     private void RecieveNews(int a, string b, BaseEXGear c)
     {
+        //return;
         if (a == SlotNumber)
         {
             if (b == "New")
@@ -84,14 +101,9 @@ public class UIEXGearDisplay : MonoBehaviour
         if (b == "Select")
         {
             if (a == SlotNumber)
-                SetBGColor(SelectedColor);
+                MyAnimator.SetBool("Selected", true);
             else
-            {
-                if (MyEXGear == null)
-                    SetBGColor(UnavaliableColor);
-                else
-                    SetBGColor(StandByColor);
-            }
+                MyAnimator.SetBool("Selected", false);
         }
     }
 

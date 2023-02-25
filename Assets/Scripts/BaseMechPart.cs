@@ -9,7 +9,7 @@ public class BaseMechPart : MonoBehaviour
     public float Weight = 0.1f;
 
     [SerializeField]
-    public List<AttributeManager.AdditionalAttribute> Attributs = new List<AttributeManager.AdditionalAttribute>();
+    public List<AttributeManager.BaseMechAttribute> Attributes = new List<AttributeManager.BaseMechAttribute>();
     
 
     public List<Transform> FloatThrusters;
@@ -28,6 +28,7 @@ public class BaseMechPart : MonoBehaviour
         VisualAssemble(JointPosition);
         MyMech = Mech;
         SetLayer(Mech.gameObject.layer);
+        Mech.ApplyMechAttributes(Attributes);
     }
 
     public virtual void VisualAssemble(Transform JointPosition)

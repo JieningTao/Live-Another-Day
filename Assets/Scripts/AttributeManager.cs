@@ -34,7 +34,7 @@ public class AttributeManager
     }
 
     [Serializable]
-    public class AdditionalAttribute
+    public class BaseMechAttribute
     {
         [SerializeField]
         public Attribute AttributeType;
@@ -109,6 +109,15 @@ public class AttributeManager
     }
 
     [Serializable]
+    public class ExtraAttribute
+    {
+        [SerializeField]
+        public string AttributeName;
+        [SerializeField]
+        public float TributeAmount;
+    }
+
+    [Serializable]
     public class AttributeProfile
     {
         public float MoveForce = 0;
@@ -133,73 +142,96 @@ public class AttributeManager
         public float MaxLock =0;
         public float LockSpeed = 1;
 
-        public void ApplyAdditionalAttribute(AdditionalAttribute AA)
+        public List<ExtraAttribute> ExtraAttributes = new List<ExtraAttribute>();
+
+        public void ApplyBaseMechAttribute(BaseMechAttribute BMA)
         {
-            switch (AA.AttributeType)
+            switch (BMA.AttributeType)
             {
                 case Attribute.MoveForce:
-                    MoveForce += AA.TributeAmount;
+                    MoveForce += BMA.TributeAmount;
                     break;
                 //case Attribute.SpeedLimit:
-                //    SpeedLimit += AA.TributeAmount;
+                //    SpeedLimit += BMA.TributeAmount;
                 //    break;
                 case Attribute.JumpForce:
-                    JumpForce += AA.TributeAmount;
+                    JumpForce += BMA.TributeAmount;
                     break;
 
 
                 case Attribute.BoostForce:
-                    BoostForce += AA.TributeAmount;
+                    BoostForce += BMA.TributeAmount;
                     break;
                 case Attribute.BoostCost:
-                    BoostCost += AA.TributeAmount;
+                    BoostCost += BMA.TributeAmount;
                     break;
                 case Attribute.ImpulseForce:
-                    ImpulseForce += AA.TributeAmount;
+                    ImpulseForce += BMA.TributeAmount;
                     break;
                 case Attribute.ImpulseCost:
-                    ImpulseCost += AA.TributeAmount;
+                    ImpulseCost += BMA.TributeAmount;
                     break;
                 case Attribute.FloatForce:
-                    FloatForce += AA.TributeAmount;
+                    FloatForce += BMA.TributeAmount;
                     break;
                 case Attribute.FloatCost:
-                    FloatCost += AA.TributeAmount;
+                    FloatCost += BMA.TributeAmount;
                     break;
 
 
                 case Attribute.AmmoAmount:
-                    AmmoAmount += AA.TributeAmount;
+                    AmmoAmount += BMA.TributeAmount;
                     break;
 
 
                 case Attribute.BoostJuiceCapacity:
-                    BoostJuiceCapacity += AA.TributeAmount;
+                    BoostJuiceCapacity += BMA.TributeAmount;
                     break;
                 case Attribute.BoostJuiceRecovery:
-                    BoostJuiceRecovery += AA.TributeAmount;
+                    BoostJuiceRecovery += BMA.TributeAmount;
                     break;
                 case Attribute.BoostJuiceRecoveryCooldown:
-                    BoostJuiceRecoveryCooldown += AA.TributeAmount;
+                    BoostJuiceRecoveryCooldown += BMA.TributeAmount;
                     break;
 
 
                 case Attribute.RadarRange:
-                    RadarRange += AA.TributeAmount;
+                    RadarRange += BMA.TributeAmount;
                     break;
                 case Attribute.LockRange:
-                    LockRange += AA.TributeAmount;
+                    LockRange += BMA.TributeAmount;
                     break;
                 case Attribute.MaxLock:
-                    MaxLock += AA.TributeAmount;
+                    MaxLock += BMA.TributeAmount;
                     break;
                 case Attribute.LockSpeed:
-                    LockSpeed += AA.TributeAmount;
+                    LockSpeed += BMA.TributeAmount;
                     break;
             }
         }
 
+        public void ApplyExtraAttribute(ExtraAttribute EA)
+        {
+            for (int i = 0; i < ExtraAttributes.Count; i++)
+            {
+                if (ExtraAttributes[i].AttributeName == EA.AttributeName)
+                {
+                    ExtraAttributes[i].TributeAmount += EA.TributeAmount;
+                    return;
+                }
+            }
+            ExtraAttributes.Add(EA);
+        }
 
+        public ExtraAttribute FetchAttribute(string ExtraAttributeName)
+        {
+            for (int i = 0; i < ExtraAttributes.Count; i++)
+            {
+                if (ExtraAttributes[i].AttributeName == ExtraAttributeName)
+                    return ExtraAttributes[i];
+            }
+            return null;
+        }
     }
 
 }

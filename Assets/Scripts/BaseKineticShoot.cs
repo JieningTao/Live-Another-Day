@@ -11,7 +11,10 @@ public class BaseKineticShoot : BaseShoot
     protected int MaxReserveAmmo;
     [SerializeField]
     protected float ReloadTime;
-
+    [Tooltip("Used to fetch additional amount from mech attribute, leave blank for weapons that do not gain additional ammo")]
+    [SerializeField]
+    protected string AmmoTypeIdentifier = "";
+    protected int AttributeExtraAmmo;
 
     protected int MagazineRemaining;
     protected int ReserveRemaining;
@@ -21,7 +24,7 @@ public class BaseKineticShoot : BaseShoot
     protected override void Start()
     {
         MagazineRemaining = MaxMagazine;
-        ReserveRemaining = MaxReserveAmmo;
+        ReserveRemaining = MaxReserveAmmo + AttributeExtraAmmo;
         base.Start();
     }
 
@@ -31,6 +34,22 @@ public class BaseKineticShoot : BaseShoot
             ReloadTimeRemaining -= Time.deltaTime;
         else
             base.Update();
+
+    }
+
+    public void SetAttributeExtraAmmo(float ExtraPercent)
+    {
+        AttributeExtraAmmo = (int)(ExtraPercent * (float)MaxReserveAmmo);
+        ReserveRemaining = MaxReserveAmmo + AttributeExtraAmmo;
+
+        Debug.Log(MaxReserveAmmo + "-->" + (MaxReserveAmmo + AttributeExtraAmmo));
+        Debug.Log(ReserveRemaining);
+    }
+
+    public override void EquipWeapon()
+    {
+        base.EquipWeapon();
+
 
     }
 
@@ -54,13 +73,15 @@ public class BaseKineticShoot : BaseShoot
             ReloadTimeRemaining = ReloadTime;
             FireCooldown = 0;
         }
+        Debug.Log(ReserveRemaining);
+
     }
 
     public void ReArm(float Percent)
     {
         Percent = Mathf.Clamp(Percent, 0, 1);
-        ReserveRemaining += (int)(Percent * MaxReserveAmmo);
-        ReserveRemaining = Mathf.Clamp(ReserveRemaining, 0, MaxReserveAmmo);
+        ReserveRemaining += (int)(Percent * (MaxReserveAmmo + AttributeExtraAmmo));
+        ReserveRemaining = Mathf.Clamp(ReserveRemaining, 0, (MaxReserveAmmo + AttributeExtraAmmo));
     }
 
     protected override void Fire1()
@@ -109,8 +130,11 @@ public class BaseKineticShoot : BaseShoot
     }
 
     public override string GetMag
-    { get { return MaxMagazine+"/"+MaxReserveAmmo; } }
+    { get { return MaxMagazine+"/"+(MaxReserveAmmo+AttributeExtraAmmo); } }
 
     public override string GetReload
     { get { return ReloadTime+"s"; } }
+
+    public string GetAmmoIdentifier
+    { get { return AmmoTypeIdentifier; } }
 }

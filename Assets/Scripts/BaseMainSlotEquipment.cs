@@ -54,6 +54,12 @@ public class BaseMainSlotEquipment : MonoBehaviour
 
     }
 
+    //primarily used to allow attributes to pass to weapon
+    public virtual void OperatorInit()
+    {
+
+    }
+
     public virtual void Equip(bool _Equip, BaseMechMain _Operator,bool _Right)
     {
         if (_Operator)

@@ -56,13 +56,13 @@ public class BaseMechMain : ICoatedDamagable
 
     protected BaseEnergySource EnergySystem;
     public AttributeManager.AttributeProfile MyAttProfile { get; protected set; } = new AttributeManager.AttributeProfile();
-        
+
     //{ get; protected set; }
 
 
     protected override void Start()
     {
-        if(!GetComponent<MechLoader>())
+        if (!GetComponent<MechLoader>())
             InitializeMech();
     }
 
@@ -76,16 +76,18 @@ public class BaseMechMain : ICoatedDamagable
         SpawnParts();
         BuildMech();
 
-        List<AttributeManager.AdditionalAttribute> PartAtts = new List<AttributeManager.AdditionalAttribute>();
-        foreach(BaseMechPart a in AllParts)
-        {
-            PartAtts.AddRange(a.Attributs);
-        }
-        ApplyAttributes(PartAtts);
-
+        //the attribute adding process has been moved to each of the mechpart's assemble function
+        //List<AttributeManager.BaseMechAttribute> MechAtts = new List<AttributeManager.BaseMechAttribute>();
+        //List<AttributeManager.ExtraAttribute> ExtraAtts = new List<AttributeManager.ExtraAttribute>();
+        //foreach (BaseMechPart a in AllParts)
+        //{
+        //    MechAtts.AddRange(a.Attributes);
+        //}
+        //ApplyMechAttributes(MechAtts);
+        //ApplyExtraAttributes(ExtraAtts);
 
         MyFCS = GetComponent<BaseMechFCS>();
-        MyFCS.InitializeFCS(this, PlayerMech, MPLArm, MPRArm,FCSChip);
+        MyFCS.InitializeFCS(this, PlayerMech, MPLArm, MPRArm, FCSChip);
 
 
         MyMovement = GetComponent<BaseMechMovement>();
@@ -105,7 +107,7 @@ public class BaseMechMain : ICoatedDamagable
         }
     }
 
-   
+
     public void Rotate(Vector3 Rot)
     {
         transform.Rotate((new Vector3(0, Rot.y, 0)) * TurnSpeed);
@@ -135,10 +137,10 @@ public class BaseMechMain : ICoatedDamagable
     public void AIRotate(Vector3 LookPosition, float Speed)
     {
         Vector3 TargetDir = (LookPosition - transform.position).normalized;
-        Debug.DrawRay(CameraAnchor.position, CameraAnchor.forward*10,Color.red);
-        Debug.DrawRay(CameraAnchor.position, TargetDir*10, Color.cyan);
+        Debug.DrawRay(CameraAnchor.position, CameraAnchor.forward * 10, Color.red);
+        Debug.DrawRay(CameraAnchor.position, TargetDir * 10, Color.cyan);
 
-        if (Vector3.Angle(CameraAnchor.forward,  LookPosition- transform.position) <= 10)
+        if (Vector3.Angle(CameraAnchor.forward, LookPosition - transform.position) <= 10)
             return;
 
 
@@ -151,7 +153,7 @@ public class BaseMechMain : ICoatedDamagable
 
         Debug.Log(TempDir);
 
-        CameraAnchor.rotation = Quaternion.Euler(TempDir.y,0,0);
+        CameraAnchor.rotation = Quaternion.Euler(TempDir.y, 0, 0);
         transform.rotation = Quaternion.Euler(0, -TempDir.x, 0);
 
         RightArm.transform.rotation = CameraAnchor.rotation;
@@ -167,7 +169,7 @@ public class BaseMechMain : ICoatedDamagable
 
     public BaseMechMovement GetMovement()
     {
-        if(!MyMovement)
+        if (!MyMovement)
             MyMovement = GetComponent<BaseMechMovement>();
         return MyMovement;
     }
@@ -187,14 +189,14 @@ public class BaseMechMain : ICoatedDamagable
     protected override void Destroied()
     {
         base.Destroied();
-        if(PlayerMech)
-        PauseMiniMenu.Instance.ShowLevelEndUI(false);
+        if (PlayerMech)
+            PauseMiniMenu.Instance.ShowLevelEndUI(false);
     }
 
 
     #region Mech loading related
 
-    public void AssignParts(BaseMechPartHead Head, BaseMechPartTorso Torso,LoadOutPart Arms,BaseMechPartLegs Legs,BaseMechPartPack Pack,  BaseBoostSystem Boost,BaseFCSChip _FCSChip)
+    public void AssignParts(BaseMechPartHead Head, BaseMechPartTorso Torso, LoadOutPart Arms, BaseMechPartLegs Legs, BaseMechPartPack Pack, BaseBoostSystem Boost, BaseFCSChip _FCSChip)
     {
         MPHead = Head;
         MPTorso = Torso;
@@ -221,7 +223,7 @@ public class BaseMechMain : ICoatedDamagable
         if (MPTorso == null)
             return;
         MPTorso.Assemble(this, transform);
-        MPTorso.AssembleMech(this, MPHead,MPRArm,MPLArm,MPLegs,MPPack);
+        MPTorso.AssembleMech(this, MPHead, MPRArm, MPLArm, MPLegs, MPPack);
 
 
         AllParts = new List<BaseMechPart>();
@@ -261,7 +263,7 @@ public class BaseMechMain : ICoatedDamagable
         LeftArm = MPLArm.transform;
         RightArm = MPRArm.transform;
 
-        
+
     }
 
     private void SpawnParts()
@@ -329,11 +331,20 @@ public class BaseMechMain : ICoatedDamagable
 
     }
 
-    public void ApplyAttributes(List<AttributeManager.AdditionalAttribute> Attributes)
+    public void ApplyMechAttributes(List<AttributeManager.BaseMechAttribute> Attributes)
     {
-        foreach (AttributeManager.AdditionalAttribute A in Attributes)
+        foreach (AttributeManager.BaseMechAttribute A in Attributes)
         {
-            MyAttProfile.ApplyAdditionalAttribute(A);
+            MyAttProfile.ApplyBaseMechAttribute(A);
+        }
+    }
+
+    public void ApplyExtraAttributes(List<AttributeManager.ExtraAttribute> EAttributes)
+    {
+        Debug.Log(EAttributes.Count);
+        foreach (AttributeManager.ExtraAttribute A in EAttributes)
+        {
+            MyAttProfile.ApplyExtraAttribute(A);
         }
     }
 

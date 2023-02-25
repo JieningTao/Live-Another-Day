@@ -437,12 +437,18 @@ MonoBehaviour:
   - {fileID: 5195484029189931248}
   - {fileID: 2162575987591238423}
   - {fileID: 2355853528254509479}
-  ProjectileScript: {fileID: 7783276774380490176}
+  ProjectileScript: {fileID: 0}
   AccuracyDeviation: 10
   TBS: 0.15
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 3
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 3, y: 300}
@@ -450,6 +456,7 @@ MonoBehaviour:
   MaxMagazine: 8
   MaxReserveAmmo: 32
   ReloadTime: 3
+  AmmoTypeIdentifier: 
 --- !u!114 &2644953640383605110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +515,7 @@ MonoBehaviour:
   Description: 
   HideForPlayer: 0
   PartCatagory: 8
-  PrefabPath: ExtraGears/Shoulder/MissilePod
+  PrefabPath: ExtraGears/Shoulder/MissilePod (Acute HE)
   MyEXG: {fileID: 2644953640383605110}
 --- !u!1 &2644953641002355898
 GameObject:
@@ -1591,7 +1598,8 @@ MonoBehaviour:
   HitMask: 0
   HitEffect: {fileID: 2423011843136464558}
   Target: {fileID: 0}
-  TrackingSpeed: 0.18
+  TrackingSpeedChange: {x: 2.5, y: 0.8}
+  TrackingChangeTime: 1.5
   ActivationDelay: 0.7
   SnapEffect: {fileID: 4485954244846782258, guid: 842f58a876e182347bc2cd0a098fa9fa,
     type: 3}
@@ -1952,18 +1960,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 422234512}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7783276774380490176 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7783276773958321232, guid: 31e626fc9e7f98744a01f8ce021375b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 422234512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7982778234699803659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a3c2ed905295614bb2a49cd740b258e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &2423011843136464558 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2423011843554176830, guid: 31e626fc9e7f98744a01f8ce021375b1,
