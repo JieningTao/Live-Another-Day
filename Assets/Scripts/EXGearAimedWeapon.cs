@@ -14,8 +14,16 @@ public class EXGearAimedWeapon : BaseEXGear
     [SerializeField]
     float TargetingAngle = 10;
 
+    [Tooltip("random effects to be used with events in animation, leave blank if none")]
+    [SerializeField]
+    List<ParticleSystem> MiscEffects = new List<ParticleSystem>();
+
+
     bool Aimed = false;
     EnergySignal Target = null;
+
+
+
 
     public override void InitializeGear(BaseMechMain Mech, Transform Parent, bool Right)
     {
@@ -79,6 +87,18 @@ public class EXGearAimedWeapon : BaseEXGear
 
         AimedPart.rotation = Quaternion.LookRotation(AimDir, transform.up);
 
+    }
+
+    public void PlayeEffect(int EffectNum)
+    {
+        try
+        {
+            MiscEffects[EffectNum].Play();
+        }
+        catch
+        {
+            Debug.Log("EffectError", this);
+        }
     }
 
     public override void Equip(bool a)

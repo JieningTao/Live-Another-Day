@@ -5273,6 +5273,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ImpactExplosive
       objectReference: {fileID: 0}
+    - target: {fileID: 5801159630619674967, guid: 72e4929be4d4cf34b95accf9f4477170,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72e4929be4d4cf34b95accf9f4477170, type: 3}
 --- !u!4 &199709397343691691 stripped
@@ -5287,3 +5292,112 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 1846336373178059082}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4516366063771948259
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 199709397343691691}
+    m_Modifications:
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066827424377861252, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886176430159547476, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: ClipBank.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886176430159547476, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: ClipBank.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: c1af6cc4ee33c7443b5a33bdeb3e1490, type: 3}
+    - target: {fileID: 4886176430159547476, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: ClipBank.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: ebd64dc9c6f2be5429a8f7643e7958d5, type: 3}
+    - target: {fileID: 4886176430159547476, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: ClipBank.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: da2ed0f0cee6e754d80e41d143735099, type: 3}
+    - target: {fileID: 4886176430159547476, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: ClipBank.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 670afd7c0fd446842b076de505203fdb, type: 3}
+    - target: {fileID: 4886176430159547476, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: ClipBank.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 417d49d983d60fb45b71e3f764ca5dee, type: 3}
+    - target: {fileID: 4886176430159547476, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: ClipBank.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c3a46539b9abbd42b7cac7069041e33, type: 3}
+    - target: {fileID: 4886176430159547476, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: ClipBank.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 56b27ef6cab23de4887adc6fce012723, type: 3}
+    - target: {fileID: 8677058806864972436, guid: 1ca89a67d8c5209469ef22b38c2adce7,
+        type: 3}
+      propertyPath: m_Name
+      value: Hit Audio
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1ca89a67d8c5209469ef22b38c2adce7, type: 3}
