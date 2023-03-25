@@ -83,6 +83,7 @@ public class UIPartCompare : MonoBehaviour
             Destroy(a);
         }
         CurrentStats.Clear();
+        CurrentName.text = "";
     }
 
     public void LoadCurrentPart(LoadOutPart a)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBoostSystem :MonoBehaviour
+public class BaseBoostSystem : MonoBehaviour
 {
     [SerializeField]
     protected float BoostForce = 270;
@@ -41,9 +41,15 @@ public class BaseBoostSystem :MonoBehaviour
     protected GameObject FloatThrust;
 
 
-    private List<ParticleSystem> BoostExhausts = new List<ParticleSystem>();
-    private List<ParticleSystem> BoostImpulses = new List<ParticleSystem>();
-    private List<ParticleSystem> FloatThrusters = new List<ParticleSystem>();
+    protected BaseMechMovement MyBMM;
+    protected List<ParticleSystem> BoostExhausts = new List<ParticleSystem>();
+    protected List<ParticleSystem> BoostImpulses = new List<ParticleSystem>();
+    protected List<ParticleSystem> FloatThrusters = new List<ParticleSystem>();
+
+    protected bool Boosting;
+    protected bool Floating;
+
+    protected int LastEightDividDirection = 0;
 
     public void OutStats(out float BF, out float IBF, out float FF, out float ESC, out float BC, out float IBC, out float FC, out float BJC, out float BJR, out float BJRC, out BaseBoostSystem BS)
     {
@@ -61,6 +67,11 @@ public class BaseBoostSystem :MonoBehaviour
         BJRC = BoostRecoverCooldown;
 
         BS = this;
+    }
+
+    public void InitBS(BaseMechMain Mech)
+    {
+        MyBMM = Mech.GetMovement();
     }
 
     public GameObject GetBoostExhaust()
@@ -103,11 +114,28 @@ public class BaseBoostSystem :MonoBehaviour
         }
     }
 
+
+    private void Update()
+    {
+        if(Boosting)
+            EightDivide();
+    }
+
     public void ImpulseBoostEffect()
     {
         foreach (ParticleSystem a in BoostImpulses)
         {
             a.Play();
+        }
+    }
+
+    public void ImpulseBoostEffect(Vector3 Direction)
+    {
+        foreach (ParticleSystem a in BoostImpulses)
+        {
+            //Debug.Log(Vector3.Angle(a.transform.forward, Direction));
+            if (Vector3.Angle(-a.transform.forward, Direction) < 60)
+                a.Play();
         }
     }
 
@@ -120,6 +148,22 @@ public class BaseBoostSystem :MonoBehaviour
             else
                 a.Stop();
         }
+        Boosting = boost;
+    }
+
+    public void BoostEffect(Vector3 Direction, bool boost)
+    {
+        foreach (ParticleSystem a in BoostExhausts)
+        {
+            if (boost)
+            {
+                if (Vector3.Angle(-a.transform.forward, Direction) < 60)
+                    a.Play();
+            }
+            else
+                a.Stop();
+        }
+        Boosting = boost;
     }
 
     public void FloatEffect(bool _float)
@@ -131,7 +175,57 @@ public class BaseBoostSystem :MonoBehaviour
             else
                 a.Stop();
         }
+        Floating = _float;
     }
+
+    protected void EightDivide()
+    {
+        Vector3 PlanarDirection = new Vector3(MyBMM.MovementInput.x, 0, MyBMM.MovementInput.z);
+
+        float Angle = Mathf.Atan2(PlanarDirection.x, PlanarDirection.z) * Mathf.Rad2Deg;
+
+        if (Angle < 0)
+            Angle = (360 + Angle);
+
+        int EDD = (int)(Angle / 45f);
+
+        if (LastEightDividDirection != EDD)
+        {
+            //boost direction is in a new eighth quadrant direction
+
+            ToggleBoostDirection(EDDToVector3(EDD));
+            LastEightDividDirection = EDD;
+        }
+
+    }
+
+    protected Vector3 EDDToVector3(int EDD)
+    {
+        switch (EDD)
+        {
+            case 0: return new Vector3(0, 0, 1);
+            case 1: return new Vector3(1, 0, 1).normalized;
+            case 2: return new Vector3(1, 0, 0);
+            case 3: return new Vector3(1, 0, -1).normalized;
+            case 4: return new Vector3(0, 0, -1);
+            case 5: return new Vector3(-1, 0, -1).normalized;
+            case 6: return new Vector3(-1, 0, 0);
+            case 7: return new Vector3(-1, 0, 1).normalized;
+        }
+        return new Vector3(0, 0, 1);
+    }
+
+    protected void ToggleBoostDirection(Vector3 Direction)
+    {
+        foreach (ParticleSystem a in BoostExhausts)
+        {
+            if (Vector3.Angle(-a.transform.forward, Direction) < 60)
+                a.Play();
+            else
+                a.Stop();
+        }
+    }
+
 
     public void AdjustEffectScale(ParticleSystem a, Vector3 Scale)
     {

@@ -124,7 +124,7 @@ public class BaseMissileLauncher : BaseKineticShoot
         {
             MissileScript.RecieveTarget(Target);
             base.Fire1();
-            MissileScript.RecieveTarget(null);
+            //MissileScript.RecieveTarget(null);
 
         }
         else

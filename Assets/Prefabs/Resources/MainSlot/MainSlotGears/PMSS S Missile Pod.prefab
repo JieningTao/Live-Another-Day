@@ -1305,7 +1305,7 @@ MonoBehaviour:
   GearGaugeColor: {r: 0, g: 1, b: 0.024693727, a: 1}
   MyMissileLauncher: {fileID: 7402985633894433454}
   MissileGearSN: ML - IE
-  MissileGearName: Null
+  MissileGearName: IE Missile
   MissileGearGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
   MLLockNum: 1
   MLLockBurstAmount: 3
@@ -1353,6 +1353,7 @@ MonoBehaviour:
   MaxMagazine: 6
   MaxReserveAmmo: 24
   ReloadTime: 1.2
+  AmmoTypeIdentifier: 
 --- !u!114 &7402985633894433452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,7 +1366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bc678e23aa58e48acfe637a4bcdddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 450
+  MaxHealth: 650
   MyArmorType: 0
   StuffToDisableAfterDestroy: []
   DestroyEffect: {fileID: 0}

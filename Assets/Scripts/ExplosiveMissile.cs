@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ExplosiveMissile : BaseMissile
 {
-    [SerializeField]
-    protected BaseExplosion MyExplosion;
 
 
     //public virtual void InitializeProjectile(float _Damage, int Layer, DamageSystem.DamageType DamageType, List<DamageSystem.DamageTag> DamageTags, float _TrackingSpeed, float _ActivationDelay, float ExplosiveDamage, float ExplosiveForce, BaseExplosion _MyExplosion)

@@ -128,10 +128,8 @@ public class BaseMechMovement : MonoBehaviour
     {
         MyBMM = BMM;
         MyRB = GetComponent<Rigidbody>();
-        //Debug.Log(MyRB, this);
         Cursor.lockState = CursorLockMode.Locked;
         JCRemaining = 0;
-        Debug.Log(BoostJuiceCapacity);
         CurrentBoostjuice = BoostJuiceCapacity;
     }
 
@@ -298,7 +296,7 @@ public class BaseMechMovement : MonoBehaviour
 
             if (AttemptUseBoostJuice(ImpulseCost))
             {
-                MyBS.ImpulseBoostEffect();
+                MyBS.ImpulseBoostEffect(PlanarInput);
                 if (ImpulsePlayer.isPlaying)
                     ImpulsePlayer.Stop();
                 ImpulsePlayer.Play();
@@ -307,7 +305,7 @@ public class BaseMechMovement : MonoBehaviour
 
             if (CurrentBoostjuice >= BoostCost * Time.deltaTime)
             {
-                MyBS.BoostEffect(true);
+                MyBS.BoostEffect(PlanarInput,true);
                 BoostPlayer.Play();
                 Boosting = true;
             }

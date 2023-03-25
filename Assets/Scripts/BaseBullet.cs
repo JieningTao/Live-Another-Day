@@ -18,22 +18,42 @@ public class BaseBullet : MonoBehaviour
 
     [SerializeField]
     protected List<DamageSystem.DamageTag> MyDamageTags;
-
      
+    [HideInInspector]
     [SerializeField] //for some reason this doessnt work unless serialized, F**K!
     protected int HitMask;
 
     [SerializeField]
     protected ParticleSystem HitEffect;
 
+    [SerializeField]
+    protected BaseExplosion MyExplosion;
+
+    [SerializeField]
+    protected bool ExplodeOnTimerExpire = false;
+
     protected virtual void Start()
     {
+        if(!ExplodeOnTimerExpire)
         Destroy(this.gameObject, Timer);
     }
 
     protected virtual void Update()
     {
         FlightCheck();
+
+        Timer -= Time.deltaTime;
+
+        if(Timer<=0)
+        {
+            if (ExplodeOnTimerExpire && MyExplosion)
+            {
+                MyExplosion.transform.parent = null;
+                MyExplosion.gameObject.SetActive(true);
+            }
+
+                Destroy(this.gameObject);
+        }
     }
 
     //public virtual void InitializeProjectile(float _Damage,int Layer, DamageSystem.DamageType DamageType, List<DamageSystem.DamageTag> DamageTags)
@@ -66,7 +86,7 @@ public class BaseBullet : MonoBehaviour
         }
     }
 
-    protected void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         DealDamageTo(collision.gameObject);
     }
@@ -76,6 +96,9 @@ public class BaseBullet : MonoBehaviour
         //Debug.Log("Ping");
         gameObject.layer = Layer;
         SetMask();
+
+        if (MyExplosion)
+            MyExplosion.SetLayerAndMask(Layer, HitMask);
     }
 
     public virtual float GetSpeed()
@@ -104,6 +127,7 @@ public class BaseBullet : MonoBehaviour
             HitMask = HitMask | (1 << 15);
 
         //Debug.Log(gameObject.name+ " Mask set "+HitMask);
+
     }
 
     public void AddLayerToMask(int Layer)
@@ -120,6 +144,12 @@ public class BaseBullet : MonoBehaviour
         {
             Temp.Hit(Damage, MyDamageType, MyDamageTags);
             //Debug.Log(Target.name + " Was hit by " + gameObject.name);
+        }
+
+        if (MyExplosion)
+        {
+            MyExplosion.transform.parent = null;
+            MyExplosion.gameObject.SetActive(true);
         }
 
         Destroy(this.gameObject);
@@ -139,5 +169,11 @@ public class BaseBullet : MonoBehaviour
     }
 
     public virtual string GetDamage
-    { get { return Damage + ""; } }
+    {
+        get {
+            if(MyExplosion)
+                return MyExplosion.GetDamage;
+            return Damage + "";
+        }
+    }
 }

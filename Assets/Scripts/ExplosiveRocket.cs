@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ExplosiveRocket : BaseRocket
 {
-    [SerializeField]
-    BaseExplosion MyExplosion;
 
 
     public override void SetLayerAndMask(int Layer)

@@ -1733,10 +1733,19 @@ MonoBehaviour:
   ProjectileScript: {fileID: 1144163783179131182}
   AccuracyDeviation: 2
   TBS: 0.15
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
-  ShotSounds: []
+  MyAnimator: {fileID: 0}
+  ShotSounds:
+  - {fileID: 8300000, guid: b2d7436d6393a304abe0a05def301810, type: 3}
+  - {fileID: 8300000, guid: ee524c4ba1b132147a26f459bddef141, type: 3}
+  - {fileID: 8300000, guid: 3e1c1d398999ffa4e8f0aa17ac027a2e, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
 --- !u!114 &1760707051899869530

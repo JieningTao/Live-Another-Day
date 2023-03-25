@@ -20,6 +20,8 @@ public class AcuteMissile : BaseMissile
 
     protected override void Update()
     {
+        if (Lifetime < TrackingChangeTime)
+            Lifetime += Time.deltaTime;
 
         if (ActivationDelay > 0)
         {
@@ -50,6 +52,14 @@ public class AcuteMissile : BaseMissile
 
         Snapped = true;
 
+    }
+
+    protected override float CurrentTrackingSpeed
+    {
+        get
+        {
+            return  TrackingSpeedChange.y;
+        }
     }
 
 }

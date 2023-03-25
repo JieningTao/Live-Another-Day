@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class VDExplosiveMissile : VerticalDropMissile
 {
-    [SerializeField]
-    protected BaseExplosion MyExplosion;
+
 
     public override void SetLayerAndMask(int Layer)
     {

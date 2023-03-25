@@ -41,9 +41,6 @@ public class BaseKineticShoot : BaseShoot
     {
         AttributeExtraAmmo = (int)(ExtraPercent * (float)MaxReserveAmmo);
         ReserveRemaining = MaxReserveAmmo + AttributeExtraAmmo;
-
-        Debug.Log(MaxReserveAmmo + "-->" + (MaxReserveAmmo + AttributeExtraAmmo));
-        Debug.Log(ReserveRemaining);
     }
 
     public override void EquipWeapon()
@@ -73,7 +70,6 @@ public class BaseKineticShoot : BaseShoot
             ReloadTimeRemaining = ReloadTime;
             FireCooldown = 0;
         }
-        Debug.Log(ReserveRemaining);
 
     }
 
@@ -118,7 +114,7 @@ public class BaseKineticShoot : BaseShoot
 
     public override bool GetFirable()
     {
-        return ReloadTimeRemaining<=0;
+        return (ReloadTimeRemaining<=0&&MagazineRemaining>0);
     }
 
     public override bool LowAmmoWarning()

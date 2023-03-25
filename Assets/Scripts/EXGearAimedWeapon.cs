@@ -2,21 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EXGearAimedWeapon : BaseEXGear
+public class EXGearAimedWeapon : EXGearWeapon
 {
-    BaseMechFCS MyFCS;
     [SerializeField]
     Transform AimedPart;
-    [SerializeField]
-    BaseShoot MyWeapon;
     [SerializeField]
     float TargetSpeed = 1;
     [SerializeField]
     float TargetingAngle = 10;
 
-    [Tooltip("random effects to be used with events in animation, leave blank if none")]
-    [SerializeField]
-    List<ParticleSystem> MiscEffects = new List<ParticleSystem>();
+
 
 
     bool Aimed = false;
@@ -24,31 +19,14 @@ public class EXGearAimedWeapon : BaseEXGear
 
 
 
-
-    public override void InitializeGear(BaseMechMain Mech, Transform Parent, bool Right)
-    {
-        base.InitializeGear(Mech, Parent, Right);
-
-        MyFCS = Mech.GetFCS();
-
-        if (MyWeapon is BaseEnergyShoot)
-        {
-            (MyWeapon as BaseEnergyShoot).GetPowerSource(Mech);
-            Debug.Log("Is E");
-        }
-        //Debug.Log(gameObject.name + " Right: " + Right, this);
-    }
-
     protected override void Update()
     {
         base.Update();
 
-        if (Equipped && ReadyTimer<=0)
+        if (Equipped && ReadyTimer<=0&& MyWeapon.GetFirable())//while the weapon is reloading, aiming can fuck with animations
         {
             AimWeapon();
         }
-
-        
     }
 
     protected void AimWeapon()
@@ -89,18 +67,6 @@ public class EXGearAimedWeapon : BaseEXGear
 
     }
 
-    public void PlayeEffect(int EffectNum)
-    {
-        try
-        {
-            MiscEffects[EffectNum].Play();
-        }
-        catch
-        {
-            Debug.Log("EffectError", this);
-        }
-    }
-
     public override void Equip(bool a)
     {
         base.Equip(a);
@@ -121,61 +87,6 @@ public class EXGearAimedWeapon : BaseEXGear
 
         TriggerGear(false);
 
-    }
-
-    public override void TriggerGear(bool Down)
-    {
-        base.TriggerGear(Down); //base trigger considers ready time and returns if not ready
-        MyWeapon.Trigger(Down);
-    }
-
-
-    public override float GetReadyPercentage()
-    {
-        return MyWeapon.GetAmmoGauge();
-    }
-
-    public override string GetBBMainText()
-    {
-        return MyWeapon.GetAmmoText();
-    }
-
-    public override List<string> GetStats()
-    {
-        List<string> Temp = new List<string>();
-
-        Temp.Add("Damage: ");
-        Temp.Add(MyWeapon.GetDamage);
-
-        Temp.Add("Accuracy: ");
-        Temp.Add(MyWeapon.GetAccuracy);
-
-        Temp.Add("Fire Rate: ");
-        Temp.Add(MyWeapon.GetFireRate);
-
-        Temp.Add("Fire Mode: ");
-        Temp.Add(MyWeapon.GetFireMode);
-
-        if (MyWeapon is BaseKineticShoot)
-        {
-            Temp.Add("Magazine: ");
-            Temp.Add(MyWeapon.GetMag);
-
-            Temp.Add("Reload: ");
-            Temp.Add(MyWeapon.GetReload);
-        }
-        else if (MyWeapon is BaseEnergyShoot)
-        {
-            Temp.Add("Charge: ");
-            Temp.Add(MyWeapon.GetMag);
-
-            Temp.Add("Recharge: ");
-            Temp.Add(MyWeapon.GetReload);
-        }
-
-
-
-        return Temp;
     }
 
     public override bool IsAimed

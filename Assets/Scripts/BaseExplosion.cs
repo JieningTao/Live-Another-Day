@@ -17,7 +17,7 @@ public class BaseExplosion : MonoBehaviour
     [SerializeField]
     float ExplosiveForce;
     [SerializeField]
-    float DestroyTimer;
+    protected float DestroyTimer;
     [SerializeField]
     int HitMask;
 

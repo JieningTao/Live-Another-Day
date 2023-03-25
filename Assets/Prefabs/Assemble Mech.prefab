@@ -205,6 +205,7 @@ MonoBehaviour:
   MyCoatingType: 0
   MyMovement: {fileID: 7830514941948148281}
   MyFCS: {fileID: 3704789420456933514}
+  MyES: {fileID: 8092659294929777131}
   CameraAnchor: {fileID: 7036442683071278329}
   RightArm: {fileID: 0}
   LeftArm: {fileID: 0}
@@ -218,6 +219,7 @@ MonoBehaviour:
   FCSChip: {fileID: 9197893450171255695, guid: 2dcc527429c6dc14f8e006ee7fce67dc, type: 3}
   BoostSystem: {fileID: 5292031638811483817, guid: 0d9a31090c043514db5272a1e00746c4,
     type: 3}
+  PlayerMech: 0
 --- !u!114 &3704789420456933514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,8 +240,6 @@ MonoBehaviour:
     type: 3}
   TargetsWithinRange: []
   RadarCollider: {fileID: 3605156943088715689}
-  RadarRange: 200
-  LockRange: 150
   LeftLegEXG: {fileID: 0}
   LeftArmEXG: {fileID: 0}
   LeftShoulderEXG: {fileID: 0}
@@ -248,7 +248,6 @@ MonoBehaviour:
   RightLegEXG: {fileID: 0}
   PerLockCount: 1
   LockTime: 0.3
-  MaxSupportedLock: 10
 --- !u!114 &7830514941948148281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,25 +260,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a5b5cb888511e4f9369acefd82399c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveForce: 150
   SpeedLimit: 15
   BoostSpeedLimit: 35
-  BoostForce: 0
-  BoostCost: 4
-  ImpulseBoostForce: 80
-  ImpulseCost: 10
-  FloatForce: 30
-  FloatCost: 0
   Boosting: 0
-  BoostJuiceCapacity: 200
-  BoostJuiceRecovery: 8
-  BoostJuiceRecoveryCooldown: 1
   BoostPlayer: {fileID: 7039497056821840636}
   ImpulsePlayer: {fileID: 5403611477826761741}
   MovingDrag: 0.5
   StoppingDrag: 2.2
   OverSpeedDrag: 1.2
-  JumpForce: 120
   GroundDetection:
     serializedVersion: 2
     m_Bits: 257

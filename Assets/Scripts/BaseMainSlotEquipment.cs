@@ -14,6 +14,7 @@ public class BaseMainSlotEquipment : MonoBehaviour
         ShoulderWeapon = 2,
         Shield = 3,
         UnderWeapon = 4,
+        ArmWWeapon = 5,
     }
 
     [SerializeField]

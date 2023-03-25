@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseMWMultiLockMissileLauncher : BaseMainWeapon
 {
-    BaseMechFCS MyFCS;
     BaseMissileLauncher MyMissileLauncher;
 
     [SerializeField]

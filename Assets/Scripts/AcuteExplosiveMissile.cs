@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AcuteExplosiveMissile : AcuteMissile
 {
-    [SerializeField]
-    protected BaseExplosion MyExplosion;
 
     public override void SetLayerAndMask(int Layer)
     {

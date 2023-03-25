@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ public class EnergySignal : MonoBehaviour
     private Vector3 Speed;
     private Vector3 PreviousPosition;
 
+    public static event Action<EnergySignal,float,GameObject> LockDisrupt;
 
 
 
@@ -37,6 +39,11 @@ public class EnergySignal : MonoBehaviour
     public Vector3 GetSpeed()
     {
         return Speed;
+    }
+
+    public void Distrupt(float Level,GameObject DivertedObject)
+    {
+        LockDisrupt.Invoke(this, Level,DivertedObject);
     }
 
 }

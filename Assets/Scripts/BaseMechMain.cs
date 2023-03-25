@@ -8,6 +8,8 @@ public class BaseMechMain : ICoatedDamagable
     protected BaseMechMovement MyMovement;
     [SerializeField]
     protected BaseMechFCS MyFCS;
+    [SerializeField]
+    protected EnergySignal MyES;
 
     [SerializeField]
     public Transform CameraAnchor;
@@ -181,6 +183,12 @@ public class BaseMechMain : ICoatedDamagable
         return EnergySystem;
     }
 
+    public EnergySignal GetEnergySignal()
+    {
+         return MyES; 
+    }
+
+
     public void DecreaseWeight(float DroppedWeight)
     {
         MyMovement.ChangeWeight(-DroppedWeight);
@@ -255,6 +263,7 @@ public class BaseMechMain : ICoatedDamagable
 
         BoostSystem.transform.parent = transform;
         BoostSystem.CreateBoostAndJumpEffects(BoostPoints, FloatThrustPoints);
+        BoostSystem.InitBS(this);
 
         MyMovement.SetGroundDetection(MPLegs.GetGroundDetection());
 
@@ -341,7 +350,6 @@ public class BaseMechMain : ICoatedDamagable
 
     public void ApplyExtraAttributes(List<AttributeManager.ExtraAttribute> EAttributes)
     {
-        Debug.Log(EAttributes.Count);
         foreach (AttributeManager.ExtraAttribute A in EAttributes)
         {
             MyAttProfile.ApplyExtraAttribute(A);

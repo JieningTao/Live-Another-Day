@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class BaseMechPartArm : BaseMechPart
 {
+    [Space(30)]
+
     [SerializeField]
     Transform SideMountedEXGSlot;
     [SerializeField]
     Transform EXGAimed;
+
     [SerializeField]
     Transform AimedPart;
     [SerializeField]
     Transform HandSlot;
     [SerializeField]
     Animator ArmAnimator;
+    [SerializeField]
+    MainEquipmentFilter EquipmentFilter;
 
     [Space(10)]
 
@@ -21,8 +26,23 @@ public class BaseMechPartArm : BaseMechPart
     protected BaseEXGear ArmEXG;
     [SerializeField]
     protected BaseMainSlotEquipment EquippedGear;
+    [Tooltip("innate weapon that gets equipped when equipped weapon is dropped, leave blank for none")]
+    [SerializeField]
+    protected BaseMainSlotEquipment FallbackWeapon; 
 
     public float AimSpeed = 1;
+
+    [System.Serializable]
+    public class MainEquipmentFilter
+    {
+        public BaseMainSlotEquipment.MainEquipmentSize SizeLimit = BaseMainSlotEquipment.MainEquipmentSize.ExtraLarge;
+
+        public bool Default = true;
+        public bool Shoulder = true;
+        public bool Shield = true;
+        public bool Under = true;
+        public bool Arm = true;
+    }
 
     public override void Assemble(BaseMechMain Mech, Transform JointPosition)
     {
@@ -154,9 +174,16 @@ public class BaseMechPartArm : BaseMechPart
     public BaseMainSlotEquipment UnequipEquipment()
     {
         BaseMainSlotEquipment a = EquippedGear;
+        if (FallbackWeapon == null)
+        {
+            EquippedGear = null;
+            SetArmAnimator(0);
+        }
+        else
+        {
+            EquipEquipment(FallbackWeapon);
+        }
 
-        EquippedGear = null;
-        SetArmAnimator(0);
 
         return a;
     }
@@ -176,7 +203,7 @@ public class BaseMechPartArm : BaseMechPart
         }
         else
         {
-            SetArmAnimator(0);
+            UnequipEquipment();
         }
 
     }
@@ -264,6 +291,9 @@ public class BaseMechPartArm : BaseMechPart
         }
     }
 
+    public virtual bool ArmEmpty
+    { get { return EquippedGear == null || EquippedGear == FallbackWeapon; } }
+
     public override string GetBIEXG
     {
         get {
@@ -273,7 +303,6 @@ public class BaseMechPartArm : BaseMechPart
                 return null;
         }
     }
-
 
     public override string GetEXGSlots
     {

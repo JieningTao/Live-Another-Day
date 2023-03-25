@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ExplosiveBullet : BaseBullet
 {
-    [SerializeField]
-    protected BaseExplosion MyExplosion;
+    //this class has been incorprated into basebullet
 
     
 
@@ -20,33 +19,5 @@ public class ExplosiveBullet : BaseBullet
     //    }
     //}
 
-    public override void SetLayerAndMask(int Layer)
-    {
-        base.SetLayerAndMask(Layer);
-        MyExplosion.SetLayerAndMask(Layer,HitMask);
-    }
 
-    protected override void DealDamageTo(GameObject Target)
-    {
-        //Debug.Log("boom");
-
-        IDamageable Temp = Target.GetComponent<IDamageable>();
-
-        if (Temp != null)
-        {
-            Temp.Hit(Damage, MyDamageType, MyDamageTags);
-            //Debug.Log(Target.name + " Was hit by " + gameObject.name);
-        }
-
-        if (MyExplosion)
-        {
-            MyExplosion.transform.parent = null;
-            MyExplosion.gameObject.SetActive(true);
-        }
-
-        Destroy(this.gameObject);
-    }
-
-    public override string GetDamage
-    { get { return MyExplosion.GetDamage; } }
 }
