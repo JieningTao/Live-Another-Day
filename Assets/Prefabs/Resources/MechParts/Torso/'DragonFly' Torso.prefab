@@ -470,6 +470,7 @@ MonoBehaviour:
   FloatThrusters: []
   BoostThrusters: []
   Displacement: {x: 0, y: 0, z: 0}
+  JointPosition: {fileID: 2771640115318051455}
   HeadSocket: {fileID: 2771640115239412706}
   RightArmSocket: {fileID: 2771640116995103695}
   LeftArmSocket: {fileID: 2771640115253600635}
@@ -490,7 +491,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''DragonFly'' Torso'
+  Classification: Light Scout Chasis
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 1
   PrefabPath: MechParts/Torso/'DragonFly' Torso
@@ -534,7 +541,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771640115239412707}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.63960004, z: -0.061191596}
+  m_LocalPosition: {x: 0, y: 0.573, z: -0.061191596}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7842707289178978152}
@@ -564,7 +571,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771640115253600636}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.888, y: 0.29519996, z: -0.091997065}
+  m_LocalPosition: {x: -0.716, y: 0.29519996, z: -0.091997065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7842707289178978152}
@@ -594,7 +601,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771640115318051440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.38534904, z: 0.007599211}
+  m_LocalPosition: {x: 0, y: -0.195, z: 0.007599211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7842707289178978152}
@@ -624,7 +631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771640116796416022}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4368, z: -0.60960007}
+  m_LocalPosition: {x: 0, y: 0.389, z: -0.606}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7842707289178978152}
@@ -654,7 +661,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771640116995103680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.888, y: 0.2952, z: -0.091997065}
+  m_LocalPosition: {x: 0.716, y: 0.2952, z: -0.091997065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7842707289178978152}

@@ -103,7 +103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130590694540604028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.045, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2626142635161721380}
@@ -136,7 +136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130590694971770491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2130590694540604029}
@@ -189,8 +189,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''Tanker'' External Fuel Tank'
+  Classification: 
   Description: 
-  HideForPlayer: 0
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  HideForPlayer: 1
   PartCatagory: 0
   PrefabPath: ExtraGears/Side/'Tanker' External Fuel Tank
   MyEXG: {fileID: 7030689919566925858}
@@ -207,7 +213,7 @@ GameObject:
   - component: {fileID: 9204124737375139332}
   - component: {fileID: 3005274723522129224}
   - component: {fileID: 3974602927039340549}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pCylinder147
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +494,7 @@ GameObject:
   - component: {fileID: 4073057779989058243}
   - component: {fileID: 6924086875021716285}
   - component: {fileID: 1565709088501385950}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pCylinder149
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,7 +764,7 @@ GameObject:
   - component: {fileID: 1939308850654347425}
   - component: {fileID: 8502803540497272504}
   - component: {fileID: 4362403274764369113}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pCylinder148
   m_TagString: Untagged
   m_Icon: {fileID: 0}

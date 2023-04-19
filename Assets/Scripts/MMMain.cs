@@ -9,6 +9,8 @@ public class MMMain : MonoBehaviour
     private Animator MainAnim;
     [SerializeField]
     private Animator MissionAnim;
+    [SerializeField]
+    private Animator ControlAnim;
 
 
     private void Start()
@@ -28,17 +30,53 @@ public class MMMain : MonoBehaviour
         SceneManager.LoadScene("Garage");
     }
 
+    public void AllShow(bool a)
+    {
+        MainAnim.SetBool("Show", a);
+        MissionAnim.SetBool("Show", a);
+        ControlAnim.SetBool("Show", a);
+    }
+
+    public void MainShow(bool a)
+    {
+        MainAnim.SetBool("Show", a);
+    }
+
+    public void MissionSelectShow(bool a)
+    {
+        MissionAnim.SetBool("Show", a);
+    }
+
+    public void ControlsShow(bool a)
+    {
+        ControlAnim.SetBool("Show", a);
+    }
+
+
+
     public void MissionSelect()
     {
-        MainAnim.SetBool("Show", false);
-        MissionAnim.SetBool("Show", true);
+        MainShow(false);
+        MissionSelectShow(true);
     }
 
     public void ShowMain()
     {
-        MainAnim.SetBool("Show", true);
-        MissionAnim.SetBool("Show",false);
+        AllShow(false);
+        MainShow(true);
     }
+
+    public void ShowControls()
+    {
+        MainShow(false);
+        ControlsShow(true);
+    }
+
+    //public void Test()
+    //{
+    //    MissionCompletionTracker.Instance.LoadPlayingMission("1-1");
+    //    MissionCompletionTracker.Instance.MissionCompletion(true);
+    //}
 
     //public void ResetPrefs()
     //{

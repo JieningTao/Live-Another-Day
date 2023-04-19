@@ -110,10 +110,14 @@ public class UIEXGearDisplay : MonoBehaviour
     private void OnEnable()
     {
         BaseMechFCS.EXGearChanges += RecieveNews;
+
+        if(MyEXGear)
+            EXGearInitialize(MyEXGear);
     }
 
     private void OnDisable()
     {
         BaseMechFCS.EXGearChanges -= RecieveNews;
+
     }
 }

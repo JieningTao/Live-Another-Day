@@ -1160,9 +1160,10 @@ MonoBehaviour:
   MyFireMode: 3
   MuzzleFlarePrefab: {fileID: 9158946785973942225}
   MyAnimator: {fileID: 0}
-  ShotSounds: []
+  ShotSounds:
+  - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
-  Volume: 0.8
+  Volume: 0.6
   MaxMagazine: 10
   MaxReserveAmmo: 40
   ReloadTime: 5
@@ -1247,7 +1248,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: M+S Missile Container
+  Classification: Missile Container
   Description: 
+  InfoSprites:
+  - {fileID: 21300000, guid: 2faf94e6332708f49b8ad5bea9c3ef7f, type: 3}
+  - {fileID: 21300000, guid: 7cb483d360f14eb4e9bf04ee6bf04fe2, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/M+S Missile Container
@@ -3020,7 +3027,7 @@ PrefabInstance:
     - target: {fileID: 9067907045586032992, guid: af09cd9c8219dd84d8cf724f9c2518ef,
         type: 3}
       propertyPath: Damage
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af09cd9c8219dd84d8cf724f9c2518ef, type: 3}

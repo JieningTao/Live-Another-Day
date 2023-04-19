@@ -5076,6 +5076,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &4219575411368107496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3773043037839268555}
+  m_Layer: 0
+  m_Name: JointPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3773043037839268555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4219575411368107496}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.013, z: 0.133}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6855371220845519017}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5733424377781616101
 GameObject:
   m_ObjectHideFlags: 0
@@ -5577,7 +5607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6855371220806004979}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0.065999985}
+  m_LocalPosition: {x: -0.428, y: 0, z: 0.014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6855371220845519017}
@@ -5609,7 +5639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6855371220845519016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6399999, y: 2.764, z: -6.192878}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 387494415383324712}
@@ -5617,6 +5647,7 @@ Transform:
   - {fileID: 6855371219529556348}
   - {fileID: 6855371220806004940}
   - {fileID: 6855371220956462295}
+  - {fileID: 3773043037839268555}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5634,7 +5665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 80
   Weight: 1
-  Attributs: []
+  Attributes: []
   FloatThrusters:
   - {fileID: 6855371219586493233}
   - {fileID: 6855371220681431399}
@@ -5642,6 +5673,7 @@ MonoBehaviour:
   - {fileID: 6855371221143067726}
   - {fileID: 6855371220771151995}
   Displacement: {x: 0, y: 0, z: 0}
+  JointPosition: {fileID: 3773043037839268555}
   LeftShoulderEXGSlot: {fileID: 6855371220806004940}
   RightShoulderEXGSlot: {fileID: 6855371220956462295}
   LeftShoulderEXG: {fileID: 0}
@@ -5660,8 +5692,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '** OverboostPack'
+  Classification: 
   Description: 
-  HideForPlayer: 0
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  HideForPlayer: 1
   PartCatagory: 4
   PrefabPath: MechParts/Pack/OverboostPack
   MyPart: {fileID: 6855371220845519019}
@@ -5689,7 +5727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6855371220956462294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0.066}
+  m_LocalPosition: {x: 0.428, y: 0, z: 0.014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6855371220845519017}

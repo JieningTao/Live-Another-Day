@@ -5738,12 +5738,12 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 8309611781541976705}
   ReadyTime: 0.6
-  AimedPart: {fileID: 8309611781228373661}
   MyWeapon: {fileID: 8309611781541976711}
-  TargetSpeed: 1
-  TargetingAngle: 10
   MiscEffects:
   - {fileID: 2198279729667757440}
+  AimedPart: {fileID: 8309611781228373661}
+  TargetSpeed: 1
+  TargetingAngle: 10
 --- !u!95 &8309611781541976705
 Animator:
   serializedVersion: 3
@@ -5776,7 +5776,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''Alder'' DualBarrelCannon'
+  Classification: 
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/'Alder' DualBarrelCannon
@@ -5835,7 +5841,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8309611782020532649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.031, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7474135409950310227}

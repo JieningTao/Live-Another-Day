@@ -18,23 +18,29 @@ public class BaseMechPart : MonoBehaviour
     [SerializeField]
     protected Vector3 Displacement;
 
+    [SerializeField]
+    protected Transform JointPosition;
+
 
 
     protected BaseMechMain MyMech;
 
 
-    public virtual void Assemble(BaseMechMain Mech, Transform JointPosition)
+    public virtual void Assemble(BaseMechMain Mech, Transform SocketPosition)
     {
-        VisualAssemble(JointPosition);
+        VisualAssemble(SocketPosition);
         MyMech = Mech;
         SetLayer(Mech.gameObject.layer);
         Mech.ApplyMechAttributes(Attributes);
     }
 
-    public virtual void VisualAssemble(Transform JointPosition)
+    public virtual void VisualAssemble(Transform SocketPosition)
     {
-        transform.parent = JointPosition;
-        transform.localPosition = Displacement;
+        transform.parent = SocketPosition;
+        //transform.localPosition = Displacement;
+        Vector3 a = new Vector3(JointPosition.localPosition.x * transform.localScale.x, JointPosition.localPosition.y * transform.localScale.y, JointPosition.localPosition.z * transform.localScale.z) * - 1;
+        //Debug.Log("Scale: "+ transform.localScale+"\nLP: "+JointPosition.localPosition+"\nDisplacement: "+a, this);
+        transform.localPosition = a;
         transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 

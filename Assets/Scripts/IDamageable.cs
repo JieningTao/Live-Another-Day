@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ public class IDamageable : MonoBehaviour
     protected float CurrentHealth;
     protected bool IsDestroied = false;
 
+    public static event Action<IDamageable, string, float, object> DamageablePing;
+
 
     protected virtual void Start()
     {
@@ -42,14 +45,21 @@ public class IDamageable : MonoBehaviour
     {
         if (!IsDestroied)
         {
-            CurrentHealth -= Damage * DamageSystem.GetDamageMultiplier(MyArmorType,Type,Tags);
+            float ActualDamage = Damage * DamageSystem.GetDamageMultiplier(MyArmorType, Type, Tags);
+            CurrentHealth -= ActualDamage;
+            if (DamageablePing != null)
+                DamageablePing.Invoke(this, "Damage", ActualDamage, null);
 
-            if (CurrentHealth <= 0 )
+
+            if (CurrentHealth <= 0)
             {
                 CurrentHealth = 0;
                 IsDestroied = true;
                 Destroied();
+                if (DamageablePing != null)
+                    DamageablePing.Invoke(this, "Destroied", 0, null);
             }
+        
         }
     }
 
@@ -124,4 +134,6 @@ public class IDamageable : MonoBehaviour
     {
         return CurrentHealth / MaxHealth;
     }
+
+
 }

@@ -56,10 +56,9 @@ public class BaseEXGear : MonoBehaviour
 
                 }
 
-                Displacement.x = Mathf.Abs(Displacement.x);
+                //Displacement.x = Mathf.Abs(Displacement.x);
                 //Debug.Log("Mirrored", this);
             }
-            else
                 Displacement.x = -Mathf.Abs(Displacement.x);
         }
         transform.localPosition = Displacement;

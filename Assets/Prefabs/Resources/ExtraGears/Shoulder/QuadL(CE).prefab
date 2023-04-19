@@ -957,7 +957,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6176787046168544606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.052, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6176787046072480454}
@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Displacement: {x: 0, y: 0, z: 0}
   Weight: 0
-  Mirrored: 0
+  Mirrored: 1
   EXGearSprite: {fileID: 21300000, guid: 3a94845db5b90974bb7c84d3e8c8d2f0, type: 3}
   EXGearName: 4 * Cluster Missile
   Passive: 0
@@ -1039,7 +1039,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '** QuadL(CE)'
+  Classification: 
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/QuadL(CE)

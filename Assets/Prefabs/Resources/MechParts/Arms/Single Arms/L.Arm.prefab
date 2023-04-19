@@ -415,6 +415,36 @@ Transform:
   m_Father: {fileID: 3596857273632232747}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &780320065759544369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4508270256492916521}
+  m_Layer: 0
+  m_Name: JointPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4508270256492916521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780320065759544369}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0177, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9013654771251957127}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143899521075062204
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,6 +980,7 @@ Transform:
   m_Children:
   - {fileID: 2512712451601684180}
   - {fileID: 1686879502729411951}
+  - {fileID: 4508270256492916521}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -967,17 +998,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 130
   Weight: 0.48
-  Attributs: []
+  Attributes: []
   FloatThrusters: []
   BoostThrusters: []
   Displacement: {x: 0, y: 0, z: 0}
+  JointPosition: {fileID: 4508270256492916521}
   SideMountedEXGSlot: {fileID: 6668398256830529552}
   EXGAimed: {fileID: 7977876046649949024}
   AimedPart: {fileID: 2512712451601684180}
   HandSlot: {fileID: 3627127820577519407}
   ArmAnimator: {fileID: 257205949408847701}
+  EquipmentFilter:
+    SizeLimit: 5
+    Default: 1
+    Shoulder: 1
+    Shield: 1
+    Under: 1
+    Arm: 1
   ArmEXG: {fileID: 0}
   EquippedGear: {fileID: 0}
+  FallbackWeapon: {fileID: 0}
   AimSpeed: 1
 --- !u!95 &257205949408847701
 Animator:
@@ -1560,7 +1600,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002521971517568485}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.021999996, y: -0.013900002, z: 0}
+  m_LocalPosition: {x: -0.011, y: -0.013900002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7977876046649949024}

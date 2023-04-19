@@ -398,6 +398,36 @@ Transform:
   m_Father: {fileID: 1133583584166082121}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &811765797599463270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5049021960990930378}
+  m_Layer: 0
+  m_Name: JointPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5049021960990930378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811765797599463270}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0155, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8759607974043036381}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &854319012371619215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,6 +1428,7 @@ Transform:
   m_Children:
   - {fileID: 1238330721021072626}
   - {fileID: 2763095680365015438}
+  - {fileID: 5049021960990930378}
   m_Father: {fileID: 1680351302066692770}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1415,17 +1446,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 130
   Weight: 0.54
-  Attributs: []
+  Attributes: []
   FloatThrusters: []
   BoostThrusters: []
   Displacement: {x: 0, y: 0, z: 0}
+  JointPosition: {fileID: 5049021960990930378}
   SideMountedEXGSlot: {fileID: 627101616049241384}
   EXGAimed: {fileID: 8005812084181066266}
   AimedPart: {fileID: 2763095680365015438}
   HandSlot: {fileID: 3949845721918492789}
   ArmAnimator: {fileID: 510957596460990479}
+  EquipmentFilter:
+    SizeLimit: 5
+    Default: 1
+    Shoulder: 1
+    Shield: 1
+    Under: 1
+    Arm: 1
   ArmEXG: {fileID: 0}
   EquippedGear: {fileID: 0}
+  FallbackWeapon: {fileID: 0}
   AimSpeed: 1
 --- !u!95 &510957596460990479
 Animator:
@@ -1470,7 +1510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2730873473285079954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.021999996, y: -0.013900002, z: 0}
+  m_LocalPosition: {x: -0.0095, y: -0.013900002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8005812084181066266}
@@ -2749,7 +2789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4053968431481021939}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.021999996, y: -0.013900002, z: 0}
+  m_LocalPosition: {x: 0.0095, y: -0.013900002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3677634714616776109}
@@ -4282,6 +4322,7 @@ Transform:
   m_Children:
   - {fileID: 3531250934041764849}
   - {fileID: 7825053869593292966}
+  - {fileID: 4178112910311387704}
   m_Father: {fileID: 1680351302066692770}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4299,17 +4340,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 130
   Weight: 0.54
-  Attributs: []
+  Attributes: []
   FloatThrusters: []
   BoostThrusters: []
   Displacement: {x: 0, y: 0, z: 0}
+  JointPosition: {fileID: 4178112910311387704}
   SideMountedEXGSlot: {fileID: 4426617883401989683}
   EXGAimed: {fileID: 3677634714616776109}
   AimedPart: {fileID: 7825053869593292966}
   HandSlot: {fileID: 1391798299798854555}
   ArmAnimator: {fileID: 9114100214410406947}
+  EquipmentFilter:
+    SizeLimit: 5
+    Default: 1
+    Shoulder: 1
+    Shield: 1
+    Under: 1
+    Arm: 1
   ArmEXG: {fileID: 0}
   EquippedGear: {fileID: 0}
+  FallbackWeapon: {fileID: 0}
   AimSpeed: 1
 --- !u!95 &9114100214410406947
 Animator:
@@ -4696,6 +4746,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &6692196560957633817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4178112910311387704}
+  m_Layer: 0
+  m_Name: JointPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4178112910311387704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6692196560957633817}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0155, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 329660149046827420}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6886067688408174366
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,7 +5185,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''Leo'' Arms'
+  Classification: Combat Chasis
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 2
   PrefabPath: MechParts/Arms/'Leo' Arms

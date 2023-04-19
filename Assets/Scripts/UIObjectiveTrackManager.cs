@@ -17,15 +17,18 @@ public class UIObjectiveTrackManager : MonoBehaviour
             return _instance;
         }
     }
+
     [SerializeField]
     private GameObject TaskPrefab;
+    [SerializeField]
+    private GameObject TaskUIParent;
 
     List<UITaskDisplay> TasksOnDisplay = new List<UITaskDisplay>();
 
 
     public void CreateMission(string Mission, List<MissionGoal> a)
     {
-        UITaskDisplay Temp = Instantiate(TaskPrefab, transform).GetComponent<UITaskDisplay>();
+        UITaskDisplay Temp = Instantiate(TaskPrefab, TaskUIParent.transform).GetComponent<UITaskDisplay>();
         TasksOnDisplay.Add(Temp);
         Temp.Create(Mission,a);
     }

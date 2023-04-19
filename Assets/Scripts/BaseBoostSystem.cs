@@ -157,7 +157,7 @@ public class BaseBoostSystem : MonoBehaviour
         {
             if (boost)
             {
-                if (Vector3.Angle(-a.transform.forward, Direction) < 60)
+                if (Vector3.Angle(-a.transform.forward, MyBMM.transform.TransformDirection(Direction)) < 60)
                     a.Play();
             }
             else
@@ -219,7 +219,7 @@ public class BaseBoostSystem : MonoBehaviour
     {
         foreach (ParticleSystem a in BoostExhausts)
         {
-            if (Vector3.Angle(-a.transform.forward, Direction) < 60)
+            if (Vector3.Angle(-a.transform.forward, MyBMM.transform.TransformDirection(Direction)) < 60)
                 a.Play();
             else
                 a.Stop();

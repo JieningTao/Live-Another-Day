@@ -512,7 +512,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: MissilePod
+  Classification: 
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/MissilePod
@@ -541,7 +547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2644953641002355898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.186, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7684383576509939706}
@@ -572,7 +578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2644953642389715898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.186, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5815068566728755040}
@@ -2020,7 +2026,7 @@ PrefabInstance:
     - target: {fileID: 6248584732470765589, guid: 6d51d3b342bf5b14d80f44d53642d240,
         type: 3}
       propertyPath: ExplosiveDamage
-      value: 50
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 9101633323893814125, guid: 6d51d3b342bf5b14d80f44d53642d240,
         type: 3}

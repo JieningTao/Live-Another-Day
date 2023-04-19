@@ -1787,6 +1787,7 @@ MonoBehaviour:
   MaxMagazine: 10
   MaxReserveAmmo: 30
   ReloadTime: 5
+  AmmoTypeIdentifier: 
 --- !u!114 &-6098929190505740336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,7 +1830,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '** MultiLockLauncher'
+  Classification: Multi-Lock Launcher
   Description: 
+  InfoSprites:
+  - {fileID: 21300000, guid: 2faf94e6332708f49b8ad5bea9c3ef7f, type: 3}
+  - {fileID: 21300000, guid: 7cb483d360f14eb4e9bf04ee6bf04fe2, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/MultiLockLauncher

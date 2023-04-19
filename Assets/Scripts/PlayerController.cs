@@ -25,9 +25,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandleMovementInput();
-        HandleWeaponInput();
-        HandleEXGearInput();
+        if (Time.timeScale > 0) // controls need to not work when paused
+        {
+            HandleMovementInput();
+            HandleWeaponInput();
+            HandleEXGearInput();
+        }
         HandlePauseInput();
 
 #if (UNITY_EDITOR)

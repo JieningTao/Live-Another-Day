@@ -437,7 +437,7 @@ MonoBehaviour:
   - {fileID: 5195484029189931248}
   - {fileID: 2162575987591238423}
   - {fileID: 2355853528254509479}
-  ProjectileScript: {fileID: 0}
+  ProjectileScript: {fileID: 1414863086503895431}
   AccuracyDeviation: 10
   TBS: 0.15
   MyBurstSettings:
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Displacement: {x: 0.01, y: 0, z: 0}
   Weight: 0
-  Mirrored: 0
+  Mirrored: 1
   EXGearSprite: {fileID: 21300000, guid: f8f048f912d276f45a82380043a59436, type: 3}
   EXGearName: MLM pod
   Passive: 0
@@ -512,7 +512,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: MissilePod (Snap HE)
+  Classification: 
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/MissilePod (Acute HE)
@@ -541,7 +547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2644953641002355898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.186, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7684383576509939706}
@@ -572,7 +578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2644953642389715898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.186, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5815068566728755040}
@@ -1597,14 +1603,17 @@ MonoBehaviour:
   MyDamageTags: 
   HitMask: 0
   HitEffect: {fileID: 2423011843136464558}
+  MyExplosion: {fileID: 3132809091510485049}
+  ExplodeOnTimerExpire: 0
   Target: {fileID: 0}
   TrackingSpeedChange: {x: 2.5, y: 0.8}
   TrackingChangeTime: 1.5
   ActivationDelay: 0.7
+  ExtraTracking: 0
+  TrackedObject: {fileID: 0}
   SnapEffect: {fileID: 4485954244846782258, guid: 842f58a876e182347bc2cd0a098fa9fa,
     type: 3}
   PreSnapSpeed: 0.5
-  MyExplosion: {fileID: 3132809091510485049}
 --- !u!1 &8554511699014089594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,6 +1890,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2644953640383605109}
     m_Modifications:
+    - target: {fileID: 1414863086116562967, guid: 31e626fc9e7f98744a01f8ce021375b1,
+        type: 3}
+      propertyPath: MyExplosion
+      value: 
+      objectReference: {fileID: 3132809091510485049}
     - target: {fileID: 7982778234853565851, guid: 31e626fc9e7f98744a01f8ce021375b1,
         type: 3}
       propertyPath: m_Name
@@ -1960,6 +1974,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 422234512}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1414863086503895431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1414863086116562967, guid: 31e626fc9e7f98744a01f8ce021375b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 422234512}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7982778234699803659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55896f056eebafb448423573e2a6e5a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &2423011843136464558 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2423011843554176830, guid: 31e626fc9e7f98744a01f8ce021375b1,
@@ -2031,7 +2057,7 @@ PrefabInstance:
     - target: {fileID: 6248584732470765589, guid: 6d51d3b342bf5b14d80f44d53642d240,
         type: 3}
       propertyPath: ExplosiveDamage
-      value: 50
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 9101633323893814125, guid: 6d51d3b342bf5b14d80f44d53642d240,
         type: 3}

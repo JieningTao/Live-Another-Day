@@ -426,7 +426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5288266989702722597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.059, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1897059890016385918}
@@ -574,8 +574,9 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 5288266991133313053}
   ReadyTime: 0.4
-  AimedPart: {fileID: 5288266991133313054}
   MyWeapon: {fileID: 5288266991133313052}
+  MiscEffects: []
+  AimedPart: {fileID: 5288266991133313054}
   TargetSpeed: 1
   TargetingAngle: 10
 --- !u!114 &2049706800778786647
@@ -591,7 +592,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''Branch'' Side Rifle'
+  Classification: 
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 9
   PrefabPath: ExtraGears/Side/'Branch' Side Rifle

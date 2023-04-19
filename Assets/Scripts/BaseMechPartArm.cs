@@ -44,12 +44,14 @@ public class BaseMechPartArm : BaseMechPart
         public bool Arm = true;
     }
 
-    public override void Assemble(BaseMechMain Mech, Transform JointPosition)
+    public override void Assemble(BaseMechMain Mech, Transform SocketPosition)
     {
-        //base.Assemble(Mech, JointPosition);
-        transform.parent = JointPosition;
-        transform.localPosition = Displacement;
-        transform.localRotation = Quaternion.Euler(Vector3.zero);
+        //base.Assemble(Mech, SocketPosition);
+        //transform.parent = SocketPosition;
+        //transform.localPosition = Displacement;
+        //transform.localRotation = Quaternion.Euler(Vector3.zero);
+        base.VisualAssemble(SocketPosition);
+
         MyMech = Mech;
         SetLayer(Mech.gameObject.layer);
 
@@ -57,10 +59,10 @@ public class BaseMechPartArm : BaseMechPart
         EquipEXG(ArmEXG);
     }
 
-    public override void VisualAssemble(Transform JointPosition)
+    public override void VisualAssemble(Transform SocketPosition)
     {
         Transform Temp = transform.parent;
-        base.VisualAssemble(JointPosition);
+        base.VisualAssemble(SocketPosition);
         transform.parent = Temp;
 
         EquipEquipment(EquippedGear);
@@ -148,7 +150,7 @@ public class BaseMechPartArm : BaseMechPart
         if (EquippedGear.RequireAiming)
         {
             Vector3 MoveDelta;
-            if (EquippedGear.GetBulletSpeed() <= 0)
+            if (EquippedGear.GetBulletSpeed() <= 0 || EquippedGear.GetBulletSpeed() == Mathf.Infinity)
                 MoveDelta = Vector3.zero;
             else
             {

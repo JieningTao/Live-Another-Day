@@ -1413,8 +1413,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '** LShield'
+  Classification: Shield
   Description: 
-  HideForPlayer: 0
+  InfoSprites:
+  - {fileID: 21300000, guid: 3e13a86db6ec645449b09cfbb59e1aa3, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  HideForPlayer: 1
   PartCatagory: 7
   PrefabPath: MainSlot/MainSlotGears/LShield
   MyEquipment: {fileID: 7166595016394671811}

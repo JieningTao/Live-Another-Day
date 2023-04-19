@@ -29,19 +29,82 @@ public class EXGearAimedWeapon : EXGearWeapon
         }
     }
 
+    //protected virtual void AimWeapon(Transform a, Vector3 Dir, Vector3 Limits, float TurnSpeed)
+    //{
+    //    if (Vector3.Angle(a.forward, Dir) == 0)
+    //        return;
+
+    //    Vector3 TempDir = Vector3.RotateTowards(a.forward, Dir, TurnSpeed * Time.deltaTime, 0.0f);
+
+    //    if (TempDir != null && TempDir != Vector3.zero)
+    //    {
+    //        //Debug.Log(TempDir);
+
+    //        if (float.IsNaN(TempDir.x) || float.IsInfinity(TempDir.x))
+    //        {
+
+    //        }
+    //        else
+    //            a.rotation = Quaternion.LookRotation(TempDir, a.up);
+    //    }
+
+    //    //Debug.Log("Ping");
+
+    //    Vector3 bruh = a.localRotation.eulerAngles; //variable named bruh to commemerate me taking half an hour to realize it wasn't working because turn speed was never changed from initial 0... Fucking idiot.
+
+    //    bruh.z = 0;
+
+    //    if (Limits.y == 0)
+    //        bruh.y = 0;
+    //    else
+    //    {
+    //        if (bruh.y < 180)
+    //            bruh.y = Mathf.Clamp(bruh.y, -Limits.y, Limits.y);
+    //        else
+    //            bruh.y = Mathf.Clamp(bruh.y, 360 - Limits.y, 360 + Limits.y);
+    //    }
+
+    //    if (Limits.x == 0)
+    //        bruh.x = 0;
+    //    else
+    //    {
+    //        if (bruh.x < 180)
+    //            bruh.x = Mathf.Clamp(bruh.x, -Limits.x, Limits.x);
+    //        else
+    //            bruh.x = Mathf.Clamp(bruh.x, 360 - Limits.x, 360 + Limits.x);
+    //    }
+
+    //    a.localRotation = Quaternion.Euler(bruh);
+
+
+    //}
+
+    //public virtual void AimAtTarget(Vector3 Target)
+    //{
+    //    AimWeapon(AimedPart, Target - AimedPart.position, new Vector3(TargetingAngle,TargetingAngle,0), TargetSpeed);
+    //}
+
+    //public virtual void AimEmpty()
+    //{
+    //    AimWeapon(AimedPart, AimedPart.forward, new Vector3(TargetingAngle, TargetingAngle, 0), TargetSpeed);
+    //}
+
     protected void AimWeapon()
     {
         Vector3 AimDir;
 
         if (MyFCS.GetMainTarget() != null && TargetingAngle>0 && Vector3.Angle(MyFCS.transform.forward, MyFCS.GetMainTarget().transform.position - MyFCS.transform.position) < TargetingAngle)
         {
+            //aim at target
             if (Target != MyFCS.GetMainTarget())
             {
                 MyFCS.EXGAimed(MyFCS.GetMainTarget());
                 Target = MyFCS.GetMainTarget();
             }
 
-            AimDir = Vector3.RotateTowards(AimedPart.forward, MyFCS.GetMainTarget().transform.position - AimedPart.transform.position, TargetSpeed * Time.deltaTime, 0.0f);
+            Vector3 PridictedPosition = Target.transform.position + (Target.GetSpeed() * (Vector3.Distance(AimedPart.transform.position, Target.transform.position) / MyWeapon.GetProjectileSpeed()));
+
+            AimDir = Vector3.RotateTowards(AimedPart.forward, PridictedPosition - AimedPart.transform.position, TargetSpeed * Time.deltaTime, 0.0f);
 
             if (!Aimed)
             {
@@ -51,6 +114,7 @@ public class EXGearAimedWeapon : EXGearWeapon
         }
         else
         {
+            //reset aim to forward
             AimDir = Vector3.RotateTowards(AimedPart.forward, MyFCS.GetLookDirection(), TargetSpeed * Time.deltaTime, 0.0f);
 
             if (Target)
@@ -66,6 +130,13 @@ public class EXGearAimedWeapon : EXGearWeapon
         AimedPart.rotation = Quaternion.LookRotation(AimDir, transform.up);
 
     }
+
+    protected void AimAt(Vector3 Position)
+    {
+
+
+    }
+
 
     public override void Equip(bool a)
     {

@@ -55,13 +55,18 @@ public class EXGearGenerator : BaseEXGear
     {
         base.TriggerGear(Down);
 
-        if (GeneratorOn)
-            GeneratorTurn(false);
-        else
+        if (Down) // check to see it only activates on trigger doen dumbass! it's not a hold ability
         {
-            if (CurrentFuel > 0)
-                GeneratorTurn(true);
+            if (GeneratorOn)
+                GeneratorTurn(false);
+            else
+            {
+                if (CurrentFuel > 0)
+                    GeneratorTurn(true);
+            }
         }
+
+
     }
 
     public override float GetReadyPercentage()

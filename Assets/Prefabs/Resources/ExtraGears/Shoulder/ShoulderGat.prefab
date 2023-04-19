@@ -328,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2730051396071643985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.142, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1696276294574651739}
@@ -410,8 +410,9 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 7823720922712957810}
   ReadyTime: 0.5
-  AimedPart: {fileID: 2414661557401686060}
   MyWeapon: {fileID: 7366496081310081518}
+  MiscEffects: []
+  AimedPart: {fileID: 2414661557401686060}
   TargetSpeed: 1.5
   TargetingAngle: 10
 --- !u!114 &7366496081310081518
@@ -445,7 +446,7 @@ MonoBehaviour:
   ShotSounds:
   - {fileID: 8300000, guid: 98ed3d3cf68d7f84b80ec9c956a87c6c, type: 3}
   SoundMinMax: {x: 5, y: 500}
-  Volume: 1
+  Volume: 0.8
   MaxMagazine: 30
   MaxReserveAmmo: 150
   ReloadTime: 5
@@ -463,7 +464,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: G112 Shoulder Repeater
+  Classification: 
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/ShoulderGat

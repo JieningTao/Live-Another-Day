@@ -6,7 +6,9 @@ public class LoadOutPart : MonoBehaviour
 {
 
     public string Name;
+    public string Classification;
     public string Description;
+    public Sprite[] InfoSprites = new Sprite[4];
     public bool HideForPlayer = false;
     public PartSwitchManager.BigCataGory PartCatagory;
     public string PrefabPath;

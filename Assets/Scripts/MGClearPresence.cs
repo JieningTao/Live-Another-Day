@@ -16,12 +16,12 @@ public class MGClearPresence : MissionGoal
         if (Marker != UpdateMarker)
             return;
 
-        Debug.Log(UpdateMarker + "---" + Content);
+        //Debug.Log(UpdateMarker + "---" + Content);
 
         if (ClearedScore < TargetScore)
             ClearedScore += (float)Content;
 
-        Debug.Log((float)Content+"+"+ GetMissionProgress());
+        //Debug.Log((float)Content+"+"+ GetMissionProgress());
     }
 
     public override bool Completed()

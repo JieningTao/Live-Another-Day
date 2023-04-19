@@ -183,6 +183,7 @@ MonoBehaviour:
   FloatThrusters: []
   BoostThrusters: []
   Displacement: {x: 0, y: 0, z: 0}
+  JointPosition: {fileID: 2771640115318051455}
   HeadSocket: {fileID: 2771640115239412706}
   RightArmSocket: {fileID: 2771640116995103695}
   LeftArmSocket: {fileID: 2771640115253600635}
@@ -203,7 +204,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Default Torso
+  Classification: Standard Chasis
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 1
   PrefabPath: MechParts/Torso/Torso
@@ -277,7 +284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771640115253600636}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.90216017, y: 0.47149926, z: -0.091997065}
+  m_LocalPosition: {x: -0.7, y: 0.47149926, z: -0.091997065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7842707289178978152}
@@ -307,7 +314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771640115318051440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.38534904, z: 0.007599211}
+  m_LocalPosition: {x: 0, y: -0.213, z: 0.007599211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7842707289178978152}
@@ -367,7 +374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771640116995103680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.90216017, y: 0.47149926, z: -0.091997065}
+  m_LocalPosition: {x: 0.7, y: 0.47149926, z: -0.091997065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7842707289178978152}

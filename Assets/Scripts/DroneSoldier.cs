@@ -42,9 +42,14 @@ public class DroneSoldier : BaseDrone
         if (RepositionCooldown < 0)
         {
             float Dis = Vector3.Distance(transform.position, MTargetSignal.transform.position);
-            if (Dis > SurroundRange.x && Dis < SurroundRange.y) 
+
+            if (Dis < SurroundRange.x || Dis > SurroundRange.y)
+            {
                 Reposition();
-            RepositionCooldown = Random.Range(RepositionTimeRange.x, RepositionTimeRange.y);
+                RepositionCooldown = Random.Range(RepositionTimeRange.x, RepositionTimeRange.y);
+            }
+            else
+                RepositionCooldown = Random.Range(RepositionTimeRange.x, RepositionTimeRange.y)/2;
         }
     }
 
@@ -98,6 +103,8 @@ public class DroneSoldier : BaseDrone
 
     private void Reposition()
     {
+        Debug.Log("Repositioning");
+
         Vector3 a = GetPositionAroundTarget(MTargetSignal.transform);
         Debug.DrawLine(a, a + new Vector3(0, 10, 0), Color.red, 10);
         (MyMovement as AIMNavAgent).RecieveTargetPosition(a);

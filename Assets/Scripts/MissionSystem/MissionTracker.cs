@@ -25,6 +25,8 @@ public class MissionTracker : MonoBehaviour
         public String Stagename;
         [SerializeField]
         public List<MissionGoal> Objectives;
+        [SerializeField]
+        private string FinishedCall;
 
         public bool StageCompleted()
         {
@@ -33,6 +35,8 @@ public class MissionTracker : MonoBehaviour
                 if (!Objectives[i].Completed())
                     return false;
             }
+
+            SceneEventHandler.invokeSES(FinishedCall,true);
             return true;
         }
     }

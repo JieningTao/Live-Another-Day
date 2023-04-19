@@ -32,6 +32,11 @@ public class PauseMiniMenu : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
+    public void MissionComplete(bool Victory)
+    {
+        MissionCompletionTracker.Instance.MissionCompletion(Victory);
+    }
+
     public void Quit()
     {
         Application.Quit();
@@ -72,6 +77,7 @@ public class PauseMiniMenu : MonoBehaviour
 
         Time.timeScale = 1;
     }
+
 
     public void ShowLevelEndUI(bool Win)
     {

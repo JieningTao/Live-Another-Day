@@ -556,7 +556,7 @@ MonoBehaviour:
   Mirrored: 0
   MainWeapon: {fileID: 9175965628759822209}
   MainWeaponSN: 'B-SMG-109 '
-  MainWeaponName: Beam SMG
+  MainWeaponName: SMG
   MainWeaponGaugeColor: {r: 0, g: 0.98099947, b: 1, a: 1}
   MainLockNum: 0
   MainLockBurstAmount: 1
@@ -579,7 +579,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''Raindrop'' BeamSMG'
+  Classification: SMG
   Description: 
+  InfoSprites:
+  - {fileID: 21300000, guid: 4946f7e56ad2f27439688b77b6917635, type: 3}
+  - {fileID: 21300000, guid: 905bf0f3288ad4b4fafecf38a9274219, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/TestBeamSMG

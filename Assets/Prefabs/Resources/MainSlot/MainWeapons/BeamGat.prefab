@@ -560,8 +560,8 @@ MonoBehaviour:
   - {fileID: 3188632844058286176}
   - {fileID: 3188632842851373243}
   ProjectileScript: {fileID: 7733685341751491921}
-  AccuracyDeviation: 0.2
-  TBS: 0.07
+  AccuracyDeviation: 0.3
+  TBS: 0.08
   MyBurstSettings:
     BurstAmount: 1
     BurstInterval: 0
@@ -594,7 +594,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''Waterfall'' BeamGat'
+  Classification: Rotary Gun
   Description: 
+  InfoSprites:
+  - {fileID: 21300000, guid: 4946f7e56ad2f27439688b77b6917635, type: 3}
+  - {fileID: 21300000, guid: 905bf0f3288ad4b4fafecf38a9274219, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/BeamGat
@@ -2385,7 +2391,7 @@ PrefabInstance:
     - target: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}
       propertyPath: Damage
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}

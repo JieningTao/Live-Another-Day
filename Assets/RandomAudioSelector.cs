@@ -29,6 +29,7 @@ public class RandomAudioSelector : MonoBehaviour
         MyAS.clip = ClipBank[Random.Range(0, ClipBank.Count)];
         MyAS.volume = Random.Range(VolumeRange.x, VolumeRange.y);
         MyAS.Play();
+        if(DestroyTimer>=0)
         Destroy(this.gameObject, DestroyTimer);
     }
 

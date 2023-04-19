@@ -765,6 +765,7 @@ MonoBehaviour:
   MaxMagazine: 5
   MaxReserveAmmo: 30
   ReloadTime: 2
+  AmmoTypeIdentifier: 
 --- !u!114 &-6461478087840340995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,7 +808,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '** TestSniper'
+  Classification: Sniper Rifle
   Description: 
+  InfoSprites:
+  - {fileID: 21300000, guid: 2faf94e6332708f49b8ad5bea9c3ef7f, type: 3}
+  - {fileID: 21300000, guid: 0798f464e9e62fa418d3fb7de1f7d77f, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/TestSniper

@@ -565,7 +565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983705424592148643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.071, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5441864220225755426}
@@ -683,8 +683,9 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 1983705424823137310}
   ReadyTime: 1.2
-  AimedPart: {fileID: 1983705424823137309}
   MyWeapon: {fileID: 1983705424823137311}
+  MiscEffects: []
+  AimedPart: {fileID: 1983705424823137309}
   TargetSpeed: 1
   TargetingAngle: 10
 --- !u!114 &3018851965611018661
@@ -700,7 +701,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''Stiletto'' Beam pistol'
+  Classification: 
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 9
   PrefabPath: ExtraGears/Side/'Stiletto' Beam pistol

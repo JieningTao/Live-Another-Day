@@ -24,11 +24,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321942659817380598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.47, y: 0, z: 0.1}
+  m_LocalPosition: {x: -0.332, y: 0, z: 0.044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4772568589179543881}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1876338346024083181
 GameObject:
@@ -54,11 +54,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1876338346024083181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.47, y: 0, z: 0.1}
+  m_LocalPosition: {x: 0.332, y: 0, z: 0.044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4772568589179543881}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1892300013435838225
 GameObject:
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 7894867769865584908}
   - component: {fileID: 7946865032313991606}
   - component: {fileID: 3661057112430995417}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,6 +344,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &4533686489530266026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4860795598359965626}
+  m_Layer: 0
+  m_Name: JointPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4860795598359965626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533686489530266026}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4772568589179543881}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4772568589179543887
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +403,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4860795598359965626}
   - {fileID: 2755672659205286211}
   - {fileID: 4307033460241993082}
   - {fileID: 3071945207815821419}
@@ -395,7 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 50
   Weight: 1
-  Attributs: []
+  Attributes: []
   FloatThrusters:
   - {fileID: 1467211963252508928}
   - {fileID: 7172247768192115360}
@@ -404,6 +435,7 @@ MonoBehaviour:
   - {fileID: 7413234511844523452}
   - {fileID: 1661228616907642016}
   Displacement: {x: 0, y: 0, z: 0}
+  JointPosition: {fileID: 4860795598359965626}
   LeftShoulderEXGSlot: {fileID: 2843022133407849195}
   RightShoulderEXGSlot: {fileID: 6164196602788952033}
   LeftShoulderEXG: {fileID: 0}
@@ -422,7 +454,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '** TravelPack'
+  Classification: Standard Manuver Pack
   Description: 
+  InfoSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   HideForPlayer: 0
   PartCatagory: 4
   PrefabPath: MechParts/Pack/TravelPack
@@ -656,7 +694,7 @@ Transform:
   - {fileID: 5021081677913237241}
   - {fileID: 3667862105783033593}
   m_Father: {fileID: 4772568589179543881}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5820861413468429464
 MeshFilter:
@@ -923,7 +961,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4772568589179543881}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6105102531427129056
 MonoBehaviour:
@@ -1201,7 +1239,7 @@ PrefabInstance:
     - target: {fileID: 4485954244846782259, guid: cb32b2cedb7838443b7f48387668a61c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4485954244846782259, guid: cb32b2cedb7838443b7f48387668a61c,
         type: 3}
