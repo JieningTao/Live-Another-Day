@@ -433,7 +433,7 @@ MonoBehaviour:
   - {fileID: 2377481053177095335}
   ProjectileScript: {fileID: 8361021206474383696}
   AccuracyDeviation: 0.1
-  TBS: 0.05
+  TBS: 0.09
   MyBurstSettings:
     BurstAmount: 1
     BurstInterval: 0
@@ -447,6 +447,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 98ed3d3cf68d7f84b80ec9c956a87c6c, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 0.8
+  Pitch: 1
   MaxMagazine: 30
   MaxReserveAmmo: 150
   ReloadTime: 5
@@ -1181,6 +1182,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2730051396992958623}
     m_Modifications:
+    - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: Damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
       propertyPath: m_RootOrder

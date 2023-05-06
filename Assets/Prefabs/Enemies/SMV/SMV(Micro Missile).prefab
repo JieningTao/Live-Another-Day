@@ -682,7 +682,7 @@ MonoBehaviour:
   - {fileID: 7006377281560264890}
   - {fileID: 1704897489785260892}
   DestroyEffect: {fileID: 1293494750818709205}
-  DestroyDelay: -1
+  DestroyDelay: 5
 --- !u!114 &1704897488565034257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,15 +884,23 @@ MonoBehaviour:
   ProjectileScript: {fileID: 8119225047931251107}
   AccuracyDeviation: 50
   TBS: 0.1
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds: []
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 12
   MaxReserveAmmo: 300
   ReloadTime: 0.1
+  AmmoTypeIdentifier: 
 --- !u!114 &7006377281560264890
 MonoBehaviour:
   m_ObjectHideFlags: 0

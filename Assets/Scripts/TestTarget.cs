@@ -32,7 +32,7 @@ public class TestTarget : IDamageable
         }
     }
 
-    public override void Hit(float Damage, DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags)
+    public override void Hit(float Damage, DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags,IDamageSource Source)
     {
         if (!IndicatorOn)
         {

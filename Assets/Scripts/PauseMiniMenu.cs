@@ -34,7 +34,16 @@ public class PauseMiniMenu : MonoBehaviour
 
     public void MissionComplete(bool Victory)
     {
-        MissionCompletionTracker.Instance.MissionCompletion(Victory);
+        try//when starting a mission from editor scene, mission completion tracker has not been created from main menu
+        {
+            MissionCompletionTracker.Instance.MissionCompletion(Victory);
+        }
+        catch
+        {
+            Debug.Log("Mission tracker not found, mission likely starterd in editor");
+        }
+    
+        
     }
 
     public void Quit()

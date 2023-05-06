@@ -130,17 +130,24 @@ public class EnergyShield : BaseShield
         }
     }
 
-    public override void Hit(float Damage, DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags)
+    public override void Hit(float Damage, DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags, IDamageSource Source)
     {
         if (!IsDestroied)
         {
-            CurrentHealth -= Damage * DamageSystem.GetDamageMultiplier(MyArmorType, Type, Tags);
+            float ActualDamage = Damage * DamageSystem.GetDamageMultiplier(MyArmorType, Type, Tags);
+            CurrentHealth -= ActualDamage;
+
+            base.PingDamageable(this, "Damage", ActualDamage, Source);
 
             if (CurrentHealth <= 0)
             {
                 CurrentHealth = 0;
                 Destroied();
+
+                base.PingDamageable(this, "Destroied", 0, Source);
             }
+
+
         }
 
         if (WasCharging)

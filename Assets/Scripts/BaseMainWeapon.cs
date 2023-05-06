@@ -258,6 +258,13 @@ public class BaseMainWeapon : BaseMainSlotEquipment
         }
     }
 
+
+    //public virtual float ReadyPercentage
+    //{ get { return 0; } }
+
+    //public virtual string ReadyText
+    //{ get { return ""; } }
+
     public override float GetBulletSpeed()
     {
         return MainWeapon.GetProjectileSpeed();

@@ -208,6 +208,8 @@ public class BaseMechFCS : MonoBehaviour
             SwitchEXGear(true);
         else
             SelectSlot(0);
+
+        
     }
 
     //public void InitializeEXGear()
@@ -744,7 +746,7 @@ public class BaseMechFCS : MonoBehaviour
 
         if (PlayerFCS && EXGearChanges != null)
         {
-            EXGearChanges.Invoke(SelectedEXSlot + 1, "Select", null);
+            EXGearChanges.Invoke(SelectedEXSlot + 1, "Select", EquipedEXGear[SelectedEXSlot]);
 
         }
     }

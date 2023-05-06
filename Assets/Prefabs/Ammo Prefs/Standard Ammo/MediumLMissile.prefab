@@ -4924,10 +4924,14 @@ MonoBehaviour:
   MyDamageTags: 
   HitMask: 0
   HitEffect: {fileID: 311585999457907558}
+  MyExplosion: {fileID: 0}
+  ExplodeOnTimerExpire: 0
   Target: {fileID: 0}
-  TrackingSpeedChange: {x: 2.5, y: 0.2}
+  TrackingSpeedChange: {x: 3, y: 0.3}
   TrackingChangeTime: 1.5
   ActivationDelay: 0.5
+  ExtraTracking: 0
+  TrackedObject: {fileID: 0}
 --- !u!114 &7509361990232318827
 MonoBehaviour:
   m_ObjectHideFlags: 0

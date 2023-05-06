@@ -129,16 +129,17 @@ public class PlayerController : MonoBehaviour
 
     private void HandleEXGearInput()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetButtonDown("Switch EXGear Pos"))
             MyFCS.SwitchEXGear(false);
-        else if(Input.GetAxis("Mouse ScrollWheel") < 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 || Input.GetButtonDown("Switch EXGear Neg"))
             MyFCS.SwitchEXGear(true);
 
 
 
         if (Input.GetButtonDown("Trigger EXGear"))
             MyFCS.TriggerEXGear(true);
-        else if(Input.GetButtonUp("Trigger EXGear"))
+        else if (Input.GetButtonUp("Trigger EXGear"))
             MyFCS.TriggerEXGear(false);
     }
 

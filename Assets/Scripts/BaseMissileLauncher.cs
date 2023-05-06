@@ -46,7 +46,7 @@ public class BaseMissileLauncher : BaseKineticShoot
             SetLayer = 12;
 
         MissileScript.SetLayerAndMask(SetLayer);
-
+        MissileScript.SetDamageSource();
         //MissileScript.InitializeProjectile(PerShotDamage, SetLayer, MyDamageType, MyDamageTags, TrackingSpeed, ActivationDelay, ExplosiveDamage, explosiveForce, ExplosionScript);
     }
 

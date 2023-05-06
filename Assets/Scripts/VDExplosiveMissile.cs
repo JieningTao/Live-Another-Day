@@ -20,7 +20,7 @@ public class VDExplosiveMissile : VerticalDropMissile
 
         if (Temp != null)
         {
-            Temp.Hit(Damage, MyDamageType, MyDamageTags);
+            Temp.Hit(Damage, MyDamageType, MyDamageTags, (IDamageSource)DamageSource);
             //Debug.Log(Target.name + " Was hit by " + gameObject.name);
         }
 

@@ -19,15 +19,17 @@ MonoBehaviour:
   MyDamageTags: 
   HitMask: 0
   HitEffect: {fileID: 2423011843554176830}
+  MyExplosion: {fileID: 0}
+  ExplodeOnTimerExpire: 0
   Target: {fileID: 0}
-  TrackingSpeed: 0.2
-  TrackingSpeedChange: {x: 2.5, y: 0.6}
+  TrackingSpeedChange: {x: 3, y: 0.3}
   TrackingChangeTime: 1.5
   ActivationDelay: 0.7
+  ExtraTracking: 0
+  TrackedObject: {fileID: 0}
   SnapEffect: {fileID: 4485954244846782258, guid: 842f58a876e182347bc2cd0a098fa9fa,
     type: 3}
   PreSnapSpeed: 0.5
-  MyExplosion: {fileID: 0}
 --- !u!1001 &5938505968637245536
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -21,8 +21,10 @@ public class BaseExplosion : MonoBehaviour
     [SerializeField]
     int HitMask;
 
-
-    private float ScaledExplosionRadius
+    [HideInInspector]
+    [SerializeField]
+    protected Object DamageSource;
+    protected float ScaledExplosionRadius
     {
         get
         {
@@ -44,6 +46,12 @@ public class BaseExplosion : MonoBehaviour
     {
         gameObject.layer = Layer;
         HitMask = Mask;
+    }
+
+    public void SetDamageSource()
+    {
+        DamageSource = (Object)GetComponentInParent<IDamageSource>();
+        Debug.Log(DamageSource, this);
     }
 
     protected void SetMask()
@@ -71,6 +79,8 @@ public class BaseExplosion : MonoBehaviour
         
     }
 
+
+
     private void Explode()
     {
         ///Debug.Log("Boom");
@@ -93,8 +103,13 @@ public class BaseExplosion : MonoBehaviour
 
         foreach (IDamageable D in HitObjects)
         {
-            if(LOSCheck(D))
-            D.Hit(ExplosiveDamage, MyDamageType, MyDamageTags);
+            if (LOSCheck(D))
+            {
+                if (DamageSource)
+                    D.Hit(ExplosiveDamage, MyDamageType, MyDamageTags, (IDamageSource)DamageSource);
+                else
+                    D.Hit(ExplosiveDamage, MyDamageType, MyDamageTags, null);
+            }
         }
     }
 

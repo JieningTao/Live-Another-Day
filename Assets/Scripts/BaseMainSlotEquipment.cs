@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseMainSlotEquipment : MonoBehaviour
+public class BaseMainSlotEquipment : MonoBehaviour,IDamageSource
 {
     [SerializeField]
     public MainEquipmentHoldStyle HoldStyle;
@@ -61,7 +61,7 @@ public class BaseMainSlotEquipment : MonoBehaviour
 
     }
 
-    public virtual void Equip(bool _Equip, BaseMechMain _Operator,bool _Right)
+    public virtual void Equip(bool _Equip, BaseMechMain _Operator, bool _Right)
     {
         if (_Operator)
         {
@@ -83,7 +83,7 @@ public class BaseMainSlotEquipment : MonoBehaviour
         }
     }
 
-    public virtual void GetInitializeDate(out string MainFunction,out Color MainColor, out string SecondaryFunction,out Color SecondaryColor)
+    public virtual void GetInitializeDate(out string MainFunction, out Color MainColor, out string SecondaryFunction, out Color SecondaryColor)
     {
         MainFunction = "";
         MainColor = Color.black;
@@ -96,6 +96,12 @@ public class BaseMainSlotEquipment : MonoBehaviour
         BarFillPercentage = 0;
         TextDisplay = "";
     }
+
+    //public virtual float ReadyPercentage
+    //{ get { return 0; } }
+
+    //public virtual string ReadyText
+    //{ get { return ""; } }
 
     public virtual float GetBulletSpeed()
     {
@@ -110,5 +116,10 @@ public class BaseMainSlotEquipment : MonoBehaviour
     public virtual List<string> GetStats()
     {
         return null;
+    }
+
+    public IDamageSource DamageSource()
+    {
+        return this;
     }
 }

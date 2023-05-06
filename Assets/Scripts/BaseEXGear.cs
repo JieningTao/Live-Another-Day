@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseEXGear : MonoBehaviour
+public class BaseEXGear : MonoBehaviour,IDamageSource
 {
     [Tooltip("Displacement")]
     [SerializeField]
@@ -135,6 +135,11 @@ public class BaseEXGear : MonoBehaviour
     public virtual List<string> GetStats()
     {
         return null;
+    }
+
+    public IDamageSource DamageSource()
+    {
+        return this;
     }
 
     public virtual bool IsAimed

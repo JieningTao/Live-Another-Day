@@ -18,7 +18,7 @@ public class BaseBullet : MonoBehaviour
 
     [SerializeField]
     protected List<DamageSystem.DamageTag> MyDamageTags;
-     
+
     [HideInInspector]
     [SerializeField] //for some reason this doessnt work unless serialized, F**K!
     protected int HitMask;
@@ -32,6 +32,15 @@ public class BaseBullet : MonoBehaviour
     [SerializeField]
     protected bool ExplodeOnTimerExpire = false;
 
+    [HideInInspector]
+    //[SerializeField]
+    //protected BaseShoot BulletOrigin;
+    [SerializeField]
+    protected Object DamageSource;
+
+    [SerializeField]
+    protected float Lifetime;
+
     protected virtual void Start()
     {
         if(!ExplodeOnTimerExpire)
@@ -42,9 +51,9 @@ public class BaseBullet : MonoBehaviour
     {
         FlightCheck();
 
-        Timer -= Time.deltaTime;
+        Lifetime += Time.deltaTime;
 
-        if(Timer<=0)
+        if(Timer <= Lifetime)
         {
             if (ExplodeOnTimerExpire && MyExplosion)
             {
@@ -101,6 +110,16 @@ public class BaseBullet : MonoBehaviour
             MyExplosion.SetLayerAndMask(Layer, HitMask);
     }
 
+    public virtual void SetDamageSource()
+    {
+        //BulletOrigin = a;
+
+        DamageSource = (Object)GetComponentInParent<IDamageSource>();
+
+        if (MyExplosion)
+            MyExplosion.SetDamageSource();
+    }
+
     public virtual float GetSpeed()
     {
         return Speed;
@@ -137,12 +156,14 @@ public class BaseBullet : MonoBehaviour
 
     protected virtual void DealDamageTo(GameObject Target)
     {
+        Debug.Log(DamageSource, this);
 
         IDamageable Temp = Target.GetComponentInParent<IDamageable>();
 
         if (Temp != null)
         {
-            Temp.Hit(Damage, MyDamageType, MyDamageTags);
+
+            Temp.Hit(Damage, MyDamageType, MyDamageTags, (IDamageSource)DamageSource);
             //Debug.Log(Target.name + " Was hit by " + gameObject.name);
         }
 

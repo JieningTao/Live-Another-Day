@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseShoot : MonoBehaviour
 {
+    [Header("Shot Base Settings")]
     [SerializeField]
     protected List<Transform> BulletSpawns;
 
@@ -54,6 +55,7 @@ public class BaseShoot : MonoBehaviour
     [SerializeField]
     protected Animator MyAnimator;
     [Space(20)]
+    [Header("Shot Sound Settings")]
     [SerializeField]
     protected List<AudioClip> ShotSounds;
     protected List<AudioSource> SoundSources;
@@ -61,6 +63,8 @@ public class BaseShoot : MonoBehaviour
     protected Vector2 SoundMinMax = new Vector2(5,500);
     [SerializeField]
     protected float Volume = 1;
+    [SerializeField]
+    protected float Pitch = 1;
 
     public enum FireMode
     {
@@ -75,6 +79,8 @@ public class BaseShoot : MonoBehaviour
     protected LayerMask BulletHitMask;
     protected int ShotsFired = 0;
 
+    public IDamageSource DamageSource;
+
     protected virtual void Start()
     {
         foreach (Transform a in BulletSpawns)
@@ -88,6 +94,7 @@ public class BaseShoot : MonoBehaviour
         {
             InitializeAudioSources();
         }
+        DamageSource = GetComponentInParent<IDamageSource>();
         //MyStatus = WeaponStatus.Normal;
     }
 
@@ -152,6 +159,7 @@ public class BaseShoot : MonoBehaviour
             SetLayer = 12;
 
         ProjectileScript.SetLayerAndMask(SetLayer);
+        ProjectileScript.SetDamageSource();
     }
 
     protected virtual void SetLayerAndBullet(int Layer)
@@ -269,6 +277,7 @@ public class BaseShoot : MonoBehaviour
 
     private void InitializeAudioSources()
     {
+        //Debug.Log("IAS for " + gameObject.name, this);
         SoundSources = new List<AudioSource>();
 
 
@@ -288,11 +297,13 @@ public class BaseShoot : MonoBehaviour
         foreach (Transform a in BulletSpawns)
         {
             AudioSource Temp = a.gameObject.AddComponent<AudioSource>();
+            //Debug.Log("Ping "+ gameObject.name, Temp);
             Temp.loop = false;
             Temp.playOnAwake = false;
             Temp.Stop();
             Temp.spatialBlend = 1;
             Temp.volume = Volume;
+            Temp.pitch = Pitch;
             Temp.minDistance = SoundMinMax.x;
             Temp.maxDistance = SoundMinMax.y;
             SoundSources.Add(Temp);
@@ -300,11 +311,12 @@ public class BaseShoot : MonoBehaviour
         }
     }
 
-    private void PlayShotSound(int SpawnNum, AudioClip Clip)
+    protected void PlayShotSound(int SpawnNum, AudioClip Clip)
     {
-        if (ShotSounds.Count >= 1&&SoundSources[SpawnNum]!=null)
+        //Debug.Log(SpawnNum + Clip.name, SoundSources[SpawnNum]);
+        if (ShotSounds.Count >= 1 && SoundSources[SpawnNum] != null)
         {
-            if(SoundSources[SpawnNum].isPlaying)
+            if (SoundSources[SpawnNum].isPlaying)
                 SoundSources[SpawnNum].Stop();
 
             SoundSources[SpawnNum].clip = Clip;
@@ -313,7 +325,7 @@ public class BaseShoot : MonoBehaviour
         }
     }
 
-    private void PlayShotSound(int SpawnNum)
+    protected void PlayShotSound(int SpawnNum)
     {
         if(ShotSounds.Count>1)
             PlayShotSound(SpawnNum, ShotSounds[Random.Range(0, ShotSounds.Count)]);

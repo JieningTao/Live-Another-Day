@@ -24,7 +24,7 @@ public class IDamageable : MonoBehaviour
     protected float CurrentHealth;
     protected bool IsDestroied = false;
 
-    public static event Action<IDamageable, string, float, object> DamageablePing;
+    public static event Action<IDamageable, string, float, IDamageSource> DamageablePing;
 
 
     protected virtual void Start()
@@ -41,14 +41,13 @@ public class IDamageable : MonoBehaviour
         
     }
 
-    public virtual void Hit(float Damage ,DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags)
+    public virtual void Hit(float Damage ,DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags, IDamageSource Source)
     {
         if (!IsDestroied)
         {
             float ActualDamage = Damage * DamageSystem.GetDamageMultiplier(MyArmorType, Type, Tags);
             CurrentHealth -= ActualDamage;
-            if (DamageablePing != null)
-                DamageablePing.Invoke(this, "Damage", ActualDamage, null);
+            PingDamageable(this, "Damage", ActualDamage, Source);
 
 
             if (CurrentHealth <= 0)
@@ -56,10 +55,19 @@ public class IDamageable : MonoBehaviour
                 CurrentHealth = 0;
                 IsDestroied = true;
                 Destroied();
-                if (DamageablePing != null)
-                    DamageablePing.Invoke(this, "Destroied", 0, null);
+                PingDamageable(this, "Destroied", 0, Source);
             }
         
+        }
+    }
+
+
+    protected virtual void PingDamageable(IDamageable Damageable, string Type, float Damage, IDamageSource Source)
+    {
+        if (DamageablePing != null)
+        {
+            Debug.Log(Source);
+            DamageablePing.Invoke(Damageable, Type, Damage, Source);
         }
     }
 

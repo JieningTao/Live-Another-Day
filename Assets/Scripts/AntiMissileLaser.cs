@@ -70,7 +70,7 @@ public class AntiMissileLaser : BaseTurret
 
     private void DamageMissile()
     {
-        CurrentTargetedMissileDamageable.Hit(DPS*Time.deltaTime,DamageSystem.DamageType.Energy,new List<DamageSystem.DamageTag>());
+        CurrentTargetedMissileDamageable.Hit(DPS*Time.deltaTime,DamageSystem.DamageType.Energy,new List<DamageSystem.DamageTag>(),null);
     }
 
     public void InitializeGear(BaseMechMain Mech)

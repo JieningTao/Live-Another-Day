@@ -19,12 +19,14 @@ MonoBehaviour:
   MyDamageTags: 
   HitMask: 0
   HitEffect: {fileID: 0}
+  MyExplosion: {fileID: 0}
+  ExplodeOnTimerExpire: 0
   Target: {fileID: 0}
-  TrackingSpeed: 1.2
-  TrackingSpeedChange: {x: 2.5, y: 0.6}
+  TrackingSpeedChange: {x: 3, y: 0.3}
   TrackingChangeTime: 1.5
   ActivationDelay: 0.5
-  MyExplosion: {fileID: 0}
+  ExtraTracking: 0
+  TrackedObject: {fileID: 0}
 --- !u!1001 &5938505968637245536
 PrefabInstance:
   m_ObjectHideFlags: 0

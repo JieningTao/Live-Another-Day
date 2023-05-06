@@ -312,17 +312,25 @@ MonoBehaviour:
   - {fileID: 8496945769034972707}
   ProjectileScript: {fileID: 4314195355395925966}
   AccuracyDeviation: 0.35
-  TBS: 0.1
+  TBS: 0.2
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 5
   MaxReserveAmmo: 100
   ReloadTime: 0
+  AmmoTypeIdentifier: 
 --- !u!1 &3135765652203893243
 GameObject:
   m_ObjectHideFlags: 0

@@ -2373,9 +2373,10 @@ MonoBehaviour:
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 4086595568150870783}
   MyAnimator: {fileID: 0}
-  ShotSounds: []
-  SoundMinMax: {x: 5, y: 500}
-  Volume: 1
+  ShotSounds:
+  - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
+  SoundMinMax: {x: 5, y: 300}
+  Volume: 0.8
   MaxMagazine: 10
   MaxReserveAmmo: 30
   ReloadTime: 7

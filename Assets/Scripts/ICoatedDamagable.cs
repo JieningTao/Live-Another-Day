@@ -18,7 +18,7 @@ public class ICoatedDamagable : IDamageable
         CurrentCoatingLeft = MaxCoating;
     }
 
-    public override void Hit(float Damage, DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags)
+    public override void Hit(float Damage, DamageSystem.DamageType Type, List<DamageSystem.DamageTag> Tags, IDamageSource Source)
     {
         if (CurrentCoatingLeft > 0)
         {
@@ -30,7 +30,7 @@ public class ICoatedDamagable : IDamageable
             CurrentCoatingLeft = Mathf.Clamp(CurrentCoatingLeft, 0, MaxCoating);
         }
 
-        base.Hit(Damage, Type, Tags);
+        base.Hit(Damage, Type, Tags, Source);
     }
 
 

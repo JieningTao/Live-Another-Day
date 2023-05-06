@@ -30,6 +30,9 @@ public class BaseKineticShotShoot : BaseKineticShoot
             if (MuzzleFlarePrefab != null)
                 MuzzleFlares[SlotNum].Play();
 
+            if (ShotSounds.Count > 0)
+                base.PlayShotSound(SlotNum);
+
             if (MagazineRemaining <= 0)
                 Reload();
         }

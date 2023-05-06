@@ -435,6 +435,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSpawns:
   - {fileID: 3374845962081063294}
+  - {fileID: 3374845962081063294}
+  - {fileID: 3374845962081063294}
+  - {fileID: 3374845962081063294}
   ProjectileScript: {fileID: 7053716784770763839}
   AccuracyDeviation: 0.8
   TBS: 0.08
@@ -448,12 +451,12 @@ MonoBehaviour:
     type: 3}
   MyAnimator: {fileID: 0}
   ShotSounds:
-  - {fileID: 8300000, guid: c3ad0996a57d224438ccac3adc4d3868, type: 3}
-  - {fileID: 8300000, guid: 8f914ad620a0f484a8055eac05ef3e2f, type: 3}
+  - {fileID: 8300000, guid: 2431dcc73338938499648557374667cb, type: 3}
   SoundMinMax: {x: 5, y: 500}
-  Volume: 1
+  Volume: 0.5
+  Pitch: 0.6
   MaxMagazine: 40
-  MaxReserveAmmo: 200
+  MaxReserveAmmo: 120
   ReloadTime: 1.5
   AmmoTypeIdentifier: 
 --- !u!114 &-6461478087840340995
