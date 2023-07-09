@@ -35,9 +35,12 @@ public class GarageCamera : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        IsDragging = true;
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            IsDragging = true;
+            Debug.Log(this.gameObject.name + " Was Left Clicked.");
+        }
 
-        Debug.Log(this.gameObject.name + " Was Clicked.");
     }
 
     private void EndDrag()

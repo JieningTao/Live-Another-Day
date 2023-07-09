@@ -9,6 +9,9 @@ public class BaseMissileLauncher : BaseKineticShoot
     protected BaseMissile MissileScript
     { get { return (ProjectileScript as BaseMissile); } }
     protected List<EnergySignal> Targets = new List<EnergySignal>();
+    [SerializeField]
+    [Tooltip("true for multiple missiles assigned to targets until magazine runs out")]
+    protected bool FillVolley = true;
    
     //public override void InitializeGear(BaseMechFCS FCS)
     //{
@@ -39,14 +42,16 @@ public class BaseMissileLauncher : BaseKineticShoot
     protected override void InitializeBullet()
     {
 
-        int SetLayer = 0;
-        if (gameObject.layer == 9)
-            SetLayer = 10;
-        else if (gameObject.layer == 11)
-            SetLayer = 12;
+        MissileScript.InitBullet(this);
 
-        MissileScript.SetLayerAndMask(SetLayer);
-        MissileScript.SetDamageSource();
+        //int SetLayer = 0;
+        //if (gameObject.layer == 9)
+        //    SetLayer = 10;
+        //else if (gameObject.layer == 11)
+        //    SetLayer = 12;
+
+        //MissileScript.SetLayerAndMask(SetLayer);
+        //MissileScript.SetDamageSource();
         //MissileScript.InitializeProjectile(PerShotDamage, SetLayer, MyDamageType, MyDamageTags, TrackingSpeed, ActivationDelay, ExplosiveDamage, explosiveForce, ExplosionScript);
     }
 
@@ -90,11 +95,21 @@ public class BaseMissileLauncher : BaseKineticShoot
     {
         if (NewTargets.Count > 0)
         {
-            for (int i = 0; i < MagazineRemaining; i++)
+            if (FillVolley)
             {
-                for (int j = 0; j < VollyAmount; j++)
+                for (int i = 0; i < MagazineRemaining; i++)
                 {
-                    Targets.Add(NewTargets[i % NewTargets.Count]);
+                    for (int j = 0; j < VollyAmount; j++)
+                    {
+                        Targets.Add(NewTargets[i % NewTargets.Count]);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < MagazineRemaining && i < VollyAmount; i++)
+                {
+                    Targets.Add(NewTargets[i]);
                 }
             }
             Firing = true;

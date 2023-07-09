@@ -330,7 +330,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7317546784411363698}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -372,7 +372,7 @@ MonoBehaviour:
   Volume: 1
   Pitch: 0.8
   MaxMagazine: 12
-  MaxReserveAmmo: 84
+  MaxReserveAmmo: 96
   ReloadTime: 2
   AmmoTypeIdentifier: 30mmRifleAmmo
 --- !u!114 &7857881313350104692
@@ -418,13 +418,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: R-006 Rifle
   Classification: Standard Rifle
-  Description: 
+  Description: Airbust rounds
   InfoSprites:
-  - {fileID: 21300000, guid: 2faf94e6332708f49b8ad5bea9c3ef7f, type: 3}
-  - {fileID: 21300000, guid: 905bf0f3288ad4b4fafecf38a9274219, type: 3}
+  - {fileID: 21300000, guid: 4946f7e56ad2f27439688b77b6917635, type: 3}
+  - {fileID: 21300000, guid: 0798f464e9e62fa418d3fb7de1f7d77f, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-3
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/R-006 Rifle(AB)
   MyEquipment: {fileID: 7857881313350104692}

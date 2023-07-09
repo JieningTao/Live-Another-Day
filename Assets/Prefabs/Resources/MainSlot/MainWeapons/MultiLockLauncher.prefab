@@ -1784,10 +1784,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
   Volume: 0.8
+  Pitch: 1
   MaxMagazine: 10
   MaxReserveAmmo: 30
   ReloadTime: 5
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &-6098929190505740336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1803,7 +1805,7 @@ MonoBehaviour:
   HoldStyle: 2
   Size: 4
   RequireAiming: 0
-  Weight: 0.1
+  Weight: 0.2
   Mirrored: 0
   MainWeapon: {fileID: 7454904633930414511}
   MainWeaponSN: MLML-1515
@@ -1829,15 +1831,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100dc38b3253a9f4b8f1810a4de0bdf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** MultiLockLauncher'
+  Name: MLML-1515
   Classification: Multi-Lock Launcher
-  Description: 
+  Description: (Tap) Start Locking (Tap Again) Fire Locked
   InfoSprites:
   - {fileID: 21300000, guid: 2faf94e6332708f49b8ad5bea9c3ef7f, type: 3}
   - {fileID: 21300000, guid: 7cb483d360f14eb4e9bf04ee6bf04fe2, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-1
+  - 1-2
+  - 1-3
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/MultiLockLauncher
   MyEquipment: {fileID: -6098929190505740336}

@@ -180,9 +180,9 @@ MonoBehaviour:
   Health: 350
   Weight: 1
   Attributes: []
+  EAttributes: []
   FloatThrusters: []
   BoostThrusters: []
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 2771640115318051455}
   HeadSocket: {fileID: 2771640115239412706}
   RightArmSocket: {fileID: 2771640116995103695}
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Default Torso
-  Classification: Standard Chasis
+  Classification: Default Chasis
   Description: 
   InfoSprites:
   - {fileID: 0}
@@ -212,6 +212,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 1
   PrefabPath: MechParts/Torso/Torso
   MyPart: {fileID: 1960244249804401429}

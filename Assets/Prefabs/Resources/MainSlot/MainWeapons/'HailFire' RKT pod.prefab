@@ -925,6 +925,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
   Volume: 0.8
+  Pitch: 1
   MaxMagazine: 15
   MaxReserveAmmo: 45
   ReloadTime: 7
@@ -944,7 +945,7 @@ MonoBehaviour:
   HoldStyle: 2
   Size: 4
   RequireAiming: 1
-  Weight: 0.1
+  Weight: 0.2
   Mirrored: 0
   MainWeapon: {fileID: 7522958711035785199}
   MainWeaponSN: RL-068
@@ -979,6 +980,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-2
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/'HailFire' RKT pod
   MyEquipment: {fileID: 4253155892859203322}

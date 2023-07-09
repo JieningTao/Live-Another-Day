@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MissionGoal : MonoBehaviour
 {
-
+    [SerializeField]
+    protected string StartAndFinishedCall;
     [SerializeField]
     string DisplayTarget;
     [SerializeField]
@@ -14,7 +15,7 @@ public class MissionGoal : MonoBehaviour
 
     
 
-    private MissionTracker MyTracker;
+    protected MissionTracker MyTracker;
 
 
 
@@ -28,6 +29,10 @@ public class MissionGoal : MonoBehaviour
         return false;
     }
 
+    protected void InvokeMGProgress(bool Start)
+    {
+        SceneEventHandler.invokeSES(StartAndFinishedCall, Start);
+    }
 
     public virtual void UpdateProgress(string UpdateMarker, object Content)
     {

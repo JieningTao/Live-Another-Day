@@ -40,8 +40,10 @@ public class BaseMainSlotEquipment : MonoBehaviour,IDamageSource
     [SerializeField]
     private bool Mirrored = false;
 
-    protected bool Right;
-    protected BaseMechFCS Operator;
+
+
+    public bool Right { get; private set; }
+    public BaseMechFCS Operator { get; private set; }
 
 
 
@@ -118,8 +120,12 @@ public class BaseMainSlotEquipment : MonoBehaviour,IDamageSource
         return null;
     }
 
+    public virtual int GetSecondaryDisplayConfig
+    { get { return 0; } }
+
     public IDamageSource DamageSource()
     {
         return this;
     }
+
 }

@@ -25,6 +25,8 @@ public class BaseBullet : MonoBehaviour
 
     [SerializeField]
     protected ParticleSystem HitEffect;
+    [SerializeField]
+    protected TrailRenderer MyTR;
 
     [SerializeField]
     protected BaseExplosion MyExplosion;
@@ -100,24 +102,36 @@ public class BaseBullet : MonoBehaviour
         DealDamageTo(collision.gameObject);
     }
 
-    public virtual void SetLayerAndMask(int Layer)
+    public virtual void InitBullet(BaseShoot Source)
     {
-        //Debug.Log("Ping");
-        gameObject.layer = Layer;
-        SetMask();
+        int SetLayer = 0;
+
+        if (Source.gameObject.layer == 9)
+            SetLayer = 10;
+        else if (Source.gameObject.layer == 11)
+            SetLayer = 12;
+
+        SetLayerAndMask(SetLayer);
+        SetDamageSource();
 
         if (MyExplosion)
-            MyExplosion.SetLayerAndMask(Layer, HitMask);
+        {
+            MyExplosion.SetLayerAndMask(SetLayer, HitMask);
+            MyExplosion.SetDamageSource();
+        }
+        if(MyTR)
+        MyTR.widthMultiplier = transform.localScale.x * 1.5f;
+    }
+
+    public virtual void SetLayerAndMask(int Layer)
+    {
+        gameObject.layer = Layer;
+        SetMask();
     }
 
     public virtual void SetDamageSource()
     {
-        //BulletOrigin = a;
-
         DamageSource = (Object)GetComponentInParent<IDamageSource>();
-
-        if (MyExplosion)
-            MyExplosion.SetDamageSource();
     }
 
     public virtual float GetSpeed()
@@ -156,7 +170,6 @@ public class BaseBullet : MonoBehaviour
 
     protected virtual void DealDamageTo(GameObject Target)
     {
-        Debug.Log(DamageSource, this);
 
         IDamageable Temp = Target.GetComponentInParent<IDamageable>();
 

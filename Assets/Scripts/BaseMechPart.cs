@@ -10,13 +10,12 @@ public class BaseMechPart : MonoBehaviour
 
     [SerializeField]
     public List<AttributeManager.BaseMechAttribute> Attributes = new List<AttributeManager.BaseMechAttribute>();
-    
+    [SerializeField]
+    public List<AttributeManager.ExtraAttribute> EAttributes = new List<AttributeManager.ExtraAttribute>();
+
 
     public List<Transform> FloatThrusters;
     public List<Transform> BoostThrusters;
-
-    [SerializeField]
-    protected Vector3 Displacement;
 
     [SerializeField]
     protected Transform JointPosition;
@@ -32,6 +31,7 @@ public class BaseMechPart : MonoBehaviour
         MyMech = Mech;
         SetLayer(Mech.gameObject.layer);
         Mech.ApplyMechAttributes(Attributes);
+        Mech.ApplyExtraAttributes(EAttributes);
     }
 
     public virtual void VisualAssemble(Transform SocketPosition)

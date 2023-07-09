@@ -33,6 +33,29 @@ public class MissionCompletionTracker : MonoBehaviour
 
     [SerializeField]
     List<string> CompletedMissionSerials = new List<string>();
+
+    [SerializeField]
+    List<MissionUnlocks> MissionUnlockedTags = new List<MissionUnlocks>();
+
+    [Serializable]
+    class MissionUnlocks
+    {
+        [SerializeField]
+        string LevelName;
+        [SerializeField]
+        List<string> LinkUnlockTags;
+
+        public void Check(string LevelCompleted)
+        {
+            Debug.Log(LevelCompleted+"()"+LevelName);
+            if (LevelCompleted == LevelName)
+            {
+                foreach(string a in LinkUnlockTags)
+                UnlockTagTracker.Instance.AddUTag(a);
+            }
+        }
+    }
+
     string CurrentlyPlayingMission;
     bool MissionsLoaded = false;
 
@@ -47,9 +70,6 @@ public class MissionCompletionTracker : MonoBehaviour
                 LoadCompletedMissionData();
         }
     }
-
-
-
 
     private void LoadCompletedMissionData()
     {
@@ -112,7 +132,12 @@ public class MissionCompletionTracker : MonoBehaviour
         {
             if (CurrentlyPlayingMission != "" || CurrentlyPlayingMission != null)
             {
-                CompletedMissionSerials.Add(CurrentlyPlayingMission);
+                if (!CompletedMissionSerials.Contains(CurrentlyPlayingMission))
+                    CompletedMissionSerials.Add(CurrentlyPlayingMission);
+
+                foreach (MissionUnlocks a in MissionUnlockedTags)
+                    a.Check(CurrentlyPlayingMission);
+
                 CurrentlyPlayingMission = null;
             }
         }

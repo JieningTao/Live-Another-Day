@@ -127,10 +127,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2df2cd51effda254cbdcfcd06d191ded, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 3
   MaxReserveAmmo: 15
   ReloadTime: 1.2
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &8545741052588504458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +183,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/LockLauncher
   MyEquipment: {fileID: 8545741052588504458}

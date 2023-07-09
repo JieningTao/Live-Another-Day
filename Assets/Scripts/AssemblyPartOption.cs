@@ -98,4 +98,10 @@ public class AssemblyPartOption : MonoBehaviour
         }
     }
 
+    public List<Sprite> ExtraceInfoSprites()
+    {
+        List<Sprite> Temp = new List<Sprite>();
+        Temp.AddRange(Part.InfoSprites);
+        return Temp;
+    }
 }

@@ -556,6 +556,7 @@ MonoBehaviour:
   Health: 60
   Weight: 1.3
   Attributes: []
+  EAttributes: []
   FloatThrusters:
   - {fileID: 1621795499432704763}
   - {fileID: 1621795500378397989}
@@ -564,7 +565,6 @@ MonoBehaviour:
   - {fileID: 1621795500521736569}
   - {fileID: 1621795500193348444}
   - {fileID: 1621795499833974929}
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 1327067301963592789}
   LeftShoulderEXGSlot: {fileID: 1621795499673001488}
   RightShoulderEXGSlot: {fileID: 1621795501456940740}
@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25feb2e4fee990459e3d139c0d012c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** DashPack'
+  Name: Swift' DashPack
   Classification: Mobility Enhancement pack
   Description: 
   InfoSprites:
@@ -592,6 +592,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-3
   PartCatagory: 4
   PrefabPath: MechParts/Pack/DashPack
   MyPart: {fileID: 1621795499525420263}
@@ -646,6 +648,7 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 0}
   ReadyTime: 0
+  ReadyTimer: 0
   Tanks:
   - {fileID: 2484500317727726161}
   - {fileID: 770554718687258762}

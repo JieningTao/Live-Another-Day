@@ -999,10 +999,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bf43f22e11de9ee4297dd6e293d8b7f1, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 1
   MaxReserveAmmo: 7
   ReloadTime: 10
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &7259087460688244815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,6 +1025,7 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 0}
   ReadyTime: 0
+  ReadyTimer: 0
   LockCount: 1
   MultiLock: 1
   MyLauncher: {fileID: 7374872896544964239}
@@ -1047,6 +1050,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/QuadL(CE)
   MyEXG: {fileID: 7259087460688244815}

@@ -6,5 +6,7 @@ public class AIMovement : MonoBehaviour
 {
     [SerializeField]
     protected Transform Target;
+    [SerializeField]
+    protected bool Hold;
 
 }

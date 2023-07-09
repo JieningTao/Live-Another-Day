@@ -1447,9 +1447,9 @@ MonoBehaviour:
   Health: 130
   Weight: 0.54
   Attributes: []
+  EAttributes: []
   FloatThrusters: []
   BoostThrusters: []
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 5049021960990930378}
   SideMountedEXGSlot: {fileID: 627101616049241384}
   EXGAimed: {fileID: 8005812084181066266}
@@ -4341,9 +4341,9 @@ MonoBehaviour:
   Health: 130
   Weight: 0.54
   Attributes: []
+  EAttributes: []
   FloatThrusters: []
   BoostThrusters: []
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 4178112910311387704}
   SideMountedEXGSlot: {fileID: 4426617883401989683}
   EXGAimed: {fileID: 3677634714616776109}
@@ -5193,6 +5193,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-2
   PartCatagory: 2
   PrefabPath: MechParts/Arms/'Leo' Arms
   MyPart: {fileID: 8207436072186123534}

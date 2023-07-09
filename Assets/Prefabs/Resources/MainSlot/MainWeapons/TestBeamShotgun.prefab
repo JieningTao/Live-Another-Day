@@ -902,6 +902,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bbe09d9a6801bfe47999f2a8c8ba8b71, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   PercentageConsumedPerShot: 0.16
   ChargePerSecond: 0.2
   ChargeDelay: 0.2
@@ -957,6 +958,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-2
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/TestBeamShotgun
   MyEquipment: {fileID: 6116856496957321508}
@@ -1261,7 +1264,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8027462689194206108, guid: 20cd723f9ebb71549974f30d20c06fad, type: 3}
+  - {fileID: 2100000, guid: 0c4ed6e7830dce44bacfe56b8ae8294f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1559,6 +1562,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1671754780365652346}
     m_Modifications:
+    - target: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: Speed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: Timer
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d,
         type: 3}
       propertyPath: Damage

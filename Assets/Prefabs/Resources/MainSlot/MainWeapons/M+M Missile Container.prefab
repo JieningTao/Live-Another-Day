@@ -605,10 +605,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
   Volume: 0.8
+  Pitch: 1
   MaxMagazine: 6
   MaxReserveAmmo: 24
   ReloadTime: 6.5
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &2028634281944412228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,10 +645,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 6
   MaxReserveAmmo: 24
   ReloadTime: 6.5
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &5085153265517124789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,7 +666,7 @@ MonoBehaviour:
   HoldStyle: 4
   Size: 4
   RequireAiming: 0
-  Weight: 0.1
+  Weight: 0.3
   Mirrored: 0
   MainWeapon: {fileID: 2028634281944412229}
   MainWeaponSN: MM(HE)
@@ -690,13 +694,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: M+M Missile Container
   Classification: Missile Container
-  Description: 
+  Description: (Tap) Start Locking (Tap Again) Fire Locked
   InfoSprites:
   - {fileID: 21300000, guid: 2faf94e6332708f49b8ad5bea9c3ef7f, type: 3}
   - {fileID: 21300000, guid: 7cb483d360f14eb4e9bf04ee6bf04fe2, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/M+M Missile Container
   MyEquipment: {fileID: 5085153265517124789}

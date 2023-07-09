@@ -507,7 +507,10 @@ public class BaseMechFCS : MonoBehaviour
         if (MainTarget != null && !CurrentListOfLocked.Contains(MainTarget))
         {
             if (MyBMM.PlayerMech)
-                LockChanges.Invoke("Lock", MainTarget);
+            {
+                if (LockChanges != null)
+                    LockChanges.Invoke("Lock", MainTarget);
+            }
             CurrentListOfLocked.Add(MainTarget);
             LockCooldown = LockTime;
         }
@@ -581,7 +584,7 @@ public class BaseMechFCS : MonoBehaviour
         CurrentlyLocking = false;
         LockCooldown = LockTime;
 
-        if (MyBMM.PlayerMech)
+        if (MyBMM.PlayerMech&&LockChanges!=null)
             LockChanges.Invoke("UnlockAll", null);
 
         return Temp;

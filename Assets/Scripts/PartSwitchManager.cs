@@ -17,6 +17,8 @@ public class PartSwitchManager : MonoBehaviour
     [SerializeField]
     private GameObject BodyPartsSelection;
     [SerializeField]
+    private Animator CataAnimator;
+    [SerializeField]
     private GameObject WeaponsAndEXGSelection;
     [SerializeField]
     private UnityEngine.UI.Text CatagoryTitle;
@@ -27,6 +29,11 @@ public class PartSwitchManager : MonoBehaviour
 
     [SerializeField]
     private UIPartCompare PartCompareDisplay;
+
+    [SerializeField]
+    private RandomAudioSelector PartEquipSound;
+    [SerializeField]
+    private RandomAudioSelector ButtonSound;
 
     private MechAssemblyRack AssemblyRack;
     private List<AssemblyPartOption> CurrentDisplayedOptions = new List<AssemblyPartOption>();      //needs to impliment a object pool system for the options
@@ -54,16 +61,17 @@ public class PartSwitchManager : MonoBehaviour
 
         AssemblyRack.StarterLoad();
 
-        LoadList();
-        CreateOptionsForCurrentList();
-        SetCatagoryTitle();
-        DetermineEXGAndWeaponSlots();
+        //LoadList();
+        //CreateOptionsForCurrentList();
+        //SetCatagoryTitle();
+        //DetermineEXGAndWeaponSlots();
 
     }
 
     public void InstallPart(GameObject Part)
     {
         AssemblyRack.FitNewPart(CurrentCatagory, CurrentPosition, Part);
+        PartEquipSound.Play();
     }
 
 
@@ -77,6 +85,8 @@ public class PartSwitchManager : MonoBehaviour
 
     public void ButtonClickedPart(LoadOutPart Part)
     {
+        
+
         if (Part == CurrentSelectedPart )
         {
             //installs part
@@ -89,6 +99,7 @@ public class PartSwitchManager : MonoBehaviour
         else
         {
             //selects part
+            ButtonSound.Play();
             CurrentSelectedPart = Part;
             PartCompareDisplay.LoadSelectedPart(Part);
         }
@@ -111,35 +122,28 @@ public class PartSwitchManager : MonoBehaviour
         RecreateListButtons();
     }
 
-    private void RecreateListButtons()
-    {
-        ClearOptions();
-        LoadList();
-        CreateOptionsForCurrentList();
-        SetCatagoryTitle();
-
-        PartCompareDisplay.LoadCurrentPart(AssemblyRack.GetpostionPart(CurrentCatagory, CurrentPosition));
-        CurrentSelectedPart = null;
-        PartCompareDisplay.LoadSelectedPart(null);
-    }
-
-
-
     public void SwitchCatagory()
     {
-        if (BodyPartsSelection.active)
+        //if (BodyPartsSelection.active)
+        //{
+        //    BodyPartsSelection.SetActive(false);
+        //    WeaponsAndEXGSelection.SetActive(true);
+        //    DetermineEXGAndWeaponSlots();
+        //}
+        //else
+        //{
+        //    BodyPartsSelection.SetActive(true);
+        //    WeaponsAndEXGSelection.SetActive(false);
+        //}
+
+        if (CataAnimator.GetBool("BP"))
         {
-            BodyPartsSelection.SetActive(false);
-            WeaponsAndEXGSelection.SetActive(true);
-            DetermineEXGAndWeaponSlots();
-
-
-
+            CataAnimator.SetBool("BP", false);
         }
         else
         {
-            BodyPartsSelection.SetActive(true);
-            WeaponsAndEXGSelection.SetActive(false);
+            CataAnimator.SetBool("BP", true);
+            DetermineEXGAndWeaponSlots();
         }
     }
 
@@ -154,6 +158,18 @@ public class PartSwitchManager : MonoBehaviour
     }
 
     #endregion
+
+    private void RecreateListButtons()
+    {
+        ClearOptions();
+        LoadList();
+        CreateOptionsForCurrentList();
+        SetCatagoryTitle();
+
+        PartCompareDisplay.LoadCurrentPart(AssemblyRack.GetpostionPart(CurrentCatagory, CurrentPosition));
+        CurrentSelectedPart = null;
+        PartCompareDisplay.LoadSelectedPart(null);
+    }
 
     #region show display use functions
 
@@ -398,10 +414,28 @@ public class PartSwitchManager : MonoBehaviour
     {
         //needs to impliment a object pool system for the options
 
+        AssemblyPartOption NewOption;
+        if (a == null)// null option created for empty slots
+        {
+            NewOption = Instantiate(ListOptionPrefab, ListParent).GetComponent<AssemblyPartOption>();
+
+            CurrentDisplayedOptions.Add(NewOption);
+
+            NewOption.SetUp(this, a);
+
+            return;
+        }
+
+
         if (a && a.HideForPlayer) //parts that are tagged with this is hidden, mainly used for testing and locking unfinished parts
             return;
 
-        AssemblyPartOption NewOption = Instantiate(ListOptionPrefab, ListParent).GetComponent<AssemblyPartOption>();
+        if (UnlockTagTracker.Instance != null && !a.CheckUnlocked())
+        {
+            return;
+        }
+        
+        NewOption = Instantiate(ListOptionPrefab, ListParent).GetComponent<AssemblyPartOption>();
 
         CurrentDisplayedOptions.Add(NewOption);
 

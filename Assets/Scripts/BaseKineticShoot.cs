@@ -43,6 +43,21 @@ public class BaseKineticShoot : BaseShoot
         ReserveRemaining = MaxReserveAmmo + AttributeExtraAmmo;
     }
 
+    public virtual void ConsumeMagazine(int Amount)
+    {
+        if (MagazineRemaining >= Amount && ReloadTimeRemaining <= 0)
+        {
+            MagazineRemaining-=Amount;
+
+            if (MagazineRemaining <= 0)
+                Reload();
+        }
+        else
+        {
+            Reload();
+        }
+    }
+
     public override void EquipWeapon()
     {
         base.EquipWeapon();
@@ -67,8 +82,11 @@ public class BaseKineticShoot : BaseShoot
                 MagazineRemaining = ReserveRemaining;
                 ReserveRemaining = 0;
             }
+            MyBurstSettings.BurstRemaining = 0;
             ReloadTimeRemaining = ReloadTime;
             FireCooldown = 0;
+            if(MyAnimator)
+            MyAnimator.SetTrigger("Reload");
         }
 
     }

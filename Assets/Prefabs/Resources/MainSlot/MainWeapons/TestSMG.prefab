@@ -458,7 +458,7 @@ MonoBehaviour:
   MaxMagazine: 40
   MaxReserveAmmo: 120
   ReloadTime: 1.5
-  AmmoTypeIdentifier: 
+  AmmoTypeIdentifier: 20mmSMGAmmo
 --- !u!114 &-6461478087840340995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +509,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/TestSMG
   MyEquipment: {fileID: -6461478087840340995}
@@ -687,12 +688,32 @@ PrefabInstance:
     - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
       propertyPath: MyDamageTags.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: MyDamageTags.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386447, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
@@ -753,6 +774,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386674, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: m_Time
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386674, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0044575a3e23bc4b93c96e2925b167b, type: 3}

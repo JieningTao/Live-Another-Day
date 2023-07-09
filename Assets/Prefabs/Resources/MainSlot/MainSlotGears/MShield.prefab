@@ -563,6 +563,7 @@ MonoBehaviour:
   MaxHealth: 700
   MyArmorType: 0
   StuffToDisableAfterDestroy: []
+  GameobjectToDisableAfterDestroy: []
   DestroyEffect: {fileID: 0}
   DestroyDelay: 0
 --- !u!114 &2714409039737567074
@@ -586,6 +587,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - MS
   PartCatagory: 7
   PrefabPath: MainSlot/MainSlotGears/MShield
   MyEquipment: {fileID: 2327123528582464468}

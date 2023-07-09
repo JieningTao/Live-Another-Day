@@ -48,6 +48,19 @@ public class BaseEnergyShoot : BaseShoot
         //Debug.Log(EnergySource);
     }
 
+    public virtual void ConsumeCharge(float Amount)
+    {
+        CurrentCapacitorPercentage -= Amount;
+        if (CurrentCapacitorPercentage < 0)
+            CurrentCapacitorPercentage = 0;
+
+        ChargeDelayRemaining = ChargeDelay;
+
+        if (WasCharging)
+            EnergySource.CurrentPowerDraw -= ChargePowerDraw;
+        WasCharging = false;
+    }
+
     protected virtual void Recharge()
     {
         if (CurrentCapacitorPercentage < 1)
@@ -88,6 +101,11 @@ public class BaseEnergyShoot : BaseShoot
             if (WasCharging)
                 EnergySource.CurrentPowerDraw -= ChargePowerDraw;
             WasCharging = false;
+        }
+        else
+        {
+            //if not enough energy to fire, clears remaining burst
+            MyBurstSettings.BurstRemaining = 0;
         }
 
 

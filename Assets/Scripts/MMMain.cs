@@ -11,22 +11,31 @@ public class MMMain : MonoBehaviour
     private Animator MissionAnim;
     [SerializeField]
     private Animator ControlAnim;
-
+    [SerializeField]
+    private GameObject GarageNewMarker;
+    [SerializeField]
+    private RandomAudioSelector ButtonSound;
 
     private void Start()
     {
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        if (UnlockTagTracker.Instance.NewUnlocks)
+            GarageNewMarker.SetActive(true);
+        else
+            GarageNewMarker.SetActive(false);
     }
 
     public void Quit()
     {
+        ButtonSound.Play();
         Application.Quit();
     }
 
     public void Garage()
     {
+        ButtonSound.Play();
         SceneManager.LoadScene("Garage");
     }
 
@@ -50,6 +59,11 @@ public class MMMain : MonoBehaviour
     public void ControlsShow(bool a)
     {
         ControlAnim.SetBool("Show", a);
+    }
+
+    public void PlayButtonSound()
+    {
+        ButtonSound.Play();
     }
 
 

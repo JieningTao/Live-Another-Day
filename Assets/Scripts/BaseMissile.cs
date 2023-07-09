@@ -20,7 +20,6 @@ public class BaseMissile : BaseBullet
     [SerializeField]
     protected float ExtraTracking = 0;
 
-    protected float Lifetime = 0;
     [HideInInspector]
     [SerializeField]
     protected Transform TrackedObject; //needs to be serialized or keeps reverting to null when missile tracks

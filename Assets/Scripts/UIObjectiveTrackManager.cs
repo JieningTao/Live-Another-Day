@@ -22,6 +22,8 @@ public class UIObjectiveTrackManager : MonoBehaviour
     private GameObject TaskPrefab;
     [SerializeField]
     private GameObject TaskUIParent;
+    [SerializeField]
+    private Animator HeaderAnimator;
 
     List<UITaskDisplay> TasksOnDisplay = new List<UITaskDisplay>();
 
@@ -40,6 +42,11 @@ public class UIObjectiveTrackManager : MonoBehaviour
             Destroy(TasksOnDisplay[i].gameObject);
         }
         TasksOnDisplay.Clear();
+    }
+
+    public void FlashHeader()
+    {
+        HeaderAnimator.SetTrigger("Flash");
     }
 
 }

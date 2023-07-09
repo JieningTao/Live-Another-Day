@@ -10,12 +10,10 @@ public class BaseMWMultiLockMissileLauncher : BaseMainWeapon
     int LockCount;
     bool Locking = false;
 
-    public override void Equip(bool _Equip, BaseMechMain Operator, bool Right)
+    public override void Equip(bool _Equip, BaseMechMain _Operator, bool Right)
     {
-        base.Equip(_Equip, Operator, Right);
+        base.Equip(_Equip, _Operator, Right);
         MyMissileLauncher = MainWeapon as BaseMissileLauncher;
-        if (Operator)
-            MyFCS = Operator.GetFCS();
     }
 
     public override void PrimaryFire(bool Fire)
@@ -25,13 +23,13 @@ public class BaseMWMultiLockMissileLauncher : BaseMainWeapon
         {
             if (Locking)
             {
-                MyMissileLauncher.FireVolley(MyFCS.GetLockedList());
+                MyMissileLauncher.FireVolley(Operator.GetLockedList());
                 Locking = false;
             }
             else
             {
                 Locking = true;
-                MyFCS.RequestLocks(LockCount,this);
+                Operator.RequestLocks(LockCount,this);
             }
         }
     }

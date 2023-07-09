@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGearWeapon : EnemyGear
+public class EnemyGearWeapon : EnemyGear,IDamageSource
 {
     [SerializeField]
     BaseShoot MyWeapon;
@@ -34,5 +34,10 @@ public class EnemyGearWeapon : EnemyGear
     public override float GetBulletSpeed()
     {
         return MyWeapon.GetProjectileSpeed();
+    }
+
+    public IDamageSource DamageSource()
+    {
+        return this;
     }
 }

@@ -331,13 +331,13 @@ MonoBehaviour:
   Health: 40
   Weight: 0.75
   Attributes: []
+  EAttributes: []
   FloatThrusters: []
   BoostThrusters:
   - {fileID: 978115601495007304}
   - {fileID: 4821749655561687350}
   - {fileID: 7670595108977514195}
   - {fileID: 5985876724567399701}
-  Displacement: {x: 0, y: -0.012, z: 0}
   JointPosition: {fileID: 8563995154992762268}
   LeftShoulderEXGSlot: {fileID: 6089328380741337690}
   RightShoulderEXGSlot: {fileID: 3083500289862009916}
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25feb2e4fee990459e3d139c0d012c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** LightMobilityPack'
+  Name: Binder' Boost Pack
   Classification: Light Mobility Pack
   Description: 
   InfoSprites:
@@ -365,6 +365,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-1
   PartCatagory: 4
   PrefabPath: MechParts/Pack/LightMobilityPack
   MyPart: {fileID: 4772568589179543886}

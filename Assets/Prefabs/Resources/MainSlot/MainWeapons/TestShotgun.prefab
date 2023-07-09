@@ -176,10 +176,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8caea371e7f468943b10ce310c169663, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 0.7
+  Pitch: 1
   MaxMagazine: 5
   MaxReserveAmmo: 40
   ReloadTime: 2
-  AmmoTypeIdentifier: 
+  AmmoTypeIdentifier: NO.5SGAmmo
   ShotAmount: 20
 --- !u!114 &3286765828985260585
 MonoBehaviour:
@@ -231,6 +232,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/TestShotgun
   MyEquipment: {fileID: 3286765828985260585}
@@ -751,6 +753,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2674323954759537966}
     m_Modifications:
+    - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: Speed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: Timer
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
       propertyPath: Damage

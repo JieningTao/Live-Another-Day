@@ -40,7 +40,9 @@ public class UIPartCompare : MonoBehaviour
         LeftText.text = Left;
         RightText.text = Right;
 
-        return GameObject.Instantiate(StatPrefab, Parent.transform);
+        GameObject a = Instantiate(StatPrefab, Parent.transform);
+        a.SetActive(true);
+        return a;
     }
 
     private void ClearSelectedStats()

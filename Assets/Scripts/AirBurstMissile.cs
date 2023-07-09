@@ -39,6 +39,12 @@ public class AirBurstMissile : BaseMissile
         FlightCheck();
     }
 
+    public override void SetDamageSource()
+    {
+        base.SetDamageSource();
+        FragmentPrefab.SetDamageSource();
+    }
+
     public override void SetLayerAndMask(int Layer)
     {
         base.SetLayerAndMask(Layer);

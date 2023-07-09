@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6237410855634226629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758176233441219474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34b9595c037f6845b7273f25c14daba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 150
+  Timer: 2
+  Damage: 10
+  MyDamageType: 2
+  MyDamageTags: 
+  HitMask: 0
+  HitEffect: {fileID: 0}
+  MyTR: {fileID: 5758176233441219473}
+  MyExplosion: {fileID: 0}
+  ExplodeOnTimerExpire: 0
+  DamageSource: {fileID: 0}
+  Lifetime: 0
+  FinalAlignDirection: {x: 0, y: 0, z: 0}
+  TurnSpeed: 5
+--- !u!1001 &647106281649734499
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386447, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386673, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_Name
+      value: EnergyAlignBullet Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386673, guid: 1c5b270491b9c914db6b55ce60052d0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5121680720090386444, guid: 1c5b270491b9c914db6b55ce60052d0d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 1c5b270491b9c914db6b55ce60052d0d, type: 3}
+--- !u!1 &5758176233441219474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5121680720090386673, guid: 1c5b270491b9c914db6b55ce60052d0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 647106281649734499}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &5758176233441219473 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 5121680720090386674, guid: 1c5b270491b9c914db6b55ce60052d0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 647106281649734499}
+  m_PrefabAsset: {fileID: 0}

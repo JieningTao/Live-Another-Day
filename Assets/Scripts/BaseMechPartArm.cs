@@ -240,6 +240,10 @@ public class BaseMechPartArm : BaseMechPart
             }
             ArmEXG = a;
         }
+        else if(ArmEXG)
+        {
+            ArmEXG.InitializeGear(MyMech, null, IsRightArm());
+        }
 
     }
 

@@ -9,8 +9,6 @@ public class BaseRocket : BaseBullet
     [SerializeField]
     float SpeedUpTime = 2;
 
-    protected float Lifetime = 0;
-
     protected override void Update()
     {
         base.Update();

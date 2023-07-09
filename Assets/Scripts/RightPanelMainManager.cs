@@ -8,6 +8,8 @@ public class RightPanelMainManager : MonoBehaviour
     GameObject PartAndGearScreen;
     [SerializeField]
     GameObject ColorScreen;
+    [SerializeField]
+    GameObject LoadoutScreen;
 
 
 
@@ -17,6 +19,7 @@ public class RightPanelMainManager : MonoBehaviour
         {
             PartAndGearScreen.SetActive(true);
             ColorScreen.SetActive(false);
+            LoadoutScreen.SetActive(false);
         }
     }
 
@@ -26,6 +29,17 @@ public class RightPanelMainManager : MonoBehaviour
         {
             PartAndGearScreen.SetActive(false);
             ColorScreen.SetActive(true);
+            LoadoutScreen.SetActive(false);
+        }
+    }
+
+    public void SetLoadout()
+    {
+        if(!LoadoutScreen.active)
+        {
+            LoadoutScreen.SetActive(true);
+            PartAndGearScreen.SetActive(false);
+            ColorScreen.SetActive(false);
         }
     }
 }

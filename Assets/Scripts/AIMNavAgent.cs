@@ -49,6 +49,11 @@ public class AIMNavAgent : AIMovement
         return (MyNMA.CalculatePath(Position, navMeshPath) && navMeshPath.status == NavMeshPathStatus.PathComplete);
     }
 
+    public void Stop(bool a)
+    {
+        MyNMA.isStopped = a;
+    }
+
     private void Update()
     {
         if(Target && MyNMA)

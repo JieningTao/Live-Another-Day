@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.8
-    agentHeight: 1
+    agentRadius: 5
+    agentHeight: 5
     agentSlope: 30
     agentClimb: 0.3
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.26666668
+    cellSize: 1.6666666
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -3976,6 +3976,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Marker: DronePresenceR1
   Amount: 1
+--- !u!1001 &274273727
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4378141683296085728, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_Name
+      value: Ambiance
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085730, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378141683296085731, guid: f36f68ec20322d84cb8dac6dd5b955ec,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 28847c81a500a2243a3ae65f95f58af9, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f36f68ec20322d84cb8dac6dd5b955ec, type: 3}
 --- !u!43 &315529194
 Mesh:
   m_ObjectHideFlags: 0
@@ -9369,6 +9443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d155d9c245bf5b144bfe780a35d8b3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartAndFinishedCall: 
   DisplayTarget: Clear area
   Marker: DronePresenceR1
   PingTrackerMarkers:
@@ -9386,6 +9461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a78ffd04c0219428d37e7d3c5ece1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartAndFinishedCall: 
   DisplayTarget: Retreat
   Marker: Retreat Point
   PingTrackerMarkers:
@@ -9402,6 +9478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d155d9c245bf5b144bfe780a35d8b3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartAndFinishedCall: 
   DisplayTarget: Clear area
   Marker: DronePresenceR2
   PingTrackerMarkers:
@@ -18270,7 +18347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1840779314, guid: 66f745b34473ebb49baba788bbb096be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.45
+      value: 2.1999998
       objectReference: {fileID: 0}
     - target: {fileID: 1840779314, guid: 66f745b34473ebb49baba788bbb096be, type: 3}
       propertyPath: m_LocalPosition.z

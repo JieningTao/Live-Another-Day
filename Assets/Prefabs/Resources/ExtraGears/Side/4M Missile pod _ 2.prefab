@@ -421,10 +421,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 4
   MaxReserveAmmo: 4
   ReloadTime: 5
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &6783027650237574931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +447,7 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 0}
   ReadyTime: 0
+  ReadyTimer: 0
   LockCount: 4
   MultiLock: 1
   MyLauncher: {fileID: 3424587705454656200}
@@ -469,6 +472,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 9
   PrefabPath: ExtraGears/Side/4M Missile pod _ 2
   MyEXG: {fileID: 6783027650237574931}

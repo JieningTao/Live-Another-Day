@@ -596,9 +596,9 @@ MonoBehaviour:
   Health: 340
   Weight: 1.125
   Attributes: []
+  EAttributes: []
   FloatThrusters: []
   BoostThrusters: []
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 2771640115318051455}
   HeadSocket: {fileID: 2771640115239412706}
   RightArmSocket: {fileID: 2771640116995103695}
@@ -647,6 +647,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 1
   PrefabPath: MechParts/Torso/'Leo' Torso
   MyPart: {fileID: 1960244249804401429}
@@ -2129,6 +2130,7 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 44599660957857629}
   ReadyTime: 0.3
+  ReadyTimer: 0
   LockCount: 12
   MultiLock: 1
   MyLauncher: {fileID: 2524751821024470991}
@@ -2173,10 +2175,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 12
   MaxReserveAmmo: 48
   ReloadTime: 10
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!1 &5585808149678273824
 GameObject:
   m_ObjectHideFlags: 0

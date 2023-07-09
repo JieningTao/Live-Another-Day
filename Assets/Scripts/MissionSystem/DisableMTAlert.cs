@@ -13,7 +13,7 @@ public class DisableMTAlert : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("Marker - " + Marker + ": " + Amount);
+        Debug.Log("MT Marker - " + Marker + ": " + Amount);
         MissionTracker.Instance.UpdateProgress(Marker, Amount);
     }
 }

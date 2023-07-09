@@ -182,6 +182,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eb787a01bfbbab844bb16af928145178, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 20
   MaxReserveAmmo: 120
   ReloadTime: 3
@@ -218,10 +219,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
   Volume: 0.6
+  Pitch: 1
   MaxMagazine: 3
   MaxReserveAmmo: 21
   ReloadTime: 5
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &1990055625932398456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100dc38b3253a9f4b8f1810a4de0bdf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** DualFire'
+  Name: '''DualFire'' Autocannon'
   Classification: Autocannon
   Description: 
   InfoSprites:
@@ -273,6 +276,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-2
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/DualFire
   MyEquipment: {fileID: 1990055625932398456}

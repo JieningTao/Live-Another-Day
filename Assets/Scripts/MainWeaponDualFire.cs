@@ -16,15 +16,13 @@ public class MainWeaponDualFire : Shoot2MainWeapon
         //Debug.Log("2");
         if (Fire)
         {
-            SecondaryLauncher.FireFocusedVolley(MyFCS.GetMainTarget(), SecondaryBurst);
+            SecondaryLauncher.FireFocusedVolley(Operator.GetMainTarget(), SecondaryBurst);
         }
     }
 
     public override void Equip(bool _Equip, BaseMechMain Operator, bool Right)
     {
         base.Equip(_Equip, Operator, Right);
-        if(Operator)
-        MyFCS = Operator.GetFCS();
         SecondaryLauncher = SecondaryWeapon as BaseMissileLauncher;
     }
 }

@@ -25,5 +25,18 @@ public class BaseFCSChip : MonoBehaviour
     private float AimAngle = 60;
     public float GetAimAngle { get { return AimAngle; } }
 
+#if UNITY_EDITOR
+    public void SetStats(int a,float b,int c, float d, float e, float f)
+    {
+        PerLockCount = a;
+        LockTime = b;
+        MaxLock = c;
+        LockRange = d;
+        RadarRange = e;
+        AimAngle = f;
+
+    }
+#endif
+
 
 }

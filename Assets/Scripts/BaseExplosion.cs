@@ -51,7 +51,7 @@ public class BaseExplosion : MonoBehaviour
     public void SetDamageSource()
     {
         DamageSource = (Object)GetComponentInParent<IDamageSource>();
-        Debug.Log(DamageSource, this);
+        //Debug.Log(DamageSource, this);
     }
 
     protected void SetMask()

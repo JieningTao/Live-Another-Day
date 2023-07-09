@@ -375,6 +375,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d5a73d10e3465d545883aa223a38a861, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 200
   MaxReserveAmmo: 200
   ReloadTime: 2
@@ -420,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100dc38b3253a9f4b8f1810a4de0bdf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** 4 Barrel Rotary'
+  Name: UA-043
   Classification: Rotary Gun
   Description: 
   InfoSprites:
@@ -429,6 +430,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-2
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/4 Barrel Rotary
   MyEquipment: {fileID: 1447216066659427746}

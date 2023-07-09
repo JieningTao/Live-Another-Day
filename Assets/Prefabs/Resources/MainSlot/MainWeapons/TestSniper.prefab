@@ -762,6 +762,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cbe286eb28d853e4a94b6ba75e0a7783, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 5
   MaxReserveAmmo: 30
   ReloadTime: 2
@@ -781,7 +782,7 @@ MonoBehaviour:
   HoldStyle: 1
   Size: 3
   RequireAiming: 1
-  Weight: 0.1
+  Weight: 0.3
   Mirrored: 0
   MainWeapon: {fileID: 9026892890078646505}
   MainWeaponSN: SR-114
@@ -807,7 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100dc38b3253a9f4b8f1810a4de0bdf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** TestSniper'
+  Name: SR-114
   Classification: Sniper Rifle
   Description: 
   InfoSprites:
@@ -816,6 +817,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/TestSniper
   MyEquipment: {fileID: -6461478087840340995}

@@ -244,7 +244,8 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 0}
   ReadyTime: 0
-  HealAmount: 100
+  ReadyTimer: 0
+  HealAmount: 120
   HealTime: 1
   MaxCharge: 6
 --- !u!114 &7594319034468520126
@@ -268,6 +269,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/RepairPacks
   MyEXG: {fileID: 1854627994871447495}

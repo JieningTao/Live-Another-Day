@@ -1610,7 +1610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3431982266138383200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.744, z: 0}
+  m_LocalPosition: {x: 0, y: -1.397, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1140915100474223796}
@@ -2250,6 +2250,7 @@ MonoBehaviour:
   Health: 160
   Weight: 0.75
   Attributes: []
+  EAttributes: []
   FloatThrusters:
   - {fileID: 4786276171031377427}
   - {fileID: 3012418420776350931}
@@ -2258,7 +2259,6 @@ MonoBehaviour:
   BoostThrusters:
   - {fileID: 27309773830867811}
   - {fileID: 8147315776979310362}
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 7814930264936945194}
   LeftEXGSlot: {fileID: 1460488031304318049}
   RightEXGSlot: {fileID: 1641776130262490493}
@@ -2296,6 +2296,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 3
   PrefabPath: MechParts/Legs/'DragonFly' Legs
   MyPart: {fileID: 5891783599242692590}

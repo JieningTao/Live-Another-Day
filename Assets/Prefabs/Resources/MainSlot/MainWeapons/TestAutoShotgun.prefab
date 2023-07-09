@@ -311,10 +311,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fc8e7542daaa3924f97e3e3c47ccfe5e, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 0.55
+  Pitch: 1
   MaxMagazine: 21
   MaxReserveAmmo: 105
   ReloadTime: 3.5
-  AmmoTypeIdentifier: 
+  AmmoTypeIdentifier: NO.5SGAmmo
   ShotAmount: 8
 --- !u!114 &6021995556938673720
 MonoBehaviour:
@@ -357,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100dc38b3253a9f4b8f1810a4de0bdf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '''CleanSweep'''
+  Name: SG-077 'CleanSweep'
   Classification: Assault Shotgun
   Description: 
   InfoSprites:
@@ -366,6 +367,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-3
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/TestAutoShotgun
   MyEquipment: {fileID: 6021995556938673720}
@@ -754,6 +757,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8002904879729134938}
     m_Modifications:
+    - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: Speed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
+        type: 3}
+      propertyPath: Timer
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5121680720090386444, guid: d0044575a3e23bc4b93c96e2925b167b,
         type: 3}
       propertyPath: Damage

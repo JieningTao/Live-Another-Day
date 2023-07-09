@@ -2300,9 +2300,11 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 0}
   ReadyTime: 0
+  ReadyTimer: 0
   MyWeapon: {fileID: 3388554183347349332}
   MiscEffects: []
-  AimedPart: {fileID: 8512927686607638574}
+  AimedParts:
+  - {fileID: 8512927686607638574}
   TargetSpeed: 1
   TargetingAngle: 10
 --- !u!114 &4918329831939321238
@@ -2326,6 +2328,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 9
   PrefabPath: ExtraGears/Side/'Viper' RKT pod
   MyEXG: {fileID: 2765948635220600960}
@@ -2377,6 +2380,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 300}
   Volume: 0.8
+  Pitch: 1
   MaxMagazine: 10
   MaxReserveAmmo: 30
   ReloadTime: 7

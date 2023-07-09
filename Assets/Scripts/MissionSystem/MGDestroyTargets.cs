@@ -19,7 +19,7 @@ public class MGDestroyTargets : MissionGoal
         if (Marker != UpdateMarker)
             return;
 
-        Debug.Log(UpdateMarker + "---" + Content);
+        //Debug.Log(UpdateMarker + "---" + Content);
 
             if (AmountDestroied < TargetAmount)
                 AmountDestroied += (int)((float)Content);

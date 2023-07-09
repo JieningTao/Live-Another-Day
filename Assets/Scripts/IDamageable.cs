@@ -14,6 +14,8 @@ public class IDamageable : MonoBehaviour
     [SerializeField]
     protected List<MonoBehaviour> StuffToDisableAfterDestroy;
     [SerializeField]
+    protected List<GameObject> GameobjectToDisableAfterDestroy;
+    [SerializeField]
     protected ParticleSystem DestroyEffect;
     [Tooltip("Negative value for don''t destroy")]
     [SerializeField]
@@ -66,7 +68,7 @@ public class IDamageable : MonoBehaviour
     {
         if (DamageablePing != null)
         {
-            Debug.Log(Source);
+            //Debug.Log(Source);
             DamageablePing.Invoke(Damageable, Type, Damage, Source);
         }
     }
@@ -77,8 +79,14 @@ public class IDamageable : MonoBehaviour
         {
             foreach (MonoBehaviour a in StuffToDisableAfterDestroy)
             {
-            if(a)
-                a.enabled = false;
+                if (a)
+                    a.enabled = false;
+            }
+
+            foreach (GameObject a in GameobjectToDisableAfterDestroy)
+            {
+                if (a)
+                    a.SetActive(false);
             }
 
             if (DestroyEffect)

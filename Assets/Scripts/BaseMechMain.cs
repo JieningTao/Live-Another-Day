@@ -53,7 +53,8 @@ public class BaseMechMain : ICoatedDamagable
 
 
     public bool PlayerMech = false;
-
+    [SerializeField]
+    protected Camera MinimapCam;
 
 
     protected BaseEnergySource EnergySystem;
@@ -91,6 +92,8 @@ public class BaseMechMain : ICoatedDamagable
         MyFCS = GetComponent<BaseMechFCS>();
         MyFCS.InitializeFCS(this, PlayerMech, MPLArm, MPRArm, FCSChip);
 
+        
+
 
         MyMovement = GetComponent<BaseMechMovement>();
         AssignMovementStats();
@@ -106,6 +109,7 @@ public class BaseMechMain : ICoatedDamagable
         {
             FindObjectOfType<UIInfoPanelManager>().UIInitialize();
             UILockManager.Instance.Initialize();
+            MinimapCam.orthographicSize = FCSChip.GetRadarRange;
         }
     }
 
@@ -267,7 +271,7 @@ public class BaseMechMain : ICoatedDamagable
 
         MyMovement.SetGroundDetection(MPLegs.GetGroundDetection());
 
-        MyFCS.InitStats(300, 150); // radar and lock range now hard coded to test integration with assembly, if you try to integrate range status without changing this, you're a dumbass future jiening.
+        //MyFCS.InitStats(300, 150); // radar and lock range now hard coded to test integration with assembly, if you try to integrate range status without changing this, you're a dumbass future jiening.
 
         LeftArm = MPLArm.transform;
         RightArm = MPRArm.transform;

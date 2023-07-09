@@ -101,7 +101,7 @@ MonoBehaviour:
   Volume: 1
   Pitch: 0.8
   MaxMagazine: 12
-  MaxReserveAmmo: 84
+  MaxReserveAmmo: 96
   ReloadTime: 2
   AmmoTypeIdentifier: 30mmRifleAmmo
 --- !u!114 &5854587744309282254
@@ -194,6 +194,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-2
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/R-006 Rifle(RKT)
   MyEquipment: {fileID: 6073683332486089072}

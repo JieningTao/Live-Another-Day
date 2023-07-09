@@ -94,4 +94,6 @@ public class MainHandMLShield : MainHandShield
 
     }
 
+    public override int GetSecondaryDisplayConfig
+    { get { return 1; } }
 }

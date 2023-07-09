@@ -70,7 +70,22 @@ public class MechAssemblyRack : MonoBehaviour
     public void LoadPlayerPrefLoadout()
     {
         string Load = SaveLoadManager.LoadData("PlayerLoadout");
+        LoadLoadoutFromString(Load);
+        Debug.Log("Loadout loaded");
+    }
 
+    public void SavePlayerPrefLoadout()
+    {
+        Debug.Log("Saving Loadout...");
+        SaveLoadManager.SaveData("PlayerLoadout", ConvertCurrentLoadoutToString());
+
+        //PlayerPrefs.SetString("PlayerLoadout", a);
+        //PlayerPrefs.Save();
+
+    }
+
+    public void LoadLoadoutFromString(string Load)
+    {
         string Parts = "";
         string Colors = "";
 
@@ -139,23 +154,40 @@ public class MechAssemblyRack : MonoBehaviour
             if (LoadoutEXGs[5])
                 EquipedEXGear[7] = LoadoutEXGs[5].GetComponent<BaseEXGear>();
 
-            Debug.Log("Loadout loaded");
+            if (Colors != null)
+            {
+                //Debug.Log(Colors);
+                MyMCA = GetComponent<MechColorAdjuster>();
+
+                MyMCA.RecieveMaterials(SaveCoder.ConvertStringToColorScheme(Colors));
+
+            }
         }
 
-        if (Colors != null)
-        {
-            Debug.Log(Colors);
-            MyMCA = GetComponent<MechColorAdjuster>();
-
-            MyMCA.RecieveMaterials(SaveCoder.ConvertStringToColorScheme(Colors));
-
-        }
     }
 
-    public void SavePlayerPrefLoadout()
+    public void CompleteLoadoutFromString(string Load)
     {
-        Debug.Log("Saving Loadout...");
 
+            ClearSpawnedObjects();
+
+            LoadLoadoutFromString(Load);
+
+            SpawnParts();
+            AssembleVisual();
+            MyMCA.switchColor();
+
+
+
+    }
+
+    private void ClearSpawnedObjects()
+    {
+        Destroy(MPTorso.gameObject);
+    }
+
+    public string ConvertCurrentLoadoutToString()
+    {
         List<List<LoadOutPart>> Temp = new List<List<LoadOutPart>>();
         List<LoadOutPart> LoadoutBodyPart = new List<LoadOutPart>();
         List<LoadOutPart> LoadoutMainEquipment = new List<LoadOutPart>();
@@ -175,7 +207,7 @@ public class MechAssemblyRack : MonoBehaviour
         else
             LoadoutMainEquipment.Add(null);
 
-        if(CurrentSecondary)
+        if (CurrentSecondary)
             LoadoutMainEquipment.Add(CurrentSecondary.GetComponent<LoadOutPart>());
         else
             LoadoutMainEquipment.Add(null);
@@ -204,13 +236,8 @@ public class MechAssemblyRack : MonoBehaviour
         a += SaveCoder.ConvertColorSchemeToString(MyMCA.ExtractMaterials());
 
 
-        Debug.Log("Player loadout: "+a);
-
-        SaveLoadManager.SaveData("PlayerLoadout", a);
-
-        //PlayerPrefs.SetString("PlayerLoadout", a);
-        //PlayerPrefs.Save();
-
+        Debug.Log("Converted loadout: " + a);
+        return a;
     }
 
     private void ReassembleVisual()
@@ -225,6 +252,10 @@ public class MechAssemblyRack : MonoBehaviour
 
         MPTorso.VisualAssemble(transform);
         MPTorso.VisualAssembleMech(MPHead, MPRArm, MPLArm, MPLegs, MPPack);
+
+        BoostSystem.transform.parent = MPTorso.transform;
+        FCSChip.transform.parent = MPTorso.transform;
+        MPArms.transform.parent = MPTorso.transform;
 
         EquipWeapons();
         EquipEXGs();
@@ -254,6 +285,9 @@ public class MechAssemblyRack : MonoBehaviour
         //MPRArm.transform.parent = null;
         MPLegs.transform.parent = null;
         MPPack.transform.parent = null;
+
+        BoostSystem.transform.parent = null;
+        FCSChip.transform.parent = null;
     }
 
     private void SpawnParts()
@@ -265,14 +299,14 @@ public class MechAssemblyRack : MonoBehaviour
         MPLegs = Instantiate(MPLegs.gameObject, transform).GetComponent<BaseMechPartLegs>();
         MPPack = Instantiate(MPPack.gameObject, transform).GetComponent<BaseMechPartPack>();
 
-        MPArms = Instantiate(MPArms.gameObject, transform);
+        MPArms = Instantiate(MPArms.gameObject, MPTorso.transform);
         MPLArm = MPArms.GetComponentInChildren<BaseMechPartLArm>();
         MPRArm = MPArms.GetComponentInChildren<BaseMechPartRArm>();
         //MPLArm = Instantiate(MPLArm.gameObject, transform).GetComponent<BaseMechPartArm>();
         //MPRArm = Instantiate(MPRArm.gameObject, transform).GetComponent<BaseMechPartArm>();
 
-        BoostSystem = Instantiate(BoostSystem.gameObject, transform).GetComponent<BaseBoostSystem>();
-        FCSChip = Instantiate(FCSChip.gameObject, transform).GetComponent<BaseFCSChip>();
+        BoostSystem = Instantiate(BoostSystem.gameObject, MPTorso.transform).GetComponent<BaseBoostSystem>();
+        FCSChip = Instantiate(FCSChip.gameObject,MPTorso.transform).GetComponent<BaseFCSChip>();
 
         SpawnWeapons();
         SpawnEXGs();
@@ -363,7 +397,7 @@ public class MechAssemblyRack : MonoBehaviour
     {
         if (PartToFit)
         {
-            PartToFit = Instantiate(PartToFit, null);
+            PartToFit = Instantiate(PartToFit, MPTorso.transform);
             MyMCA.switchColor(PartToFit);
         }
 
@@ -423,6 +457,8 @@ public class MechAssemblyRack : MonoBehaviour
                     break;
 
                 case PartSwitchManager.BigCataGory.Torso:
+                    FCSChip.transform.parent = null;
+                    BoostSystem.transform.parent = null;
                     Destroy(MPTorso.gameObject);
                     MPTorso = PartToFit.GetComponent<BaseMechPartTorso>();
                     break;

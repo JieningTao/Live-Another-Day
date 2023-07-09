@@ -32,8 +32,9 @@ public class BaseShoot : MonoBehaviour
         public int BurstAmount = 1;
         [SerializeField]
         public float BurstInterval = 0;
-
+        [HideInInspector]
         public float BurstCD = 0;
+        [HideInInspector]
         public int BurstRemaining = 0;
     }
 
@@ -100,9 +101,9 @@ public class BaseShoot : MonoBehaviour
 
     public virtual void EquipWeapon()
     {
-        SetLayerAndBullet(gameObject.layer);
+        //SetLayerAndBullet(gameObject.layer);
+        ProjectileScript.InitBullet(this);
     }
-
 
     protected virtual int GetNextBulletSpawn()
     {
@@ -125,6 +126,7 @@ public class BaseShoot : MonoBehaviour
 
     protected virtual void InitializeMuzzleFlare()
     {
+        //Debug.Log("Ping",this);
         MuzzleFlares = new List<ParticleSystem>();
 
         foreach (Transform a in BulletSpawns)
@@ -151,15 +153,18 @@ public class BaseShoot : MonoBehaviour
 
         ProjectileScript = ProjectilePrefab.GetComponent<BaseBullet>();
 
-        int SetLayer = 0;
+        ProjectileScript.InitBullet(this);
 
-        if (gameObject.layer == 9)
-            SetLayer = 10;
-        else if (gameObject.layer == 11)
-            SetLayer = 12;
+        //int SetLayer = 0;
 
-        ProjectileScript.SetLayerAndMask(SetLayer);
-        ProjectileScript.SetDamageSource();
+        //if (gameObject.layer == 9)
+        //    SetLayer = 10;
+        //else if (gameObject.layer == 11)
+        //    SetLayer = 12;
+
+
+        //ProjectileScript.SetLayerAndMask(SetLayer);
+        //ProjectileScript.SetDamageSource();
     }
 
     protected virtual void SetLayerAndBullet(int Layer)
@@ -192,10 +197,10 @@ public class BaseShoot : MonoBehaviour
             else
                 Fire1();
         }
-        else if (Fire && MyBurstSettings.BurstAmount > 1 && FireCooldown <= 0)
-        {
+        //else if (Fire && MyBurstSettings.BurstAmount > 1 && FireCooldown <= 0)
+        //{
 
-        }
+        //}
         else
             Firing = Fire;
     }
@@ -212,8 +217,20 @@ public class BaseShoot : MonoBehaviour
             {
                 if (Firing)
                 {
+                    //Debug.Log(MyBurstSettings.BurstAmount);
+
                     if (MyBurstSettings.BurstAmount > 1)
+                    {
+                        if (MyBurstSettings.BurstInterval <= 0)
+                        {
+                            for (int i = 0; i < MyBurstSettings.BurstAmount; i++)
+                            {
+                                Fire1();
+                            }
+                        }
+                        else
                         MyBurstSettings.BurstRemaining = MyBurstSettings.BurstAmount;
+                    }
                     else
                         Fire1();
 
@@ -232,8 +249,17 @@ public class BaseShoot : MonoBehaviour
             {
                 if (MyBurstSettings.BurstCD <= 0)
                 {
-                    Fire1();
-                    MyBurstSettings.BurstCD = MyBurstSettings.BurstInterval;
+                    if (MyBurstSettings.BurstInterval > 0)
+                    {
+                        Fire1();
+                        MyBurstSettings.BurstCD = MyBurstSettings.BurstInterval;
+                    }
+                    else
+                    {
+                        while (MyBurstSettings.BurstRemaining > 0)
+                            Fire1();
+                    }
+
                 }
             }
 
@@ -250,15 +276,22 @@ public class BaseShoot : MonoBehaviour
         int SlotNum = GetNextBulletSpawn();
         GameObject NewBullet = GameObject.Instantiate(ProjectilePrefab, BulletSpawns[SlotNum].position, BulletSpawns[SlotNum].rotation);
         NewBullet.SetActive(true);
-        NewBullet.transform.Rotate(new Vector3(Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), 0), Space.World);
+        NewBullet.transform.Rotate(new Vector3(Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), 0), Space.Self);
 
         if (MuzzleFlarePrefab != null)
+        {
+            //Debug.Log(MuzzleFlares.Count);
             MuzzleFlares[SlotNum].Play();
+        }
 
         if (ShotSounds.Count > 0)
             PlayShotSound(SlotNum);
 
         FireCooldown = TBS;
+
+        if (MyBurstSettings.BurstAmount > 1)
+            MyBurstSettings.BurstRemaining--;
+        
 
         if (MyAnimator)
             MyAnimator.SetTrigger("Fire");

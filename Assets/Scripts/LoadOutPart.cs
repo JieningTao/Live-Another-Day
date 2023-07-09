@@ -10,6 +10,8 @@ public class LoadOutPart : MonoBehaviour
     public string Description;
     public Sprite[] InfoSprites = new Sprite[4];
     public bool HideForPlayer = false;
+    [SerializeField]
+    public List<string> UnlockRequiredTags;
     public PartSwitchManager.BigCataGory PartCatagory;
     public string PrefabPath;
 
@@ -17,7 +19,7 @@ public class LoadOutPart : MonoBehaviour
 
     public LoadOutPart LoadPrefab()
     {
-        Debug.Log(Resources.Load<LoadOutPart>(PrefabPath));
+        //Debug.Log(Resources.Load<LoadOutPart>(PrefabPath));
         return Resources.Load<LoadOutPart>(PrefabPath);
     }
 
@@ -35,6 +37,20 @@ public class LoadOutPart : MonoBehaviour
     //{
     //    PrefabPath = a + gameObject.name;
     //}
+
+    public virtual bool CheckUnlocked()
+    {
+        if (UnlockRequiredTags.Count == 0)
+            return true;
+
+        foreach (string a in UnlockRequiredTags)
+        {
+            if (!UnlockTagTracker.Instance.UnlockTags.Contains(a))
+                return false;
+        }
+
+        return true;
+    }
 
     public virtual List<string> GetStats()
     {

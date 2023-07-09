@@ -373,9 +373,11 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 0}
   ReadyTime: 0.1
+  ReadyTimer: 0
   MyWeapon: {fileID: 9220622211533889388}
   MiscEffects: []
-  AimedPart: {fileID: 5949317119853284279}
+  AimedParts:
+  - {fileID: 5949317119853284279}
   TargetSpeed: 1.5
   TargetingAngle: 10
 --- !u!114 &6985835270795195919
@@ -399,6 +401,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 9
   PrefabPath: ExtraGears/Side/'Thornbush' Vulcan Pod
   MyEXG: {fileID: 203041761329394457}
@@ -432,6 +435,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8e996494ea2d01e418712b2f86c63093, type: 3}
   SoundMinMax: {x: 3, y: 300}
   Volume: 0.5
+  Pitch: 1
   MaxMagazine: 50
   MaxReserveAmmo: 150
   ReloadTime: 0

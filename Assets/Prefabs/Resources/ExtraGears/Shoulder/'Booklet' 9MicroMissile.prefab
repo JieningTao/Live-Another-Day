@@ -886,10 +886,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
   Volume: 0.8
+  Pitch: 1
   MaxMagazine: 9
   MaxReserveAmmo: 45
   ReloadTime: 4
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &3126307084183264763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,6 +912,7 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 5720233198340568924}
   ReadyTime: 0.3
+  ReadyTimer: 0
   LockCount: 9
   MultiLock: 1
   MyLauncher: {fileID: 5720233198340568923}
@@ -934,6 +937,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-3
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/'Booklet' 9MicroMissile
   MyEXG: {fileID: 3126307084183264763}
@@ -1809,6 +1814,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Timer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067907045586032992, guid: af09cd9c8219dd84d8cf724f9c2518ef,
+        type: 3}
+      propertyPath: TrackingSpeedChange.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067907045586032992, guid: af09cd9c8219dd84d8cf724f9c2518ef,
+        type: 3}
+      propertyPath: TrackingSpeedChange.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af09cd9c8219dd84d8cf724f9c2518ef, type: 3}

@@ -6164,10 +6164,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2df2cd51effda254cbdcfcd06d191ded, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 6
   MaxReserveAmmo: 24
   ReloadTime: 1.2
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &7402985633894433452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6183,6 +6185,7 @@ MonoBehaviour:
   MaxHealth: 650
   MyArmorType: 0
   StuffToDisableAfterDestroy: []
+  GameobjectToDisableAfterDestroy: []
   DestroyEffect: {fileID: 8230405374336680647}
   DestroyDelay: 0
 --- !u!114 &7402985633894433453
@@ -6206,6 +6209,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-1
   PartCatagory: 7
   PrefabPath: MainSlot/MainSlotGears/PMSS S Missile Pod
   MyEquipment: {fileID: 7402985633894433441}

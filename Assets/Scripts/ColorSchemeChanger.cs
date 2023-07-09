@@ -26,6 +26,14 @@ public class ColorSchemeChanger : MonoBehaviour
 
     [Space(20)]
     [SerializeField]
+    private UnityEngine.UI.Image SImage;
+    [SerializeField]
+    private UnityEngine.UI.Image SBG;
+    [SerializeField]
+    private UnityEngine.UI.Image VImage;
+
+    [Space(20)]
+    [SerializeField]
     private UnityEngine.UI.Image MainMatButton;
     [SerializeField]
     private UnityEngine.UI.Image SecondaryMatButton;
@@ -79,6 +87,7 @@ public class ColorSchemeChanger : MonoBehaviour
         else
             FrameMatButton.color = MyMCA.Frame.color;
 
+        LoadIndicatorColors();
     }
     public void SetColorS(System.Single _S)
     {
@@ -91,6 +100,8 @@ public class ColorSchemeChanger : MonoBehaviour
             SecondaryMatButton.color = MyMCA.Secondary.color;
         else
             FrameMatButton.color = MyMCA.Frame.color;
+
+        LoadIndicatorColors();
     }
     public void SetColorV(System.Single _V)
     {
@@ -103,6 +114,15 @@ public class ColorSchemeChanger : MonoBehaviour
             SecondaryMatButton.color = MyMCA.Secondary.color;
         else
             FrameMatButton.color = MyMCA.Frame.color;
+
+        LoadIndicatorColors();
+    }
+
+    private void LoadIndicatorColors()
+    {
+        SBG.color = Color.HSVToRGB(1, 0, V);
+        SImage.color = Color.HSVToRGB(H, 1, V);
+        VImage.color = Color.HSVToRGB(H, S, 1);
     }
 
     public void SetMetallic(System.Single Mt)
@@ -127,6 +147,7 @@ public class ColorSchemeChanger : MonoBehaviour
         MetallicSlider.value = CurrentAdjustingMaterial.GetFloat("_Metallic");
         SmoothSlider.value = CurrentAdjustingMaterial.GetFloat("_Glossiness");
 
+        LoadIndicatorColors();
     }
 
 }

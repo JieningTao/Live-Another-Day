@@ -570,9 +570,9 @@ MonoBehaviour:
     TributeAmount: 4
   - AttributeType: 15
     TributeAmount: 0.2
+  EAttributes: []
   FloatThrusters: []
   BoostThrusters: []
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 5192013502417346213}
   Head: {fileID: 3326158416133542709}
   TurnSpeed: 1
@@ -589,14 +589,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''Spider'' Head'
-  Classification: 
-  Description: 
+  Classification: Multi-Lock Head Unit
+  Description: Max Lock +4
   InfoSprites:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-2
   PartCatagory: 0
   PrefabPath: MechParts/Head/'Spider' Head
   MyPart: {fileID: 3795722268953671466}

@@ -8,7 +8,7 @@ public class ConvoyFormationSpawner : MonoBehaviour
     [SerializeField]
     GameObject SpawnedEnemy;
 
-    AIMNavAgent FollowerNav;
+    AIMAssistedRB FollowerNav;
 
     // Start is called before the first frame update
     public void StartUp()
@@ -18,10 +18,9 @@ public class ConvoyFormationSpawner : MonoBehaviour
 
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, HitMask))
         {
-            FollowerNav =  Instantiate(SpawnedEnemy, hit.point+new Vector3(0,0.4f,0), transform.rotation, null).GetComponent<AIMNavAgent>();
+            FollowerNav =  Instantiate(SpawnedEnemy, hit.point+new Vector3(0,0.4f,0), transform.rotation, null).GetComponent<AIMAssistedRB>();
 
-            FollowerNav.Spawn(transform);
-            FollowerNav.enabled = true;
+            FollowerNav.RecieveFollowTarget(transform, 0);
         }
 
 

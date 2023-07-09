@@ -578,6 +578,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 996d76f7b84a95148840f8168c896c07, type: 3}
   SoundMinMax: {x: 10, y: 500}
   Volume: 1.2
+  Pitch: 1
   MaxMagazine: 3
   MaxReserveAmmo: 21
   ReloadTime: 3.5
@@ -600,7 +601,7 @@ MonoBehaviour:
   Weight: 0.1
   Mirrored: 0
   MainWeapon: {fileID: 3798522037915822132}
-  MainWeaponSN: 'R-006 '
+  MainWeaponSN: C-061
   MainWeaponName: Heavy Cannon
   MainWeaponGaugeColor: {r: 1, g: 0.46176243, b: 0, a: 1}
   MainLockNum: 0
@@ -623,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100dc38b3253a9f4b8f1810a4de0bdf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** Heavy Cannon'
+  Name: C-061
   Classification: Cannon
   Description: 
   InfoSprites:
@@ -632,6 +633,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/Heavy Cannon
   MyEquipment: {fileID: 8045345396498258720}

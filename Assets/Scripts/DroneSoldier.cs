@@ -75,14 +75,12 @@ public class DroneSoldier : BaseDrone
         {
             AimWeapon(AIBody, transform.forward, new Vector3(0, 360, 0), SelfTurnSpeed);
         }
-
-
     }
 
     private Vector3 GetPositionAroundTarget(Transform a)
     {
         Vector3 Temp;
-        AIMNavAgent AIMNA = MyMovement as AIMNavAgent;
+        AIMAssistedRB AIMARB = MyMovement as AIMAssistedRB;
 
         for (int i = 0; i < 5; i++) //limit the max amount of tries that navagent will try to find a reachable position
         {
@@ -91,11 +89,11 @@ public class DroneSoldier : BaseDrone
 
             Debug.DrawLine(Temp, Temp + new Vector3(0, 10, 0), Color.cyan, 10);
 
-            //if (AIMNA.CheckReachable(Temp))
+            //if (AIMARB.CheckReachable(Temp))
             {
                 return Temp;
 
-                AIMNA.RecieveTargetPosition(Temp);
+                //AIMARB.RecieveTargetPosition(Temp);
             }
         }
         return a.position;
@@ -107,7 +105,7 @@ public class DroneSoldier : BaseDrone
 
         Vector3 a = GetPositionAroundTarget(MTargetSignal.transform);
         Debug.DrawLine(a, a + new Vector3(0, 10, 0), Color.red, 10);
-        (MyMovement as AIMNavAgent).RecieveTargetPosition(a);
+        (MyMovement as AIMAssistedRB).RecieveTargetPosition(a);
     }
 
 

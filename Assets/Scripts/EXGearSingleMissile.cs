@@ -24,6 +24,11 @@ public class EXGearSingleMissile : BaseEXGear
 
     }
 
+    public override string GetBBMainText()
+    {
+        return MyLauncher.GetAmmoText();
+    }
+
     public override float GetReadyPercentage()
     {
         return MyLauncher.GetAmmoGauge();

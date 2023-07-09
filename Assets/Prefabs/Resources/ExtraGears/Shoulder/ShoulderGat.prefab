@@ -410,9 +410,11 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 7823720922712957810}
   ReadyTime: 0.5
+  ReadyTimer: 0
   MyWeapon: {fileID: 7366496081310081518}
   MiscEffects: []
-  AimedPart: {fileID: 2414661557401686060}
+  AimedParts:
+  - {fileID: 2414661557401686060}
   TargetSpeed: 1.5
   TargetingAngle: 10
 --- !u!114 &7366496081310081518
@@ -473,6 +475,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/ShoulderGat
   MyEXG: {fileID: 1514333468037396745}

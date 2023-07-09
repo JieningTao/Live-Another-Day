@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGearMissileLauncher : EnemyGear
+public class EnemyGearMissileLauncher : EnemyGear, IDamageSource
 {
     [SerializeField]
     BaseMissileLauncher MyML;
@@ -13,6 +13,11 @@ public class EnemyGearMissileLauncher : EnemyGear
     {
         base.AssignController(a);
         MyML.EquipWeapon();
+    }
+
+    public IDamageSource DamageSource()
+    {
+        return this;
     }
 
     public override void TriggerGear(bool Down)

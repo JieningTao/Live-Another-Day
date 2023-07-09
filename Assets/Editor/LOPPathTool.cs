@@ -14,7 +14,7 @@ public class LOPPathTool : EditorWindow
     private bool EXG = false;
 
 
-    [MenuItem("Window/LOPPathTool")]
+    [MenuItem("Window/JieningTools/LOPPathTool")]
     public static void ShowWindow()
     {
         GetWindow<LOPPathTool>("LOPPathTool");
@@ -126,10 +126,13 @@ public class LOPPathTool : EditorWindow
         Debug.Log(Temp.Count);
 
 
-
         foreach (LOPMechPart a in Temp)
         {
-            if (!Patch || a.PrefabPath == "")
+
+            if (a.PartCatagory == PartSwitchManager.BigCataGory.Head)
+                Debug.Log(a.PrefabPath);
+
+            if ((Patch && a.PrefabPath == "")||!Patch)
             {
                 string Path = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(a.gameObject);
 
@@ -145,13 +148,21 @@ public class LOPPathTool : EditorWindow
                 if (!a.MyPart)
                     a.MyPart = a.GetComponent<BaseMechPart>();
 
+               for(int i=0;i<a.UnlockRequiredTags.Count;i++)
+                {
+                    if (a.UnlockRequiredTags[i] == "")
+                    {
+                        a.UnlockRequiredTags.RemoveAt(i);
+                        i--;
+                    }
+                }
+
 
                 PrefabUtility.SavePrefabAsset(a.gameObject);
             }
 
         }
 
-        Debug.Log("MechPart Repath Ran");
     }
 
     public void BoostSystemsRePath()

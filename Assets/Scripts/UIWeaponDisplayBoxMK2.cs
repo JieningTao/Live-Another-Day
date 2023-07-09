@@ -23,10 +23,30 @@ public class UIWeaponDisplayBoxMK2 : MonoBehaviour
     UnityEngine.UI.Text AmmoMain;
     [SerializeField]
     UnityEngine.UI.Image FillbarMain;
+
+    [Space(20)]
+
+    [Header("Config 1 for two weapon layout")]
+    [SerializeField]
+    GameObject Config1Parent;
     [SerializeField]
     UnityEngine.UI.Text AmmoSecondary;
     [SerializeField]
     UnityEngine.UI.Image FillbarSecondary;
+    [Header("Config 1 for ModeSwitch Weapon")]
+    [SerializeField]
+    GameObject Config2Parent;
+    [SerializeField]
+    UnityEngine.UI.Text ModeName;
+    [Header("Config 1 for Alt Function")]
+    [SerializeField]
+    GameObject Config3Parent;
+    [SerializeField]
+    UnityEngine.UI.Text FunctionText;
+
+
+    [Space(20)]
+
     [SerializeField]
     Animator ECWarning;
 
@@ -44,7 +64,9 @@ public class UIWeaponDisplayBoxMK2 : MonoBehaviour
     GameObject WarningPower;
 
 
-    bool HaveSecondary;
+    int SecondaryDisplayConfig;
+    bool HaveSecondary
+    { get { return SecondaryDisplayConfig != 0; }  }
     BaseMainSlotEquipment Equipment;
 
 
@@ -61,7 +83,11 @@ public class UIWeaponDisplayBoxMK2 : MonoBehaviour
             if(HaveSecondary)
             {
                 Equipment.GetUpdateData(false, out float SBFP, out string STD);
-                UpdateSecondary(STD, SBFP);
+
+                    UpdateSecondary(STD, SBFP);
+
+
+
             }
         }
     }
@@ -72,15 +98,27 @@ public class UIWeaponDisplayBoxMK2 : MonoBehaviour
         FillbarMain.fillAmount = FillPercentage;
     }
 
-    private void UpdateSecondary(string Ammo, float FillPercentage)
+    private void UpdateSecondary(string Text, float FillPercentage)
     {
-        AmmoSecondary.text = Ammo;
-        FillbarSecondary.fillAmount = FillPercentage;
+        if (SecondaryDisplayConfig == 1)
+        {
+            AmmoSecondary.text = Text;
+            FillbarSecondary.fillAmount = FillPercentage;
+        }
+        else if (SecondaryDisplayConfig == 2)
+        {
+            ModeName.text = Text;
+        }
+        else if (SecondaryDisplayConfig == 3)
+        {
+            FunctionText.text = Text;
+        }
+
+
     }
 
     private void SetSecondaryAvaliable(bool Avaliable)
     {
-        HaveSecondary = Avaliable;
         if (Avaliable)
         {
             Mask.fillAmount = 1f;
@@ -126,16 +164,38 @@ public class UIWeaponDisplayBoxMK2 : MonoBehaviour
             Name.text = MainName;
             FillbarMain.color = MainColor;
 
-            if (SecondaryName != "\n" && SecondaryName != "")
-            {
-                SetSecondaryAvaliable(true);
+            SecondaryDisplayConfig = _Equipment.GetSecondaryDisplayConfig;
+
+            SetSecondaryDisplayConfig(SecondaryDisplayConfig);
+
+            if (HaveSecondary)
                 FillbarSecondary.color = SecondaryColor;
-            }
-            else
-                SetSecondaryAvaliable(false);
+
 
             ECWarning.SetTrigger("EquipmentChanged");
         }
+    }
+
+    private void SetSecondaryDisplayConfig(int a)
+    {
+        if (a == 0)
+        {
+            SetSecondaryAvaliable(false);
+            return;
+        }
+
+        SetSecondaryAvaliable(true);
+
+        Config1Parent.SetActive(false);
+        Config2Parent.SetActive(false);
+        Config3Parent.SetActive(false);
+
+        if (a == 1)
+            Config1Parent.SetActive(true);
+        else if (a == 2)
+            Config2Parent.SetActive(true);
+        else if (a == 3)
+            Config3Parent.SetActive(true);
     }
 
     public void AmmoWarning(bool active)

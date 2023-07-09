@@ -64,6 +64,7 @@ public class MissionTracker : MonoBehaviour
                     NextStage();
                 }
             }
+
             //check for stage completion
         }
     }
@@ -93,7 +94,7 @@ public class MissionTracker : MonoBehaviour
             CurrentStage++;
             CreateUIElement(MissionStages[CurrentStage]);
 
-
+            UIObjectiveTrackManager.Instance.FlashHeader();
 
 
         }

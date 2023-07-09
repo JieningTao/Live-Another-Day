@@ -328,9 +328,9 @@ MonoBehaviour:
   Attributes:
   - AttributeType: 12
     TributeAmount: 50
+  EAttributes: []
   FloatThrusters: []
   BoostThrusters: []
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 8271788294922488943}
   Head: {fileID: 3326158416133542709}
   TurnSpeed: 1
@@ -347,14 +347,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''Echo'' Head'
-  Classification: 
-  Description: 
+  Classification: Scanner Head Unit
+  Description: Radar Range +50
   InfoSprites:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-1
   PartCatagory: 0
   PrefabPath: MechParts/Head/'Echo' Head
   MyPart: {fileID: 3795722268953671466}

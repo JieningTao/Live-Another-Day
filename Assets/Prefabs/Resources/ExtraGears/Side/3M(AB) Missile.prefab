@@ -308,10 +308,12 @@ MonoBehaviour:
   ShotSounds: []
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 3
   MaxReserveAmmo: 15
   ReloadTime: 5
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &6236425985303788733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +334,7 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 0}
   ReadyTime: 0
+  ReadyTimer: 0
   LockCount: 3
   MultiLock: 1
   MyLauncher: {fileID: 2821663007901706598}
@@ -356,6 +359,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-2
   PartCatagory: 9
   PrefabPath: ExtraGears/Side/3M(AB) Missile
   MyEXG: {fileID: 6236425985303788733}

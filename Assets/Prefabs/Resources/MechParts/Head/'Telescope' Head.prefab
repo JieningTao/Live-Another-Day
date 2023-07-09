@@ -188,11 +188,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 50
-  Weight: 0.36
-  Attributes: []
+  Weight: 0.32
+  Attributes:
+  - AttributeType: 13
+    TributeAmount: 30
+  EAttributes: []
   FloatThrusters: []
   BoostThrusters: []
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 1161888708894139184}
   Head: {fileID: 3326158416133542709}
   TurnSpeed: 1
@@ -209,14 +211,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: '''Telescope'' Head'
-  Classification: 
-  Description: 
+  Classification: Observer Head Unit
+  Description: Lock Range +30
   InfoSprites:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-3
   PartCatagory: 0
   PrefabPath: MechParts/Head/'Telescope' Head
   MyPart: {fileID: 3795722268953671466}

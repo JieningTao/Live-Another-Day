@@ -714,6 +714,7 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 4283986607800592591}
   ReadyTime: 0.3
+  ReadyTimer: 0
   LockCount: 8
   MultiLock: 1
   MyLauncher: {fileID: 7731332015487480581}
@@ -754,10 +755,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 200}
   Volume: 0.6
+  Pitch: 1
   MaxMagazine: 8
   MaxReserveAmmo: 24
   ReloadTime: 8
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!1 &2026522014901694143
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,6 +1345,7 @@ MonoBehaviour:
   Health: 70
   Weight: 1.2
   Attributes: []
+  EAttributes: []
   FloatThrusters:
   - {fileID: 2683926618639414032}
   - {fileID: 2683926619040287666}
@@ -1350,7 +1354,6 @@ MonoBehaviour:
   BoostThrusters:
   - {fileID: 2683926618916012553}
   - {fileID: 2683926619074305440}
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 8325556581847216405}
   LeftShoulderEXGSlot: {fileID: 2683926618181079874}
   RightShoulderEXGSlot: {fileID: 2683926619046667273}
@@ -1378,6 +1381,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 4
   PrefabPath: MechParts/Pack/MultirolePack
   MyPart: {fileID: 2683926619717059077}

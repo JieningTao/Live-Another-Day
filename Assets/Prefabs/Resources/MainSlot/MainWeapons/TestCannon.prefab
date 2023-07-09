@@ -371,6 +371,7 @@ MonoBehaviour:
   ShotSounds: []
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   MaxMagazine: 5
   MaxReserveAmmo: 20
   ReloadTime: 2
@@ -424,7 +425,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0798f464e9e62fa418d3fb7de1f7d77f, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  HideForPlayer: 0
+  HideForPlayer: 1
+  UnlockRequiredTags: []
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/TestCannon
   MyEquipment: {fileID: -6461478087840340995}

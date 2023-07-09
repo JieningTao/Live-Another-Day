@@ -299,7 +299,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8027462689194206108, guid: 7a570ab2005b69a41ba678e11339db78, type: 3}
+  - {fileID: 2100000, guid: 0c4ed6e7830dce44bacfe56b8ae8294f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -379,7 +379,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8027462689194206108, guid: 7a570ab2005b69a41ba678e11339db78, type: 3}
+  - {fileID: 2100000, guid: 0c4ed6e7830dce44bacfe56b8ae8294f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -640,6 +640,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 511509b0d90c10244b57736539e197f4, type: 3}
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
+  Pitch: 1
   PercentageConsumedPerShot: 0.16
   ChargePerSecond: 1
   ChargeDelay: 2
@@ -683,9 +684,11 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 1983705424823137310}
   ReadyTime: 1.2
+  ReadyTimer: 0
   MyWeapon: {fileID: 1983705424823137311}
   MiscEffects: []
-  AimedPart: {fileID: 1983705424823137309}
+  AimedParts:
+  - {fileID: 1983705424823137309}
   TargetSpeed: 1
   TargetingAngle: 10
 --- !u!114 &3018851965611018661
@@ -709,6 +712,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-3
   PartCatagory: 9
   PrefabPath: ExtraGears/Side/'Stiletto' Beam pistol
   MyEXG: {fileID: 5460307317532904627}
@@ -1283,7 +1288,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8027462689194206108, guid: 7a570ab2005b69a41ba678e11339db78, type: 3}
+  - {fileID: 2100000, guid: 0c4ed6e7830dce44bacfe56b8ae8294f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

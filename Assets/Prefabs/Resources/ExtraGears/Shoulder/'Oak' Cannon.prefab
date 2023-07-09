@@ -658,10 +658,12 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 3385436526295278084}
   ReadyTime: 0.65
+  ReadyTimer: 0
   MyWeapon: {fileID: 5196690453340276811}
   MiscEffects:
   - {fileID: 457399261658041941}
-  AimedPart: {fileID: 4101913922888948170}
+  AimedParts:
+  - {fileID: 4101913922888948170}
   TargetSpeed: 1
   TargetingAngle: 10
 --- !u!95 &3385436526295278084
@@ -704,6 +706,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/'Oak' Cannon
   MyEXG: {fileID: 5196690453340276812}

@@ -623,13 +623,13 @@ MonoBehaviour:
   Health: 100
   Weight: 1.25
   Attributes: []
+  EAttributes: []
   FloatThrusters: []
   BoostThrusters:
   - {fileID: 5131188257752453125}
   - {fileID: 916414763056236148}
   - {fileID: 4286450411179209037}
   - {fileID: 5102415060347308411}
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 8210644183730991308}
   LeftShoulderEXGSlot: {fileID: 1548504887977680294}
   RightShoulderEXGSlot: {fileID: 1443220823348332090}
@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25feb2e4fee990459e3d139c0d012c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: '** BackPack'
+  Name: BU54 BackPack
   Classification: Ammo Carrier Pack
   Description: 
   InfoSprites:
@@ -657,6 +657,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 4
   PrefabPath: MechParts/Pack/BackPack
   MyPart: {fileID: 6494186702201101817}

@@ -108,7 +108,7 @@ public class EnergyShield : BaseShield
             {
                 ProjectionShield.SetActive(true);
 
-                if (ChargeWhileDeployed)
+                if (!ChargeWhileDeployed)
                     StartCharging(false);
 
                 if (DeployedPowerDraw > 0)
@@ -144,7 +144,7 @@ public class EnergyShield : BaseShield
                 CurrentHealth = 0;
                 Destroied();
 
-                base.PingDamageable(this, "Destroied", 0, Source);
+                base.PingDamageable(this, "EShieldDestroied", 0, Source);
             }
 
 
@@ -164,6 +164,19 @@ public class EnergyShield : BaseShield
         //base.Destroied();
     }
 
+
+    public bool GetOperable
+    {
+        get {
+
+
+            return CurrentHealth > 0;
+
+                }
+    }
+
+    public bool GetDeployed
+    { get { return ProjectionShield.active; } }
 
     #region InfoAccess
 

@@ -15,14 +15,12 @@ public class BaseMWMissileLauncher : BaseMainWeapon
     {
         base.Equip(_Equip, Operator, Right);
         MyMissileLauncher = MainWeapon as BaseMissileLauncher;
-        if(Operator)
-        MyFCS = Operator.GetFCS();
     }
 
     public override void PrimaryFire(bool Fire)
     {
         //Debug.Log(MyFCS);
         if (Fire)
-            MyMissileLauncher.FireFocusedVolley(MyFCS.GetMainTarget(),MainBurstAmount);
+            MyMissileLauncher.FireFocusedVolley(Operator.GetMainTarget(),MainBurstAmount);
     }
 }

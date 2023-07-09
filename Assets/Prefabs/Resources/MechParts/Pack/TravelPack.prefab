@@ -427,6 +427,7 @@ MonoBehaviour:
   Health: 50
   Weight: 1
   Attributes: []
+  EAttributes: []
   FloatThrusters:
   - {fileID: 1467211963252508928}
   - {fileID: 7172247768192115360}
@@ -434,7 +435,6 @@ MonoBehaviour:
   - {fileID: 7529899605689390214}
   - {fileID: 7413234511844523452}
   - {fileID: 1661228616907642016}
-  Displacement: {x: 0, y: 0, z: 0}
   JointPosition: {fileID: 4860795598359965626}
   LeftShoulderEXGSlot: {fileID: 2843022133407849195}
   RightShoulderEXGSlot: {fileID: 6164196602788952033}
@@ -462,6 +462,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags: []
   PartCatagory: 4
   PrefabPath: MechParts/Pack/TravelPack
   MyPart: {fileID: 4772568589179543886}
@@ -983,6 +984,7 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 0}
   ReadyTime: 0
+  ReadyTimer: 0
   Tanks:
   - {fileID: 3661057112430995417}
   EjectEffects:

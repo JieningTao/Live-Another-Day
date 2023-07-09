@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EXGearAimedWeapon : EXGearWeapon
 {
+
     [SerializeField]
-    Transform AimedPart;
+    List<Transform> AimedParts;
     [SerializeField]
     float TargetSpeed = 1;
     [SerializeField]
@@ -25,7 +26,8 @@ public class EXGearAimedWeapon : EXGearWeapon
 
         if (Equipped && ReadyTimer<=0&& MyWeapon.GetFirable())//while the weapon is reloading, aiming can fuck with animations
         {
-            AimWeapon();
+            foreach(Transform a in AimedParts)
+            AimWeapon(a);
         }
     }
 
@@ -89,7 +91,7 @@ public class EXGearAimedWeapon : EXGearWeapon
     //    AimWeapon(AimedPart, AimedPart.forward, new Vector3(TargetingAngle, TargetingAngle, 0), TargetSpeed);
     //}
 
-    protected void AimWeapon()
+    protected void AimWeapon(Transform Weapon)
     {
         Vector3 AimDir;
 
@@ -102,9 +104,9 @@ public class EXGearAimedWeapon : EXGearWeapon
                 Target = MyFCS.GetMainTarget();
             }
 
-            Vector3 PridictedPosition = Target.transform.position + (Target.GetSpeed() * (Vector3.Distance(AimedPart.transform.position, Target.transform.position) / MyWeapon.GetProjectileSpeed()));
+            Vector3 PridictedPosition = Target.transform.position + (Target.GetSpeed() * (Vector3.Distance(Weapon.transform.position, Target.transform.position) / MyWeapon.GetProjectileSpeed()));
 
-            AimDir = Vector3.RotateTowards(AimedPart.forward, PridictedPosition - AimedPart.transform.position, TargetSpeed * Time.deltaTime, 0.0f);
+            AimDir = Vector3.RotateTowards(Weapon.forward, PridictedPosition - Weapon.transform.position, TargetSpeed * Time.deltaTime, 0.0f);
 
             if (!Aimed)
             {
@@ -115,7 +117,7 @@ public class EXGearAimedWeapon : EXGearWeapon
         else
         {
             //reset aim to forward
-            AimDir = Vector3.RotateTowards(AimedPart.forward, MyFCS.GetLookDirection(), TargetSpeed * Time.deltaTime, 0.0f);
+            AimDir = Vector3.RotateTowards(Weapon.forward, MyFCS.GetLookDirection(), TargetSpeed * Time.deltaTime, 0.0f);
 
             if (Target)
                 Target = null;
@@ -127,7 +129,7 @@ public class EXGearAimedWeapon : EXGearWeapon
             }
         }
 
-        AimedPart.rotation = Quaternion.LookRotation(AimDir, transform.up);
+        Weapon.rotation = Quaternion.LookRotation(AimDir, transform.up);
 
     }
 
@@ -147,7 +149,8 @@ public class EXGearAimedWeapon : EXGearWeapon
         else
 
         {
-            AimedPart.localRotation = Quaternion.Euler(0, 0, 0);
+            foreach(Transform b in AimedParts)
+            b.localRotation = Quaternion.Euler(0, 0, 0);
             MyFCS.EXGReticle(false);
             if (Aimed)
             {

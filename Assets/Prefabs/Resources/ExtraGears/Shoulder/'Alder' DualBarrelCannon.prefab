@@ -5700,7 +5700,7 @@ MonoBehaviour:
   - {fileID: 8309611782351787223}
   ProjectileScript: {fileID: 1706789383491953910}
   AccuracyDeviation: 0.01
-  TBS: 0.2
+  TBS: 0.5
   MyBurstSettings:
     BurstAmount: 1
     BurstInterval: 0
@@ -5739,10 +5739,12 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 8309611781541976705}
   ReadyTime: 0.6
+  ReadyTimer: 0
   MyWeapon: {fileID: 8309611781541976711}
   MiscEffects:
   - {fileID: 2198279729667757440}
-  AimedPart: {fileID: 8309611781228373661}
+  AimedParts:
+  - {fileID: 8309611781228373661}
   TargetSpeed: 1
   TargetingAngle: 10
 --- !u!95 &8309611781541976705
@@ -5785,6 +5787,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-1
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/'Alder' DualBarrelCannon
   MyEXG: {fileID: 8309611781541976710}

@@ -26,6 +26,7 @@ public class BaseEXGear : MonoBehaviour,IDamageSource
     protected BaseMechMain MyMech;
     protected bool Equipped = false;
     protected BaseEnergySource MechEnergySystem;
+    [SerializeField]
     protected float ReadyTimer;
 
     public virtual void InitializeGear(BaseMechMain Mech,Transform Parent,bool Right)

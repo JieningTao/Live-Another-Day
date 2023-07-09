@@ -454,7 +454,7 @@ MonoBehaviour:
   Volume: 1
   Pitch: 0.8
   MaxMagazine: 12
-  MaxReserveAmmo: 84
+  MaxReserveAmmo: 96
   ReloadTime: 2
   AmmoTypeIdentifier: 30mmRifleAmmo
 --- !u!114 &7671202745400613515
@@ -483,10 +483,11 @@ MonoBehaviour:
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
   MyAnimator: {fileID: 0}
-  ShotSounds: []
+  ShotSounds:
+  - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 5, y: 500}
-  Volume: 1
-  Pitch: 1
+  Volume: 0.9
+  Pitch: 0.7
   MaxMagazine: 1
   MaxReserveAmmo: 10
   ReloadTime: 1
@@ -541,6 +542,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HideForPlayer: 0
+  UnlockRequiredTags:
+  - 1-3
   PartCatagory: 7
   PrefabPath: MainSlot/MainWeapons/R-006 Rifle(GL)
   MyEquipment: {fileID: -855953501161792535}

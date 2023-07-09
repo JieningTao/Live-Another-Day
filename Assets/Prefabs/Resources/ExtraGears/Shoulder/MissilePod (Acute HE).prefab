@@ -453,10 +453,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a866ddedb1fb9f44f9b72cec6d619146, type: 3}
   SoundMinMax: {x: 3, y: 300}
   Volume: 0.8
+  Pitch: 1
   MaxMagazine: 8
   MaxReserveAmmo: 32
   ReloadTime: 3
   AmmoTypeIdentifier: 
+  FillVolley: 1
 --- !u!114 &2644953640383605110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +479,7 @@ MonoBehaviour:
   Passive: 0
   MyAnimator: {fileID: 2832166317477983540}
   ReadyTime: 0.3
+  ReadyTimer: 0
   LockCount: 8
   MultiLock: 1
   MyLauncher: {fileID: 2644953640383605111}
@@ -519,7 +522,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  HideForPlayer: 0
+  HideForPlayer: 1
+  UnlockRequiredTags: []
   PartCatagory: 8
   PrefabPath: ExtraGears/Shoulder/MissilePod (Acute HE)
   MyEXG: {fileID: 2644953640383605110}
@@ -1603,10 +1607,13 @@ MonoBehaviour:
   MyDamageTags: 
   HitMask: 0
   HitEffect: {fileID: 2423011843136464558}
+  MyTR: {fileID: 0}
   MyExplosion: {fileID: 3132809091510485049}
   ExplodeOnTimerExpire: 0
+  DamageSource: {fileID: 0}
+  Lifetime: 0
   Target: {fileID: 0}
-  TrackingSpeedChange: {x: 2.5, y: 0.8}
+  TrackingSpeedChange: {x: 4, y: 0.8}
   TrackingChangeTime: 1.5
   ActivationDelay: 0.7
   ExtraTracking: 0
