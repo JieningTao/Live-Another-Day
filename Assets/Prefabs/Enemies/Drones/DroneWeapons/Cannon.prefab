@@ -399,13 +399,20 @@ MonoBehaviour:
   ProjectileScript: {fileID: 5337040317417986252}
   AccuracyDeviation: 0.02
   TBS: 1
+  MyBurstSettings:
+    BurstAmount: 1
+    BurstInterval: 0
+    BurstCD: 0
+    BurstRemaining: 0
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
+  MyAnimator: {fileID: 0}
   ShotSounds:
   - {fileID: 8300000, guid: c1af6cc4ee33c7443b5a33bdeb3e1490, type: 3}
   SoundMinMax: {x: 10, y: 800}
   Volume: 1
+  Pitch: 1
 --- !u!114 &3381897524093615685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,7 +864,7 @@ PrefabInstance:
     - target: {fileID: 6248584732470765589, guid: 6d51d3b342bf5b14d80f44d53642d240,
         type: 3}
       propertyPath: ExplosiveDamage
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 9101633323893814125, guid: 6d51d3b342bf5b14d80f44d53642d240,
         type: 3}

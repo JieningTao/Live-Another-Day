@@ -17,7 +17,8 @@ public class EXGearLockOnMissile : BaseEXGear
     public override void InitializeGear(BaseMechMain Mech, Transform Parent, bool Right)
     {
         base.InitializeGear(Mech, Parent, Right);
-        MyFCS = Mech.GetFCS();
+        if(Mech.GetFCS())
+            MyFCS = Mech.GetFCS();
         MyLauncher.EquipWeapon();
     }
 

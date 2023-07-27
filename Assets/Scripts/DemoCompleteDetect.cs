@@ -6,7 +6,7 @@ public class DemoCompleteDetect : MonoBehaviour
 {
     private void Start()
     {
-        if (MissionCompletionTracker.Instance.GetMissionStatus("1-1") && MissionCompletionTracker.Instance.GetMissionStatus("1-2") && MissionCompletionTracker.Instance.GetMissionStatus("1-3"))
+        if (MissionCompletionTracker.Instance.GetMissionStatus("1-1") && MissionCompletionTracker.Instance.GetMissionStatus("1-2") && MissionCompletionTracker.Instance.GetMissionStatus("1-3")&& MissionCompletionTracker.Instance.GetMissionStatus("1-4"))
         {
             this.gameObject.SetActive(true);
         }

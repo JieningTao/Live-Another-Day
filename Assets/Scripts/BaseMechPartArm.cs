@@ -66,7 +66,7 @@ public class BaseMechPartArm : BaseMechPart
         transform.parent = Temp;
 
         EquipEquipment(EquippedGear);
-        EquipEXG(ArmEXG);
+        VisualEquipEXG(ArmEXG);
     }
 
     public Transform GetSideMountEXGSlot()
@@ -243,6 +243,28 @@ public class BaseMechPartArm : BaseMechPart
         else if(ArmEXG)
         {
             ArmEXG.InitializeGear(MyMech, null, IsRightArm());
+        }
+
+    }
+
+    public virtual void VisualEquipEXG(BaseEXGear a)
+    {
+        if (ArmEXG == null && SideMountedEXGSlot)
+        {
+            if (a)
+            {
+                if (a.IsAimed)
+                    ArmEXG.PositionGear(EXGAimed, IsRightArm());
+                else
+                    ArmEXG.PositionGear(SideMountedEXGSlot, IsRightArm());
+
+            }
+            ArmEXG = a;
+           
+        }
+        else if (ArmEXG)
+        {
+            ArmEXG.PositionGear(null, IsRightArm());
         }
 
     }

@@ -10,9 +10,7 @@ public class BaseEnemy : IDamageable
     [SerializeField]
     protected float DetectRange;
 
-    [SerializeField] //SFT
-    List<EnergySignal> LockedTargets;
-    [SerializeField] //SFT
+    List<EnergySignal> LockedTargets = new List<EnergySignal>();
     protected EnergySignal MTargetSignal;
 
     [SerializeField]

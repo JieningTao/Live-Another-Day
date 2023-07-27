@@ -49,6 +49,27 @@ public class BaseBullet : MonoBehaviour
         Destroy(this.gameObject, Timer);
     }
 
+    public virtual void InitBullet(BaseShoot Source)
+    {
+        int SetLayer = 0;
+
+        if (Source.gameObject.layer == 9)
+            SetLayer = 10;
+        else if (Source.gameObject.layer == 11)
+            SetLayer = 12;
+
+        SetLayerAndMask(SetLayer);
+        SetDamageSource();
+
+        if (MyExplosion)
+        {
+            MyExplosion.SetLayerAndMask(SetLayer, HitMask);
+            MyExplosion.SetDamageSource();
+        }
+        if(MyTR)
+        MyTR.widthMultiplier = transform.localScale.x * 1.5f;
+    }
+
     protected virtual void Update()
     {
         FlightCheck();
@@ -102,26 +123,6 @@ public class BaseBullet : MonoBehaviour
         DealDamageTo(collision.gameObject);
     }
 
-    public virtual void InitBullet(BaseShoot Source)
-    {
-        int SetLayer = 0;
-
-        if (Source.gameObject.layer == 9)
-            SetLayer = 10;
-        else if (Source.gameObject.layer == 11)
-            SetLayer = 12;
-
-        SetLayerAndMask(SetLayer);
-        SetDamageSource();
-
-        if (MyExplosion)
-        {
-            MyExplosion.SetLayerAndMask(SetLayer, HitMask);
-            MyExplosion.SetDamageSource();
-        }
-        if(MyTR)
-        MyTR.widthMultiplier = transform.localScale.x * 1.5f;
-    }
 
     public virtual void SetLayerAndMask(int Layer)
     {

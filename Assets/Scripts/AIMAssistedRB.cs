@@ -18,6 +18,8 @@ public class AIMAssistedRB : AIMovement
     [SerializeField]
     bool CarMovement;
     [SerializeField]
+    bool TurnTowardsForward;
+    [SerializeField]
     float TurnSpeed;
 
     [SerializeField]
@@ -33,6 +35,8 @@ public class AIMAssistedRB : AIMovement
     [SerializeField]
     private float GroundDetectionRadius = 0.5f;
     RaycastHit GroundUnder;
+    [SerializeField]
+    int NMAgentID;
 
     Vector3 LastTargetPosition;
     NavMeshPath CurrentPath;
@@ -43,6 +47,18 @@ public class AIMAssistedRB : AIMovement
     {
         if(Target)
         CalculatePath(Target.position);
+
+        int a = 0;
+
+        for (int i = 0; i < NavMesh.GetSettingsCount(); i++)
+        {
+            NavMeshBuildSettings settings = NavMesh.GetSettingsByIndex(index: i);
+            if ("Drone Soldier" == NavMesh.GetSettingsNameFromID(agentTypeID: settings.agentTypeID))
+            {
+                Debug.Log(settings.agentTypeID);
+            }
+        }
+
     }
     // Update is called once per frame
     void Update()
@@ -145,7 +161,13 @@ public class AIMAssistedRB : AIMovement
             if (CarMovement)
                 VerhicleMove();
             else
+            {
+                if (TurnTowardsForward)
+                    TurnToForward();
                 HoverMove();
+
+            }
+        
         }
 
     }
@@ -156,6 +178,12 @@ public class AIMAssistedRB : AIMovement
         Vector3 ProjectedInput = Vector3.ProjectOnPlane(MoveDirection, GroundUnder.normal).normalized;
 
         MyRB.AddForce(ProjectedInput * MoveForce, ForceMode.Force);
+    }
+
+    void TurnToForward()
+    {
+        Vector3 TempDir = Vector3.RotateTowards(transform.forward, MoveDirection, TurnSpeed * Time.deltaTime, 0.0f);
+        transform.rotation = Quaternion.LookRotation(TempDir, transform.up);
     }
 
     void VerhicleMove()
@@ -219,8 +247,16 @@ public class AIMAssistedRB : AIMovement
 
         CurrentPath = new NavMeshPath();
 
+
+        NavMeshQueryFilter Filter = new NavMeshQueryFilter();
+
+        Filter.areaMask = NavMesh.AllAreas;
+        Filter.agentTypeID = NMAgentID;
+
+        Debug.Log(NavMesh.CalculatePath(GP, TP, Filter, CurrentPath));
+
         //DO NOT for the love of Starclan, disable this line, it FUCKS the whole nav system
-        Debug.Log(NavMesh.CalculatePath(GP, TP, NavMesh.AllAreas, CurrentPath));
+        //Debug.Log(NavMesh.CalculatePath(GP, TP, NavMesh.AllAreas, CurrentPath));
 
         PathNodes.Clear();
 

@@ -12,6 +12,11 @@ public class GarageCamera : MonoBehaviour, IPointerDownHandler
     GameObject VerticalAnchor;
     [SerializeField]
     float TurnSpeed = 10;
+    [Space(20)]
+    [SerializeField]
+    GameObject SPHorizontalAnchor;
+    [SerializeField]
+    GameObject SPVerticalAnchor;
 
     bool IsDragging;
     float DragTime;
@@ -27,6 +32,11 @@ public class GarageCamera : MonoBehaviour, IPointerDownHandler
             {
                 HorizontalAnchor.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * TurnSpeed);
                 VerticalAnchor.transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * -1, 0, 0) * Time.deltaTime * TurnSpeed);
+
+                if(SPHorizontalAnchor)
+                    SPHorizontalAnchor.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * TurnSpeed);
+                if (SPVerticalAnchor)
+                    SPVerticalAnchor.transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * -1, 0, 0) * Time.deltaTime * TurnSpeed);
             }
             if (Input.GetMouseButtonUp(0))
                 EndDrag();
@@ -51,6 +61,11 @@ public class GarageCamera : MonoBehaviour, IPointerDownHandler
         {
             HorizontalAnchor.transform.rotation = Quaternion.Euler(Vector3.zero);
             VerticalAnchor.transform.rotation = Quaternion.Euler(Vector3.zero);
+
+            if (SPHorizontalAnchor)
+                SPHorizontalAnchor.transform.rotation = Quaternion.Euler(Vector3.zero);
+            if (SPVerticalAnchor)
+                SPVerticalAnchor.transform.rotation = Quaternion.Euler(Vector3.zero);
         }
 
         DragTime = 0;

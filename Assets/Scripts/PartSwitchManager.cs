@@ -29,6 +29,10 @@ public class PartSwitchManager : MonoBehaviour
 
     [SerializeField]
     private UIPartCompare PartCompareDisplay;
+    [SerializeField]
+    private GameObject PartCamParent;
+    private GameObject CurrentDisplayingPart;
+
 
     [SerializeField]
     private RandomAudioSelector PartEquipSound;
@@ -95,6 +99,8 @@ public class PartSwitchManager : MonoBehaviour
             else
                 InstallPart(null);
             PartCompareDisplay.LoadCurrentPart(AssemblyRack.GetpostionPart(CurrentCatagory, CurrentPosition));
+
+            DisplayPartOnPartCam(null);
         }
         else
         {
@@ -102,6 +108,8 @@ public class PartSwitchManager : MonoBehaviour
             ButtonSound.Play();
             CurrentSelectedPart = Part;
             PartCompareDisplay.LoadSelectedPart(Part);
+
+            DisplayPartOnPartCam(Part);
         }
     }
 
@@ -169,6 +177,21 @@ public class PartSwitchManager : MonoBehaviour
         PartCompareDisplay.LoadCurrentPart(AssemblyRack.GetpostionPart(CurrentCatagory, CurrentPosition));
         CurrentSelectedPart = null;
         PartCompareDisplay.LoadSelectedPart(null);
+    }
+
+    private void DisplayPartOnPartCam(LoadOutPart a)
+    {
+        if (!PartCamParent)
+            return;
+
+        if (CurrentDisplayingPart)
+            Destroy(CurrentDisplayingPart.gameObject);
+
+        if (a)
+            CurrentDisplayingPart = Instantiate(a.gameObject, PartCamParent.transform);
+        else
+            CurrentDisplayingPart = null;
+
     }
 
     #region show display use functions

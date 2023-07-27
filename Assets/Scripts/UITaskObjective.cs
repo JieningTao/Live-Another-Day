@@ -11,8 +11,10 @@ public class UITaskObjective : MonoBehaviour
 
 
     private MissionGoal TrackedGoal;
-    List<UITaskObjective> Objectives;
+    [SerializeField]
+    private Animator MyAnimator;
 
+    bool Completed = false;
 
 
     public void Create(MissionGoal a)
@@ -26,6 +28,21 @@ public class UITaskObjective : MonoBehaviour
 
     private void Update()
     {
-        Progress.text = TrackedGoal.GetMissionProgress();
+        if (!Completed)
+        {
+            Progress.text = TrackedGoal.GetMissionProgress();
+
+            if (TrackedGoal.GetMissionPercentageProgress() == 1)
+            {
+                Complete();
+                Completed = true;
+            }
+        }
+
+    }
+
+    private void Complete()
+    {
+        MyAnimator.SetTrigger("Complete");
     }
 }

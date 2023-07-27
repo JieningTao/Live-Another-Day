@@ -422,6 +422,11 @@ PrefabInstance:
       propertyPath: MinimapCam
       value: 
       objectReference: {fileID: 633989515450618951}
+    - target: {fileID: 1573031023108476323, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
+        type: 3}
+      propertyPath: MyArmorType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3818856327641792099, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
         type: 3}
       propertyPath: m_Name
@@ -482,6 +487,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7830514941948148281, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
+        type: 3}
+      propertyPath: MyRB
+      value: 
+      objectReference: {fileID: 8387554179887846681}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c722b9bf33721be49bdbfab1e6c3d9ff, type: 3}
 --- !u!1 &4284046161119367877 stripped
@@ -493,6 +503,12 @@ GameObject:
 --- !u!4 &5451531705397874882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4912032884769373284, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1120464822957386918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &8387554179887846681 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8928989650634996159, guid: c722b9bf33721be49bdbfab1e6c3d9ff,
     type: 3}
   m_PrefabInstance: {fileID: 1120464822957386918}
   m_PrefabAsset: {fileID: 0}

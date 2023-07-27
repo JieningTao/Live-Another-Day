@@ -314,8 +314,6 @@ MonoBehaviour:
   DestroyDelay: 15
   DetectRadius: {fileID: 1859625679}
   DetectRange: 100
-  LockedTargets: []
-  MTargetSignal: {fileID: 0}
   MyMovement: {fileID: 1826055931}
   LeftWeapon:
     Part: {fileID: 6985310049567089217}
@@ -388,6 +386,7 @@ MonoBehaviour:
   SpeedCap: 8
   SurroundDistance: 0.1
   CarMovement: 0
+  TurnTowardsForward: 0
   TurnSpeed: 0
   PathCalculateCD: 2
   PathDeviation: 2
@@ -396,7 +395,7 @@ MonoBehaviour:
     m_Bits: 257
   GroundDetectionSite: {fileID: 1699458929}
   GroundDetectionRadius: 0.5
-  PathNodes: []
+  NMAgentID: 1479372276
 --- !u!1 &6985310049567089216
 GameObject:
   m_ObjectHideFlags: 0
