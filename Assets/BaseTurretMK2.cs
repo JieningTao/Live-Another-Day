@@ -17,7 +17,7 @@ public class BaseTurretMK2 : MonoBehaviour
     float TurnSpeed = 1;
 
     [SerializeField]
-    Vector3 TurnLimits = new Vector3(181,181,0);
+    Vector3 TurnLimits = new Vector3(181, 181, 0);
 
     [SerializeField]
     Transform HorizontalPart;
@@ -40,13 +40,17 @@ public class BaseTurretMK2 : MonoBehaviour
         }
     }
 
+    public void RecieveTarget(Transform _Target)
+    {
+        Target = _Target;
+    }
+
     private void AimAt(Vector3 TargetPosition)
     {
         Vector3 AimDir = (TargetPosition - AimReference.position).normalized;
         AimDir = AimReference.InverseTransformDirection(AimDir);
         Quaternion ChangeInRot = Quaternion.LookRotation(AimDir, transform.up);
         Vector3 Euler = ChangeInRot.eulerAngles; // the holy grail, rotations from forward of the aimer, negtive for left and up
-
 
 
         if (Euler.x > 180)
@@ -99,6 +103,31 @@ public class BaseTurretMK2 : MonoBehaviour
             VerticalPart.localRotation = Quaternion.Euler(Temp);
         }
 
+    }
+
+    public bool WithinAimAngle(Vector3 Pos)
+    {
+
+        Vector3 AimDir = (Pos - transform.position).normalized;
+        AimDir = transform.InverseTransformDirection(AimDir);
+
+        Quaternion ChangeInRot = Quaternion.LookRotation(AimDir, transform.up);
+        Vector3 Euler = ChangeInRot.eulerAngles; // the holy grail, rotations from forward of the aimer, negtive for left and up
+
+        Debug.Log(Euler);
+
+        if (Euler.x > 180)
+            Euler.x -= 360;
+        if (Euler.y > 180)
+            Euler.y -= 360;
+
+        if (Mathf.Abs(Euler.x) > TurnLimits.x)
+            return false;
+        if (Mathf.Abs(Euler.y) > TurnLimits.y)
+            return false;
+
+
+        return true;
     }
 
 

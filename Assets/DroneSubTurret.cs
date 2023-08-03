@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroneSubTurret : IDamageable, IDamageSource
+[RequireComponent(typeof(BaseTurretMK2))]
+public class DroneSubTurret : DroneSubWeapon
 {
+
     [SerializeField]
     BaseTurretMK2 MyTurret;
     [SerializeField]
@@ -11,6 +13,9 @@ public class DroneSubTurret : IDamageable, IDamageSource
     bool Firing = false;
     [SerializeField]
     float MaxAllowedAngleDeviation;
+    [SerializeField]
+    Vector2 FireRange = new Vector2(10, 100);
+    
 
     [SerializeField]
     float BurstDuration;
@@ -35,29 +40,58 @@ public class DroneSubTurret : IDamageable, IDamageSource
         }
         else
         {
-            BurstStatusCD -= Time.deltaTime;
-            if (BurstStatusCD <= 0)
+
+            if (BurstStatusCD <= 0 && MyTarget)
             {
                 DecideTrigger();
             }
+            else
+                BurstStatusCD -= Time.deltaTime;
         }
+    }
+
+    public override void RecieveTarget(EnergySignal Target)
+    {
+        base.RecieveTarget(Target);
+        if (Target)
+            MyTurret.RecieveTarget(Target.transform);
+        else
+            MyTurret.TurnToRest();
     }
 
     private void DecideTrigger()
     {
-        if (MyTurret.GetTargetAngleDeviation <= MaxAllowedAngleDeviation)
+        if (MyTurret.GetTargetAngleDeviation <= MaxAllowedAngleDeviation && RangeTest(MyTarget.transform.position,FireRange))
         {
-
             Firing = true;
             MyWeapon.Trigger(true);
             BurstStatusCD = BurstDuration;
-
         }
 
     }
 
-    public IDamageSource DamageSource()
+    public override bool CurrentlyTargeting()
     {
-        return this;
+        if (MyTarget&& CanTargetPosition(MyTarget.transform.position))
+            return true;
+        return false;
     }
+
+    public override bool CanTargetPosition(Vector3 Pos)
+    {
+        if (RangeTest(Pos, FireRange))
+            return MyTurret.WithinAimAngle(Pos);
+        else
+            return false;
+    }
+
+    private bool RangeTest(Vector3 Pos, Vector2 Range)
+    {
+        float a = Vector3.Distance(transform.position, Pos);
+        if (a < Range.y && a > Range.x)
+            return true;
+        return false;
+
+    }
+
 }
