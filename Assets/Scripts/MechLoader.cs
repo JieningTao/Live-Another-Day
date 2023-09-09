@@ -15,13 +15,12 @@ public class MechLoader : MonoBehaviour
     void Start()
     {
 
-
         string Load;
         Load = SaveLoadManager.LoadData(LoadKey);
 
         MyMech = GetComponent<BaseMechMain>();
 
-        if (Load!=null)
+        if (Load!=null&&Load!="")
         {
             string Parts = "";
             string Colors = "";

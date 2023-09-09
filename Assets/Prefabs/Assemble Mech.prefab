@@ -200,6 +200,7 @@ MonoBehaviour:
   MyArmorType: 0
   StuffToDisableAfterDestroy:
   - {fileID: 8092659294929777131}
+  GameobjectToDisableAfterDestroy: []
   DestroyEffect: {fileID: 2442477019407343416}
   DestroyDelay: -1
   MyCoatingType: 0
@@ -220,6 +221,7 @@ MonoBehaviour:
   BoostSystem: {fileID: 5292031638811483817, guid: 0d9a31090c043514db5272a1e00746c4,
     type: 3}
   PlayerMech: 0
+  MinimapCam: {fileID: 0}
 --- !u!114 &3704789420456933514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5371,11 +5373,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 56196164874761107}
     m_Modifications:
-    - target: {fileID: 2174930671072612301, guid: afc34916ce56755498dc61b63f82dcb6,
-        type: 3}
-      propertyPath: ShapeModule.m_Rotation.x
-      value: -90
-      objectReference: {fileID: 0}
     - target: {fileID: 5330509743195362680, guid: afc34916ce56755498dc61b63f82dcb6,
         type: 3}
       propertyPath: m_RootOrder

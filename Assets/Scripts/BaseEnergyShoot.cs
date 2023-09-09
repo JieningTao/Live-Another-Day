@@ -13,12 +13,12 @@ public class BaseEnergyShoot : BaseShoot
     [SerializeField]
     protected float ChargeDelay;
     [SerializeField]
-    private float ChargePowerDraw;
+    protected float ChargePowerDraw;
 
     protected float CurrentCapacitorPercentage;
     protected float ChargeDelayRemaining;
     protected BaseEnergySource EnergySource;
-    bool WasCharging = false;
+    protected bool WasCharging = false;
 
     protected override void Start()
     {
@@ -95,6 +95,7 @@ public class BaseEnergyShoot : BaseShoot
         if (CurrentCapacitorPercentage >= PercentageConsumedPerShot)
         {
             CurrentCapacitorPercentage -= PercentageConsumedPerShot;
+
             base.Fire1();
             ChargeDelayRemaining = ChargeDelay;
 

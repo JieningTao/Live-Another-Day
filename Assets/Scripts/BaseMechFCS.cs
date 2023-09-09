@@ -738,8 +738,11 @@ public class BaseMechFCS : MonoBehaviour
             SelectSlot(Temp);
     }
 
-    private void SelectSlot(int SlotNum)
+    public void SelectSlot(int SlotNum)
     {
+        if (SlotNum == SelectedEXSlot) //if is currently selected EXG, do nothing
+            return;
+
         if (EquipedEXGear[SelectedEXSlot] != null)
             EquipedEXGear[SelectedEXSlot].Equip(false);
 
@@ -750,7 +753,6 @@ public class BaseMechFCS : MonoBehaviour
         if (PlayerFCS && EXGearChanges != null)
         {
             EXGearChanges.Invoke(SelectedEXSlot + 1, "Select", EquipedEXGear[SelectedEXSlot]);
-
         }
     }
 

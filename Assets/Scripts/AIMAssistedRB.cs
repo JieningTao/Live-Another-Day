@@ -48,8 +48,6 @@ public class AIMAssistedRB : AIMovement
         if(Target)
         CalculatePath(Target.position);
 
-        int a = 0;
-
         for (int i = 0; i < NavMesh.GetSettingsCount(); i++)
         {
             NavMeshBuildSettings settings = NavMesh.GetSettingsByIndex(index: i);

@@ -109,7 +109,6 @@ public class BaseMechMovement : MonoBehaviour
     float JCRemaining;
     public Vector3 MovementInput;
 
-    [SerializeField] //SFT
     private Rigidbody MyRB;
     private BaseMechMain MyBMM;
     private BaseBoostSystem MyBS;
@@ -441,7 +440,8 @@ public class BaseMechMovement : MonoBehaviour
         WasFloating = Floating;
     }
 
-
+    public Rigidbody GetRigidbody
+    { get { return MyRB; } }
 
 
 

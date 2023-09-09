@@ -25,6 +25,9 @@ public class BaseShoot : MonoBehaviour
     [Tooltip("only useful with a burst amount > 1")]
     protected BurstFireSettings MyBurstSettings;
 
+    [SerializeField]
+    protected int ShotAmount = 1;
+
     [System.Serializable]
     public class BurstFireSettings
     {
@@ -274,9 +277,24 @@ public class BaseShoot : MonoBehaviour
     protected virtual void Fire1()
     {
         int SlotNum = GetNextBulletSpawn();
-        GameObject NewBullet = GameObject.Instantiate(ProjectilePrefab, BulletSpawns[SlotNum].position, BulletSpawns[SlotNum].rotation);
-        NewBullet.SetActive(true);
-        NewBullet.transform.Rotate(new Vector3(Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), 0), Space.Self);
+
+        if (ShotAmount > 1)
+        {
+            for (int i = 0; i < ShotAmount; i++)
+            {
+                GameObject NewBullet = GameObject.Instantiate(ProjectilePrefab, BulletSpawns[SlotNum].position, BulletSpawns[SlotNum].rotation);
+                NewBullet.SetActive(true);
+                NewBullet.transform.Rotate(new Vector3(Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), 0), Space.Self);
+            }
+        }
+        else
+        {
+            GameObject NewBullet = GameObject.Instantiate(ProjectilePrefab, BulletSpawns[SlotNum].position, BulletSpawns[SlotNum].rotation);
+            NewBullet.SetActive(true);
+            NewBullet.transform.Rotate(new Vector3(Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), Random.Range(-AccuracyDeviation / 2, AccuracyDeviation / 2), 0), Space.Self);
+        }
+
+
 
         if (MuzzleFlarePrefab != null)
         {
@@ -407,7 +425,16 @@ public class BaseShoot : MonoBehaviour
     #region Loadoutpart request info stuff
 
     public virtual string GetDamage
-    { get { return ProjectileScript.GetDamage; } }
+    {
+        get
+        {
+            if (ShotAmount <= 1)
+                return ProjectileScript.GetDamage;
+            else
+                return ShotAmount + " * " + ProjectileScript.GetDamage;
+        }
+    }
+
 
     public virtual string GetAccuracy
     { get { return AccuracyDeviation+ "°"; } }

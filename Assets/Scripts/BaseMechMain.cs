@@ -89,8 +89,7 @@ public class BaseMechMain : ICoatedDamagable
         //ApplyMechAttributes(MechAtts);
         //ApplyExtraAttributes(ExtraAtts);
 
-        MyFCS = GetComponent<BaseMechFCS>();
-        MyFCS.InitializeFCS(this, PlayerMech, MPLArm, MPRArm, FCSChip);
+
 
         
 
@@ -98,6 +97,10 @@ public class BaseMechMain : ICoatedDamagable
         MyMovement = GetComponent<BaseMechMovement>();
         AssignMovementStats();
         MyMovement.InitializeMechMovement(this, PlayerMech);
+
+        MyFCS = GetComponent<BaseMechFCS>();
+        MyFCS.InitializeFCS(this, PlayerMech, MPLArm, MPRArm, FCSChip);
+
         AssignWeight();
         EnergySystem = MPTorso.GetPowerSystem();
 
@@ -135,32 +138,6 @@ public class BaseMechMain : ICoatedDamagable
         Temp.z = 0;
 
         CameraAnchor.localEulerAngles = Temp;
-
-        RightArm.transform.rotation = CameraAnchor.rotation;
-        LeftArm.transform.rotation = CameraAnchor.rotation;
-    }
-
-    public void AIRotate(Vector3 LookPosition, float Speed)
-    {
-        Vector3 TargetDir = (LookPosition - transform.position).normalized;
-        Debug.DrawRay(CameraAnchor.position, CameraAnchor.forward * 10, Color.red);
-        Debug.DrawRay(CameraAnchor.position, TargetDir * 10, Color.cyan);
-
-        if (Vector3.Angle(CameraAnchor.forward, LookPosition - transform.position) <= 10)
-            return;
-
-
-        Vector3 TempDir;
-
-        TempDir = Vector3.RotateTowards(CameraAnchor.forward, (transform.position - LookPosition).normalized, Speed * Time.deltaTime, 0.0f);
-        //TempDir = Vector3.ProjectOnPlane(TargetDir, -CameraAnchor.forward);
-
-        Vector3 Processed = Quaternion.ToEulerAngles(Quaternion.LookRotation(TempDir, transform.up));
-
-        Debug.Log(TempDir);
-
-        CameraAnchor.rotation = Quaternion.Euler(TempDir.y, 0, 0);
-        transform.rotation = Quaternion.Euler(0, -TempDir.x, 0);
 
         RightArm.transform.rotation = CameraAnchor.rotation;
         LeftArm.transform.rotation = CameraAnchor.rotation;
