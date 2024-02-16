@@ -48,6 +48,14 @@ public class BaseEnergySource : MonoBehaviour
 
     }
 
+    public void RestoreEnergy(float Amount)
+    {
+
+        CurrentEnergy += Amount;
+        if (CurrentEnergy > MaxEnergy)
+            CurrentEnergy = MaxEnergy;
+    }
+
     protected float GetOutputEfficiency()
     {
         if (CurrentPowerDraw <= NaturalEnergyRegen || CurrentEnergy > 0)
