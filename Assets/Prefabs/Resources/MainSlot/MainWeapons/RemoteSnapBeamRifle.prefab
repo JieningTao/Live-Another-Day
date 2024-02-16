@@ -477,78 +477,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &4350461985539303470
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2674418796876683254}
-  - component: {fileID: 2556768236319441715}
-  - component: {fileID: 7785789622861663737}
-  - component: {fileID: 5092848964518062043}
-  m_Layer: 18
-  m_Name: Interactable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2674418796876683254
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4350461985539303470}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4663420158370971727}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2556768236319441715
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4350461985539303470}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &7785789622861663737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4350461985539303470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717c4a928c4d9094bab308c286faab5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  MainInteract: 
-  SubInteract: 
-  IsInteractable: 1
-  MG: {fileID: 2989491483905947380}
-  MSE: {fileID: 4663420158370971725}
---- !u!135 &5092848964518062043
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4350461985539303470}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8911524688434098145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdf797d1f07e294e92378aa007d4625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 150
+  Speed: 200
   Timer: 2
   Damage: 140
   MyDamageType: 2
@@ -770,7 +698,6 @@ Transform:
   - {fileID: 4663420159755169227}
   - {fileID: 2634268626538680753}
   - {fileID: 4377433998843494379}
-  - {fileID: 2674418796876683254}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -796,7 +723,6 @@ MonoBehaviour:
     BurstInterval: 0
     BurstCD: 0
     BurstRemaining: 0
-  ShotAmount: 1
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 2198442676551212465, guid: 3dc32f212ff5da3418ab4a4602a816ea,
     type: 3}
@@ -806,8 +732,8 @@ MonoBehaviour:
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
   Pitch: 1
-  PercentageConsumedPerShot: 0.19
-  ChargePerSecond: 0.25
+  PercentageConsumedPerShot: 0.12
+  ChargePerSecond: 0.15
   ChargeDelay: 0.2
   ChargePowerDraw: 5
 --- !u!114 &2989491483905947380
@@ -852,7 +778,6 @@ MonoBehaviour:
   RequireAiming: 0
   Weight: 0.1
   Mirrored: 0
-  InteractableVolume: {fileID: 4350461985539303470}
   MainWeapon: {fileID: 8835463457080144963}
   MainWeaponSN: N-000
   MainWeaponName: Null

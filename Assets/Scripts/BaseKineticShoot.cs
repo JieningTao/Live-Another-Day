@@ -16,9 +16,7 @@ public class BaseKineticShoot : BaseShoot
     protected string AmmoTypeIdentifier = "";
     protected int AttributeExtraAmmo;
 
-    [SerializeField]
     protected int MagazineRemaining;
-    [SerializeField]
     protected int ReserveRemaining;
     protected float ReloadTimeRemaining;
 

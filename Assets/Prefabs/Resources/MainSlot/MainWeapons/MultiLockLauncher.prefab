@@ -350,78 +350,6 @@ Transform:
   m_Father: {fileID: 4252596101311521114}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2195022476812110691
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7563510909003570686}
-  - component: {fileID: 1577367460507846613}
-  - component: {fileID: 4942049147129189890}
-  - component: {fileID: 8051297973057760468}
-  m_Layer: 18
-  m_Name: Interactable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7563510909003570686
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2195022476812110691}
-  m_LocalRotation: {x: -0.000000059604645, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7454904633930414510}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1577367460507846613
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2195022476812110691}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &4942049147129189890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2195022476812110691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717c4a928c4d9094bab308c286faab5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  MainInteract: 
-  SubInteract: 
-  IsInteractable: 1
-  MG: {fileID: 8031688331118728529}
-  MSE: {fileID: -6098929190505740336}
---- !u!135 &8051297973057760468
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2195022476812110691}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2488659245220802837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,7 +1742,6 @@ Transform:
   - {fileID: 7454904633986656646}
   - {fileID: 7454904632680725614}
   - {fileID: 6873749539842459667}
-  - {fileID: 7563510909003570686}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1849,7 +1776,6 @@ MonoBehaviour:
     BurstInterval: 0
     BurstCD: 0
     BurstRemaining: 0
-  ShotAmount: 1
   MyFireMode: 3
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
@@ -1881,7 +1807,6 @@ MonoBehaviour:
   RequireAiming: 0
   Weight: 0.2
   Mirrored: 0
-  InteractableVolume: {fileID: 2195022476812110691}
   MainWeapon: {fileID: 7454904633930414511}
   MainWeaponSN: MLML-1515
   MainWeaponName: MultiLock Launcher

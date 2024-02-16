@@ -63,8 +63,6 @@ public class WeaponUIManager : MonoBehaviour
 
     public void NewWeapon(bool Right, BaseMainSlotEquipment Equipment)
     {
-        Debug.Log(Equipment);
-
         UIWeaponDisplayBox TempMain;
         UIWeaponDisplayBox TempSecondary;
 

@@ -419,7 +419,6 @@ Transform:
   - {fileID: 5398929966539844868}
   - {fileID: 4410412824105171459}
   - {fileID: 3441466553335695192}
-  - {fileID: 3730333326899726271}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -445,7 +444,6 @@ MonoBehaviour:
     BurstInterval: 0
     BurstCD: 0
     BurstRemaining: 0
-  ShotAmount: 1
   MyFireMode: 1
   MuzzleFlarePrefab: {fileID: 5801159630619674967, guid: ddeacdadad4133f4fadd870c3c1d1035,
     type: 3}
@@ -481,7 +479,6 @@ MonoBehaviour:
     BurstInterval: 0
     BurstCD: 0
     BurstRemaining: 0
-  ShotAmount: 1
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 6399421589390124896, guid: 74a90a6bd55d6a14a8d4ca238701e8f6,
     type: 3}
@@ -512,7 +509,6 @@ MonoBehaviour:
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
-  InteractableVolume: {fileID: 5766586261079315980}
   MainWeapon: {fileID: 9026892890078646505}
   MainWeaponSN: R-006
   MainWeaponName: Rifle
@@ -790,78 +786,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &5766586261079315980
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3730333326899726271}
-  - component: {fileID: 7204311737953781406}
-  - component: {fileID: 1354413471631109945}
-  - component: {fileID: 7675901312140108075}
-  m_Layer: 18
-  m_Name: Interactable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3730333326899726271
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5766586261079315980}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3374845963381505274}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7204311737953781406
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5766586261079315980}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1354413471631109945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5766586261079315980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717c4a928c4d9094bab308c286faab5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  MainInteract: 
-  SubInteract: 
-  IsInteractable: 1
-  MG: {fileID: 8701285061323915434}
-  MSE: {fileID: -855953501161792535}
---- !u!135 &7675901312140108075
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5766586261079315980}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6693749029309437341
 GameObject:
   m_ObjectHideFlags: 0

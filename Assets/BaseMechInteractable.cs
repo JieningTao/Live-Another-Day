@@ -7,30 +7,37 @@ using UnityEngine.Events;
 public class BaseMechInteractable : MonoBehaviour
 {
     [SerializeField]
-    protected string Name;
+    private string Name;
     [SerializeField]
-    protected string MainInteract;
+    private string MainInteract;
     [SerializeField]
-    protected string SubInteract;
-    [SerializeField]
-    protected bool IsInteractable = true;
+    private string SubInteract;
 
-    public virtual void InteractMain(BaseMechMain Mech, bool a)
+    public UnityEvent MainInteractDown; 
+    public UnityEvent MainInteractUp;
+    public UnityEvent SubInteractDown;
+    public UnityEvent SubInteractUp;
+
+    public void InteractMain(bool a)
     {
-
+        if (a)
+            MainInteractDown.Invoke();
+        else
+            MainInteractUp.Invoke(); ;
     }
 
-    public virtual void InteractSub(BaseMechMain Mech, bool a)
+    public void InteractSub(bool a)
     {
-
+        if (a)
+            SubInteractDown.Invoke();
+        else
+            SubInteractUp.Invoke();
     }
 
     public virtual string InteractableName
-    { get { return Name; } }
+    {get { return Name; }}
     public virtual string MainInteractName
     { get { return MainInteract; } }
     public virtual string SubInteractName
     { get { return SubInteract; } }
-    public virtual bool Interactable
-    { get { return IsInteractable; } }
 }

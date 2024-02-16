@@ -40,9 +40,6 @@ public class BaseMainSlotEquipment : MonoBehaviour,IDamageSource
     [SerializeField]
     private bool Mirrored = false;
 
-    [SerializeField]
-    private GameObject InteractableVolume;
-
 
 
     public bool Right { get; private set; }
@@ -76,40 +73,16 @@ public class BaseMainSlotEquipment : MonoBehaviour,IDamageSource
 
         Right = _Right;
 
-        DetermineMirror();
-        if(InteractableVolume)
-        InteractableVolume.SetActive(false);
-    }
-
-    public virtual void UnEquip(Vector3 DropPos,Quaternion DropRot)
-    {
-        transform.parent = null;
-        Operator = null;
-        Right = false;
-        DetermineMirror();
-        transform.position = DropPos;
-        transform.rotation = DropRot;
-        if(InteractableVolume)
-        InteractableVolume.SetActive(true);
-    }
-
-    protected virtual void DetermineMirror()
-    {
-        if(!Right&&Mirrored)
+        if (!Right)
         {
-            Vector3 a = transform.localScale;
-            a.x = -Mathf.Abs(transform.localScale.x);
+            if (Mirrored)
+            {
+                Vector3 a = transform.localScale;
+                a.x = -Mathf.Abs(transform.localScale.x);
 
-            transform.localScale = a;
+                transform.localScale = a;
+            }
         }
-        else
-        {
-            Vector3 a = transform.localScale;
-            a.x = Mathf.Abs(transform.localScale.x);
-
-            transform.localScale = a;
-        }
-
     }
 
     public virtual void GetInitializeDate(out string MainFunction, out Color MainColor, out string SecondaryFunction, out Color SecondaryColor)
@@ -155,9 +128,4 @@ public class BaseMainSlotEquipment : MonoBehaviour,IDamageSource
         return this;
     }
 
-    public void RecieveVolume(GameObject a)
-    {
-        InteractableVolume = a;
-
-    }
 }

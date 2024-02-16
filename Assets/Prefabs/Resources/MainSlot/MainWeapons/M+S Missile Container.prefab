@@ -1,77 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &528377371
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 528377372}
-  - component: {fileID: 528377375}
-  - component: {fileID: 528377374}
-  - component: {fileID: 528377373}
-  m_Layer: 18
-  m_Name: Interactable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &528377372
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528377371}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4487467277725981279}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &528377375
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528377371}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &528377374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528377371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717c4a928c4d9094bab308c286faab5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  MainInteract: 
-  SubInteract: 
-  IsInteractable: 1
-  MG: {fileID: 6171267387145372213}
-  MSE: {fileID: -5161843851796161329}
---- !u!135 &528377373
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528377371}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &311923796970734711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,7 +1123,6 @@ Transform:
   - {fileID: 5242072587834688487}
   - {fileID: 8180673353885755722}
   - {fileID: 9158946785973942230}
-  - {fileID: 528377372}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1230,7 +1157,6 @@ MonoBehaviour:
     BurstInterval: 0
     BurstCD: 0
     BurstRemaining: 0
-  ShotAmount: 1
   MyFireMode: 3
   MuzzleFlarePrefab: {fileID: 9158946785973942225}
   MyAnimator: {fileID: 0}
@@ -1271,7 +1197,6 @@ MonoBehaviour:
     BurstInterval: 0
     BurstCD: 0
     BurstRemaining: 0
-  ShotAmount: 1
   MyFireMode: 3
   MuzzleFlarePrefab: {fileID: 9158946785973942225}
   MyAnimator: {fileID: 0}
@@ -1302,7 +1227,6 @@ MonoBehaviour:
   RequireAiming: 1
   Weight: 0.3
   Mirrored: 0
-  InteractableVolume: {fileID: 528377371}
   MainWeapon: {fileID: 4487467277725981276}
   MainWeaponSN: N-000
   MainWeaponName: Small Missiles
@@ -3021,15 +2945,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c4154805f8e2c343b148d2d28fa9f06, type: 3}
---- !u!4 &9158946785973942230 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6386517954521600602, guid: 3c4154805f8e2c343b148d2d28fa9f06,
-    type: 3}
-  m_PrefabInstance: {fileID: 2862712308197795212}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9158946785973942225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6386517954521600605, guid: 3c4154805f8e2c343b148d2d28fa9f06,
+    type: 3}
+  m_PrefabInstance: {fileID: 2862712308197795212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9158946785973942230 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6386517954521600602, guid: 3c4154805f8e2c343b148d2d28fa9f06,
     type: 3}
   m_PrefabInstance: {fileID: 2862712308197795212}
   m_PrefabAsset: {fileID: 0}
@@ -3112,12 +3036,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af09cd9c8219dd84d8cf724f9c2518ef, type: 3}
---- !u!4 &8180673353885755722 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5746936876792177101, guid: af09cd9c8219dd84d8cf724f9c2518ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 4487467277324077191}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4868675818403762663 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9067907045586032992, guid: af09cd9c8219dd84d8cf724f9c2518ef,
@@ -3130,6 +3048,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75d85d7e1dc8d14092f685f32fcc15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8180673353885755722 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5746936876792177101, guid: af09cd9c8219dd84d8cf724f9c2518ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 4487467277324077191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4487467278058209518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3231,12 +3155,7 @@ PrefabInstance:
     - target: {fileID: 2423011843554176831, guid: a4f2c28a85c1c86408a5491eda98b9a4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2484898282735043851, guid: a4f2c28a85c1c86408a5491eda98b9a4,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7982778234853565851, guid: a4f2c28a85c1c86408a5491eda98b9a4,
         type: 3}

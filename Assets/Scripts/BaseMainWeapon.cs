@@ -282,25 +282,6 @@ public class BaseMainWeapon : BaseMainSlotEquipment
 
     }
 
-    public override void UnEquip(Vector3 DropPos,Quaternion DropRot)
-    {
-        base.UnEquip(DropPos,DropRot);
-        MainWeapon.EquipWeapon();
-        if (MainWeapon is BaseEnergyShoot)
-        {
-            (MainWeapon as BaseEnergyShoot).GetPowerSource(null);
-        }
-
-        if (HasSecondary)
-        {
-            SecondaryWeapon.EquipWeapon();
-            if (SecondaryWeapon is BaseEnergyShoot)
-            {
-                (SecondaryWeapon as BaseEnergyShoot).GetPowerSource(null);
-            }
-        }
-    }
-
     public override void GetInitializeDate(out string MainFunction, out Color MainColor, out string SecondaryFunction, out Color SecondaryColor)
     {
         MainFunction = MainWeaponSN + "\n" + MainWeaponName;
