@@ -7,8 +7,9 @@ public class MechInteract : MonoBehaviour
     [SerializeField]
     BaseMechMain MyMech;
     InteractableUIManager UIManager;
+    [SerializeField]//SFT
     List<BaseMechInteractable> InteractablesInRange = new List<BaseMechInteractable>();
-    [SerializeField]
+    [SerializeField]//SFT
     BaseMechInteractable CurrentInteractable;
 
     private void Start()
@@ -20,6 +21,15 @@ public class MechInteract : MonoBehaviour
     {
         if (InteractablesInRange.Count > 1)
             FindMainTarget();
+        else if(InteractablesInRange.Count ==1)
+        {
+            if (!CurrentInteractable.gameObject.active)
+            {
+                InteractablesInRange.Remove(CurrentInteractable);
+                CurrentInteractable = null;
+                UIManager.UpdateDisplay(null);
+            }
+        }
         HandleInput();
     }
 
@@ -40,13 +50,22 @@ public class MechInteract : MonoBehaviour
             BaseMechInteractable OldTarget = CurrentInteractable;
             float Dis = 100; //default dis is large so the first target will auto replace it as closest to the interactable zone
 
-            foreach (BaseMechInteractable a in InteractablesInRange)
+            for (int i = 0; i < InteractablesInRange.Count; i++)
             {
-                float NewDis = Vector3.Distance(a.transform.position, transform.position);
-                if (NewDis < Dis)
+                if (!InteractablesInRange[i].gameObject.active)
                 {
-                    CurrentInteractable = a;
-                    Dis = NewDis;
+                    InteractablesInRange.RemoveAt(i);
+                    i--;
+                }
+                else
+                {
+                    float NewDis = Vector3.Distance(InteractablesInRange[i].transform.position, transform.position);
+
+                    if (NewDis < Dis)
+                    {
+                        CurrentInteractable = InteractablesInRange[i];
+                        Dis = NewDis;
+                    }
                 }
             }
 
@@ -63,28 +82,28 @@ public class MechInteract : MonoBehaviour
         if (CurrentInteractable != null && Time.timeScale != 0)
         {
             if (Input.GetButtonDown("InteractMain"))
-                CurrentInteractable.InteractMain(true);
+                CurrentInteractable.InteractMain(MyMech,true);
              else if(Input.GetButtonUp("InteractMain"))
-                CurrentInteractable.InteractMain(false);
+                CurrentInteractable.InteractMain(MyMech, false);
 
             if (Input.GetButtonDown("InteractSub"))
-                CurrentInteractable.InteractSub(true);
+                CurrentInteractable.InteractSub(MyMech, true);
             else if (Input.GetButtonUp("InteractSub"))
-                CurrentInteractable.InteractSub(false);
+                CurrentInteractable.InteractSub(MyMech, false);
         }
 
 
     }
     private void OnTriggerEnter(Collider other)
     {
-        InteractablesInRange.Add(other.GetComponent<BaseMechInteractable>());
+        InteractablesInRange.Add(other.GetComponentInParent<BaseMechInteractable>());
         if (InteractablesInRange.Count == 1)
            NewMainInteractable( InteractablesInRange[0]);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        BaseMechInteractable Temp = other.GetComponent<BaseMechInteractable>();
+        BaseMechInteractable Temp = other.GetComponentInParent<BaseMechInteractable>();
         InteractablesInRange.Remove(Temp);
 
         if (InteractablesInRange.Count == 0)

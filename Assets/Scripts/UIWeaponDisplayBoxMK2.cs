@@ -139,7 +139,6 @@ public class UIWeaponDisplayBoxMK2 : MonoBehaviour
         if (Avaliable)
         {
             BG.color = BGAvaliableColor;
-
         }
         else
         {
@@ -150,14 +149,18 @@ public class UIWeaponDisplayBoxMK2 : MonoBehaviour
 
     private void NewWeapon(bool Right, BaseMainSlotEquipment _Equipment)
     {
+        Debug.Log(_Equipment);
         if (Right == RightWeapon)
         {
+            Debug.Log(_Equipment);
             Equipment = _Equipment;
             if (!_Equipment)
             {
                 SetAvaliable(false);
                 return;
             }
+            else
+                SetAvaliable(true);
 
             Equipment.GetInitializeDate(out string MainName, out Color MainColor, out string SecondaryName, out Color SecondaryColor);
 

@@ -83,6 +83,9 @@ public class BaseMechFCS : MonoBehaviour
     private bool FocusMode;
     private EnergySignal FocusTarget;
     private BaseFCSChip MyChip;
+
+    [SerializeField]
+    private Transform WeaponDropPosition;
     //private void Start()
     //{
     //    InitializeFCS(GetComponent<BaseMechMain>());
@@ -104,6 +107,11 @@ public class BaseMechFCS : MonoBehaviour
 
         Equip(CurrentPrimary, true);
         Equip(CurrentSecondary, false);
+
+        if (WeaponChanges != null && MyBMM.PlayerMech)
+            WeaponChanges.Invoke(true, CurrentPrimary);
+        if (WeaponChanges != null && MyBMM.PlayerMech)
+            WeaponChanges.Invoke(false, CurrentSecondary);
 
         RadarCollider.radius = RadarRange; //needs to happen after chip install for correct radar range
         RadarCollider.isTrigger = true;
@@ -265,60 +273,6 @@ public class BaseMechFCS : MonoBehaviour
         return CameraAnchor.forward;
     }
 
-    protected void Equip(BaseMainSlotEquipment Equipment, bool OnRightHand)
-    {
-        if (Equipment == null)
-        {
-            if (WeaponChanges != null && MyBMM.PlayerMech)
-                WeaponChanges.Invoke(OnRightHand, Equipment);
-
-            if (OnRightHand)
-                CurrentPrimary = null;
-            else
-                CurrentSecondary = null;
-
-            return;
-        }
-
-        if (OnRightHand)
-        {
-            CurrentPrimary = Equipment;
-
-            RightArm.EquipEquipment(Equipment);
-
-            Equipment.Equip(true, MyBMM, true);
-        }
-        else
-        {
-            CurrentSecondary = Equipment;
-
-            LeftArm.EquipEquipment(Equipment);
-
-            Equipment.Equip(true, MyBMM, false);
-        }
-
-        Equipment.transform.localPosition = Vector3.zero;
-        Equipment.transform.localRotation = Quaternion.Euler(Vector3.zero);
-
-
-
-
-        if (WeaponChanges != null&& MyBMM.PlayerMech)
-            WeaponChanges.Invoke(OnRightHand, Equipment);
-    }
-
-    public void UnEquip(BaseMainSlotEquipment Equipment)
-    {
-        if (CurrentPrimary == Equipment)
-            UnEquip(true);
-        else if (CurrentSecondary == Equipment)
-            UnEquip(false);
-    }
-
-    public void UnEquip(bool Right)
-    {
-        Equip(null, Right);
-    }
 
     public void SetWeaponWarning(bool Right, bool Main, bool Ammo, bool Active)
     {
@@ -384,24 +338,6 @@ public class BaseMechFCS : MonoBehaviour
             CurrentSecondary.SecondaryFire(_Fire);
     }
 
-    public BaseMainSlotEquipment SwitchPrimaryEquipment(BaseMainSlotEquipment NewEquipment)
-    {
-        BaseMainSlotEquipment Temp = CurrentPrimary;
-
-        CurrentPrimary = NewEquipment;
-
-        return Temp;
-    }
-
-    public BaseMainSlotEquipment SwitchSecondaryEquipment(BaseMainSlotEquipment NewEquipment)
-    {
-        BaseMainSlotEquipment Temp = CurrentSecondary;
-
-        CurrentSecondary = NewEquipment;
-
-        return Temp;
-    }
-
     private void Targetweapons(Transform ThingToAim, bool AtTarget)
     {
         Vector3 AimDir;
@@ -419,6 +355,125 @@ public class BaseMechFCS : MonoBehaviour
         ThingToAim.rotation = Quaternion.LookRotation(AimDir, this.transform.up);
 
     }
+
+    #region Weapon switching
+    public void DropMainEquipment(bool Right,Transform Pos)
+    {
+
+
+        if (Right&&CurrentPrimary!=null)
+        {
+            CurrentPrimary.UnEquip(Pos.position,Pos.rotation);
+            CurrentPrimary = null;
+        }
+        else if(!Right&&CurrentSecondary!=null)
+        {
+            CurrentSecondary.UnEquip(Pos.position, Pos.rotation);
+            CurrentSecondary = null;
+        }
+
+
+        if (WeaponChanges != null && MyBMM.PlayerMech)
+            WeaponChanges.Invoke(Right, null);
+    }
+
+    public void DropMainEquipment(bool Right)
+    {
+        DropMainEquipment(Right, WeaponDropPosition); 
+    }
+
+    //public BaseMainSlotEquipment SwitchPrimaryEquipment(BaseMainSlotEquipment NewEquipment)
+    //{
+    //    BaseMainSlotEquipment Temp = CurrentPrimary;
+
+    //    CurrentPrimary = NewEquipment;
+
+    //    return Temp;
+    //}
+
+    //public BaseMainSlotEquipment SwitchSecondaryEquipment(BaseMainSlotEquipment NewEquipment)
+    //{
+    //    BaseMainSlotEquipment Temp = CurrentSecondary;
+
+    //    CurrentSecondary = NewEquipment;
+
+    //    return Temp;
+    //}
+
+    public void RecieveNewPrimaryEquipment(BaseMainSlotEquipment Equipment)
+    {
+        if (CurrentPrimary != null)
+            DropMainEquipment(true, Equipment.transform);
+        Equip(Equipment, true);
+
+        if (WeaponChanges != null && MyBMM.PlayerMech)
+        {
+            WeaponChanges.Invoke(true, Equipment);
+            Debug.Log("a"+Equipment);
+        }
+    }
+
+    public void RecieveNewSecondaryEquipment(BaseMainSlotEquipment Equipment)
+    {
+        if (CurrentSecondary != null)
+            DropMainEquipment(false, Equipment.transform);
+
+        Equip(Equipment, false);
+
+        if (WeaponChanges != null && MyBMM.PlayerMech)
+            WeaponChanges.Invoke(false, Equipment);
+    }
+
+    protected void Equip(BaseMainSlotEquipment Equipment, bool OnRightHand)
+    {
+
+        if (Equipment == null)
+        {
+            DropMainEquipment(OnRightHand);
+            return;
+        }
+
+        if (OnRightHand)
+        {
+            CurrentPrimary = Equipment;
+
+            RightArm.EquipEquipment(Equipment);
+
+            Equipment.Equip(true, MyBMM, true);
+        }
+        else
+        {
+            CurrentSecondary = Equipment;
+
+            LeftArm.EquipEquipment(Equipment);
+
+            Equipment.Equip(true, MyBMM, false);
+        }
+
+        Equipment.transform.localPosition = Vector3.zero;
+        Equipment.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+
+
+        //UI changes are handled elsewere 
+        //if (WeaponChanges != null && MyBMM.PlayerMech)
+        //    WeaponChanges.Invoke(OnRightHand, Equipment);
+    }
+
+    public void UnEquip(BaseMainSlotEquipment Equipment)
+    {
+        if (CurrentPrimary == Equipment)
+            UnEquip(true);
+        else if (CurrentSecondary == Equipment)
+            UnEquip(false);
+    }
+
+    public void UnEquip(bool Right)
+    {
+        Equip(null, Right);
+    }
+
+    #endregion
 
     #region LockedList related
     private void UpdateLockedList()

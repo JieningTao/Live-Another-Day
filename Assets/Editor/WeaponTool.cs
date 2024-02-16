@@ -6,7 +6,7 @@ using UnityEditor;
 public class WeaponTool : EditorWindow
 {
 
-    [MenuItem("Window/WeaponTool")]
+    [MenuItem("Window/JieningTools/WeaponTool")]
     public static void ShowWindow()
     {
         GetWindow<WeaponTool>("WeaponTool");
@@ -24,6 +24,11 @@ public class WeaponTool : EditorWindow
         if (GUILayout.Button("GetProjectileSpawn"))
         {
             GetProjectileSpawn();
+        }
+
+        if(GUILayout.Button("BindInteractables"))
+        {
+            BindInteractables();
         }
 
     }
@@ -69,6 +74,28 @@ public class WeaponTool : EditorWindow
         else
         {
             Debug.Log("No Selected Object");
+        }
+
+    }
+
+    public void BindInteractables()
+    {
+        GameObject[] Selected = Selection.gameObjects;
+        foreach (GameObject a in Selected)
+        {
+            WeaponInteractable WI = a.GetComponentInChildren<WeaponInteractable>();
+            if(WI!=null)
+            {
+                WI.transform.localPosition = Vector3.zero;
+                BaseMainSlotEquipment TempMSE = a.GetComponent<BaseMainSlotEquipment>();
+
+                WI.RecieveScripts(a.GetComponent<LOPMainGear>(), TempMSE);
+
+                TempMSE.RecieveVolume(WI.gameObject);
+
+            }
+            PrefabUtility.SavePrefabAsset(a.gameObject);
+            Debug.Log("Finished Interactable bind for " + a.name);
         }
 
     }

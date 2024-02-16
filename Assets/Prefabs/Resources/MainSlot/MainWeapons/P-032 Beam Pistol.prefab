@@ -34,6 +34,7 @@ Transform:
   - {fileID: 99544295393210697}
   - {fileID: 6933087421399466721}
   - {fileID: 6999522065628373722}
+  - {fileID: 7628816888904698912}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -60,6 +61,7 @@ MonoBehaviour:
     BurstInterval: 0
     BurstCD: 0
     BurstRemaining: 0
+  ShotAmount: 1
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 2198442676551212465, guid: 3dc32f212ff5da3418ab4a4602a816ea,
     type: 3}
@@ -90,6 +92,7 @@ MonoBehaviour:
   RequireAiming: 1
   Weight: 0.05
   Mirrored: 0
+  InteractableVolume: {fileID: 8988843432695901744}
   MainWeapon: {fileID: 4477796489208342291}
   MainWeaponSN: B-R-047
   MainWeaponName: Beam Rifle
@@ -1098,6 +1101,78 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &8988843432695901744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7628816888904698912}
+  - component: {fileID: 420437538415517586}
+  - component: {fileID: 4482631562187440397}
+  - component: {fileID: 5463786493674209721}
+  m_Layer: 18
+  m_Name: Interactable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7628816888904698912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8988843432695901744}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 292242425645945631}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &420437538415517586
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8988843432695901744}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4482631562187440397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8988843432695901744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717c4a928c4d9094bab308c286faab5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  MainInteract: 
+  SubInteract: 
+  IsInteractable: 1
+  MG: {fileID: 7909804974701356452}
+  MSE: {fileID: 905130737326443544}
+--- !u!135 &5463786493674209721
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8988843432695901744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &132920454098761956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1187,12 +1262,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed201d68b1000fa46abc15f733e80457, type: 3}
---- !u!4 &6999522065628373722 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6988309303484029502, guid: ed201d68b1000fa46abc15f733e80457,
-    type: 3}
-  m_PrefabInstance: {fileID: 132920454098761956}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6999522065628373721 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6988309303484029501, guid: ed201d68b1000fa46abc15f733e80457,
@@ -1205,3 +1274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9692ae321e1b5ae4e8f5a51486ce6f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &6999522065628373722 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6988309303484029502, guid: ed201d68b1000fa46abc15f733e80457,
+    type: 3}
+  m_PrefabInstance: {fileID: 132920454098761956}
+  m_PrefabAsset: {fileID: 0}

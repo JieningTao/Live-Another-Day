@@ -869,6 +869,7 @@ Transform:
   - {fileID: 7658054542608636725}
   - {fileID: 8597195782712841580}
   - {fileID: 8111504660622686631}
+  - {fileID: 2889871272628928642}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -888,12 +889,13 @@ MonoBehaviour:
   - {fileID: 7658054542608636725}
   ProjectileScript: {fileID: 8111504660622686628}
   AccuracyDeviation: 5
-  TBS: 0.5
+  TBS: 0.6
   MyBurstSettings:
-    BurstAmount: 1
-    BurstInterval: 0
+    BurstAmount: 5
+    BurstInterval: 0.1
     BurstCD: 0
     BurstRemaining: 0
+  ShotAmount: 3
   MyFireMode: 0
   MuzzleFlarePrefab: {fileID: 2198442676551212465, guid: 3dc32f212ff5da3418ab4a4602a816ea,
     type: 3}
@@ -903,11 +905,10 @@ MonoBehaviour:
   SoundMinMax: {x: 5, y: 500}
   Volume: 1
   Pitch: 1
-  PercentageConsumedPerShot: 0.16
+  PercentageConsumedPerShot: 0.1
   ChargePerSecond: 0.2
   ChargeDelay: 0.2
   ChargePowerDraw: 2.5
-  ShotAmount: 10
 --- !u!114 &6116856496957321508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,6 +926,7 @@ MonoBehaviour:
   RequireAiming: 1
   Weight: 0.1
   Mirrored: 0
+  InteractableVolume: {fileID: 5218531223287979008}
   MainWeapon: {fileID: 2318272946717443085}
   MainWeaponSN: B-SG-023
   MainWeaponName: Beam Shotgun
@@ -1121,6 +1123,78 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &5218531223287979008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2889871272628928642}
+  - component: {fileID: 7838723524515217734}
+  - component: {fileID: 6686536749124526580}
+  - component: {fileID: 3793195783481029844}
+  m_Layer: 18
+  m_Name: Interactable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2889871272628928642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218531223287979008}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1671754780365652346}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7838723524515217734
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218531223287979008}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &6686536749124526580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218531223287979008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717c4a928c4d9094bab308c286faab5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  MainInteract: 
+  SubInteract: 
+  IsInteractable: 1
+  MG: {fileID: -6535614132193632522}
+  MSE: {fileID: 6116856496957321508}
+--- !u!135 &3793195783481029844
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218531223287979008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5495615625431712993
 GameObject:
   m_ObjectHideFlags: 0
