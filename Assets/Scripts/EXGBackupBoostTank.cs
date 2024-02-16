@@ -69,7 +69,7 @@ public class EXGBackupBoostTank : BaseEXGear
         {
             if (ChargeTimeRemaining <= 0 && NextChargeCount < Tanks.Count)
             {
-                if (ChargeTime == 0)
+                if (ChargeTime == 0) // the pack is instant
                 {
                     MyMovement.RestoreBoostJuice(ChargePerTank);
                     EjectTank();
