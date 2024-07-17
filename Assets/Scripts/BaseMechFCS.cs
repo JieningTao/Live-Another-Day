@@ -867,6 +867,16 @@ public class BaseMechFCS : MonoBehaviour
         }
     }
 
+    public void RecieveNewPrimaryEquipment(BaseMainSlotEquipment MSE)
+    {
+        Equip(MSE, true);
+    }
+
+    public void RecieveNewSecondaryEquipment(BaseMainSlotEquipment MSE)
+    {
+        Equip(MSE, false);
+    }
+
     public AttributeManager.ExtraAttribute FetchExtraAttribute(string ExtraAttributeName)
     {
         return MyBMM.MyAttProfile.FetchAttribute(ExtraAttributeName);

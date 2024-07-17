@@ -9,13 +9,13 @@ public class WeaponInteractable : BaseMechInteractable
     [SerializeField]
     BaseMainSlotEquipment MSE;
 
-    public override void InteractMain(BaseMechMain Mech, bool a)
+    public virtual void InteractMain(BaseMechMain Mech, bool a)
     {
         if(a)
         Mech.GetFCS().RecieveNewPrimaryEquipment(MSE);
     }
 
-    public override void InteractSub(BaseMechMain Mech, bool a)
+    public virtual void InteractSub(BaseMechMain Mech, bool a)
     {
         if(a)
         Mech.GetFCS().RecieveNewSecondaryEquipment(MSE);

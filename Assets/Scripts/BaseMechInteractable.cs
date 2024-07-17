@@ -18,7 +18,7 @@ public class BaseMechInteractable : MonoBehaviour
     public UnityEvent SubInteractDown;
     public UnityEvent SubInteractUp;
 
-    public void InteractMain(bool a)
+    public virtual void InteractMain(BaseMechMain Mech, bool a)
     {
         if (a)
             MainInteractDown.Invoke();
@@ -26,7 +26,7 @@ public class BaseMechInteractable : MonoBehaviour
             MainInteractUp.Invoke(); ;
     }
 
-    public void InteractSub(bool a)
+    public virtual void InteractSub(BaseMechMain Mech, bool a)
     {
         if (a)
             SubInteractDown.Invoke();

@@ -63,14 +63,14 @@ public class MechInteract : MonoBehaviour
         if (CurrentInteractable != null && Time.timeScale != 0)
         {
             if (Input.GetButtonDown("InteractMain"))
-                CurrentInteractable.InteractMain(true);
+                CurrentInteractable.InteractMain(MyMech,true);
              else if(Input.GetButtonUp("InteractMain"))
-                CurrentInteractable.InteractMain(false);
+                CurrentInteractable.InteractMain(MyMech, false);
 
             if (Input.GetButtonDown("InteractSub"))
-                CurrentInteractable.InteractSub(true);
+                CurrentInteractable.InteractSub(MyMech, true);
             else if (Input.GetButtonUp("InteractSub"))
-                CurrentInteractable.InteractSub(false);
+                CurrentInteractable.InteractSub(MyMech, false);
         }
 
 
