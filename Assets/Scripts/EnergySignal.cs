@@ -10,6 +10,9 @@ public class EnergySignal : MonoBehaviour
     public EnergySignalType MyType;
 
 
+
+
+
     public enum EnergySignalType
     {
         LowEnergy,

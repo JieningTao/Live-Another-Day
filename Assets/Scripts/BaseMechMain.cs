@@ -111,7 +111,11 @@ public class BaseMechMain : ICoatedDamagable
         if (PlayerMech)
         {
             FindObjectOfType<UIInfoPanelManager>().UIInitialize();
+            if(UILockManager.Instance!=null)
             UILockManager.Instance.Initialize();
+            if(MainLockManagerMK2.Instance!=null)
+            MainLockManagerMK2.Instance.Initialize();
+
             MinimapCam.orthographicSize = FCSChip.GetRadarRange;
         }
     }
